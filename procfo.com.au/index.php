@@ -77,23 +77,128 @@
 									   <li>Regular performance reports prepared for owners/managers</li>
 									</ol>
 									<p>With proCFO you have all the benefits of a CFO without the significant cost of a full-time employee. We provide you with accurate, understandable and up to date financial data, giving you the confidence to make the right decisions for your business. We are the market leaders in virtual CFOs, so let us take the stress out of your bookkeeping. Using our innovative cloud based system, we will bring you the latest in financial administration services delivered with flexibility and a custom designed approach.</p>
-									<p>Our Services:
-									   » Book Keeping Service   
-									   » Business & Strategic Planning, Business Management & Advisory   
-									   » Virtual CFO   </p>		
 								</div>	
+								<section>
+									<h3 class="title_related_posts">Our Services:</h3>
+									<nav class="related_posts">
+										<li><a href="#">book keeping service</a></li>
+										<li><a href="#">Business & Strategic Planning, Business Management & Advisory   </a></li>
+										<li><a href="#">Virtual CFO </a></li>
+									</nav>
+								</section>
 							</div>
 						</article>
 						<aside class="widget">
 							<div class="box-widget">
-								
+								<section class="widget_iteam">
+									<a class="btn btn-widget" href="#" role="button">Book Keeping</a>
+								</section>
+								<section class="widget_iteam">
+									<a class="btn btn-widget" href="#" role="button">Business & Strategies</a>
+								</section>
+								<section class="widget_iteam">
+									<a class="btn btn-widget" href="#" role="button">Virtual CFO</a>
+								</section>
+								<section class="widget_iteam">
+									<div class="form">
+										<form action="" method="POST" role="form">
+											<p class="legend_form">
+												<span>ENQUIRE NOW</span>
+											</p>
+											<p>
+												<span>
+													<input type="text" class="form-control name" id="" placeholder="name">
+												</span>
+											</p>
+											<p>
+												<span>
+													<input type="text" class="form-control email" id="" placeholder="email">
+												</span>
+											</p>
+											<p>
+												<span>
+													<input type="text" class="form-control phone" id="" placeholder="phone">
+												</span>
+											</p>
+											<p>
+												<span>
+													<textarea name="comment" id="inputComment" class="form-control comment" rows="3" required="required" placeholder="Comments"></textarea>
+												</span>
+											</p>
+											<p>
+												<input type="submit" class="btn btn-submit" value="send">
+											</p>
+											<p class="lable_form">
+												<span>
+													Or call us: <small>08 6311 9799</small>
+												</span>
+											</p>
+											<p class="lable_form">
+												<span>
+													Email: <a href="mailto:info@procfo.com.au">info@procfo.com.au</a>
+												</span>
+											</p>
+										</form>
+									</div>	
+								</section>
 							</div>
 						</aside>
 					</div>
 				</section>
 				<footer id="site-footer">
 					<div id="footer-content" class="content">
-						
+						<div class="col-xs-12 col-sm-12 col-md-8 col-lg-8 footer_left">
+							<div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
+								<h3 class="title-item-footer">ProCFO:</h3>
+								<nav class="nav-footer">
+									<ul>
+										<li><a href="">About Us</a></li>
+										<li><a href="">Testimonials</a></li>
+										<li><a href="">Blog</a></li>
+										<li><a href="">Faq</a></li>
+										<li><a href="">Privacy</a></li>
+										<li><a href="">Contact</a></li>
+									</ul>
+								</nav>
+							</div>
+							<div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
+								<h3 class="title-item-footer">Services:</h3>
+								<nav class="nav-footer">
+									<ul>
+										<li><a href="">Book Keeping</a></li>
+										<li><a href="">Business & Strategic Planning/Advisory</a></li>
+										<li><a href="">Virtual CFO</a></li>
+									</ul>
+								</nav>
+								<ul class="footer-icon">
+									<li><a href=""><img src="" alt=""></a></li>
+									<li><a href=""><img src="" alt=""></a></li>
+								</ul>
+							</div>
+							<div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
+								<h3 class="title-item-footer">Contact:</h3>
+								<div class="contact-footer">
+									<ul>
+										<li><p>tel:<span>(08) 6311 979</span></p> </li>
+										<li><p>email:<a href="mailto:">info@procfo.com.au</a></p> </li>
+										<li><a href="">online contact form</a> </li>
+										<li><span>po box xxx</span></li>
+										<li><span>perth wa 6000</span></li>
+									</ul>
+									<ul class="footer-social">
+										<li><a href="">social</a></li>
+										<li><a href="">social</a></li>
+										<li><a href="">social</a></li>
+									</ul>
+								</div>
+							</div>
+						</div>
+						<div class="col-xs-12 col-sm-12 col-md-4 col-lg-4 footer_right">
+							<map>
+								<img src="" alt="">
+							</map>
+							<p>12 street ave, suburb wa 6000</p>
+						</div>
 					</div>
 				</footer>
 			</div>

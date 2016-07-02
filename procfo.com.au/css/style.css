@@ -34,7 +34,8 @@ body{
 	color: #fff;
 	font-size: 18px;
 	border-radius: 4px;
-	box-shadow: 1px 2px 4px 1px rgba(0,0,0,.5)
+	box-shadow: 1px 2px 4px 1px rgba(0,0,0,.5);
+	border:none;
 }
 .btn-1{
 	background:#323c57;
@@ -107,19 +108,108 @@ body{
 	min-height: 645px;
 }
 .article-content{
-	width: 80%;
-	background: #f00;
+	width: 68.3%;
 	min-height: 1px;
 	float: left;    
-	padding: 0 10px;
+	padding: 0 2.1% 0 0;
     box-sizing: border-box;
 }
 .widget{
-	width: 20%;
-	background: blue;
+	width: 30.6%;
+	background: transparent;
 	min-height: 1px;
 	float: left;
 }
+.container-site-content{
+	padding: 23px 0 17px;
+}    
+.box-post-content{
+	background: rgba(255,255,255,.9);    
+	padding: 18px 30px 18px 22px;
+	border-radius: 8px;
+}
+.box-post-content p, .box-post-content strong{
+	font-size: 14px;
+}
+a.btn.btn-widget{
+	    padding: 17px 10px;
+    line-height: normal;    
+    background: #8cc740;
+    font-size: 24px;
+    text-transform: capitalize;
+    margin-bottom: 16px;
+    border-radius: 5px;
+}
+a.btn.btn-widget:hover{
+	background: #fff;
+	color: #8cc740;
+}
+div.form{
+    text-align: center;
+    color: #fff;
+    background: rgba(50,60,87,0.9);
+    border-radius: 5px;
+    padding: 5.23% 3.925%;
+}
+
+p.legend_form span{
+	font-size: 24px;
+	font-weight: bold;
+	margin: 0 0 10px;
+}
+div.form p{
+	margin: 0 0 4px;
+}
+div.form p input, div.form p textarea{
+	border-radius: 0;
+    border: none;
+    resize: none;
+}
+ div.form p textarea{
+ 	height: 82px;
+ }
+div.form p input::-webkit-input-placeholder ,div.form p textarea::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+  color: #595959;
+  text-transform: capitalize;
+}
+div.form p input::-moz-placeholder ,div.form p textarea::-moz-placeholder { /* Firefox 19+ */
+  color: #595959;
+  text-transform: capitalize;
+}
+div.form p input:-ms-input-placeholder ,div.form p textarea:-ms-input-placeholder { /* IE 10+ */
+  color: #595959;
+  text-transform: capitalize;
+}
+div.form p input:-moz-placeholder ,div.form p textarea:-moz-placeholder { /* Firefox 18- */
+  color: #595959;
+  text-transform: capitalize;
+}
+div.form p input.btn-submit{
+    line-height: normal;
+    padding: 3px 40px;
+    display: block;
+    margin: 22px auto 15px;
+    border-radius: 2px;
+    background: #8cc740;
+    color: #323c57;
+    text-transform: uppercase;
+    font-weight: bold;
+    font-size: 24px;
+}
+div.form p.lable_form span, div.form p.lable_form span a{
+	font-size: 16px;
+    color: #fff;
+}
+div.form p.lable_form span a, div.form p.lable_form span small{
+	text-decoration: underline;
+}
+/*
+*	CSS FOOTER
+*/
+#site-footer div[class*="col-"]{
+	padding: 0;
+}
+
 @media screen and (min-width: 1360px){
 	.navbar-default .navbar-nav>li>a{
 		padding: 10px 1.8em;    
