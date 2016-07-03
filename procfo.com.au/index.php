@@ -62,12 +62,12 @@
 					<div class="container-site-content container content">
 						<article class="article-content">
 							<div class="box-post-content">
-								<h2>procfo - what we do</h2>
+								<h2 class="title-post">procfo - what we do</h2>
 								<div class="post-content">
 									<p>Our team of professional accountants and financial officers will keep your business running smoothly. Our fresh eyes can easily identify any areas needing addressing.</p>
 									<p>The process is simple. Your financial reports are uploaded through XERO by either you or your current accountant. proCFO then accesses your financial metrics and begins identifying your business’s strengths and weaknesses, and identifies value-adding opportunities, a service which your everyday accountant will not provide</p>
 									<strong><p>Some key areas we address include:</p></strong>
-									<ol>
+									<ul>
 										<li>Budget preparation and monitoring</li>
 									   <li>Customised business dashboards</li>
 									   <li>Annual strategy planning sessions</li>
@@ -75,7 +75,7 @@
 									   <li>Human resource management</li>
 									   <li>Identifying key profit opportunities</li>
 									   <li>Regular performance reports prepared for owners/managers</li>
-									</ol>
+									</ul>
 									<p>With proCFO you have all the benefits of a CFO without the significant cost of a full-time employee. We provide you with accurate, understandable and up to date financial data, giving you the confidence to make the right decisions for your business. We are the market leaders in virtual CFOs, so let us take the stress out of your bookkeeping. Using our innovative cloud based system, we will bring you the latest in financial administration services delivered with flexibility and a custom designed approach.</p>
 								</div>	
 								<section>
@@ -171,8 +171,8 @@
 									</ul>
 								</nav>
 								<ul class="footer-icon">
-									<li><a href=""><img src="" alt=""></a></li>
-									<li><a href=""><img src="" alt=""></a></li>
+									<li><a href=""><img src="images/icon-footer2.png" alt=""></a></li>
+									<li><a href=""><img src="images/icon-footer.png" alt=""></a></li>
 								</ul>
 							</div>
 							<div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
@@ -186,16 +186,16 @@
 										<li><span>perth wa 6000</span></li>
 									</ul>
 									<ul class="footer-social">
-										<li><a href="">social</a></li>
-										<li><a href="">social</a></li>
-										<li><a href="">social</a></li>
+										<li><a class="fb" href=""></a></li>
+										<li><a class="gplus" href=""></a></li>
+										<li><a class="in" href=""></a></li>
 									</ul>
 								</div>
 							</div>
 						</div>
 						<div class="col-xs-12 col-sm-12 col-md-4 col-lg-4 footer_right">
 							<map>
-								<img src="" alt="">
+								<img src="images/map.png" alt="">
 							</map>
 							<p>12 street ave, suburb wa 6000</p>
 						</div>
@@ -207,7 +207,5 @@
 		<script src="/js/jquery-1.12.4.min.js"></script>
 		<!-- Bootstrap JavaScript -->
 		<script src="/js/bootstrap.min.js"></script>
-		<!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
- 		<script src="Hello World"></script>
 	</body>
 </html>
