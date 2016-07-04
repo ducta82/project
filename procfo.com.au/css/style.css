@@ -22,9 +22,20 @@ body{
 *	CSS HEADER
 */
 .container-header{
-	background:url('/images/home_header_bg.png') center center no-repeat;
-	background-size: cover;
 	min-height: 226px;
+	position: relative;
+}
+.logo{
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    overflow: hidden;
+}
+.logo img{
+	max-width: 100%;
+	height: auto;
 }
 .box-btn{
 	float: right;
@@ -105,12 +116,31 @@ body{
 .navbar-default .navbar-nav>li:last-child:after{
 	display: none;
 }
+
+.navbar-toggle{
+    margin: 0;
+    padding: 0;
+    border: none;
+    background: #323c57;
+    width: 41px;
+    height: 41px;
+    border-radius: 4px;
+}
+.navbar-toggle .icon-bar{
+    display: block;
+    width: 32px;
+    height: 5px;
+    border-radius: 2px;
+    background: #fff;
+    margin: 0 auto 0;
+}
+.navbar-toggle .icon-bar:nth-last-child(2){
+    margin: 7px auto;
+}
 /*
 *	CSS CONTENT
 */
 #site-content{
-	background: url('/images/home_bg.png') center center no-repeat;
-	background-size: cover;
 	min-height: 645px;
 }
 .article-content{
@@ -287,7 +317,7 @@ footer#site-footer a:hover{
 	text-decoration: underline;
 	text-transform: capitalize;
 }
-.contact-footer li p{
+.contact-footer li p, .contact-footer li span{
 	text-transform: capitalize;
 	margin: 0;
 }
@@ -329,6 +359,7 @@ map{
 }
 .footer-icon{
 	list-style: none;
+	margin: 17px 0 0;
 }
 .footer-icon li{
 	float: left;
@@ -336,7 +367,7 @@ map{
 .footer-icon li a{
 	margin-right: 16px;
 }
-@media screen and (min-width: 1300px){
+@media screen and (min-width: 801px){
 	.navbar-default .navbar-nav>li{
 		padding: 0 1.3%;    
 	    display: inline-block;
@@ -345,16 +376,6 @@ map{
 	.navbar-default .navbar-nav>li>a:after{
 		right: 2.9em;
 	}
-}
-@media screen and (min-width: 1200px) and (max-width: 1280px){
-	.navbar-default .navbar-nav>li{
-		padding: 0 .88%;    
-	}
-	.navbar-default .navbar-nav>li>a:after{
-		right: 1.5em;
-	}
-}
-@media(min-width: 789px){
 	.navbar-default .navbar-nav>li:first-child{
 		padding-left: 0;
 	}
@@ -362,12 +383,107 @@ map{
 		padding-right: 0;
 	}
 }
-@media (max-width: 768px){
+@media (max-width: 800px){
+	.navbar-toggle {
+    	display: block;
+	}
+	.navbar-nav>li{
+		float: none;
+	}
+	.logo img{
+		height: 100%;
+		max-width: 1000%;
+		margin:-31px auto 0 -80px;
+	}
+	.container-header .content{
+		position: absolute;
+		bottom: 0;
+    	width: 100%;
+	}
+	.box-btn{
+		width: 100%;
+	    text-align: center;
+	    margin: 0 0 30px;
+	}
+	.box-btn a{
+	    margin: 0;
+	    display: inline-block;    
+	    font-size: 16px;
+    	padding: 8px 5px;
+	}
+	.navbar-right{
+		text-align: center;
+	}
+	.navbar-default{
+		border: none;
+		min-height: 0;
+	}
+	.navbar-default .navbar-nav>li:after{
+		display: none;
+	}
+	.navbar-default .navbar-collapse{
+		border: none;
+		display: none;/* 
+		max-height: 0;
+		-moz-transition: max-height .5s ease;
+			    -webkit-transition: max-height .5s ease;
+			    -o-transition: max-height .5s ease;
+			    transition: max-height .5s ease; */
+	}
+	.navbar-default .navbar-collapse.open{/* 
+		max-height: 999px;
+		display: block;
+		-moz-transition: max-height 1s ease;
+	    -webkit-transition: max-height 1s ease;
+	    -o-transition: max-height 1s ease;
+	    transition: max-height 1s ease; */
+	}
+
+	.container-site-content.container.content{
+		width: 100%;
+		padding: 17px 0 0;
+	}
+	.box-post-content{
+	    border-bottom-left-radius: 0;
+    	border-bottom-right-radius: 0;
+    	padding-bottom: 86px;
+	}
 	.article-content{
-	width: 100%;
-	padding: 0;
-}
-.widget{
-	width: 100%;
-}
+		width: 100%;
+		padding: 0 1.25% ;
+	}
+	.widget{
+	    width: 100%;
+	    background: #fff;
+	    margin-top: 0;
+	}
+	.box-widget{
+		width: 68.23%;
+	    float: none;
+    	margin: -80px auto 0;
+    	padding-bottom: 6px;
+	}
+	nav.related_posts li{
+		position: relative;
+		padding-left: 24px;
+	}
+	nav.related_posts li:before{
+		position: absolute;
+		left: 0;
+	}
+	nav.related_posts li a{
+		text-decoration: underline;
+	}
+	.footer_left div[class*='col-']{
+		width: 50%
+	}
+	.footer_left div[class*='col-']:last-child{
+		width: 100%;
+		margin-top: 40px;
+		text-align: center;
+	}
+	.footer_right ul{
+		list-style: none;
+		margin: 0 auto;
+	}
 }

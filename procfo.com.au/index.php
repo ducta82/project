@@ -22,28 +22,28 @@
 		<section class="wapper">
 			<div class="container-fluid">
 				<header id="site-header">
-					<div class="container-header">
+					<div class="container-header" style="background:url('/images/home_header_bg.png') center center no-repeat;    background-size: cover;">
+						<div class="logo">
+							<img src="/images/logo.png" alt="">
+						</div>
 						<div class="content">
 							<div class="box-btn">
 								<a class="btn btn-1" href="#">Call Now (08) 6311 9799</a>
 								<a class="btn btn-2" href="#">Book a Free Consultation</a>
+								<button type="button" class="navbar-toggle">
+										<span class="icon-bar"></span>
+										<span class="icon-bar"></span>
+										<span class="icon-bar"></span>
+								</button>
 							</div>
 						</div>
 					</div>
 					<nav class="navbar navbar-default" role="navigation">
 							<div class="content">
 								<!-- Brand and toggle get grouped for better mobile display -->
-								<div class="navbar-header">
-									<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
-										<span class="sr-only">Toggle navigation</span>
-										<span class="icon-bar"></span>
-										<span class="icon-bar"></span>
-										<span class="icon-bar"></span>
-									</button>
-								</div>
 						
 								<!-- Collect the nav links, forms, and other content for toggling -->
-								<div class="collapse navbar-collapse navbar-ex1-collapse">
+								<div class="navbar-collapse">
 									<ul class="nav navbar-nav navbar-right">
 										<li><a href="#">home</a></li>
 										<li><a href="#">Book Keeping Service</a></li>
@@ -58,7 +58,9 @@
 							</div>
 						</nav>	
 				</header>	
-				<section id="site-content">
+				<section id="site-content" style="
+	background: url('/images/home_bg.png') center center no-repeat;
+	background-size: cover;">
 					<div class="container-site-content container content">
 						<article class="article-content">
 							<div class="box-post-content">
@@ -207,5 +209,6 @@
 		<script src="/js/jquery-1.12.4.min.js"></script>
 		<!-- Bootstrap JavaScript -->
 		<script src="/js/bootstrap.min.js"></script>
+		<script src="/js/custom.js"></script>
 	</body>
 </html>
