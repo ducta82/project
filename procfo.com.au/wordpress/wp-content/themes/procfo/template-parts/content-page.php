@@ -22,15 +22,16 @@ $id = get_the_id();
 		</div><!-- .entry-content -->
 		<section>
 			<h3 class="title_related_posts">Our Services:</h3>
-		<?php $args = array(
-			'sort_order' => 'asc',
-			'sort_column' => 'rand',
-			'exclude' => $id,
-			'number' => 3,
+		<?php 
+		$args = array(
+			'order' => 'asc',
+			'orderby' => 'rand',
+			'exclude' => array($id),
+			'posts_per_page'   => 3,
 			'post_type' => 'page',
 			'post_status' => 'publish'
 		); 
-		$pages = get_pages($args); 
+		$pages = get_posts($args); 
 		echo '<nav class="related_posts">';
 		 foreach ( $pages as $page ) {
 			echo '<li><a href="'.get_page_link( $page->ID ).'">'. $page->post_title .'</a></li>';

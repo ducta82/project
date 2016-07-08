@@ -23,9 +23,6 @@ endif; ?>
 	<div class="container-site-content container content">
 
 		<?php
-		global $wp_query;
-		$args = array_merge( $wp_query->query_vars, array( 'posts_per_page' => '1', 'page_id'=>203 , 'post_type'=>'page') );
-		$my_post = query_posts( $args );
 		if ( have_posts() ) :
 
 			if ( is_home() && ! is_front_page() ) : ?>

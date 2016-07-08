@@ -31,60 +31,48 @@ $query = new WP_Query( $args );
 		<?php
 		if ( $query->have_posts() ) : ?>
 		<div class="article-content">
-
+			<article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
+				<div class="box-post-content">
 			<?php
 			/* Start the Loop */
 			while ( $query->have_posts() ) : $query->the_post();
-
-				/*
-				 * Include the Post-Format-specific template for the content.
-				 * If you want to override this in a child theme, then include a file
-				 * called content-___.php (where ___ is the Post Format name) and that will be used instead.
-				 */
-				?>
-				
-				<article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
-					<div class="box-post-content">
-						<header class="entry-header">
-							<?php the_title( '<h2 class="title-post">', '</h2>' ); ?>
-						</header><!-- .entry-header -->
-
-						<div class="post-content">
-							<?php
-								the_content();
-							?>
-						</div><!-- .entry-content -->
-						<section>
-							<h3 class="title_related_posts">Our Services:</h3>
-						<?php $args = array(
-							'sort_order' => 'asc',
-							'sort_column' => 'rand',
-							'exclude' => $id,
-							'number' => 3,
-							'post_type' => 'page',
-							'post_status' => 'publish'
-						); 
-						$pages = get_pages($args); 
-						echo '<nav class="related_posts">';
-						 foreach ( $pages as $page ) {
-							echo '<li><a href="'.get_page_link( $page->ID ).'">'. $page->post_title .'</a></li>';
-						  }
-						?>
-							</nav>
-						</section>
-					</div>	
-				</article><!-- #post-## -->
-				<?php
+			
+				get_template_part( 'template-parts/content', get_post_format() );
 
 			endwhile;
-
-			the_posts_navigation();
+			the_posts_pagination( array(
+			    'mid_size' => 3,
+			    'prev_text' => __( 'Back', 'procfo' ),
+			    'next_text' => __( 'Next', 'procfo' ),
+			    'screen_reader_text' => __('Navigation','procfo')
+			) );
 
 		else :
 
 			get_template_part( 'template-parts/content', 'none' );
 
 		endif; ?>
+				<section>
+			<h3 class="title_related_posts">Our Services:</h3>
+				<?php 
+				$args = array(
+					'order' => 'asc',
+					'orderby' => 'rand',
+					'exclude' => array($id),
+					'posts_per_page'   => 3,
+					'post_type' => 'page',
+					'post_status' => 'publish'
+				); 
+				$pages = get_posts($args); 
+				echo '<nav class="related_posts">';
+				 foreach ( $pages as $page ) {
+					echo '<li><a href="'.get_page_link( $page->ID ).'">'. $page->post_title .'</a></li>';
+				  }
+				?>
+					</nav>
+				</section>
+				</div>	
+			</article><!-- #post-## -->
 		</div>
 <?php
 get_sidebar();

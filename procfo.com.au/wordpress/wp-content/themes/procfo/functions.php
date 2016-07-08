@@ -134,6 +134,8 @@ function procfo_scripts() {
 
 	wp_enqueue_script( 'procfo-bootstrap.min', get_template_directory_uri() . '/js/bootstrap.min.js', array(), '1.0', true );
 
+	wp_enqueue_script( 'gmaps.min', get_template_directory_uri() . '/js/gmaps.min.js', array(), '1.0', true );
+
 	if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
 		wp_enqueue_script( 'comment-reply' );
 	}
@@ -141,7 +143,57 @@ function procfo_scripts() {
 add_action( 'wp_enqueue_scripts', 'procfo_scripts' );
 
 
+/*
+* pagination
+*/
 
+
+if ( ! function_exists( 'vtd_paging_nav' ) ) :
+function vtd_paging_nav($showitem = 6) {
+    global $wp_query;
+    if ( $wp_query->max_num_pages < 2 ){
+        return;}
+    $pages = $wp_query->max_num_pages;
+    $current = $wp_query->query_vars['paged'] ? $wp_query->query_vars['paged'] : 1;
+    $showitem = $showitem ? $showitem : 5;
+    $max_page_show = $showitem;
+    $max_current = (($current+2)<$pages) ? ($current+2) : $pages;
+    $min_current = ($current-2)<=0 ? 1 : ($current-2);
+    $max_current = ($max_current<$max_page_show && $max_page_show<=$pages) ? $max_page_show : $max_current;
+    $min_current = ($min_current>($pages-$max_page_show) && ($pages-$max_page_show)>=0) ? ($pages-$max_page_show+1) : $min_current;
+    ob_start();
+    ?>
+        <ul class="paging">
+        <?php if ( get_previous_posts_link() ) :?>
+        <li><a class="prev page-numbers" href="<?php echo get_previous_posts_page_link();?>" title="Previous page">back</a></li>
+        <?php endif;?>
+        <?php for($i=$min_current;$i<=$max_current;$i++){
+            $uri = $i==1 ? get_pagenum_link(1) : get_pagenum_link($i);
+            $cls='';
+            if($current==$i){
+                $uri = 'javascript:void(0)';
+                $cls = ' active';
+            }?>
+            <li><a class="page-number<?php echo $cls;?>" href="<?php echo $uri;?>" title="<?php echo $i;?>"><?php echo $i;?></a></li>
+        <?php }?>
+        <?php if ( get_next_posts_link() ) : ?>
+        <li><a class="page-numbers next" href="<?php echo get_next_posts_page_link();?>" title="Next page">next</a></li>
+        <?php endif; ?>
+        </ul>
+    <?php
+    $var = ob_get_contents();
+    ob_end_clean();
+    return $var;
+}
+endif;
+
+function hide_admin_bar_from_front_end(){
+  if (is_blog_admin()) {
+    return true;
+  }
+  return false;
+}
+add_filter( 'show_admin_bar', 'hide_admin_bar_from_front_end' );
 /**
  * Implement the Custom Header feature.
  */

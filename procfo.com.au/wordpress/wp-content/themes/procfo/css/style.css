@@ -5,7 +5,7 @@ h1{
 body{
 	margin: 0;
 	padding:0;
-	font-size: 20px;
+	font-size: 14px;
 	font-family: myArial, sans-serif;
 }
 .content{width: 83.3333%;padding:0 1.25%;margin: 0 auto;}
@@ -53,6 +53,11 @@ body{
 	border:none;
     position: relative;
     z-index: 1;
+    -webkit-transition: 0.3s ease !important;
+    -moz-transition: 0.3s ease !important;
+    -o-transition: 0.3s ease !important;
+    transition: 0.3s ease !important;
+	padding: 14px 28px;
 }
 .btn-1{
 	background:#323c57;
@@ -175,6 +180,11 @@ ul.sub-menu{
 	border-radius: 8px;
     color: #323c57;
 }
+.box-post-content img{
+	max-width: 100%;
+	height: auto;
+	display: block;
+}
 .box-post-content p, .box-post-content strong{
 	font-size: 14px;
 }
@@ -221,6 +231,13 @@ nav.related_posts li:before{
     font-weight: bold;
     text-transform: capitalize;
 }
+.title-post a{
+	color: #323c57;
+}
+.title-post a:hover{
+	color: #8cc740;
+	text-decoration: none;
+}
 a.btn.btn-widget{
 	    padding: 17px 10px;
     line-height: normal;    
@@ -236,6 +253,13 @@ a.btn.btn-widget{
 a.btn.btn-widget:hover{
 	background: #fff;
 	color: #8cc740;
+}
+.post-content div.wpcf7{
+    text-align: center;
+    color: #323c57;
+    background: transparent;
+    border-radius: 0px;
+    padding: 0;
 }
 div.wpcf7{
     text-align: center;
@@ -291,6 +315,23 @@ div.wpcf7 p input.btn-submit{
     text-transform: uppercase;
     font-weight: bold;
     font-size: 24px;
+    -webkit-transition: 0.3s ease !important;
+    -moz-transition: 0.3s ease !important;
+    -o-transition: 0.3s ease !important;
+    transition: 0.3s ease !important;
+}
+div.wpcf7 p input.btn-submit:hover{
+	background: #364770;
+	color: #fff;
+}
+p.box-submit{
+	position: relative;
+    display: inline-block;
+}
+div.wpcf7 p.box-submit img.ajax-loader{
+	position: absolute;    
+	right: -25px;
+    bottom: 30px;
 }
 div.wpcf7 p.lable_form span, div.wpcf7 p.lable_form span a{
 	font-size: 16px;
@@ -322,7 +363,7 @@ footer#site-footer a:hover{
     text-transform: capitalize;
     margin-top: 0;
 }
-.nav-footer ul, .footer-icon{
+.nav-footer ul{
     -webkit-padding-start: 16px;
 }
 .contact-footer ul{
@@ -357,6 +398,7 @@ map{
 .footer-icon{
 	list-style: none;
 	margin: 17px 0 0;
+    -webkit-padding-start: 0;
 }
 .footer-icon li{
 	float: left;
@@ -371,11 +413,88 @@ map{
 .faq-title{
 	cursor: pointer;
 }
+.faq-title i{
+	padding-right: 5px;
+}
+/*CSS BLOG PAGE*/
+.item-post{
+	margin-bottom: 20px;
+}
+.item-post .title-post{
+	margin: 0;
+}
+.item-post .entry-meta span{
+	font-size: 14px;
+}
+.item-post .entry-meta{
+
+	margin:0 0 28px;
+}
+.box-post-content .entry-meta a{
+	color: #323c57;
+}
+.box-post-content .entry-meta a:hover{
+	color: #80C342;
+	text-decoration: none;
+}
+/*CSS CONTACT PAGE*/
+div.wpcf7-recaptcha>div{
+	margin: 0 auto;
+}
+.post-content div.wpcf7 .wpcf7-submit{
+    background-color: #80c342;
+    color: #fffffc;
+    width: 30%;
+    /* font-size: 25px; */
+    margin-top: 10px;
+    text-shadow: none;
+    box-shadow: none;
+    border: 0;
+    padding: 10px 30px 10px;
+    border-radius: 0px;
+    text-transform: uppercase;
+    overflow: hidden;
+    z-index: 1;
+    -webkit-transition: 0.3s ease !important;
+    -moz-transition: 0.3s ease !important;
+    -o-transition: 0.3s ease !important;
+    transition: 0.3s ease !importan
+}
+.post-content div.wpcf7 .wpcf7-submit:hover{
+    background-color: #364770 !important;
+	color: #fffffc !important;
+}
+.post-content div.wpcf7 p input,.post-content div.wpcf7 p textarea{
+	border: solid 1px;
+}
+/*CSS PAGING*/
+nav.navigation.post-navigation{
+	overflow: hidden;
+}
+nav.navigation.post-navigation .screen-reader-text, nav.navigation.post-navigation a{
+	font-size: 20px;
+}
+nav.navigation.post-navigation a{
+	color: #323c57;
+}
+nav.navigation.post-navigation a:hover{
+	color: #80c342;
+	text-decoration: none;
+}
+nav.navigation.post-navigation .nav-previous, nav.navigation.post-navigation .nav-next{
+	width: 50%;
+	float: left;
+}
+.header-fixed{
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    z-index: 9999;
+}
 @media screen and (min-width: 801px){
 	.navbar-default .navbar-nav>li{
 		padding: 0 1.3%;    
-	    display: inline-block;
-	    float: none;
 	}
 	.navbar-default .navbar-nav>li>a:after{
 		right: 2.9em;
@@ -385,6 +504,10 @@ map{
 	}
 	.navbar-default .navbar-nav>li:last-child{
 		padding-right: 0;
+	}
+	.container-header .content{
+		position: relative;
+		overflow: hidden;
 	}
 }
 
@@ -397,6 +520,7 @@ map{
 	.navbar-default .navbar-nav>li{padding: 0 .59%;}
 }
 @media screen and (min-width: 1024px){
+	.content{width: 1000px;}
 	.navbar-default .navbar-nav>li{padding: 0 .62%;}
 	.navbar-default .navbar-nav>li>a{font-size: 16px;}
 }
@@ -414,7 +538,7 @@ map{
 	.logo img{
 		height: 100%;
 		max-width: 1000%;
-		margin:-31px auto 0 -80px;
+		margin:-31px auto 0 0;
 	}
 	.container-header .content{
 		position: absolute;
@@ -430,7 +554,7 @@ map{
 	    margin: 0;
 	    display: inline-block;    
 	    font-size: 16px;
-    	padding: 8px 5px;
+    	padding: 14px 28px;
 	}
 	.navbar-right{
 		text-align: center;
@@ -481,7 +605,7 @@ map{
 	.box-widget{
 		width: 68.23%;
 	    float: none;
-    	margin: -80px auto 0;
+    	margin: 0 auto 0;
     	padding-bottom: 6px;
 	}
 	nav.related_posts li{
@@ -505,6 +629,14 @@ map{
 	}
 	.footer_right ul{
 		list-style: none;
-		margin: 0 auto;
+		margin: 10px auto 0;
+	    display: inline-block;
+    	padding: 0;
+	}
+	div#footer-content{
+		width: 81%;
+	}
+	.contact-footer ul{
+		margin-bottom: 20px;
 	}
 }

@@ -9,27 +9,27 @@
 
 get_header(); ?>
 
-	<div id="primary" class="content-area">
-		<main id="main" class="site-main" role="main">
-
+<?php $img_bg = get_field('image_background_page','options' ); // get all the rows
+if ( $img_bg ) : 
+	$img_url = $img_bg ? $img_bg : '' ; 
+endif; ?>
+<section id="site-content" style="
+	background: url('<?php echo $img_url?>') center center no-repeat;
+	background-size: cover;">
+	<div class="container-site-content container content">
 		<?php
 		while ( have_posts() ) : the_post();
 
 			get_template_part( 'template-parts/content', get_post_format() );
 
-			the_post_navigation();
-
-			// If comments are open or we have at least one comment, load up the comment template.
-			if ( comments_open() || get_comments_number() ) :
-				comments_template();
-			endif;
 
 		endwhile; // End of the loop.
+
 		?>
-
-		</main><!-- #main -->
-	</div><!-- #primary -->
-
 <?php
 get_sidebar();
-get_footer();
+?>
+	</div>
+</section>
+<?php 
+get_footer(); ?>

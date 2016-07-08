@@ -12,7 +12,7 @@
 ?>
 <footer id="site-footer">
 	<div id="footer-content" class="content">
-		<div class="col-xs-12 col-sm-8 col-md-8 col-lg-8 footer_left">
+		<div class="col-xs-12 col-sm-12 col-md-8 col-lg-8 footer_left">
 			<div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
 				<h3 class="title-item-footer">ProCFO:</h3>
 				<?php    /**
@@ -75,7 +75,7 @@
 				<h3 class="title-item-footer">Contact:</h3>
 				<div class="contact-footer">
 					<ul>
-						<li><p><?php echo $text_tel; ?><span><?php echo $tel; ?></span></p> </li>
+						<li><p><?php echo $text_tel; ?><span> <a href="tel:<?php echo $tel; ?>"><?php echo $tel; ?></a> </span></p> </li>
 						<li><p><?php echo $text_email; ?><a href="mailto:<?php echo $email; ?>"><?php echo $email; ?></a></p> </li>
 						<li><?php echo $form_online; ?></li>
 						<li><span><?php echo $po_box; ?></span></li>
@@ -124,21 +124,19 @@
 				</div>
 			</div>
 		</div>
-		<div class="col-xs-12 col-sm-4 col-md-4 col-lg-4 footer_right">
+		<div class="col-xs-12 col-sm-12 col-md-4 col-lg-4 footer_right">
 			<?php 
-
-			$location = get_field('footer_gmap');
-
-			if( !empty($location) ):
+				if( have_rows('map_footer','options')):
+				$rows = get_field('map_footer','options' ); // get all the rows
+				$first_row = $rows[0]; // get the first row
+				$map_url = $first_row['map_img'] ? $first_row['map_img'] : '' ; 
+				$map_add = $first_row['map_address'] ? $first_row['map_address'] : '' ; 
+				endif;
 			?>
-			<map class="acf-map" styel="max-width:100%; max-height:103px;">
-				<div class="marker" data-lat="<?php echo $location['lat']; ?>" data-lng="<?php echo $location['lng']; ?>"></div>
+			<map>
+				<img src="<?php echo $map_url;?>" alt="">
 			</map>
-			<?php endif; ?>
-			<!-- <map>
-				<img src="images/map.png" alt="">
-			</map> -->
-			<p>12 street ave, suburb wa 6000</p>
+			<p><?php echo $map_add;?></p>
 		</div>
 	</div>
 </footer>
