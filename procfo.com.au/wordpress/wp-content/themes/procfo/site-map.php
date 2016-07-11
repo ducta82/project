@@ -1,17 +1,8 @@
 <?php
 /**
- * The template for displaying all pages.
+ * Template Name: Site map
  *
- * This is the template that displays all pages by default.
- * Please note that this is the WordPress construct of pages
- * and that other 'pages' on your WordPress site may use a
- * different template.
- *
- * @link https://codex.wordpress.org/Template_Hierarchy
- *
- * @package procfo
  */
-
 get_header(); ?>
 <?php 
 $id = get_the_id();
@@ -26,18 +17,20 @@ endif; ?>
 	background: url('<?php echo $img_url?>') center center no-repeat;
 	background-size: cover;">
 	<div class="container-site-content container content">
-
-			<?php
-			while ( have_posts() ) : the_post();
-
-				get_template_part( 'template-parts/content', 'page' );
-
-				
-			endwhile; // End of the loop.
+		<h2 class="site-map">Site map</h2>
+			<?php 
+			$ids = get_all_page_ids();
+			$exclude = array();
+			foreach ($ids as $key => $value) {
+				$postmeta = get_post_meta( $value, 'page_box_template', true );
+				if($postmeta == 'notshow-in-sitemap'){
+					$exclude[] = $value;
+				}
+			}
+			$exclude_id = implode(',', $exclude);
+			$pages = wp_list_pages(array('sort_column' => 'post_date', 'sort_order' => 'asc', 'exclude' => $exclude_id)); 
 			?>
-<?php
-get_sidebar();
-?>
+
 	</div>
 </section>
 <?php 

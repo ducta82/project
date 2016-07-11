@@ -7,12 +7,19 @@
  * @since Twenty Fourteen 1.0
  */
 get_header(); ?>
-<?php $img_bg = get_field('image_background_page','options' ); // get all the rows
-if ( $img_bg ) : 
+<?php 
+$id = get_the_id();
+$img_bg = get_field('image_background_page','options' ); // get all the rows
+$page_img = get_field('img_back_ground',$id);
+if ( $page_img ) : 
+	$img_url = $page_img ? $page_img : '' ; 
+else:
 	$img_url = $img_bg ? $img_bg : '' ; 
 endif; 
+$paged = (get_query_var('paged')) ? get_query_var('paged') : 1;
 $args = array(
 	'post_type' => 'post',
+	 'paged'	=> $paged,
 	'tax_query' => array(
 		array(
 			'taxonomy' => 'category',
@@ -21,7 +28,7 @@ $args = array(
 		),
 	),
 );
-$query = new WP_Query( $args );
+query_posts($args);
 ?>
 <section id="site-content" style="
 	background: url('<?php echo $img_url?>') center center no-repeat;
@@ -29,23 +36,19 @@ $query = new WP_Query( $args );
 	<div class="container-site-content container content">
 
 		<?php
-		if ( $query->have_posts() ) : ?>
+		if ( have_posts() ) : ?>
 		<div class="article-content">
 			<article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
 				<div class="box-post-content">
 			<?php
 			/* Start the Loop */
-			while ( $query->have_posts() ) : $query->the_post();
+			while ( have_posts() ) : the_post();
 			
 				get_template_part( 'template-parts/content', get_post_format() );
 
 			endwhile;
-			the_posts_pagination( array(
-			    'mid_size' => 3,
-			    'prev_text' => __( 'Back', 'procfo' ),
-			    'next_text' => __( 'Next', 'procfo' ),
-			    'screen_reader_text' => __('Navigation','procfo')
-			) );
+			wp_corenavi_table();
+			wp_reset_postdata();
 
 		else :
 

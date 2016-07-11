@@ -146,47 +146,37 @@ add_action( 'wp_enqueue_scripts', 'procfo_scripts' );
 /*
 * pagination
 */
-
-
-if ( ! function_exists( 'vtd_paging_nav' ) ) :
-function vtd_paging_nav($showitem = 6) {
-    global $wp_query;
-    if ( $wp_query->max_num_pages < 2 ){
-        return;}
-    $pages = $wp_query->max_num_pages;
-    $current = $wp_query->query_vars['paged'] ? $wp_query->query_vars['paged'] : 1;
-    $showitem = $showitem ? $showitem : 5;
-    $max_page_show = $showitem;
-    $max_current = (($current+2)<$pages) ? ($current+2) : $pages;
-    $min_current = ($current-2)<=0 ? 1 : ($current-2);
-    $max_current = ($max_current<$max_page_show && $max_page_show<=$pages) ? $max_page_show : $max_current;
-    $min_current = ($min_current>($pages-$max_page_show) && ($pages-$max_page_show)>=0) ? ($pages-$max_page_show+1) : $min_current;
-    ob_start();
-    ?>
-        <ul class="paging">
-        <?php if ( get_previous_posts_link() ) :?>
-        <li><a class="prev page-numbers" href="<?php echo get_previous_posts_page_link();?>" title="Previous page">back</a></li>
-        <?php endif;?>
-        <?php for($i=$min_current;$i<=$max_current;$i++){
-            $uri = $i==1 ? get_pagenum_link(1) : get_pagenum_link($i);
-            $cls='';
-            if($current==$i){
-                $uri = 'javascript:void(0)';
-                $cls = ' active';
-            }?>
-            <li><a class="page-number<?php echo $cls;?>" href="<?php echo $uri;?>" title="<?php echo $i;?>"><?php echo $i;?></a></li>
-        <?php }?>
-        <?php if ( get_next_posts_link() ) : ?>
-        <li><a class="page-numbers next" href="<?php echo get_next_posts_page_link();?>" title="Next page">next</a></li>
-        <?php endif; ?>
-        </ul>
-    <?php
-    $var = ob_get_contents();
-    ob_end_clean();
-    return $var;
+function wp_corenavi_table() {
+ global $wp_query;
+ $big = 999999999; 
+ $translated = "";
+ $total = $wp_query->max_num_pages;
+ if($total > 1) echo '<div class="paginate_links">';
+ echo paginate_links( array(
+ 'base' => str_replace( $big, '%#%', esc_url( get_pagenum_link( $big ) ) ),
+ 'format' => '?paged=%#%',
+ 'current' => max( 1, get_query_var('paged') ),
+ 'total' => $wp_query->max_num_pages,
+ 'mid_size' => '10',
+ 'prev_text' => __('Previous'),
+ 'next_text' => __('Next'),
+ ) );
+ if($total > 1) echo '</div>';
 }
-endif;
 
+function workaround_broken_wp_rewrite_rule($query_vars)
+{
+  if (@$query_vars["name"] == "page") {
+    $qv = array();
+    $qv["paged"] = str_replace("/", "", $query_vars["page"]);
+    $qv["category_name"] = $query_vars["category_name"];
+
+    return $qv;
+  }
+
+  return $query_vars;
+}
+add_filter('request', 'workaround_broken_wp_rewrite_rule');
 function hide_admin_bar_from_front_end(){
   if (is_blog_admin()) {
     return true;
@@ -194,6 +184,91 @@ function hide_admin_bar_from_front_end(){
   return false;
 }
 add_filter( 'show_admin_bar', 'hide_admin_bar_from_front_end' );
+
+
+/**
+* Custom metabox
+*/
+/* 
+Define the custom box */
+add_action( 'add_meta_boxes', 'page_add_custom_box' );
+
+/* Do something with the data entered */
+add_action( 'save_post', 'page_save_postdata' );
+
+/* Adds a box to the main column on the Post and Page edit screens */
+function page_add_custom_box() {
+    add_meta_box( 
+        'page-custom-box',
+        'Page Template',
+        'page_inner_custom_box',
+        'page',
+        'side',
+        'high'
+    );
+}
+
+/* Prints the box content */
+function page_inner_custom_box($page)
+{
+    // Use nonce for verification
+    wp_nonce_field( 'save_field_nonce', 'info_noncename' );
+
+    // Get saved value, if none exists, "default" is selected
+    $saved = get_post_meta( $page->ID, 'page_box_template', true);
+    if( !$saved )
+        $saved = 'default';
+
+    $fields = array(
+        'notshow-in-sitemap' => __('not show in site map', 'wpse'),
+        'default'   => __('Default', 'wpse')
+    );
+
+    foreach($fields as $key => $label)
+    {
+        printf(
+            '<input type="radio" name="page_box_template" value="%1$s" id="page_box_template[%1$s]" %3$s />'.
+            '<label for="page_box_template[%1$s]"> %2$s ' .
+            '</label><br>',
+            esc_attr($key),
+            esc_html($label),
+            checked($saved, $key, false)
+        );
+    }
+}
+/* When the post is saved, saves our custom data */
+function page_save_postdata( $page_id ) 
+{
+      // verify if this is an auto save routine. 
+      // If it is our form has not been submitted, so we dont want to do anything
+      if ( defined( 'DOING_AUTOSAVE' ) && DOING_AUTOSAVE ) 
+          return;
+
+      // verify this came from the our screen and with proper authorization,
+      // because save_post can be triggered at other times
+      if ( !wp_verify_nonce( $_POST['info_noncename'], 'save_field_nonce' ) )
+          return;
+
+      if ( isset($_POST['page_box_template']) && $_POST['page_box_template'] != "" ){
+            update_post_meta( $page_id, 'page_box_template', $_POST['page_box_template'] );
+      } 
+}
+
+function ilc_mce_buttons($buttons){
+  array_push($buttons,
+     "backcolor",
+     "anchor",
+     "hr",
+     "sub",
+     "sup",
+     "fontselect",
+     "fontsizeselect",
+     "styleselect",
+     "cleanup"
+);
+  return $buttons;
+}
+add_filter("mce_buttons", "ilc_mce_buttons");
 /**
  * Implement the Custom Header feature.
  */

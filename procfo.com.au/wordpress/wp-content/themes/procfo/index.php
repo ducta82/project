@@ -13,8 +13,13 @@
  */
 
 get_header(); ?>
-<?php $img_bg = get_field('image_background_page','options' ); // get all the rows
-if ( $img_bg ) : 
+<?php 
+$id = get_the_id();
+$img_bg = get_field('image_background_page','options' ); // get all the rows
+$page_img = get_field('img_back_ground',$id);
+if ( $page_img ) : 
+	$img_url = $page_img ? $page_img : '' ; 
+else:
 	$img_url = $img_bg ? $img_bg : '' ; 
 endif; ?>
 <section id="site-content" style="

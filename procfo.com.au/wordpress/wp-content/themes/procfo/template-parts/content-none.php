@@ -8,8 +8,7 @@
  */
 
 ?>
-
-<section class="no-results not-found">
+<div class="item-post">
 	<header class="page-header">
 		<h1 class="page-title"><?php esc_html_e( 'Nothing Found', 'procfo' ); ?></h1>
 	</header><!-- .page-header -->
@@ -33,5 +32,5 @@
 				get_search_form();
 
 		endif; ?>
-	</div><!-- .page-content -->
-</section><!-- .no-results -->
+	</div>	
+</div>	

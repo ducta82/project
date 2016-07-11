@@ -47,20 +47,22 @@
 							<img src="" alt="">
 							<?php endif; ?>
 					</div>
-					<div class="content">
+					<div class="container content">
 						<div class="box-btn">
 							<?php
 								if( have_rows('button_on_header','options')):
 								$rows = get_field('button_on_header','options' ); // get all the rows
 								$first_row = $rows[0]; // get the first row
 								$text_btn_1 = $first_row['text_btn_1'] ? $first_row['text_btn_1'] : '' ; 
+								$text_btn_1_mobile = $first_row['text_btn_1_mobile'] ? $first_row['text_btn_1_mobile'] : '' ; 
 								$link_btn_1 = $first_row['link_btn_1'] ? $first_row['link_btn_1'] : '' ; 
 								$text_btn_2 = $first_row['text_btn_2'] ? $first_row['text_btn_2'] : '' ; 
+								$text_btn_2_mobile = $first_row['text_btn_2_mobile'] ? $first_row['text_btn_2_mobile'] : '' ; 
 								$link_btn_2 = $first_row['link_btn_2'] ? $first_row['link_btn_2'] : '' ; 
 								endif;
 							?>
-							<a class="btn btn-1" href="<?php echo $link_btn_1;?>"><?php echo $text_btn_1;?></a>
-							<a class="btn btn-2" href="<?php echo $link_btn_2;?>"><?php echo $text_btn_2;?></a>
+							<a class="btn btn-1" href="<?php echo $link_btn_1;?>" mobi="<?php echo $text_btn_1_mobile;?>"><?php echo $text_btn_1;?></a>
+							<a class="btn btn-2" href="<?php echo $link_btn_2;?>" mobi="<?php echo $text_btn_2_mobile;?>" ><?php echo $text_btn_2;?></a>
 							<button type="button" class="navbar-toggle">
 									<span class="icon-bar"></span>
 									<span class="icon-bar"></span>

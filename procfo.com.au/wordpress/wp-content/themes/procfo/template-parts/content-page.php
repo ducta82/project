@@ -12,7 +12,7 @@ $id = get_the_id();
 <article id="post-<?php the_ID(); ?>" <?php post_class('article-content'); ?>>
 	<div class="box-post-content">
 		<header class="entry-header">
-			<?php the_title( '<h2 class="title-post">', '</h2>' ); ?>
+			<!-- <?php the_title( '<h2 class="title-post">', '</h2>' ); ?> -->
 		</header><!-- .entry-header -->
 
 		<div class="post-content">
