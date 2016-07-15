@@ -1,0 +1,64 @@
+@import url(../fonts/fonts.css);
+
+@base-font:MyOpenSans, sans-serif;
+@base-blodfont:MyOpenSansBold, sans-serif;
+@base-fontsize:14px;
+@base-color:#363636;
+@base-url:"http://vegvalley.local";
+@base-colorhover:#59ac42;
+@base-widthcontent:1140px;
+body{
+	margin: 0;
+	padding:0;
+	font-size: @base-fontsize;
+	font-family: @base-font;
+	position: relative;
+	color: @base-color;
+}
+h2, h3, h1, strong{
+	font-family: @base-blodfont;
+}
+.background-img(@image:""){
+	background: url("@{base-url}/images/@{image}");
+}
+
+.header-bar-text(@font-size:@base-fontsize , @color:@base-color){
+	font-size: @font-size;
+	color: @color;
+}
+.content{
+	width: @base-widthcontent;
+}
+@media(min-width: 800px){
+	.header-bar{
+		background: #363636;
+		.left-bar{
+			width: 50%;
+			float: left;
+			.note-text{
+				.header-bar-text(14px, #b5b5b5);
+			}
+		}
+		.right-bar{
+			width: 50%;
+			float: left;
+			.user-login{
+				p,a{
+					.header-bar-text(14px, #b5b5b5);	
+				}
+				a{
+					color: #59ac42;
+				}
+			}
+			.cart{
+				width: 50%;
+				p,a{
+					.header-bar-text(14px, #b5b5b5);
+				}
+				a{
+					color: #59ac42;
+				}
+			}
+		}
+	}
+}

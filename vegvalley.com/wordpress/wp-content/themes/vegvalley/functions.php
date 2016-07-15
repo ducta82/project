@@ -108,15 +108,19 @@ function vegvalley_scripts() {
 	
 	wp_enqueue_style( 'font-awesome', get_template_directory_uri() . '/css/font-awesome.min.css',false,'1.1','all');
 
+	wp_enqueue_style( 'nivo-slider', get_template_directory_uri() . '/css/nivo-slider.css',false,'1.1','all');
+
 	wp_enqueue_style( 'vegvalley-style', get_stylesheet_uri() );
 
-	wp_enqueue_script( 'vegvalley-boostrap', get_template_directory_uri() . '/js/bootstrap.min.js', array(), '20151215', true );
+	wp_enqueue_script( 'vegvalley-jquery', get_template_directory_uri() . '/js/jquery-1.12.4.min.js', array(), '1.12.4', true );
 
-	wp_enqueue_script( 'vegvalley-jquery', get_template_directory_uri() . '/js/jquery-1.12.4.min.js', array(), '20151215', true );
+	wp_enqueue_script( 'vegvalley-boostrap', get_template_directory_uri() . '/js/bootstrap.min.js', array(), '1.0', true );
 
-	wp_enqueue_script( 'vegvalley-less', get_template_directory_uri() . '/js/less.js', array(), '20151215', true );
+	wp_enqueue_script( 'vegvalley-jquery.nicescroll.min', get_template_directory_uri() . '/js/jquery.nicescroll.min.js', array(), '1.0', true );
 
-	wp_enqueue_script( 'vegvalley-customjs', get_template_directory_uri() . '/js/custom.js', array(), '20151215', true );
+	wp_enqueue_script( 'vegvalley-jquery.nivo.slider', get_template_directory_uri() . '/js/jquery.nivo.slider.js', array(), '1.0', true );
+
+	wp_enqueue_script( 'vegvalley-customjs', get_template_directory_uri() . '/js/custom.js', array(), '1.0', true );
 
 
 	if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
@@ -124,7 +128,175 @@ function vegvalley_scripts() {
 	}
 }
 add_action( 'wp_enqueue_scripts', 'vegvalley_scripts' );
+/*
+* Add search li
+*/
+add_filter( 'wp_nav_menu_items', 'add_search_to_nav', 10, 2 );
 
+function add_search_to_nav( $items, $args )
+{
+    $items .= '<li class="btn-search"></li>	';
+    return $items;
+}
+/*
+* Add excerpt page
+*/
+function wpcodex_add_excerpt_support_for_pages() {
+	add_post_type_support( 'page', 'excerpt' );
+}
+add_action( 'init', 'wpcodex_add_excerpt_support_for_pages' );
+
+/*
+* Add custom post type
+*/
+/**
+* Registers a new post type
+* @uses $wp_post_types Inserts new post type object into the list
+*
+* @param string  Post type key, must not exceed 20 characters
+* @param array|string  See optional args description above.
+* @return object|WP_Error the registered post type object, or an error object
+*/
+function vegvalley_functions() {
+
+	$labels = array(
+		'name'                => __( 'Functions', 'vegvalley' ),
+		'singular_name'       => __( 'function', 'vegvalley' ),
+		'add_new'             => _x( 'Add New function', 'vegvalley', 'vegvalley' ),
+		'add_new_item'        => __( 'Add New function', 'vegvalley' ),
+		'edit_item'           => __( 'Edit function', 'vegvalley' ),
+		'new_item'            => __( 'New function', 'vegvalley' ),
+		'view_item'           => __( 'View function', 'vegvalley' ),
+		'search_items'        => __( 'Search Function', 'vegvalley' ),
+		'not_found'           => __( 'No Functions found', 'vegvalley' ),
+		'not_found_in_trash'  => __( 'No Functions found in Trash', 'vegvalley' ),
+		'parent_item_colon'   => __( 'Parent function:', 'vegvalley' ),
+		'menu_name'           => __( 'Functions', 'vegvalley' ),
+	);
+
+	$args = array(
+		'labels'                   => $labels,
+		'hierarchical'        => false,
+		'description'         => 'description',
+		'taxonomies'          => array(),
+		'public'              => true,
+		'show_ui'             => true,
+		'show_in_menu'        => true,
+		'show_in_admin_bar'   => true,
+		'menu_position'       => null,
+		'menu_icon'           => null,
+		'show_in_nav_menus'   => true,
+		'publicly_queryable'  => true,
+		'exclude_from_search' => false,
+		'has_archive'         => true,
+		'query_var'           => true,
+		'can_export'          => true,
+		'rewrite'             => true,
+		'capability_type'     => 'post',
+		'supports'            => array(
+			'title', 'editor', 'author', 'thumbnail',
+			'excerpt', 'page-attributes', 'post-formats'
+			)
+	);
+
+	register_post_type( 'function', $args );
+}
+
+add_action( 'init', 'vegvalley_functions' );
+
+
+/*
+*
+*	CUSTOM WOOCOMERCE
+*/
+
+//warp start
+add_action('woocommerce_before_main_content', 'vegvalley_wrapper_start', 10);
+function vegvalley_wrapper_start() {
+  echo '<section class="wc-products page-wc-product">';
+}
+add_action('woocommerce_after_main_content', 'vegvalley_wrapper_end', 10);
+function vegvalley_wrapper_end() {
+  echo '</section>';
+}
+//loop
+function woocommerce_product_loop_start(){
+    echo '<div class="content container"><div class="box-product-wrap">';
+}
+function woocommerce_product_loop_end(){
+    echo '</div></div>';
+}
+//single item
+function wo_before_single_content($value='')
+{
+	echo '<div class="content container">';
+}
+add_action('woocommerce_before_single_product', 'wo_before_single_content', 15 );
+
+function wo_after_single_content($value='')
+{
+	echo '</div>';
+}
+add_action('woocommerce_after_single_product', 'wo_after_single_content', 20 );
+
+// item product
+function vegvalley_template_loop_product_link_open() {
+    echo '<div class="product-image"><a href="' . get_the_permalink() . '" class="woocommerce-LoopProduct-link">';
+}
+add_action( 'woocommerce_before_shop_loop_item', 'vegvalley_template_loop_product_link_open', 10 );
+/**
+ * Insert the opening anchor tag for products in the loop.
+ */
+function vegvalley_template_loop_product_link_close() {
+    echo '</a></div>';
+}
+add_action( 'woocommerce_after_shop_loop_item', 'vegvalley_template_loop_product_link_close', 5 );
+//images product thumbnail size
+add_action( 'init', 'vegvalley_woocommerce_image_dimensions', 1 );
+
+function vegvalley_woocommerce_image_dimensions() {
+  	$catalog = array(
+		'width' 	=> '340',	// px
+		'height'	=> '340',	// px
+		'crop'		=> 1 		// true
+	);
+	// Image sizes
+	update_option( 'shop_catalog_image_size', $catalog ); 		// Product category thumbs
+}
+// change page shop title
+add_filter( 'woocommerce_page_title', 'woo_shop_page_title');
+function woo_shop_page_title( $page_title ) {
+          if( 'Shop' == $page_title) {
+                       return "Other Products";
+             }
+}
+//show page,category title
+function woo_show_page_title()
+{
+	?>
+	<div class="head-page">
+		<div class="content container">
+	<?php
+	if ( apply_filters( 'woocommerce_show_page_title', true ) ) : 
+		$product_cats = wp_get_post_terms( get_the_ID(), 'product_cat' );
+		if(is_shop()){
+		?>
+		<small class="rule left"></small>	<h1 class="page-title"><?php woocommerce_page_title(); ?></h1> <small class="rule right"></small>
+		<?php
+		}else{
+			if ( $product_cats && ! is_wp_error ( $product_cats ) ){
+			 		$single_cat = array_shift( $product_cats ); ?>
+			<small class="rule left"></small><h1 class="product_category_title"><?php echo $single_cat->name; ?></h1><small class="rule right"></small>
+			<?php }
+		}
+	endif; 
+}
+add_action( 'woocommerce_before_main_content', 'woo_show_page_title', 15 );
+function woo_show_page_title_before_breadcrumb($value='')
+{
+	echo '</div></div>';
+}
+add_action('woocommerce_before_main_content', 'woo_show_page_title_before_breadcrumb', 21  );
 /**
  * Implement the Custom Header feature.
  */
