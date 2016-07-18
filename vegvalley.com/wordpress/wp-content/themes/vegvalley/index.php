@@ -17,7 +17,7 @@ get_header(); ?>
 	<section class="site-info">
 		<?php 
 			$arg = array(
-				'include'=>115,
+				'page_id'=>115,
 				'post_type'=>'page'
 				);
 			query_posts($arg);
@@ -111,109 +111,22 @@ get_header(); ?>
 		     				?> -->
 		<div class="content container">
 			<div class="box-product-wrap">
-				<div class="product-wrap">
-					<div class="product-image"><img src="images/product1.png" alt="" class="img-responsive"></div>
-					<div class="product-content">
-						<h4 class="product_title">PHYTOCERAMIDES</h4>
-						<div class="product-info">
-							<p>Phytoceramides or “Ceramosides” are a super-strong antioxidant that drastically retards the rate at which free radicals damage your skin. </p>
-						</div>
-						<div class="product-buttons">
-							<div class="box-product-buttons">
-								<a href="#" class="wishlist"><i class="fa fa-heart" aria-hidden="true"></i></a>
-								<a href="#" class="share-product"><i class="fa fa-share-alt" aria-hidden="true"></i></a>
-								<a href="#" class="add-cart">add to cart</a>
-							</div>
-							<span class="price"><span class="amount">$29.00</span></span>
-						</div>
-					</div>
-				</div>
-				<div class="product-wrap">
-					<div class="product-image"><img src="images/product2.png" alt="" class="img-responsive"></div>
-					<div class="product-content">
-						<h4 class="product_title">PHYTOCERAMIDES</h4>
-						<div class="product-info">
-							<p>Phytoceramides or “Ceramosides” are a super-strong antioxidant that drastically retards the rate at which free radicals damage your skin. </p>
-						</div>
-						<div class="product-buttons">
-							<div class="box-product-buttons">
-								<a href="#" class="wishlist"><i class="fa fa-heart" aria-hidden="true"></i></a>
-								<a href="#" class="share-product"><i class="fa fa-share-alt" aria-hidden="true"></i></a>
-								<a href="#" class="add-cart">add to cart</a>
-							</div>
-							<span class="price"><span class="amount">$29.00</span></span>
-						</div>
-					</div>
-				</div>
-				<div class="product-wrap">
-					<div class="product-image"><img src="images/product3.png" alt="" class="img-responsive"></div>
-					<div class="product-content">
-						<h4 class="product_title">PHYTOCERAMIDES</h4>
-						<div class="product-info">
-							<p>Phytoceramides or “Ceramosides” are a super-strong antioxidant that drastically retards the rate at which free radicals damage your skin. </p>
-						</div>
-						<div class="product-buttons">
-							<div class="box-product-buttons">
-								<a href="#" class="wishlist"><i class="fa fa-heart" aria-hidden="true"></i></a>
-								<a href="#" class="share-product"><i class="fa fa-share-alt" aria-hidden="true"></i></a>
-								<a href="#" class="add-cart">add to cart</a>
-							</div>
-							<span class="price"><span class="amount">$29.00</span></span>
-						</div>
-					</div>
-				</div>
-				<div class="product-wrap">
-					<div class="product-image"><img src="images/product4.png" alt="" class="img-responsive"></div>
-					<div class="product-content">
-						<h4 class="product_title">PHYTOCERAMIDES</h4>
-						<div class="product-info">
-							<p>Phytoceramides or “Ceramosides” are a super-strong antioxidant that drastically retards the rate at which free radicals damage your skin. </p>
-						</div>
-						<div class="product-buttons">
-							<div class="box-product-buttons">
-								<a href="#" class="wishlist"><i class="fa fa-heart" aria-hidden="true"></i></a>
-								<a href="#" class="share-product"><i class="fa fa-share-alt" aria-hidden="true"></i></a>
-								<a href="#" class="add-cart">add to cart</a>
-							</div>
-							<span class="price"><span class="amount">$29.00</span></span>
-						</div>
-					</div>
-				</div>
-				<div class="product-wrap">
-					<div class="product-image"><img src="images/product5.png" alt="" class="img-responsive"></div>
-					<div class="product-content">
-						<h4 class="product_title">PHYTOCERAMIDES</h4>
-						<div class="product-info">
-							<p>Phytoceramides or “Ceramosides” are a super-strong antioxidant that drastically retards the rate at which free radicals damage your skin. </p>
-						</div>
-						<div class="product-buttons">
-							<div class="box-product-buttons">
-								<a href="#" class="wishlist"><i class="fa fa-heart" aria-hidden="true"></i></a>
-								<a href="#" class="share-product"><i class="fa fa-share-alt" aria-hidden="true"></i></a>
-								<a href="#" class="add-cart">add to cart</a>
-							</div>
-							<span class="price"><span class="amount">$29.00</span></span>
-						</div>
-					</div>
-				</div>
-				<div class="product-wrap">
-					<div class="product-image"><img src="images/product6.png" alt="" class="img-responsive"></div>
-					<div class="product-content">
-						<h4 class="product_title">PHYTOCERAMIDES</h4>
-						<div class="product-info">
-							<p>Phytoceramides or “Ceramosides” are a super-strong antioxidant that drastically retards the rate at which free radicals damage your skin. </p>
-						</div>
-						<div class="product-buttons">
-							<div class="box-product-buttons">
-								<a href="#" class="wishlist"><i class="fa fa-heart" aria-hidden="true"></i></a>
-								<a href="#" class="share-product"><i class="fa fa-share-alt" aria-hidden="true"></i></a>
-								<a href="#" class="add-cart">add to cart</a>
-							</div>
-							<span class="price"><span class="amount">$29.00</span></span>
-						</div>
-					</div>
-				</div>
-			</div><!--end box-product-wrap-->
+				<?php
+					$args = array(
+						'post_type' => 'product',
+						'posts_per_page' => 6
+						);
+					$loop = new WP_Query( $args );
+					if ( $loop->have_posts() ) {
+						while ( $loop->have_posts() ) : $loop->the_post();
+							wc_get_template_part( 'content', 'product' );
+						endwhile;
+					} else {
+						echo __( 'No products found' );
+					}
+					wp_reset_postdata();
+				?>
+				</div><!--/box-product-wrap-->
 		</div><!--end content-->
 		<a href="#" class="view-all">see all product</a>
 	</section><!--end wc-products-->

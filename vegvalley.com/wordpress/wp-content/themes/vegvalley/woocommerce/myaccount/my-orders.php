@@ -4,7 +4,6 @@
  *
  * @deprecated  2.6.0 this template file is no longer used. My Account shortcode uses orders.php.
  */
-
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
@@ -16,7 +15,6 @@ $my_orders_columns = apply_filters( 'woocommerce_my_account_my_orders_columns', 
 	'order-total'   => __( 'Total', 'woocommerce' ),
 	'order-actions' => '&nbsp;',
 ) );
-
 $customer_orders = get_posts( apply_filters( 'woocommerce_my_account_my_orders_query', array(
 	'numberposts' => $order_count,
 	'meta_key'    => '_customer_user',
@@ -24,7 +22,6 @@ $customer_orders = get_posts( apply_filters( 'woocommerce_my_account_my_orders_q
 	'post_type'   => wc_get_order_types( 'view-orders' ),
 	'post_status' => array_keys( wc_get_order_statuses() )
 ) ) );
-
 if ( $customer_orders ) : ?>
 
 	<h2><?php echo apply_filters( 'woocommerce_my_account_my_orders_title', __( 'Recent Orders', 'woocommerce' ) ); ?></h2>

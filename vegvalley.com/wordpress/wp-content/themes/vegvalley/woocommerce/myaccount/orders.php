@@ -23,7 +23,17 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 do_action( 'woocommerce_before_account_orders', $has_orders ); ?>
-
+<?php
+	$my_orders_columns = apply_filters( 'woocommerce_my_account_my_orders_columns', array(
+	'order-number'  => __( 'Order', 'woocommerce' ),
+    'order-product-name'  => __( 'product', 'woocommerce' ),
+    'order-product-price'  => __( 'price', 'woocommerce' ),
+    'order-product-quantily'  => __( 'quatily', 'woocommerce' ),
+    'order-date'    => __( 'Date', 'woocommerce' ),
+    'order-total'   => __( 'Total', 'woocommerce' ),
+    'order-actions' => '&nbsp;',
+) );
+?>
 <?php if ( $has_orders ) : ?>
 
 	<table class="woocommerce-MyAccount-orders shop_table shop_table_responsive my_account_orders account-orders-table">
@@ -41,16 +51,18 @@ do_action( 'woocommerce_before_account_orders', $has_orders ); ?>
 				$item_count = $order->get_item_count();
 				?>
 				<tr class="order">
-					<?php foreach ( wc_get_account_orders_columns() as $column_id => $column_name ) : ?>
+					<?php foreach ( $my_orders_columns as $column_id => $column_name ) : ?>
 						<td class="<?php echo esc_attr( $column_id ); ?>" data-title="<?php echo esc_attr( $column_name ); ?>">
 							<?php if ( has_action( 'woocommerce_my_account_my_orders_column_' . $column_id ) ) : ?>
 								<?php do_action( 'woocommerce_my_account_my_orders_column_' . $column_id, $order ); ?>
-
+							
 							<?php elseif ( 'order-number' === $column_id ) : ?>
 								<a href="<?php echo esc_url( $order->get_view_order_url() ); ?>">
 									<?php echo _x( '#', 'hash before order number', 'woocommerce' ) . $order->get_order_number(); ?>
 								</a>
-
+							<?php elseif ( 'order-product-name' === $column_id ) : ?>
+								<?php echo sprintf( _n( '%s', 'woocommerce' ), $order->get_formatted_order_total(), $item_count ); ?>
+								
 							<?php elseif ( 'order-date' === $column_id ) : ?>
 								<time datetime="<?php echo date( 'Y-m-d', strtotime( $order->order_date ) ); ?>" title="<?php echo esc_attr( strtotime( $order->order_date ) ); ?>"><?php echo date_i18n( get_option( 'date_format' ), strtotime( $order->order_date ) ); ?></time>
 

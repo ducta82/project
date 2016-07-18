@@ -203,7 +203,35 @@ function vegvalley_functions() {
 }
 
 add_action( 'init', 'vegvalley_functions' );
-
+function the_breadcrumb() {
+		echo '<nav class="vegvalley_breadcrumb">';
+	if (!is_home()) {
+		echo '<a href="';
+		echo get_option('home');
+		echo '">';
+		echo 'Home';
+		echo "</a>";
+		if (is_category() || is_single()) {
+			echo '&nbsp;/&nbsp;';
+			the_category();
+			if (is_single()) {
+				echo "&nbsp;/&nbsp;";
+				the_title();
+			}
+		} elseif (is_page()) {
+			echo '&nbsp;/&nbsp;';
+			echo the_title();
+		}
+	}
+	elseif (is_tag()) {single_tag_title();}
+	elseif (is_day()) {echo" Archive for "; the_time('F jS, Y');}
+	elseif (is_month()) {echo" Archive for "; the_time('F, Y'); }
+	elseif (is_year()) {echo" Archive for "; the_time('Y'); }
+	elseif (is_author()) {echo" Author Archive"; }
+	elseif (isset($_GET['paged']) && !empty($_GET['paged'])) {echo "Blog Archives"; }
+	elseif (is_search()) {echo" Search Results"; }
+	
+}
 
 /*
 *
@@ -215,7 +243,7 @@ add_action('woocommerce_before_main_content', 'vegvalley_wrapper_start', 10);
 function vegvalley_wrapper_start() {
   echo '<section class="wc-products page-wc-product">';
 }
-add_action('woocommerce_after_main_content', 'vegvalley_wrapper_end', 10);
+add_action('woocommerce_after_main_content', 'vegvalley_wrapper_end', 5);
 function vegvalley_wrapper_end() {
   echo '</section>';
 }
@@ -227,13 +255,13 @@ function woocommerce_product_loop_end(){
     echo '</div></div>';
 }
 //single item
-function wo_before_single_content($value='')
+function wo_before_single_content()
 {
 	echo '<div class="content container">';
 }
 add_action('woocommerce_before_single_product', 'wo_before_single_content', 15 );
 
-function wo_after_single_content($value='')
+function wo_after_single_content()
 {
 	echo '</div>';
 }
@@ -243,14 +271,18 @@ add_action('woocommerce_after_single_product', 'wo_after_single_content', 20 );
 function vegvalley_template_loop_product_link_open() {
     echo '<div class="product-image"><a href="' . get_the_permalink() . '" class="woocommerce-LoopProduct-link">';
 }
-add_action( 'woocommerce_before_shop_loop_item', 'vegvalley_template_loop_product_link_open', 10 );
+add_action( 'woocommerce_before_shop_loop_item', 'vegvalley_template_loop_product_link_open', 5 );
 /**
  * Insert the opening anchor tag for products in the loop.
  */
 function vegvalley_template_loop_product_link_close() {
-    echo '</a></div>';
+    echo '</a></div><div class="product-content">';
 }
-add_action( 'woocommerce_after_shop_loop_item', 'vegvalley_template_loop_product_link_close', 5 );
+add_action( 'woocommerce_before_shop_loop_item_title', 'vegvalley_template_loop_product_link_close', 15 );
+function vegvalley_woocommerce_after_shop_loop_item() {
+    echo '</div>';
+}
+add_action( 'woocommerce_after_shop_loop_item', 'vegvalley_woocommerce_after_shop_loop_item', 30 );
 //images product thumbnail size
 add_action( 'init', 'vegvalley_woocommerce_image_dimensions', 1 );
 
@@ -281,7 +313,7 @@ function woo_show_page_title()
 		$product_cats = wp_get_post_terms( get_the_ID(), 'product_cat' );
 		if(is_shop()){
 		?>
-		<small class="rule left"></small>	<h1 class="page-title"><?php woocommerce_page_title(); ?></h1> <small class="rule right"></small>
+		<small class="rule left"></small><h1 class="page-title"><?php woocommerce_page_title(); ?></h1> <small class="rule right"></small>
 		<?php
 		}else{
 			if ( $product_cats && ! is_wp_error ( $product_cats ) ){
@@ -292,11 +324,76 @@ function woo_show_page_title()
 	endif; 
 }
 add_action( 'woocommerce_before_main_content', 'woo_show_page_title', 15 );
-function woo_show_page_title_before_breadcrumb($value='')
+function woo_show_page_title_before_breadcrumb()
 {
 	echo '</div></div>';
 }
 add_action('woocommerce_before_main_content', 'woo_show_page_title_before_breadcrumb', 21  );
+
+//share product
+function crunchify_social_sharing_buttons() {
+		// Get current page URL 
+		$crunchifyURL = get_permalink();
+		// Get current page title
+		$crunchifyTitle = str_replace( ' ', '%20', get_the_title());
+		// Get Post Thumbnail for pinterest
+		$crunchifyThumbnail = wp_get_attachment_image_src( get_post_thumbnail_id( $post->ID ), 'full' );
+		// Construct sharing URL without using any script
+		$facebookURL = 'https://www.facebook.com/sharer/sharer.php?u='.$crunchifyURL;
+		$googleURL = 'https://plus.google.com/share?url='.$crunchifyURL;
+ 
+		// Add sharing button at the end of page/page content
+		echo    '<div class="wc-social">
+					<a href="'.$facebookURL.'" title="Share on Facebook" target="_blank">
+					<i class="fa fa-facebook" aria-hidden="true"></i></a>
+					<a href="'.$googleURL.'" target="_blank" title="Share on Google+">
+					<i class="fa fa-google-plus" aria-hidden="true"></i></a>
+				</div>';
+
+}
+add_action( 'woocommerce_share', 'crunchify_social_sharing_buttons');
+//wistlist + share
+function ButtonProduct()
+{
+	?>
+	<div class="product-buttons">	
+		<div class="box-product-buttons">
+			<?php echo do_shortcode('[yith_wcwl_add_to_wishlist icon="fa fa-heart" link_classes="wishlist" already_in_wishslist_text="<a href="#" class="wishlist"><i class="fa fa-heart" aria-hidden="true"></i></a>"]' ); ?>
+			<a href="#" class="share-product"><i class="fa fa-share-alt" aria-hidden="true"></i></a>	
+	<?php
+}
+add_action('woocommerce_after_shop_loop_item_title','ButtonProduct', 8);
+function Wc_after_shop_box_product_button()
+{
+	echo '</div>';
+}
+add_action('woocommerce_after_shop_loop_item','Wc_after_shop_box_product_button', 15);
+function Wc_after_shop_product_button()
+{
+	echo '</div>';
+}
+add_action('woocommerce_after_shop_loop_item','Wc_after_shop_product_button', 25);
+//product title
+ function Wc_template_loop_product_title() {
+        echo '<h3 class="product_title">' . get_the_title() . '</h3>';
+}
+add_action('woocommerce_shop_loop_item_title','Wc_template_loop_product_title',10 );
+//add decription product after thumbnail
+function Wc_description()
+{
+	global $post;
+	if ( ! $post->post_excerpt ) {
+		return;
+	}
+	?>
+	<div itemprop="description" class="wc-short-description product-info">
+		<?php echo apply_filters( 'woocommerce_short_description', $post->post_excerpt ) ?>
+	</div>
+	<?php
+}
+add_action('woocommerce_after_shop_loop_item_title','Wc_description', 7);
+
+//order myacout page
 /**
  * Implement the Custom Header feature.
  */

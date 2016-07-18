@@ -49,6 +49,7 @@ if ( empty( $product ) || ! $product->is_visible() ) {
 	 *
 	 * @hooked woocommerce_template_loop_product_title - 10
 	 */
+	remove_action('woocommerce_shop_loop_item_title','woocommerce_template_loop_product_title',10 );
 	do_action( 'woocommerce_shop_loop_item_title' );
 
 	/**
@@ -57,16 +58,19 @@ if ( empty( $product ) || ! $product->is_visible() ) {
 	 * @hooked woocommerce_template_loop_rating - 5
 	 * @hooked woocommerce_template_loop_price - 10
 	 */
+	remove_action('woocommerce_after_shop_loop_item_title','woocommerce_template_loop_rating',5 );
+	remove_action('woocommerce_after_shop_loop_item_title','woocommerce_template_loop_price',10 );
 	do_action( 'woocommerce_after_shop_loop_item_title' );
 
 	/**
 	 * woocommerce_after_shop_loop_item hook.
 	 *
 	 * @hooked woocommerce_template_loop_product_link_close - 5
-	 * @hooked vegvalley_wrapper_end - 5 (functions.php)
+	 * @hooked vegvalley_woocommerce_after_shop_loop_item - 15 (functions.php)
 	 * @hooked woocommerce_template_loop_add_to_cart - 10
 	 */
 	remove_action( 'woocommerce_after_shop_loop_item', 'woocommerce_template_loop_product_link_close', 5 );
+	add_action('woocommerce_after_shop_loop_item','woocommerce_template_loop_price', 20);
 	do_action( 'woocommerce_after_shop_loop_item' );	
 	?>
 </div>

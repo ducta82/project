@@ -21,7 +21,7 @@
 
 </head>
 
-<body <?php body_class(); ?>>
+<body <?php if(is_home()):echo 'class="archive post-type-archive post-type-archive-product woocommerce woocommerce-page hfeed"'; else:body_class(); endif; ?>>
 <div id="wapper">
 	<header id="site-header">
 		<div class="header-bar">
@@ -31,8 +31,16 @@
 					</div>
 					<div class="right-bar">
 						<div class="right-bar-content">
-							<p class="user-login">Welcome Guest<a href="#" class="login">(Log In)</a>
-							</p>
+							<?php if ( is_user_logged_in() ) { 
+								$user_id = wp_get_current_user();
+								?>
+							 	<p class="user-login"><a href="<?php echo get_permalink( get_option('woocommerce_myaccount_page_id') ); ?>" title="<?php _e('My Account','woothemes'); ?>"><?php echo 'Welcome: ' . $user_id->display_name; ?></a>
+							 	</p>
+							 <?php } 
+							 else { ?>
+							 	<p class="user-login">Welcome Guest, <a class="login" href="<?php echo get_permalink( get_option('woocommerce_myaccount_page_id') ); ?>" title="<?php _e('Login','woothemes'); ?>"><?php _e('(Login)','woothemes'); ?></a>
+								</p>
+							 <?php } ?>
 							<p class="cart">
 								<a href="#" class="sl">(0)</a>Cart: $0.00
 							</p>

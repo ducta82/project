@@ -11,7 +11,14 @@
 
 <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
 	<header class="entry-header">
-		<?php the_title( '<h1 class="entry-title">', '</h1>' ); ?>
+		<div class="head-page">
+			<div class="content container">
+				<small class="rule left"></small>
+				<?php the_title( '<h1 class="entry-title page-title">', '</h1>' ); ?>
+				<small class="rule right"></small>
+				<?php the_breadcrumb(); ?>
+			</div>
+		</div>
 	</header><!-- .entry-header -->
 
 	<div class="entry-content">
