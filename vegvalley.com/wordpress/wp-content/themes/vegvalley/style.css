@@ -20,7 +20,7 @@ body{
 	position: relative;
 	color: #363636;
 }
-h2, h3, h1,h4, strong,.nav-tabs>li, .product-buttons .price, .product-buttons .add_to_cart_button, .wc-products .view-all, .menu-footer ul li:before, .head-page h1, .woocommerce #review_form #respond .form-submit input{
+h2, h3, h1,h4, strong,.nav-tabs>li, .product-buttons .price, .product-buttons .add_to_cart_button, .wc-products .view-all, .menu-footer ul li:before, .head-page h1, .woocommerce #review_form #respond .form-submit input, .malinky-load-more a{
 	font-family: MyOpenSansBold, sans-serif;
 }
 .animated {
@@ -140,7 +140,15 @@ h2, h3, h1,h4, strong,.nav-tabs>li, .product-buttons .price, .product-buttons .a
 .navbar-toggle i{
 	font-size: 25px;
 }
-
+.right-bar-content{
+    color: #fff;
+}
+.right-bar-content img{
+    display: inline;
+}
+.right-bar-content span.woocommerce-Price-amount.amount{
+    color: #fff;
+}
 .header-bar p{
 	color: #b5b5b5;
 	font-size: 13px;
@@ -148,6 +156,7 @@ h2, h3, h1,h4, strong,.nav-tabs>li, .product-buttons .price, .product-buttons .a
 }	
 .right-bar a{
 	color: #59ac42;
+    text-transform: capitalize;
 }
 /*CSS SLIDER*/
 .nivo-caption{
@@ -338,6 +347,7 @@ section.wc-products{
 }
 section.wc-products.page-wc-product{
 	margin: 0;
+    padding-bottom: 60px;
 }
 .product-buttons{
     border-top: solid 1px #c2c2c2;
@@ -374,7 +384,7 @@ section.wc-products.page-wc-product{
 	width: 118px;
 	height: 30px;
 }
-.product-buttons .add_to_cart_button, .wc-products .view-all{
+.product-buttons .add_to_cart_button, .wc-products .view-all, .malinky-load-more a{
     font-size: 12px;
     width: 118px;
     height: 30px;
@@ -385,7 +395,7 @@ section.wc-products.page-wc-product{
     text-transform: uppercase;
     text-decoration: none;
 }
-.wc-products .view-all{
+.wc-products .view-all, .malinky-load-more a{
     font-size: 14px;
     width: auto;
     padding: 0 28px;
@@ -393,7 +403,7 @@ section.wc-products.page-wc-product{
     height: 32px;
     color: #aaaaaa;
 }
-.wc-products .view-all:hover{
+.wc-products .view-all:hover, .malinky-load-more a:hover{
 	color: #59ac42;
 }
 .product-buttons .add_to_cart_button:hover{
@@ -670,6 +680,7 @@ span.wc-button{
 	background: #eeeeee;
 	line-height: 32px;
     cursor: pointer;
+    text-align: center;
 }
 .woocommerce .quantity .qty{
 	border-left: 0;
@@ -803,6 +814,9 @@ td.product-name a, span.woocommerce-Price-amount.amount{
 }
 td.product-quantity{
 	text-align: center;
+}
+.box-product-buttons .clear{
+    clear: none;
 }
 @media(min-width: 1360px){
 	

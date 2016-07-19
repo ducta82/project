@@ -24,13 +24,14 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 do_action( 'woocommerce_before_account_orders', $has_orders ); ?>
 <?php
+	global $WooCommerce; 
 	$my_orders_columns = apply_filters( 'woocommerce_my_account_my_orders_columns', array(
-	'order-number'  => __( 'Order', 'woocommerce' ),
+	'order-delete'  => __( '&nbsp;', 'woocommerce' ),
     'order-product-name'  => __( 'product', 'woocommerce' ),
     'order-product-price'  => __( 'price', 'woocommerce' ),
     'order-product-quantily'  => __( 'quatily', 'woocommerce' ),
-    'order-date'    => __( 'Date', 'woocommerce' ),
     'order-total'   => __( 'Total', 'woocommerce' ),
+    'order-date'    => __( 'Date', 'woocommerce' ),    
     'order-actions' => '&nbsp;',
 ) );
 ?>
@@ -39,18 +40,34 @@ do_action( 'woocommerce_before_account_orders', $has_orders ); ?>
 	<table class="woocommerce-MyAccount-orders shop_table shop_table_responsive my_account_orders account-orders-table">
 		<thead>
 			<tr>
-				<?php foreach ( wc_get_account_orders_columns() as $column_id => $column_name ) : ?>
+				<?php foreach ( $my_orders_columns as $column_id => $column_name ) : ?>
 					<th class="<?php echo esc_attr( $column_id ); ?>"><span class="nobr"><?php echo esc_html( $column_name ); ?></span></th>
 				<?php endforeach; ?>
 			</tr>
 		</thead>
 
 		<tbody>
-			<?php foreach ( $customer_orders->orders as $customer_order ) :
+			<?php 
+				$products = array();
+				foreach ( $customer_orders->orders as $customer_order ) :
 				$order      = wc_get_order( $customer_order );
 				$item_count = $order->get_item_count();
+				$notes = $order->get_customer_order_notes();
+				//print_r($notes);
+				$orders = new WC_Order( $order->id);
+				$items = $orders->get_items();
+			    foreach($items as $key => $item) {
+			    	//print_r($item);
+		    		$products[] = array(
+    					'id'=>$item['product_id'],
+						'name'=>$item['name'],
+						'qty'=> $item['qty']
+    				);		
+				}
+				endforeach;
 				?>
 				<tr class="order">
+					<?php foreach ( $products as $product ) : ?>
 					<?php foreach ( $my_orders_columns as $column_id => $column_name ) : ?>
 						<td class="<?php echo esc_attr( $column_id ); ?>" data-title="<?php echo esc_attr( $column_name ); ?>">
 							<?php if ( has_action( 'woocommerce_my_account_my_orders_column_' . $column_id ) ) : ?>
@@ -61,16 +78,29 @@ do_action( 'woocommerce_before_account_orders', $has_orders ); ?>
 									<?php echo _x( '#', 'hash before order number', 'woocommerce' ) . $order->get_order_number(); ?>
 								</a>
 							<?php elseif ( 'order-product-name' === $column_id ) : ?>
-								<?php echo sprintf( _n( '%s', 'woocommerce' ), $order->get_formatted_order_total(), $item_count ); ?>
-								
+								<?php echo $product['name']; ?>
+
+							<?php
+								elseif('order-product-quantily' === $column_id ) :
+									$product_quantity = woocommerce_quantity_input( array(
+										'input_name'  => "order[{$order->id}][qty]",
+										'input_value' => $product['qty'],
+										'max_value'   => $product['qty'],
+										'min_value'   => '0'
+									), false );
+
+								echo apply_filters( 'woocommerce_cart_item_quantity', $product_quantity );
+							?>
+							
+							<?php elseif ( 'order-total' === $column_id ) : ?>
+								<?php echo sprintf( _n( '%s for %s item', '%s for %s items', $item_count, 'woocommerce' ), $order->get_formatted_order_total(), $item_count ); ?>
+
 							<?php elseif ( 'order-date' === $column_id ) : ?>
 								<time datetime="<?php echo date( 'Y-m-d', strtotime( $order->order_date ) ); ?>" title="<?php echo esc_attr( strtotime( $order->order_date ) ); ?>"><?php echo date_i18n( get_option( 'date_format' ), strtotime( $order->order_date ) ); ?></time>
 
 							<?php elseif ( 'order-status' === $column_id ) : ?>
 								<?php echo wc_get_order_status_name( $order->get_status() ); ?>
 
-							<?php elseif ( 'order-total' === $column_id ) : ?>
-								<?php echo sprintf( _n( '%s for %s item', '%s for %s items', $item_count, 'woocommerce' ), $order->get_formatted_order_total(), $item_count ); ?>
 
 							<?php elseif ( 'order-actions' === $column_id ) : ?>
 								<?php

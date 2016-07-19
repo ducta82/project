@@ -21,7 +21,6 @@
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
-
 ?>
 <p><?php
 	printf(
@@ -32,7 +31,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	);
 ?></p>
 
-<?php if ( $notes = $order->get_customer_order_notes() ) : ?>
+<?php if ( $notes = $order->get_customer_order_notes() ) :?>
 	<h2><?php _e( 'Order Updates', 'woocommerce' ); ?></h2>
 	<ol class="woocommerce-OrderUpdates commentlist notes">
 		<?php foreach ( $notes as $note ) : ?>

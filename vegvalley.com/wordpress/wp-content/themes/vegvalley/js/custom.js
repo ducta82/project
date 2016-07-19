@@ -66,7 +66,8 @@ $( document ).ready(function() {
 	    po.src = 'https://apis.google.com/js/platform.js';
 	    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
 	  })();
-	 
+	//menu footer
+	 $('.menu-footer ul li.btn-search').remove();
 });
 $(window).load(function() {
 	$('#slider').nivoSlider({

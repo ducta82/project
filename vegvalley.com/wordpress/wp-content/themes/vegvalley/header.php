@@ -16,7 +16,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="profile" href="http://gmpg.org/xfn/11">
 <link rel="pingback" href="<?php bloginfo( 'pingback_url' ); ?>">
-<link rel="icon" type="image/png" href="http://vegvalley.local/wp-content/uploads/2016/07/favicon.png" />
+<link rel="icon" type="image/png" href="<?php echo bloginfo( 'template_url' );?>/images/favicon.png" />
 <?php wp_head(); ?>
 
 </head>
@@ -34,16 +34,14 @@
 							<?php if ( is_user_logged_in() ) { 
 								$user_id = wp_get_current_user();
 								?>
-							 	<p class="user-login"><a href="<?php echo get_permalink( get_option('woocommerce_myaccount_page_id') ); ?>" title="<?php _e('My Account','woothemes'); ?>"><?php echo 'Welcome: ' . $user_id->display_name; ?></a>
+							 	<p class="user-login"> Welcome: <a href="<?php echo get_permalink( get_option('woocommerce_myaccount_page_id') ); ?>" title="<?php _e('My Account','woothemes'); ?>"><?php echo $user_id->display_name; ?></a>
 							 	</p>
 							 <?php } 
 							 else { ?>
 							 	<p class="user-login">Welcome Guest, <a class="login" href="<?php echo get_permalink( get_option('woocommerce_myaccount_page_id') ); ?>" title="<?php _e('Login','woothemes'); ?>"><?php _e('(Login)','woothemes'); ?></a>
 								</p>
 							 <?php } ?>
-							<p class="cart">
-								<a href="#" class="sl">(0)</a>Cart: $0.00
-							</p>
+							<?php echo do_shortcode('[vegvalley_woo_minicart]');?>
 						</div>
 					</div>
 				</section>

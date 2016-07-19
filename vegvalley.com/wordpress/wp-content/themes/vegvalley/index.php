@@ -94,38 +94,47 @@ get_header(); ?>
 			<h3 class="site-top-caption">PRODUCTS</h3>
 			<h2>FEATURE PRODUCTS</h2>
 		</div>
-		     <!-- <?php  
-		     				    $args = array( 'post_type' => 'product', 'posts_per_page' => 10, 'product_cat' => 'hoodies' );
 		     
-		     				    $loop = new WP_Query( $args );
-		     
-		     				    while ( $loop->have_posts() ) : $loop->the_post(); 
-		     				    global $product; 
-		     
-		     				 echo '<br /><a href="'.get_permalink().'">' . woocommerce_get_product_thumbnail().' '.get_the_title().'</a>';
-		     				    endwhile; 
-		     
-		     
-		     				    wp_reset_query(); 
-		     
-		     				?> -->
 		<div class="content container">
 			<div class="box-product-wrap">
 				<?php
+				global $wp_query;
+				$paged = get_query_var( 'paged' ) ? get_query_var( 'paged' ) : 1;
 					$args = array(
 						'post_type' => 'product',
+						'meta_key'     => '_featured',
+			            'meta_value'   => 'yes',
+			            'meta_compare' => '=',
+            			'post_status' => 'publish',
+            			'paged' => $paged,
 						'posts_per_page' => 6
 						);
-					$loop = new WP_Query( $args );
-					if ( $loop->have_posts() ) {
-						while ( $loop->have_posts() ) : $loop->the_post();
+					query_posts( $args );
+					if ( have_posts() ) {
+						while ( have_posts() ) : the_post();
 							wc_get_template_part( 'content', 'product' );
 						endwhile;
 					} else {
 						echo __( 'No products found' );
 					}
 					wp_reset_postdata();
-				?>
+					?>
+					<nav class="woocommerce-pagination">
+						<?php
+							echo paginate_links( apply_filters( 'woocommerce_pagination_args', array(
+								'base'         => esc_url_raw( str_replace( 999999999, '%#%', remove_query_arg( 'add-to-cart', get_pagenum_link( 999999999, false ) ) ) ),
+								'format'       => '',
+								'add_args'     => false,
+								'current'      => max( 1, get_query_var( 'paged' ) ),
+								'total'        => $wp_query->max_num_pages,
+								'prev_text'    => '&larr;',
+								'next_text'    => '&rarr;',
+								'type'         => 'list',
+								'end_size'     => 3,
+								'mid_size'     => 3
+							) ) );
+						?>
+					</nav>
 				</div><!--/box-product-wrap-->
 		</div><!--end content-->
 		<a href="#" class="view-all">see all product</a>
