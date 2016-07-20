@@ -70,6 +70,23 @@ h2, h3, h1,h4, strong,.nav-tabs>li, .product-buttons .price, .product-buttons .a
 	width: 88.823%;
 	padding: 0;
 }
+div#primary{
+    padding-bottom: 60px;
+}
+div#primary .page .entry-content p{
+    font-size: 13px;
+    margin-bottom: 5px;
+    color: #1a1a1a;
+}
+div#primary .page .entry-content strong{
+    margin-bottom: 25px;
+    display: block;
+}
+div#primary .page .entry-content h3{
+    font-size: 24px;
+    margin: 25px 0;
+    color: #1a1a1a;
+}
 /*CSS HEADER*/
 .seach-header{
 	float: right;
@@ -282,7 +299,8 @@ section.site-info{
     font-family: MyOpenSans, sans-serif;
     padding-left: 0;
 	color: #949594;
-    padding: 6px 0;
+    padding: 13px 0;
+    display: inline-block;
 }
 .nav-tabs>li.active>a, .nav-tabs>li.active>a:focus, .nav-tabs>li.active>a:hover, .nav-tabs>li>a:hover{
 	border: none;
@@ -417,8 +435,9 @@ section.wc-products.page-wc-product{
 }
 .product-content .product_title, .product-content .product-info{
 	text-align: left;
+    font-size: 18px;
 }
-.woocommerce div.product .product-content .product_title{
+.woocommerce div.product .product-content .product_title, .product-content .product_title{
 	margin: 15px 0 12px;
 	width: 100%;
     text-transform: uppercase;
@@ -438,6 +457,7 @@ img.logo-footer{
 }
 #site-footer a{
 	color: #a9a9a9;
+    text-transform: uppercase;
 }
 .box-top-footer{
 	position: relative;    
@@ -525,6 +545,17 @@ img.logo-footer{
     border: solid 1px #a9a9a9;
     border-radius: 50%;
 }
+.info-footer-item.contact i{
+    width: 60px;
+    height: 60px;
+    line-height: 55px;
+    border: solid 1px #363636;
+    font-size: 30px;
+}
+.info-footer-item.contact p{
+    margin: 25px auto 0;
+    color: #363636;
+}
 /*CSS WOOCOMMERCE*/
 .head-page h1{
 	color: #adadad;
@@ -537,7 +568,7 @@ small.rule{
     height: 1px;
     display: inline-block;
     float: left;
-    background: #fff;    
+    background: #818181;    
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
@@ -646,19 +677,24 @@ div#review_form #commentform input{
     font-size: 18px;
 }
 .wc_price{
-    width: 66%;
+    width: 100%;
     float: left;
     text-align: right;
+    border-bottom: solid 1px #e6e6e6;
 }
 .woocommerce div.product p.price small{
 	font-size: 14px; 
     color: #737373;
 }
-.woocommerce div.product .woocommerce-product-rating{
+/* .woocommerce div.product .woocommerce-product-rating{
     border-bottom: solid 1px #e6e6e6;
-}
+} */
 .wc-short-description{
 	text-align: left;
+    float: left;
+    position: relative;
+    border-bottom: solid 1px #e6e6e6;
+    margin-bottom: 1em;
 }
 .quantity input[type=number]::-webkit-inner-spin-button, 
 .quantity input[type=number]::-webkit-outer-spin-button { 
@@ -767,8 +803,12 @@ tr.cart-subtotal, tr.order-total{
     text-transform: uppercase;
 	font-family: MyOpenSansBold, sans-serif;
 }
-span.woocommerce-Price-amount.amount{
+.entry-summary span.woocommerce-Price-amount.amount{
 	color: #59ac42;
+}
+.woocommerce .woocommerce-product-rating .star-rating{
+    font-size: 12px;
+    float: right;
 }
 .woocommerce-cart .wc-proceed-to-checkout a.checkout-button, .woocommerce .cart .button, .woocommerce .cart input.button{
     padding: 0;
@@ -817,6 +857,101 @@ td.product-quantity{
 }
 .box-product-buttons .clear{
     clear: none;
+}
+.woocommerce #content div.product div.summary, .woocommerce div.product div.summary, .woocommerce-page #content div.product div.summary, .woocommerce-page div.product div.summary{
+    position: relative;
+}
+.single .woocommerce div.product .product_title{
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+.wc-social{
+    float: right;
+}
+.wc-social span{
+    padding-right: 10px;
+}
+.wc-social .share-fb{
+    padding-right: 10px;
+}
+/*css gmap contact*/
+.map {
+    width:100%;
+    height:333px;   
+}
+.map-wrap {
+    position:relative; 
+}
+    
+.overlay {
+    width:100%;
+    min-height:333px; 
+    position:absolute; 
+    top:0;
+}
+h2.form-contact-title{
+    text-align: center;
+    margin: 55px 0 35px;
+}
+.left-form{
+    width: 35%;
+    float: left;
+}
+.right-form{
+    width: 65%;
+    float: left;
+}
+textarea.wpcf7-form-control.wpcf7-textarea{
+    width: 100%;
+    height: 158px;
+    resize: none;
+}
+input.wpcf7-form-control.wpcf7-text,textarea.wpcf7-form-control.wpcf7-textarea{
+    background: #e6e6e6;
+    box-shadow: none;
+    border: solid 1px #dadada;
+    border-radius: 0;
+    padding: 14px 12px;
+}
+input.wpcf7-form-control.wpcf7-text{
+    width: 90%;
+    height: 38px;
+}
+div#primary .page .entry-content .left-form p{
+    margin-bottom: 22px;
+}
+
+div#primary .page .entry-content .left-form p:last-child{
+    margin: 0;
+}
+input.wpcf7-form-control.wpcf7-submit{
+    float: right;
+    width: 100px;
+    height: 40px;
+    border: none;
+    box-shadow: none;
+    border-radius: 0;
+    background: #59ac42;
+    color: #fff;
+    text-transform: uppercase;
+    font-family: MyOpenSansBold, sans-serif;
+    margin-top: 20px;
+}
+::-webkit-input-placeholder {
+   color: #979797;
+}
+
+:-moz-placeholder { /* Firefox 18- */
+   color: #979797;  
+}
+
+::-moz-placeholder {  /* Firefox 19+ */
+   color: #979797;  
+}
+
+:-ms-input-placeholder {  
+   color: #979797;  
 }
 @media(min-width: 1360px){
 	
@@ -960,6 +1095,21 @@ td.product-quantity{
 	.product-image img{
 		width: 100%;
 	}
+    .woocommerce div.product .woocommerce-product-rating{
+        overflow: hidden;    
+        position: absolute;
+        right: 0;
+    }
+    .wc_price{
+        width: 100%;
+        overflow: hidden;
+        padding-right: 75px;
+        border-bottom: solid 1px #e6e6e6;
+        margin-bottom: 1em;
+    }
+    .woocommerce .woocommerce-product-rating .star-rating{
+        float: left;
+    }
 }
 @media (min-width: 320px) {
 	body .box-product-wrap .product-wrap{
@@ -990,6 +1140,18 @@ td.product-quantity{
 	    max-height: 340px;
 	    margin: 0 auto;
 	}
+    .left-form,.right-form{
+        width: 100%;
+        float: left;
+    }
+    textarea.wpcf7-form-control.wpcf7-textarea{
+        width: 100%;
+        height: 158px;
+    }
+    input.wpcf7-form-control.wpcf7-text{
+        width: 100%;
+        height: 38px;
+    }
 	/*CSS HEADER*/
 	
 }

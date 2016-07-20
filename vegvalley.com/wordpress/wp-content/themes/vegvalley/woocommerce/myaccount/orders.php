@@ -49,22 +49,27 @@ do_action( 'woocommerce_before_account_orders', $has_orders ); ?>
 		<tbody>
 			<?php 
 				$products = array();
-				foreach ( $customer_orders->orders as $customer_order ) :
-				$order      = wc_get_order( $customer_order );
-				$item_count = $order->get_item_count();
-				$notes = $order->get_customer_order_notes();
-				//print_r($notes);
-				$orders = new WC_Order( $order->id);
-				$items = $orders->get_items();
-			    foreach($items as $key => $item) {
-			    	//print_r($item);
-		    		$products[] = array(
-    					'id'=>$item['product_id'],
-						'name'=>$item['name'],
-						'qty'=> $item['qty']
-    				);		
-				}
-				endforeach;
+					foreach ( $customer_orders->orders as $customer_order ) :
+					    $order      = wc_get_order( $customer_order );
+					    $item_count = $order->get_item_count();
+					    $notes = $order->get_customer_order_notes();
+					    //print_r($notes);
+					    $orders = new WC_Order( $order->id);
+					    $items = $orders->get_items();
+					   foreach($items as $key => $item) {
+					        //print_r($item);
+					  if(isset($products[$item['product_id']])){
+					   $products[$item['product_id']]['qty'] += $item['qty'];
+					  }else{
+					   $products[$item['product_id']] = array(
+					     'id'=>$item['product_id'],
+					     'name'=>$item['name'],
+					     'qty'=> $item['qty']
+					   );  
+					  }
+					    }
+					endforeach;
+					print_r($products);
 				?>
 				<tr class="order">
 					<?php foreach ( $products as $product ) : ?>

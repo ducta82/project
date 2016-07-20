@@ -49,22 +49,31 @@
 							wp_nav_menu( $args );
 					?>
 			</div>
+			<?php
+				if( have_rows('footer_info','options')):
+				$rows = get_field('footer_info','options' ); // get all the rows
+				$first_row = $rows[0]; // get the first row
+				$phone_number = $first_row['phone_number'] ? $first_row['phone_number'] : '' ; 
+				$address = $first_row['address'] ? $first_row['address'] : '' ; 
+				$email_footer = $first_row['email_footer'] ? $first_row['email_footer'] : '' ; 
+				endif;
+			?>
 			<div class="info-footer">
 				<div class="info-footer-item">
 					<i class="fa fa-phone" aria-hidden="true"></i>
-					<p>+1 (302)-394-9289</p>
+					<p><?php echo $phone_number;?></p>
 				</div>
 				<div class="info-footer-item">
 					<i class="fa fa-map-marker" aria-hidden="true"></i>
-					<p>501 Silverside Rd, Wilmington DE 19809, USA</p>
+					<p style="width: 70%;text-align: center;margin: 0 auto;"><?php echo $address;?></p>
 				</div>
 				<div class="info-footer-item">
 					<i class="fa fa-envelope" aria-hidden="true"></i>
-					<p>info@vegvalley.com</p>
+					<p><?php echo $email_footer;?></p>
 				</div>
-			</div>	
+			</div>
 			<div class="copy-right">
-				<span>©2014 by Veg Valley. All right reserved.</span>
+				<span><?php _e('©2014 by Veg Valley. All right reserved.','vegvalley')?></span>
 			</div>
 		</section>
 	</footer>

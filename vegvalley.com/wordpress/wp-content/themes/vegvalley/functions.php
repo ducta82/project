@@ -122,12 +122,19 @@ function vegvalley_scripts() {
 
 	wp_enqueue_script( 'vegvalley-customjs', get_template_directory_uri() . '/js/custom.js', array(), '1.0', true );
 
+	wp_localize_script( 'vegvalley-customjs', 'ajax_object', array(
+	 
+	        // Các phương thức sẽ sử dụng
+	        'ajax_url' => admin_url( 'admin-ajax.php' )      
+	));
 
 	if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
 		wp_enqueue_script( 'comment-reply' );
 	}
+
 }
 add_action( 'wp_enqueue_scripts', 'vegvalley_scripts' );
+
 /*
 * Add search li
 */
@@ -333,7 +340,7 @@ add_action('woocommerce_before_main_content', 'woo_show_page_title_before_breadc
 //share product
 function crunchify_social_sharing_buttons() {
 		// Get current page URL 
-		$crunchifyURL = get_permalink();
+		$crunchifyURL = str_replace( ' ', '%20', get_permalink());
 		// Get current page title
 		$crunchifyTitle = str_replace( ' ', '%20', get_the_title());
 		// Get Post Thumbnail for pinterest
@@ -343,13 +350,18 @@ function crunchify_social_sharing_buttons() {
 		$googleURL = 'https://plus.google.com/share?url='.$crunchifyURL;
  
 		// Add sharing button at the end of page/page content
-		echo    '<div class="wc-social">
-					<a href="'.$facebookURL.'" title="Share on Facebook" target="_blank">
-					<i class="fa fa-facebook" aria-hidden="true"></i></a>
-					<a href="'.$googleURL.'" target="_blank" title="Share on Google+">
-					<i class="fa fa-google-plus" aria-hidden="true"></i></a>
-				</div>';
-
+		?>
+		 <div class="wc-social">
+ 			<span>Share: </span>
+			<a href="http://www.facebook.com/sharer.php?u=<?php echo $crunchifyURL;?>" onclick="javascript:window.open(this.href,
+			  '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');return false;" class="share-fb">
+		        <img src="<?php echo bloginfo('template_url');?>/images/facebook.png" alt="Facebook" />
+		    </a>
+			<a href="https://plus.google.com/share?url=<?php echo $crunchifyURL;?>" onclick="javascript:window.open(this.href,
+			  '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');return false;"class="share-google"><img
+			  src="<?php echo bloginfo('template_url');?>/images/google-plus.png" alt="Share on Google+"/></a>
+		</div>
+		<?php
 }
 add_action( 'woocommerce_share', 'crunchify_social_sharing_buttons');
 //wistlist + share
@@ -427,7 +439,121 @@ function woocommerce_header_add_to_cart_fragment( $fragments ) {
 	
 }
 add_filter('add_to_cart_fragments', 'woocommerce_header_add_to_cart_fragment');
+//custom paging for home page
+function paginate() {
+global $wp_query, $wp_rewrite;
+$wp_query->query_vars['paged'] > 1 ? $current = $wp_query->query_vars['paged'] : $current = 1;
+ ?>
+	<?php
+echo paginate_links(array(
+			'base'         => @add_query_arg('page','%#%'),
+			'format'       => '',
+			'add_args'     => false,
+			'current'      => $current,
+			'total'        => $wp_query->max_num_pages,
+			'prev_text'    => '&larr;',
+			'next_text'    => '&rarr;',
+			'type'         => 'list',
+			'end_size'     => 3,
+			'mid_size'     => 3
+		) ) ;
+?>
+<?php  
+if( $wp_rewrite->using_permalinks() )
+    $pagination['base'] = user_trailingslashit( trailingslashit( remove_query_arg( 'page', get_pagenum_link( 1 ) ) ) . '?page=%#%/', 'paged' );
+  
+if( !empty($wp_query->query_vars['s']) )
+    $pagination['add_args'] = array( 's' => get_query_var( 's' ) );
+  
+}   
+//custom ajax paging
+function more_post_ajax(){
+    $paged = $_POST["paged"];
+    header("Content-Type: text/html");
+	$args = array(
+		'post_type' => 'product',
+		'meta_key'     => '_featured',
+        'meta_value'   => 'yes',
+        'meta_compare' => '=',
+		'post_status' => 'publish',
+    	'paged' => $paged,
+		);
+	 //$wp_query = new WP_Query($args);
+	query_posts( $args );
+	if ( have_posts() ) {
+		while ( have_posts() ) : the_post();
+			wc_get_template_part( 'content', 'product' );
+		endwhile;
+	} else {
+		echo '<p class="not-found">'.__( 'No products found' ).'</p>';
+	}
+    exit; 
+}
 
+add_action('wp_ajax_nopriv_more_post_ajax', 'more_post_ajax'); 
+add_action('wp_ajax_more_post_ajax', 'more_post_ajax');
+//shortcode function
+function vegvalley_function_block($atts){  
+	ob_start();
+	?>
+		<section class="tab-site">
+		<div role="tabpanel">
+			<!-- Nav tabs -->
+			<?php
+				$args = array(
+					'post_type' => 'function',
+					'order'=>'DESC',
+					'posts_per_page'=> -1
+				);
+				$query = query_posts($args);
+			?>
+			<section class="site-tabpanel">
+				<h3 class="site-top-caption">FUNCTION</h3>
+				<h2>FUNCTIONS of VEG VALLEY</h2>
+				<ul class="nav nav-tabs" role="tablist">
+					<?php if(have_posts()) :
+						$i = 1; $j = 1;
+						while (have_posts()) {
+							the_post();
+							$href = '#tab'.$i.'';
+							$title = get_the_title();
+							$active = $i == 1 ? 'active' : '';
+							$tab = sprintf('<li class="%1$s"><a href="%2$s" aria-controls="tab" role="tab" data-toggle="tab">%3$s</a></li>',$active,$href,$title);
+							echo $tab;
+							$i++;
+						}
+
+					?>				
+				</ul>
+			</section>
+			<!-- Tab panes -->
+			<div class="tab-content">
+				<?php 
+						while (have_posts()) {
+							the_post();
+							$href = 'tab'.$j.'';
+							$img = get_the_post_thumbnail_url();
+							$active = $j == 1 ? 'active' : '';
+							
+							$tab = sprintf('<div " class="tab-pane %1$s" id="%2$s" style="
+						    background: url(%3$s) center center no-repeat;
+						    background-size: cover;">
+									<img src="%3$s" class="img-responsive" alt="Image">
+								</div>',$active,$href,$img);
+							echo $tab;
+							$j++;
+						}
+					?>
+			</div>
+			<?php endif;?>
+		</div>
+	</section><!--end tab-site-->
+	<?php
+	$x = ob_get_contents();
+	ob_end_clean();
+	return $x;
+}
+add_shortcode('vegvalley_function_block','vegvalley_function_block');
 /**
  * Implement the Custom Header feature.
  */
