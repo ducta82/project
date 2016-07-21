@@ -1,0 +1,23 @@
+@charset "utf-8";
+/* CSS Document */
+
+/*LEVEL & EMAIL TEMPLATE FORM*/
+.pw-point-table{background-color:#FFFFFF}
+.title-row{border-bottom: 1px solid;}
+.title-row td:first-child{background-color: #333;color: #fff;width: 250px;}
+.pw-point-table tr td:first-child{font-weight:bold;vertical-align:top !important;}
+.pw-point-table tr td{vertical-align:top !important;}
+
+/*LEVEL & EMAIL TEMPLATE GRID*/
+#grid_level_result tr:nth-child(odd){background-color:#F7F5F5;}
+#grid_template_result tr:nth-child(odd){background-color:#F7F5F5;}
+.error{color:#F32326}
+
+/*LOADING*/
+.le-loading{margin: 0 auto;color: #fff;border-radius: 5px;}
+#grid_level_result_loading{width: 100px;float: left;}
+
+#filter_bar{width: 100%;padding-top:10px;}
+#filter_paged_size{float:left;height:40px;margin-right:10px;}
+
+

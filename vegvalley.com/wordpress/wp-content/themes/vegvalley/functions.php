@@ -554,6 +554,8 @@ function vegvalley_function_block($atts){
 	return $x;
 }
 add_shortcode('vegvalley_function_block','vegvalley_function_block');
+
+
 /**
  * Implement the Custom Header feature.
  */

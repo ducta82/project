@@ -9,9 +9,18 @@
 
 get_header(); ?>
 
-	<div id="primary" class="content-area">
+	<div id="primary" class="content-area container content">
 		<main id="main" class="site-main" role="main">
-
+			<header class="entry-header">
+				<div class="head-page">
+					<div class="content container">
+						<small class="rule left"></small>
+						<h1 class="entry-title page-title">404</h1>
+						<small class="rule right"></small>
+						<?php the_breadcrumb(); ?>
+					</div>
+				</div>
+			</header><!-- .entry-header -->	
 			<section class="error-404 not-found">
 				<header class="page-header">
 					<h1 class="page-title"><?php esc_html_e( 'Oops! That page can&rsquo;t be found.', 'vegvalley' ); ?></h1>

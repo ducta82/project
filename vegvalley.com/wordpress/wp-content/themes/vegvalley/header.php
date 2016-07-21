@@ -53,7 +53,7 @@
 						<button type="button" class="navbar-toggle">
 							<i class="fa fa-bars" aria-hidden="true"></i>
 						</button>
-						<a class="logo" href="#"><img src="<?php echo bloginfo( 'template_url' );?>/images/logo.png" class="img-responsive" alt="Image"></a>
+						<a class="logo" href="/"><img src="<?php echo bloginfo( 'template_url' );?>/images/logo.png" class="img-responsive" alt="Image"></a>
 					</div>
 			
 					<!-- Collect the nav links, forms, and other content for toggling -->
@@ -76,7 +76,7 @@
 						
 							wp_nav_menu( $args );
 					?>
-				 <form action="" method="get" class="navbar-form box-search">
+				 <form action="<?php echo home_url( '/' ); ?>" method="get" class="navbar-form box-search">
                     <div class="input-group seach-header">
                         <input name="s" value="" type="text" placeholder="search..." class="form-seach-header">
                     </div>

@@ -9,12 +9,21 @@
 
 get_header(); ?>
 
-	<section id="primary" class="content-area">
+	<section id="primary" class="content-area container content">
 		<main id="main" class="site-main" role="main">
 
 		<?php
 		if ( have_posts() ) : ?>
-
+			<header class="entry-header">
+				<div class="head-page">
+					<div class="content container">
+						<small class="rule left"></small>
+						<?php the_title( '<h1 class="entry-title page-title">', '</h1>' ); ?>
+						<small class="rule right"></small>
+						<?php the_breadcrumb(); ?>
+					</div>
+				</div>
+			</header><!-- .entry-header -->
 			<header class="page-header">
 				<h1 class="page-title"><?php printf( esc_html__( 'Search Results for: %s', 'vegvalley' ), '<span>' . get_search_query() . '</span>' ); ?></h1>
 			</header><!-- .page-header -->

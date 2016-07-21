@@ -12,9 +12,21 @@
  * @package vegvalley
  */
 
-get_header(); ?>
-
-	<div id="primary" class="content-area container content">
+get_header(); 
+if(is_page( 'My Account' )) :
+?>
+<header class="entry-header">
+		<div class="head-page">
+			<div class="content container">
+				<small class="rule left"></small>
+				<?php the_title( '<h1 class="entry-title page-title">', '</h1>' ); ?>
+				<small class="rule right"></small>
+				<?php the_breadcrumb(); ?>
+			</div>
+		</div>
+	</header><!-- .entry-header -->
+<?php endif;?>	
+<div id="primary" class="content-area container content">
 		<main id="main" class="site-main" role="main">
 
 			<?php

@@ -15,12 +15,21 @@
 	<footer id="site-footer">
 		<section class="container content">
 			<div class="box-top-footer">
+				<?php
+					if( have_rows('footer_social','options')):
+					$rows = get_field('footer_social','options' ); // get all the rows
+					$first_row = $rows[0]; // get the first row
+					$facebook_url = $first_row['facebook_url'] ? $first_row['facebook_url'] : '' ; 
+					$twitter_url = $first_row['twitter_url'] ? $first_row['twitter_url'] : '' ; 
+					$google_plus = $first_row['google_plus'] ? $first_row['google_plus'] : '' ; 
+					endif;
+				?>	
 				<ul class="social">
-					<li><a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
-					<li><a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
-					<li><a href="#"><i class="fa fa-google-plus" aria-hidden="true"></i></a></li>
+					<li><a href="<?php echo $facebook_url;?>" target="_blank"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
+					<li><a href="<?php echo $twitter_url;?>" target="_blank"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
+					<li><a href="<?php echo $google_plus;?>" target="_blank"><i class="fa fa-google-plus" aria-hidden="true"></i></a></li>
 				</ul>
-				<img src="http://vegvalley.local/wp-content/uploads/2016/07/logo-footer.png" alt="" class="logo-footer img-responsive">
+				<img src="<?php echo bloginfo( 'template_url' );?>/images/logo-footer.png" alt="" class="logo-footer img-responsive">
 				<!-- <div class="menu-footer">
 					<ul>
 						<li><a href="#">PEPTIDE</a></li>
