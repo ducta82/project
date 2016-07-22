@@ -57,13 +57,14 @@ get_header( 'shop' ); ?>
 				 */
 
 				remove_action('woocommerce_before_shop_loop','woocommerce_result_count', 20 );
-				remove_action('woocommerce_before_shop_loop','woocommerce_catalog_ordering', 30 );
-				do_action( 'woocommerce_before_shop_loop' );
+				//remove_action('woocommerce_before_shop_loop','woocommerce_catalog_ordering', 30 );
+				//do_action( 'woocommerce_before_shop_loop' );
 
 			?>
 
 			<?php woocommerce_product_loop_start(); ?>
-
+				<?php do_action( 'woocommerce_before_shop_loop' );?>
+				<div class="box-product-wrap">
 				<?php woocommerce_product_subcategories(); ?>
 
 				<?php while ( have_posts() ) : the_post(); ?>

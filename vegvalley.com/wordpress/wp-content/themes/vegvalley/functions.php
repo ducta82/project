@@ -256,7 +256,7 @@ function vegvalley_wrapper_end() {
 }
 //loop
 function woocommerce_product_loop_start(){
-    echo '<div class="content container"><div class="box-product-wrap">';
+    echo '<div class="content container">';
 }
 function woocommerce_product_loop_end(){
     echo '</div></div>';

@@ -78,7 +78,10 @@
 					?>
 				 <form action="<?php echo home_url( '/' ); ?>" method="get" class="navbar-form box-search">
                     <div class="input-group seach-header">
-                        <input name="s" value="" type="text" placeholder="search..." class="form-seach-header">
+                        <input name="s" value="<?php the_search_query(); ?>" type="text" placeholder="search..." class="form-seach-header">
+						<input type="hidden" name="post_type" value="product" />
+						<input type="hidden" name="post_type" value="post" />
+						<input type="hidden" name="post_type" value="page" />
                     </div>
                 </form>
 			</nav>

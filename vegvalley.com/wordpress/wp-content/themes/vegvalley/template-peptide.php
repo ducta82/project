@@ -9,11 +9,31 @@ get_header(); ?>
 		<main id="main" class="site-main" role="main">
 
 			<?php
-			while ( have_posts() ) : the_post();
-
-				get_template_part( 'template-parts/content', 'page' );
-
-			endwhile; // End of the loop.
+			$arg = array(
+				'page_id'=>149
+				);
+			$the_query = new WP_Query($arg);
+			while ( $the_query->have_posts() ) : $the_query->the_post();			
+				?>
+				<article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
+					<header class="entry-header">
+						<div class="head-page">
+							<div class="content container">
+								<small class="rule left"></small>
+								<?php the_title( '<h1 class="entry-title page-title">', '</h1>' ); ?>
+								<small class="rule right"></small>
+								<?php the_breadcrumb(); ?>
+							</div>
+						</div>
+					</header><!-- .entry-header -->
+					<div class="entry-content peptide">
+						<?php
+							the_content();
+						?>
+					</div><!-- .entry-content -->
+				</article><!-- #post-## -->
+			<?php endwhile; // End of the loop.
+			wp_reset_postdata();
 			?>
 
 		</main><!-- #main -->

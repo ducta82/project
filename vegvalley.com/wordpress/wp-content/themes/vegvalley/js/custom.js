@@ -108,7 +108,7 @@ $( document ).ready(function() {
 $(window).load(function() {
 	$('#slider').nivoSlider({
 	 	animSpeed: 500,                   // Slide transition speed 
-		pauseTime: 3000, 
+		pauseTime: 3000000, 
 		directionNav: false,               // Next & Prev navigation 
 		controlNav: false,     
 	}); 

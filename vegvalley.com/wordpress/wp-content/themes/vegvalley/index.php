@@ -17,7 +17,7 @@ get_header(); ?>
 	<section class="site-info">
 		<?php 
 			$arg = array(
-				'page_id'=>115,
+				'page_id'=>149,
 				'post_type'=>'page'
 				);
 			query_posts($arg);
@@ -26,8 +26,8 @@ get_header(); ?>
 		<div class="content container">
 			<archive class="box-site-info">
 				<header class="info-header">
-					<img src="<?php the_post_thumbnail_url();?>" alt="">
-					<h2><?php the_title();?></h2>
+					<img src="<?php echo bloginfo('template_url');?>/images/favicon.png" alt="">
+					<h2><?php _e('WELCOME TO OUR WEBSITE','vegvalley');?></h2>
 				</header>
 				<div class="info-content">
 					<?php the_excerpt();?>

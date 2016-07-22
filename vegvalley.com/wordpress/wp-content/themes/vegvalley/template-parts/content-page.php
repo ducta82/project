@@ -10,7 +10,7 @@
 ?>
 
 <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
-	<?php if(!is_page( 'My Account' )):?>
+	<!-- <?php if(!is_page( 'My Account' )):?>
 	<header class="entry-header">
 		<div class="head-page">
 			<div class="content container">
@@ -20,8 +20,8 @@
 				<?php the_breadcrumb(); ?>
 			</div>
 		</div>
-	</header><!-- .entry-header -->
-	<?php endif;?>
+	</header>.entry-header
+	<?php endif;?> -->
 	<div class="entry-content">
 		<?php
 			the_content();

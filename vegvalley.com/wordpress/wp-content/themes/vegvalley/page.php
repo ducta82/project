@@ -13,7 +13,6 @@
  */
 
 get_header(); 
-if(is_page( 'My Account' )) :
 ?>
 <header class="entry-header">
 		<div class="head-page">
@@ -25,7 +24,6 @@ if(is_page( 'My Account' )) :
 			</div>
 		</div>
 	</header><!-- .entry-header -->
-<?php endif;?>	
 <div id="primary" class="content-area container content">
 		<main id="main" class="site-main" role="main">
 
