@@ -104,6 +104,17 @@ $( document ).ready(function() {
             }
        	})
 	});
+	//share archive product
+	$('.product-buttons .share-product i').click(function (e) {
+		e.preventDefault();
+		$(this).parent().parent().find('.wc-social.social-archive-product').toggle('fast');
+	});
+	//after add wishlist
+	$(function(){
+		var url = $('.yith-wcwl-wishlistaddedbrowse').find('a').attr('href');
+		$('.yith-wcwl-add-button.hide').parent().prepend('<a href="'+ url +'" title="product add!"><i class="fa fa fa-heart" style="color:#f00;margin-right:5px;"></i></a>');
+	});
+	
 });
 $(window).load(function() {
 	$('#slider').nivoSlider({

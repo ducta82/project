@@ -320,13 +320,35 @@ function woo_show_page_title()
 		$product_cats = wp_get_post_terms( get_the_ID(), 'product_cat' );
 		if(is_shop()){
 		?>
-		<small class="rule left"></small><h1 class="page-title"><?php woocommerce_page_title(); ?></h1> <small class="rule right"></small>
+		<small class="rule left"></small>
+		<h1 class="page-title"><?php woocommerce_page_title(); ?></h1> 
+		<small class="rule right"></small>
 		<?php
 		}else{
 			if ( $product_cats && ! is_wp_error ( $product_cats ) ){
-			 		$single_cat = array_shift( $product_cats ); ?>
-			<small class="rule left"></small><h1 class="product_category_title"><?php echo $single_cat->name; ?></h1><small class="rule right"></small>
+			 		$single_cat = array_shift( $product_cats ); 
+			 		if(!is_single()){
+			 			?>
+							<small class="rule left"></small>
+							<h1 class="product_category_title"><?php echo $single_cat->name; ?></h1>
+							<small class="rule right"></small>
+			 			<?php
+			 		}else{
+			 			?>
+							<small class="rule left"></small>
+							<h1 class="product_category_title"><?php echo get_the_title(); ?></h1>
+							<small class="rule right"></small>
+			 			<?php	
+			 		}
+			 	?>
 			<?php }
+			else{
+		 			?>
+						<small class="rule left"></small>
+						<h1 class="product_category_title"><?php echo get_the_title(); ?></h1>
+						<small class="rule right"></small>
+		 			<?php	
+		 		}
 		}
 	endif; 
 }
@@ -365,13 +387,32 @@ function crunchify_social_sharing_buttons() {
 }
 add_action( 'woocommerce_share', 'crunchify_social_sharing_buttons');
 //wistlist + share
-function ButtonProduct()
-{
+function ButtonProduct() {
+// Get current page URL 
+	$crunchifyURL = str_replace( ' ', '%20', get_permalink());
+	// Get current page title
+	$crunchifyTitle = str_replace( ' ', '%20', get_the_title());
+	// Get Post Thumbnail for pinterest
+	$crunchifyThumbnail = wp_get_attachment_image_src( get_post_thumbnail_id( $post->ID ), 'full' );
+	// Construct sharing URL without using any script
+	$facebookURL = 'https://www.facebook.com/sharer/sharer.php?u='.$crunchifyURL;
+	$googleURL = 'https://plus.google.com/share?url='.$crunchifyURL;
 	?>
 	<div class="product-buttons">	
 		<div class="box-product-buttons">
 			<?php echo do_shortcode('[yith_wcwl_add_to_wishlist icon="fa fa-heart" link_classes="wishlist" already_in_wishslist_text="<a href="#" class="wishlist"><i class="fa fa-heart" aria-hidden="true"></i></a>"]' ); ?>
-			<a href="#" class="share-product"><i class="fa fa-share-alt" aria-hidden="true"></i></a>	
+			<div class="box-share-social">
+				<a href="#" class="share-product"><i class="fa fa-share-alt" aria-hidden="true"></i></a>	
+				<div class="wc-social social-archive-product">
+				<a href="http://www.facebook.com/sharer.php?u=<?php echo $crunchifyURL;?>" onclick="javascript:window.open(this.href,
+				  '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');return false;" class="share-fb">
+			        <img src="<?php echo bloginfo('template_url');?>/images/facebook.png" alt="Facebook" />
+			    </a>
+				<a href="https://plus.google.com/share?url=<?php echo $crunchifyURL;?>" onclick="javascript:window.open(this.href,
+				  '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');return false;"class="share-google"><img
+				  src="<?php echo bloginfo('template_url');?>/images/google-plus.png" alt="Share on Google+"/></a>
+			</div>
+			</div>
 	<?php
 }
 add_action('woocommerce_after_shop_loop_item_title','ButtonProduct', 8);
