@@ -125,7 +125,8 @@ function vegvalley_scripts() {
 	wp_localize_script( 'vegvalley-customjs', 'ajax_object', array(
 	 
 	        // Các phương thức sẽ sử dụng
-	        'ajax_url' => admin_url( 'admin-ajax.php' )      
+	        'ajax_url' => admin_url( 'admin-ajax.php' ),
+	        'base' =>get_site_url()      
 	));
 
 	if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
@@ -595,8 +596,41 @@ function vegvalley_function_block($atts){
 	return $x;
 }
 add_shortcode('vegvalley_function_block','vegvalley_function_block');
+// ajax add wishlist
+function add_to_wishlist( $array ) { 
+    global $yith_wcwl;
+    $return = $this->add();
+    $message = '';
+    $user_id = isset( $this->details['user_id'] ) ? $this->details['user_id'] : false;
+    $wishlists = array();
 
+    if( $return == 'true' ){
+        $message = apply_filters( 'yith_wcwl_product_added_to_wishlist_message', get_option( 'yith_wcwl_product_added_text' ) );
+    }
+    elseif( $return == 'exists' ){
+        $message = apply_filters( 'yith_wcwl_product_already_in_wishlist_message', get_option( 'yith_wcwl_already_in_wishlist_text' ) );
+    }
+    elseif( count( $this->errors ) > 0 ){
+        $message = apply_filters( 'yith_wcwl_error_adding_to_wishlist_message', $this->get_errors() );
+    }
 
+    if( $user_id != false ){
+        $wishlists = $this->get_wishlists( array( 'user_id' => $user_id ) );
+    }
+
+    wp_send_json(
+        array(
+            'result' => $return,
+            'message' => $message,
+            'user_wishlists' => $wishlists,
+            'wishlist_url' => $this->get_wishlist_url( 'view' . ( isset( $this->last_operation_token ) ? ( '/' . $this->last_operation_token ) : false ) ),
+        )
+    );
+}; 
+         
+// add the action 
+add_action( 'wp_ajax_nopriv_add_to_wishlist', 'add_to_wishlist', 10, 1 ); 
+add_action( 'wp_ajax_add_to_wishlist', 'add_to_wishlist', 10, 1 ); 
 /**
  * Implement the Custom Header feature.
  */
