@@ -1,0 +1,1994 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Email subscribers\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2016-06-04 11:11+0200\n"
+"PO-Revision-Date: 2016-06-04 11:15+0200\n"
+"Last-Translator: David Bravo <dbravo@dimensionmultimedia.com>\n"
+"Language-Team: \n"
+"Language: es_ES\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.8.7\n"
+"X-Poedit-KeywordsList: _;gettext;gettext_noop;__;_e;_x\n"
+"X-Poedit-Basepath: ../..\n"
+"X-Poedit-SearchPath-0: languages\n"
+"X-Poedit-SearchPath-1: plugins/email-subscribers\n"
+"X-Poedit-SearchPathExcluded-0: *.js\n"
+
+#. Name of the plugin
+msgid "Email Subscribers"
+msgstr "Suscriptores de correo"
+
+#. URI of the plugin
+msgid "http://www.storeapps.org"
+msgstr "http://www.storeapps.org"
+
+#. Description of the plugin
+msgid ""
+"Add subscription form on website, send HTML newsletters to subscribers & "
+"automatically notify them about new blog posts once it gets published."
+msgstr ""
+"Añade un formulario de suscripción en la página web, envía newsletters HTML "
+"a suscriptores y automáticamente notifícales sobre las nuevas entradas del "
+"blog en cuando sean publicadas."
+
+#. Author of the plugin
+msgid "Store Apps"
+msgstr "Store Apps"
+
+#: ../settings/setting-sync.php:12
+msgid "Table sync completed successfully."
+msgstr "Sincronización de la Tabla finalizada con éxito."
+
+#: ../settings/setting-sync.php:25
+msgid "Sync plugin tables"
+msgstr "Sincronizar tablas del plugin"
+
+#: ../settings/setting-sync.php:28
+msgid "Click to sync tables"
+msgstr "Clic para sincronizar tablas"
+
+#: ../settings/settings-edit.php:15
+msgid "Oops, selected details doesnt exists."
+msgstr "Ups, los detalles seleccionados no existen."
+
+#: ../settings/settings-edit.php:109
+msgid "Please enter sender of notifications from name."
+msgstr "Por favor introduce el nombre 'de' para el emisor de notificaciones."
+
+#: ../settings/settings-edit.php:114
+msgid "Please enter sender of notifications from email."
+msgstr "Por favor introduce el correo 'de' para el emisor de notificaciones."
+
+#: ../settings/settings-edit.php:147
+msgid "Details was successfully updated."
+msgstr "Los detalles fueron actualizados correctamente."
+
+#: ../settings/settings-edit.php:150
+msgid "Oops, details not update."
+msgstr "Ups, los detalles no se han actualizado."
+
+#: ../settings/settings-edit.php:190 ../classes/es-register.php:154
+#: ../classes/es- register.php:155
+msgid "Settings"
+msgstr "Configuración"
+
+#: ../settings/settings-edit.php:196
+msgid "Sender of notifications"
+msgstr "Emisor de notificaciones"
+
+#: ../settings/settings-edit.php:197
+msgid ""
+"Choose a FROM name and FROM email address for all notifications emails from "
+"this plugin."
+msgstr ""
+"Elige un nombre DE y una dirección de correo DE para todos los correos de "
+"notificaciones de este plugin."
+
+#: ../settings/settings-edit.php:206
+msgid "Mail type"
+msgstr "Tipo de Correo"
+
+#: ../settings/settings-edit.php:207
+msgid ""
+"Option 1 & 2 is to send mails with default Wordpress method wp_mail(). "
+"Option 3 & 4 is to send mails with PHP method mail()"
+msgstr ""
+"Las opciones 1 y 2 envían correos con el método por defecto de WordPress "
+"wp_mail(). Las opciones 3 y 4 envían correos con el método PHP mail()."
+
+#: ../settings/settings-edit.php:211
+msgid "1. WP HTML MAIL"
+msgstr "1. WP CORREO HTML"
+
+#: ../settings/settings-edit.php:212
+msgid "2. WP PLAINTEXT MAIL"
+msgstr "2. WP CORREO TEXTO PLANO"
+
+#: ../settings/settings-edit.php:213
+msgid "3. PHP HTML MAIL"
+msgstr "3. PHP CORREO PHP"
+
+#: ../settings/settings-edit.php:214
+msgid "4. PHP PLAINTEXT MAIL"
+msgstr "4. PHP CORREO TEXTO PLANO"
+
+#: ../settings/settings-edit.php:221
+msgid "Opt-in option"
+msgstr "Opción envío"
+
+#: ../settings/settings-edit.php:222
+msgid ""
+"Double Opt In, means subscribers need to confirm their email address by an "
+"activation link sent them on a activation email message. Single Opt In, "
+"means subscribers do not need to confirm their email address."
+msgstr ""
+"Doble envío, significa que los suscriptores deben confirmar su correo "
+"electrónico por un enlace de activación que se les envía en un mensaje de "
+"confirmación de correo. Envío simple significa que los suscriptores no deben "
+"confirmar su dirección de correo."
+
+#: ../settings/settings-edit.php:226
+msgid "Double Opt In"
+msgstr "Doble entrada"
+
+#: ../settings/settings-edit.php:227
+#: ../subscribers/view-subscriber-show.php:303
+msgid "Single Opt In"
+msgstr "Envío individual"
+
+#: ../settings/settings-edit.php:233
+msgid "Image Size"
+msgstr "Tamaño de imagen"
+
+#: ../settings/settings-edit.php:234
+msgid ""
+"Select image size for ###POSTIMAGE### to be shown in post notification email"
+msgstr ""
+"Selecciona el tamaño de imagen para ###POSTIMAGE### que se mostrará en el "
+"correo de notificación de entrada"
+
+#: ../settings/settings-edit.php:238
+msgid "Full Size"
+msgstr "Tamaño Completo"
+
+#: ../settings/settings-edit.php:239
+msgid "Medium Size"
+msgstr "Tamaño Medio"
+
+#: ../settings/settings-edit.php:240
+msgid "Thumbnail"
+msgstr "Miniatura"
+
+#: ../settings/settings-edit.php:246
+msgid "Opt-in mail subject (Confirmation mail)"
+msgstr "Asunto del correo de Envío (Correo de confirmación)"
+
+#: ../settings/settings-edit.php:247
+msgid ""
+"Enter the subject for Double Opt In mail. This will send whenever subscriber "
+"added email into our database."
+msgstr ""
+"Introduce el asunto para el correo de Doble entrada. Esto se mandará cuando "
+"se haya suscrito cualquier correo en nuestra base de datos."
+
+#: ../settings/settings-edit.php:253
+msgid "Opt-in mail content (Confirmation mail)"
+msgstr "Contenido del correo de Envío (correo de confirmación)"
+
+#: ../settings/settings-edit.php:254
+msgid ""
+"Enter the content for Double Opt In mail. This will send whenever subscriber "
+"added email into our database."
+msgstr ""
+"Introduce el contenido para el correo de Doble Entrada. Esto se mandará "
+"cuando se añada una dirección de correo a nuestra base de datos."
+
+#: ../settings/settings-edit.php:260
+msgid "Opt-in link (Confirmation link)"
+msgstr "Enlace Envío (Enlace de conformación)"
+
+#: ../settings/settings-edit.php:261
+msgid "Double Opt In confirmation link. You no need to change this value."
+msgstr "Enlace para doble Envío. No es necesario que cambies este valor."
+
+#: ../settings/settings-edit.php:267
+msgid "Text to display after email subscribed successfully"
+msgstr ""
+"Texto para mostrar cuando una dirección de correo se haya suscrito "
+"correctamente"
+
+#: ../settings/settings-edit.php:268
+msgid ""
+"This text will display once user clicked email confirmation link from opt-in "
+"(confirmation) email content."
+msgstr ""
+"Este texto se mostrará una vez el usuario haya hecho clic en el enlace de "
+"conformación de correo desde el contenido de correo de entrada "
+"(confirmación)."
+
+#: ../settings/settings-edit.php:275
+msgid "Subscriber welcome email"
+msgstr "Correo de bienvenida para el Suscriptor"
+
+#: ../settings/settings-edit.php:276
+msgid "To send welcome mail to subscriber, This option must be set to YES."
+msgstr ""
+"Para enviar un correo de bienvenida a los suscriptores, esta opción debe "
+"estar establecida a SÍ."
+
+#: ../settings/settings-edit.php:280 ../settings/settings-edit.php:308
+msgid "YES"
+msgstr "SÍ"
+
+#: ../settings/settings-edit.php:281 ../settings/settings-edit.php:309
+msgid "NO"
+msgstr "NO"
+
+#: ../settings/settings-edit.php:287
+msgid "Welcome mail subject"
+msgstr "Asunto correo bienvenida"
+
+#: ../settings/settings-edit.php:288
+msgid ""
+"Enter the subject for subscriber welcome mail. This will send whenever email "
+"subscribed (confirmed) successfully."
+msgstr ""
+"Introduce el asunto para el correo de bienvenida del suscriptor. Esto se "
+"enviará cuando se suscriba exitosamente (confirmado) cualquier correo."
+
+#: ../settings/settings-edit.php:294
+msgid "Subscriber welcome mail content"
+msgstr "Contenido del correo de bienvenida al suscriptor"
+
+#: ../settings/settings-edit.php:295
+msgid ""
+"Enter the content for subscriber welcome mail. This will send whenever email "
+"subscribed (confirmed) successfully.  (Keyword: ###NAME###)"
+msgstr ""
+"Introduce el contenido para el correo de bienvenida al suscriptor. Esto se "
+"enviará cuando un correo se haya suscrito (confirmado) con éxito. (Keyword: "
+"###NAME###)"
+
+#: ../settings/settings-edit.php:303
+msgid "Mail to admin"
+msgstr "Correo al administrador"
+
+#: ../settings/settings-edit.php:304
+msgid ""
+"To send admin notifications for new subscriber, This option must be set to "
+"YES."
+msgstr ""
+"Para mandar notificaciones al administrador por nuevos suscriptores, esta "
+"opción debe estar establecida a SÍ."
+
+#: ../settings/settings-edit.php:315
+msgid "Admin email addresses"
+msgstr "Direcciones de correo de administrador"
+
+#: ../settings/settings-edit.php:316
+msgid ""
+"Enter the admin email addresses that should receive notifications (separate "
+"by comma)."
+msgstr ""
+"Introduce las direcciones de correo de administradores que deben recibir las "
+"notificaciones (separadas por coma)."
+
+#: ../settings/settings-edit.php:322
+msgid "Admin mail subject"
+msgstr "Asunto del correo al administrador"
+
+#: ../settings/settings-edit.php:323
+msgid ""
+"Enter the subject for admin mail. This will send whenever new email added "
+"and confirmed into our database."
+msgstr ""
+"Introduce el asunto para el correo al administrador. Esto se enviará cuando "
+"un nuevo correo se añadido y confirmado en nuestra base de datos."
+
+#: ../settings/settings-edit.php:329
+msgid "Admin mail content"
+msgstr "Contenido correo administrador"
+
+#: ../settings/settings-edit.php:330
+msgid ""
+"Enter the mail content for admin. This will send whenever new email added "
+"and confirmed into our database. (Keyword: ###NAME###, ###EMAIL###)"
+msgstr ""
+"Introduce el contenido del correo para administrador. Esto se enviará cuando "
+"un nuevo correo haya sido añadido y confirmado en nuestra base de datos. "
+"(Keyword: ###NAME###, ###EMAIL###)"
+
+#: ../settings/settings-edit.php:337
+msgid "Unsubscribe link"
+msgstr "Enlace de baja de suscripción"
+
+#: ../settings/settings-edit.php:338
+msgid "Unsubscribe link. You no need to change this value."
+msgstr "Enlace de baja de suscripción. No es necesario cambiar este valor."
+
+#: ../settings/settings-edit.php:344
+msgid "Unsubscribe text in mail"
+msgstr "Texto de baja de suscripción en correo"
+
+#: ../settings/settings-edit.php:345
+msgid ""
+"Enter the text for unsubscribe link. This text is to add unsubscribe link "
+"with newsletter. (Keyword: ###LINK###)"
+msgstr ""
+"Introduce el texto para el enlace de cancelación de suscripción. Este texto "
+"es para añadir un enlace de cancelación de suscripción con la newsletter. "
+"(Keyword: ###LINK###)"
+
+#: ../settings/settings-edit.php:351
+msgid "Text to display after email unsubscribed"
+msgstr "Texto para mostrar una vez el correo haya cancelado la suscripción"
+
+#: ../settings/settings-edit.php:352
+msgid ""
+"This text will display once user clicked unsubscribed link from our "
+"newsletter."
+msgstr ""
+"Este texto se mostrará una vez que el usuario haga clic sobre el enlace de "
+"cancelación de suscripción desde nuestra newsletter."
+
+#: ../settings/settings-edit.php:359
+msgid "Message 1"
+msgstr "Mensaje 1"
+
+#: ../settings/settings-edit.php:360
+msgid "Default message to display if any issue on confirmation link."
+msgstr ""
+"Mensaje por defecto para mostrar si hay algún problema en el enlace de "
+"confirmación."
+
+#: ../settings/settings-edit.php:366
+msgid "Message 2"
+msgstr "Mensaje 2"
+
+#: ../settings/settings-edit.php:367
+msgid "Default message to display if any issue on unsubscribe link."
+msgstr ""
+"Mensaje por defecto para mostrar si hay algún problema en el enlace de "
+"cancelación de suscripción."
+
+#: ../settings/settings-edit.php:374
+msgid "Sent report subject"
+msgstr "Asunto de informe enviado"
+
+#: ../settings/settings-edit.php:375
+msgid "Mail subject for sent mail report."
+msgstr "Asunto del mensaje para informe de correos enviados."
+
+#: ../settings/settings-edit.php:381
+msgid "Sent report content"
+msgstr "Contenido del informe enviado"
+
+#: ../settings/settings-edit.php:382
+msgid ""
+"Mail content for sent mail report. (Keyword: ###COUNT###, ###UNIQUE###, "
+"###STARTTIME###, ###ENDTIME###)"
+msgstr ""
+"Contenido del correo para el informe de correo enviado. (Keyword: "
+"###COUNT###, ###UNIQUE###, ###STARTTIME###, ###ENDTIME###)"
+
+#: ../settings/settings-edit.php:393
+msgid "Save Settings"
+msgstr "Guardar configuración"
+
+#: ../settings/settings-edit.php:394 ../subscribers/view-subscriber-add.php:154
+#: .. /subscribers/view-subscriber-sync.php:157
+#: ../subscribers/view-subscriber-edit. php:147
+#: ../notification/notification-edit.php:237 ../notification/notification-
+#: add.php:216 ../compose/compose-edit.php:109 ../compose/compose-add.php:99
+#: /cron/cron-add.php:89 ../sendmail/sendmail.php:260
+#: ../roles/roles-add.php:155
+msgid "Cancel"
+msgstr "Cancelar"
+
+#: ../settings/settings-edit.php:395 ../sentmail/sentmail-preview.php:33 ..
+#: /sentmail/deliverreport-show.php:120 ../subscribers/view-subscriber-add.php:
+#: 155 ../subscribers/view-subscriber-sync.php:158
+#: ../subscribers/view-subscriber- export.php:68
+#: ../subscribers/view-subscriber-edit.php:148 ../subscribers/view-
+#: subscriber-import.php:189 ../subscribers/view-subscriber-show.php:448
+#: /notification/notification-edit.php:238
+#: ../notification/notification-add.php:217
+#: ../notification/notification-show.php:152 ../compose/compose-edit.php:110 .
+#: compose/compose-show.php:113 ../compose/compose-preview.php:35
+#: /compose/compose-add.php:100 ../cron/cron-add.php:90
+#: ../sendmail/sendmail.php:261 ../roles/roles-add.php:156
+msgid "Help"
+msgstr "Ayuda"
+
+#: ../job/es-optin.php:64 ../job/es-optin.php:79 ../job/es-unsubscribe.php:60
+#: .. /job/es-unsubscribe.php:70
+msgid ""
+"Oops.. We are getting some technical error. Please try again or contact "
+"admin."
+msgstr ""
+"Ups. Estamos teniendo algún problema técnico. Por favor inténtalo otra vez o "
+"contacta al administrador."
+
+#: ../job/es-optin.php:69
+msgid "This email address has already been confirmed."
+msgstr "Esta dirección de correo ya ha sido confirmada."
+
+#: ../sentmail/sentmail-show.php:18 ../sentmail/sentmail-preview.php:12 ..
+#: /subscribers/view-subscriber-edit.php:12
+#: ../subscribers/view-subscriber-show. php:46
+#: ../notification/notification-edit.php:11 ../notification/notification-
+#: show.php:16 ../compose/compose-edit.php:15 ../compose/compose-show.php:31
+#: /compose/compose-preview.php:13
+msgid "Oops, selected details doesnt exist."
+msgstr "Ups, los detalles seleccionados no existen."
+
+#: ../sentmail/sentmail-show.php:33 ../subscribers/view-subscriber-show.php:60
+#: .. /subscribers/view-subscriber-show.php:104
+#: ../notification/notification-show. php:31 ../compose/compose-show.php:43
+msgid "Selected record was successfully deleted."
+msgstr "El registro seleccionado ha sido borrado con éxito."
+
+#: ../sentmail/sentmail-show.php:42
+msgid "Successfully deleted all reports except latest 10."
+msgstr "Se borraron con éxito todos los informes excepto los últimos 10."
+
+#: ../sentmail/sentmail-show.php:53 ../classes/es-register.php:160
+#: ../classes/es- register.php:161
+msgid "Sent Mails"
+msgstr "Correos enviados"
+
+#: ../sentmail/sentmail-show.php:71 ../sentmail/sentmail-show.php:84
+msgid "View Reports"
+msgstr "Ver Informes"
+
+#: ../sentmail/sentmail-show.php:72 ../sentmail/sentmail-show.php:85 ..
+#: /compose/compose-show.php:95
+msgid "Preview"
+msgstr "Previsualizar"
+
+#: ../sentmail/sentmail-show.php:73 ../sentmail/sentmail-show.php:86
+msgid "Source"
+msgstr "Origen"
+
+#: ../sentmail/sentmail-show.php:74 ../sentmail/sentmail-show.php:87 ..
+#: /sentmail/deliverreport-show.php:40 ../sentmail/deliverreport-show.php:52
+#: /subscribers/view-subscriber-add.php:121
+#: ../subscribers/view-subscriber-edit. php:105
+#: ../subscribers/view-subscriber-import.php:155 ../subscribers/view-
+#: subscriber-show.php:327 ../subscribers/view-subscriber-show.php:340
+#: /compose/compose-edit.php:99 ../compose/compose-show.php:67
+#: ../compose/compose- show.php:75 ../compose/compose-add.php:90
+msgid "Status"
+msgstr "Estado"
+
+#: ../sentmail/sentmail-show.php:75 ../sentmail/sentmail-show.php:88 ..
+#: /sentmail/deliverreport-show.php:41 ../sentmail/deliverreport-show.php:53
+#: /compose/compose-show.php:68 ../compose/compose-show.php:76
+msgid "Type"
+msgstr "Tipo"
+
+#: ../sentmail/sentmail-show.php:76 ../sentmail/sentmail-show.php:89
+msgid "Start Date"
+msgstr "Fecha Comienzo"
+
+#: ../sentmail/sentmail-show.php:77 ../sentmail/sentmail-show.php:90
+msgid "End Date"
+msgstr "Fecha Fin"
+
+#: ../sentmail/sentmail-show.php:78 ../sentmail/sentmail-show.php:91
+msgid "Total"
+msgstr "Total"
+
+#: ../sentmail/sentmail-show.php:79 ../sentmail/sentmail-show.php:92 ..
+#: /subscribers/view-subscriber-export.php:30 ../subscribers/view-subscriber-
+#: export.php:38 ../subscribers/view-subscriber-show.php:330
+#: ../subscribers/view- subscriber-show.php:343 ../compose/compose-show.php:69
+#: ../compose/compose-show. php:77
+msgid "Action"
+msgstr "Acción"
+
+#: ../sentmail/sentmail-show.php:131 ../sentmail/deliverreport-show.php:84 ..
+#: /notification/notification-show.php:141 ../compose/compose-show.php:102
+msgid "No records available."
+msgstr "No hay registros disponibles."
+
+#: ../sentmail/sentmail-show.php:143 ../sentmail/deliverreport-show.php:96
+msgid " &lt;&lt; "
+msgstr " &lt;&lt; "
+
+#: ../sentmail/sentmail-show.php:144 ../sentmail/deliverreport-show.php:97
+msgid " &gt;&gt; "
+msgstr " &gt;&gt; "
+
+#: ../sentmail/sentmail-show.php:167 ../sentmail/sentmail-show.php:169
+msgid "Optimize Table"
+msgstr "Optimizar Tabla"
+
+#: ../sentmail/sentmail-show.php:179
+msgid ""
+"Note: Please click <strong>Optimize Table</strong> button to delete all "
+"reports except latest 10."
+msgstr ""
+"Nota: Por favor, haz clic en el botón <strong>Optimizar Tabla</strong> para "
+"borrar todos los informes excepto los últimos 10."
+
+#: ../sentmail/sentmail-preview.php:19 ../compose/compose-preview.php:21
+msgid "Preview Mail"
+msgstr "Previsualizar Correo"
+
+#: ../sentmail/sentmail-preview.php:32 ../sentmail/deliverreport-show.php:119
+#: .. /subscribers/view-subscriber-export.php:67
+#: ../subscribers/view-subscriber- import.php:188
+#: ../compose/compose-preview.php:33
+msgid "Back"
+msgstr "Volver"
+
+#: ../sentmail/deliverreport-show.php:11
+msgid "Oops.. Unexpected error occurred. Please try again."
+msgstr "Ups. Ha sucedido un error inesperado. Por favor, inténtelo de nuevo."
+
+#: ../sentmail/deliverreport-show.php:19
+msgid "Delivery Report"
+msgstr "Informe envío"
+
+#: ../sentmail/deliverreport-show.php:37 ../sentmail/deliverreport-show.php:49
+#: .. /subscribers/view-subscriber-export.php:27
+#: ../subscribers/view-subscriber- export.php:35
+#: ../subscribers/view-subscriber-show.php:324 ../subscribers/view-
+#: subscriber-show.php:337
+msgid "Sno"
+msgstr "Sno"
+
+#: ../sentmail/deliverreport-show.php:38 ../sentmail/deliverreport-show.php:50
+msgid "Email"
+msgstr "Correo"
+
+#: ../sentmail/deliverreport-show.php:39 ../sentmail/deliverreport-show.php:51
+msgid "Sent Date"
+msgstr "Fecha Envío"
+
+#: ../sentmail/deliverreport-show.php:42 ../sentmail/deliverreport-show.php:54
+msgid "Viewed Status"
+msgstr "Estado visualización"
+
+#: ../sentmail/deliverreport-show.php:43 ../sentmail/deliverreport-show.php:55
+msgid "Viewed Date"
+msgstr "Fecha Visualización"
+
+#: ../sentmail/deliverreport-show.php:44 ../sentmail/deliverreport-show.php:56
+#: .. /subscribers/view-subscriber-show.php:329
+#: ../subscribers/view-subscriber-show. php:342
+msgid "Database ID"
+msgstr "ID Base de Datos"
+
+#: ../classes/es-loadwidget.php:23 ../classes/es-register.php:410 ..
+#: /subscribers/view-subscriber-show.php:326
+#: ../subscribers/view-subscriber-show. php:339
+msgid "Name"
+msgstr "Nombre"
+
+#: ../classes/es-loadwidget.php:28 ../classes/es-register.php:415
+msgid "Email *"
+msgstr "Email *"
+
+#: ../classes/es-loadwidget.php:33 ../classes/es-register.php:420
+msgid "Subscribe"
+msgstr "Suscribirse"
+
+#: ../classes/es-register.php:139 ../classes/es-register.php:140
+msgid "Subscribers"
+msgstr "Suscriptores"
+
+#: ../classes/es-register.php:142 ../classes/es-register.php:143
+msgid "Compose"
+msgstr "Componer"
+
+#: ../classes/es-register.php:145 ../classes/es-register.php:146 ..
+#: /notification/notification-show.php:44
+msgid "Notification"
+msgstr "Notificación"
+
+#: ../classes/es-register.php:148 ../classes/es-register.php:149 ..
+#: /sendmail/sendmail.php:94 ../sendmail/sendmail.php:256 ../sendmail/sendmail.
+#: php:258
+msgid "Send Email"
+msgstr "Enviar Correo"
+
+#: ../classes/es-register.php:151
+msgid "Cron"
+msgstr "Cron"
+
+#: ../classes/es-register.php:152
+msgid "Cron Mail"
+msgstr "Cron Email"
+
+#: ../classes/es-register.php:157 ../classes/es-register.php:158
+msgid "Roles"
+msgstr "Roles"
+
+#: ../classes/es-register.php:163
+msgid "Help & Info"
+msgstr "Ayuda e Información"
+
+#: ../classes/es-register.php:164
+msgid "<span style=\"color:#f18500;font-weight:bolder;\">Help & Info"
+msgstr "<span style=\"color:#f18500;font-weight:bolder;\">Ayuda e Info"
+
+#: ../classes/es-register.php:175
+msgctxt "view-subscriber-enhanced-select"
+msgid "Please enter subscriber email address."
+msgstr "Por favor introduce la dirección de correo de suscriptor."
+
+#: ../classes/es-register.php:176
+msgctxt "view-subscriber-enhanced-select"
+msgid "Please select subscriber email status."
+msgstr "Por favor selecciona el estado de correo de suscriptor."
+
+#: ../classes/es-register.php:177
+msgctxt "view-subscriber-enhanced-select"
+msgid "Please select or create group for this subscriber."
+msgstr "Por favor selecciona o crea grupo para este suscriptor."
+
+#: ../classes/es-register.php:178
+msgctxt "view-subscriber-enhanced-select"
+msgid "Do you want to delete this record?"
+msgstr "¿Quieres borrar este registro?"
+
+#: ../classes/es-register.php:179
+msgctxt "view-subscriber-enhanced-select"
+msgid "Please select the bulk action."
+msgstr "Por favor selecciona la acción en bloque."
+
+#: ../classes/es-register.php:180
+msgctxt "view-subscriber-enhanced-select"
+msgid "Do you want to delete selected record(s)?"
+msgstr "¿Quieres borrar el/los registro(s) seleccionado(s)?"
+
+#: ../classes/es-register.php:181
+msgctxt "view-subscriber-enhanced-select"
+msgid "Are you sure you want to delete?"
+msgstr "¿Estás seguro de querer borrar?"
+
+#: ../classes/es-register.php:182
+msgctxt "view-subscriber-enhanced-select"
+msgid ""
+"Do you want to resend confirmation email? \\nAlso please note, this will "
+"update subscriber current status to 'Unconfirmed'."
+msgstr ""
+"¿Quieres volver a mandar el correo de confirmación?\\nTambién ten en cuenta "
+"que esto actualizará el estado actual a 'Sin confirmar'."
+
+#: ../classes/es-register.php:183
+msgctxt "view-subscriber-enhanced-select"
+msgid "Please select new subscriber group."
+msgstr "Por favor selecciona un nuevo grupo de suscriptores."
+
+#: ../classes/es-register.php:184
+msgctxt "view-subscriber-enhanced-select"
+msgid "Do you want to update subscribers group?"
+msgstr "¿Quieres actualizar el grupo de suscriptores?"
+
+#: ../classes/es-register.php:185
+msgctxt "view-subscriber-enhanced-select"
+msgid "Do you want to export the emails?"
+msgstr "¿Quieres exportar los correos?"
+
+#: ../classes/es-register.php:186
+msgctxt "view-subscriber-enhanced-select"
+msgid ""
+"Please select only csv file. Please check official website for csv "
+"structure.."
+msgstr ""
+"Por favor selecciona el archivo de entrada csv. Por favor, consulta el sitio "
+"oficial para ver la estructura csv."
+
+#: ../classes/es-register.php:194
+msgctxt "compose-enhanced-select"
+msgid "Please enter name for configuration."
+msgstr "Por favor, introduce nombre para configuración."
+
+#: ../classes/es-register.php:195
+msgctxt "compose-enhanced-select"
+msgid "Please select template for this configuration."
+msgstr "Por favor selecciona una plantilla para esta configuración."
+
+#: ../classes/es-register.php:196
+msgctxt "compose-enhanced-select"
+msgid "Do you want to delete this record?"
+msgstr "¿Quieres borrar este registro?"
+
+#: ../classes/es-register.php:204
+msgctxt "notification-enhanced-select"
+msgid "Please select subscribers group."
+msgstr "Por favor selecciona el grupo de suscriptores."
+
+#: ../classes/es-register.php:205
+msgctxt "notification-enhanced-select"
+msgid ""
+"Please select notification mail subject. Use compose menu to create new."
+msgstr ""
+"Por favor selecciona el asunto de notificación del correo. Utiliza el menú "
+"componer para crear uno nuevo."
+
+#: ../classes/es-register.php:206
+msgctxt "notification-enhanced-select"
+msgid "Please select notification status."
+msgstr "Por favor selecciona el estado de notificación."
+
+#: ../classes/es-register.php:207
+msgctxt "notification-enhanced-select"
+msgid "Do you want to delete this record?"
+msgstr "¿Quieres borrar este registro?"
+
+#: ../classes/es-register.php:215
+msgctxt "sendmail-enhanced-select"
+msgid "Please select your mail subject."
+msgstr "Por favor selecciona el asunto de tu correo."
+
+#: ../classes/es-register.php:216
+msgctxt "sendmail-enhanced-select"
+msgid "Please select subscriber email status."
+msgstr "Por favor selecciona el estado de correo de suscriptor."
+
+#: ../classes/es-register.php:217
+msgctxt "sendmail-enhanced-select"
+msgid "Are you sure you want to send email to all selected email address?"
+msgstr ""
+"¿Estás seguro de querer mandar correo a todas las direcciones de correo "
+"seleccionadas?"
+
+#: ../classes/es-register.php:229
+msgctxt "sentmail-enhanced-select"
+msgid "Do you want to delete this record?"
+msgstr "¿Quieres borrar este registro?"
+
+#: ../classes/es-register.php:230
+msgctxt "sentmail-enhanced-select"
+msgid "Do you want to delete all records except latest 10?"
+msgstr "¿Quieres borrar todos los registros excepto los últimos 10?"
+
+#: ../classes/es-register.php:238
+msgctxt "roles-enhanced-select"
+msgid "Please enter subscriber email address."
+msgstr "Por favor introduce la dirección de correo de suscriptor."
+
+#: ../classes/es-register.php:239
+msgctxt "roles-enhanced-select"
+msgid "Please select subscriber email status."
+msgstr "Por favor selecciona el estado de correo de suscriptor."
+
+#: ../classes/es-register.php:240
+msgctxt "roles-enhanced-select"
+msgid "Please select or create group for this subscriber."
+msgstr "Por favor selecciona o crea grupo para este suscriptor."
+
+#: ../classes/es-register.php:248
+msgctxt "cron-enhanced-select"
+msgid "Please select enter number of mails you want to send per hour/trigger."
+msgstr ""
+"Por favor, introduce el número de correos que quieres enviar por hora/"
+"disparador."
+
+#: ../classes/es-register.php:249
+msgctxt "cron-enhanced-select"
+msgid "Please enter the mail count, only number."
+msgstr "Por favor, introduce el conteo de correos, sólo numérico."
+
+#: ../classes/es-register.php:262
+msgctxt "widget-enhanced-select"
+msgid "Please enter email address."
+msgstr "Por favor introduce dirección de correo."
+
+#: ../classes/es-register.php:263
+msgctxt "widget-enhanced-select"
+msgid "Please provide a valid email address."
+msgstr "Por favor introduce una dirección de correo válida."
+
+#: ../classes/es-register.php:264
+msgctxt "widget-enhanced-select"
+msgid "loading..."
+msgstr "Cargando..."
+
+#: ../classes/es-register.php:265
+msgctxt "widget-enhanced-select"
+msgid "Cannot create XMLHTTP instance"
+msgstr "No se puede crear la instancia XMLHTTP"
+
+#: ../classes/es-register.php:266
+msgctxt "widget-enhanced-select"
+msgid "Subscribed successfully."
+msgstr "Suscripción exitosa."
+
+#: ../classes/es-register.php:267
+msgctxt "widget-enhanced-select"
+msgid ""
+"You have successfully subscribed to the newsletter. You will receive a "
+"confirmation email in a few minutes. Please follow the link in it to confirm "
+"your subscription. If the email takes more than 15 minutes to appear in your "
+"mailbox, please check your spam folder."
+msgstr ""
+"Te has suscrito con éxito a la newsletter. Recibirás un correo de "
+"confirmación en pocos minutos. Por favor, sigue el enlace en él para "
+"confirmar tu suscripción. Si el correo tarda más de 15 minutos en aparecer "
+"en tu bandeja de entradas, por favor revisa tu carpeta de correo no deseado."
+
+#: ../classes/es-register.php:268
+msgctxt "widget-enhanced-select"
+msgid "Email Address already exists."
+msgstr "El correo electrónico ya existe."
+
+#: ../classes/es-register.php:269
+msgctxt "widget-enhanced-select"
+msgid "Oops.. Unexpected error occurred."
+msgstr "Ups. Ha sucedido un error inesperado."
+
+#: ../classes/es-register.php:270
+msgctxt "widget-enhanced-select"
+msgid "Invalid email address."
+msgstr "Dirección de correo electrónico no válida."
+
+#: ../classes/es-register.php:271
+msgctxt "widget-enhanced-select"
+msgid "Please try after some time."
+msgstr "Por favor inténtalo en otro momento."
+
+#: ../classes/es-register.php:272
+msgctxt "widget-enhanced-select"
+msgid "There was a problem with the request."
+msgstr "Ha habido un problema con la petición."
+
+#: ../classes/es-register.php:279
+msgctxt "widget-page-enhanced-select"
+msgid "Please enter email address."
+msgstr "Por favor introduce dirección de correo."
+
+#: ../classes/es-register.php:280
+msgctxt "widget-page-enhanced-select"
+msgid "Please provide a valid email address."
+msgstr "Por favor introduce una dirección de correo válida."
+
+#: ../classes/es-register.php:281
+msgctxt "widget-page-enhanced-select"
+msgid "loading..."
+msgstr "Cargando..."
+
+#: ../classes/es-register.php:282
+msgctxt "widget-page-enhanced-select"
+msgid "Cannot create XMLHTTP instance"
+msgstr "No se puede crear la instancia XMLHTTP"
+
+#: ../classes/es-register.php:283
+msgctxt "widget-page-enhanced-select"
+msgid "Subscribed successfully."
+msgstr "Suscripción exitosa."
+
+#: ../classes/es-register.php:284
+msgctxt "widget-page-enhanced-select"
+msgid ""
+"You have successfully subscribed to the newsletter. You will receive a "
+"confirmation email in a few minutes. Please follow the link in it to confirm "
+"your subscription. If the email takes more than 15 minutes to appear in your "
+"mailbox, please check your spam folder."
+msgstr ""
+"Te has suscrito con éxito a la newsletter. Recibirás un correo de "
+"confirmación en pocos minutos. Por favor, sigue el enlace en él para "
+"confirmar tu suscripción. Si el correo tarda más de 15 minutos en aparecer "
+"en tu bandeja de entradas, por favor revisa tu carpeta de correo no deseado."
+
+#: ../classes/es-register.php:285
+msgctxt "widget-page-enhanced-select"
+msgid "Email Address already exists."
+msgstr "El correo electrónico ya existe."
+
+#: ../classes/es-register.php:286
+msgctxt "widget-page-enhanced-select"
+msgid "Oops.. Unexpected error occurred."
+msgstr "Ups. Ha sucedido un error inesperado."
+
+#: ../classes/es-register.php:287
+msgctxt "widget-page-enhanced-select"
+msgid "Invalid email address."
+msgstr "Dirección de correo electrónico no válida."
+
+#: ../classes/es-register.php:288
+msgctxt "widget-page-enhanced-select"
+msgid "Please try after some time."
+msgstr "Por favor inténtalo en otro momento."
+
+#: ../classes/es-register.php:289
+msgctxt "widget-page-enhanced-select"
+msgid "There was a problem with the request."
+msgstr "Ha habido un problema con la petición."
+
+#: ../classes/es-register.php:455
+msgid "Widget Title"
+msgstr "Título Widget"
+
+#: ../classes/es-register.php:459
+msgid "Display Name Field"
+msgstr "Mostrar Campo Nombre"
+
+#: ../classes/es-register.php:466
+msgid "Short Description"
+msgstr "Descripción Corta"
+
+#: ../classes/es-register.php:468
+msgid "Short description about your subscription form."
+msgstr "Descripción corta sobre tu formulario de suscripción."
+
+#: ../classes/es-register.php:471
+msgid "Subscriber Group"
+msgstr "Grupo de suscripción"
+
+#: ../classes/es-common.php:7
+msgid "<span style=\"color:#006600;font-weight:bold;\">Confirmed</span>"
+msgstr "<span style=\"color:#006600;font-weight:bold;\">Confirmado</span>"
+
+#: ../classes/es-common.php:10
+msgid "<span style=\"color:#FF0000\">Unconfirmed</span>"
+msgstr "<span style=\"color:#FF0000\">Sin confirmar</span>"
+
+#: ../classes/es-common.php:13
+msgid "<span style=\"color:#999900\">Unsubscribed</span>"
+msgstr "<span style=\"color:#999900\">Suscripción cancelada</span>"
+
+#: ../classes/es-common.php:16
+msgid "<span style=\"color:#0000FF\">Single Opt In</span>"
+msgstr "<span style=\"color:#0000FF\">Entrada individual</span>"
+
+#: ../classes/es-common.php:19
+msgid "<span style=\"color:#00CC00;font-weight:bold\">Viewed</span>"
+msgstr "<span style=\"color:#00CC00;font-weight:bold\">Visto</span>"
+
+#: ../classes/es-common.php:22
+msgid "<span style=\"color:#999900;\">Nodata</span>"
+msgstr "<span style=\"color:#999900;\">Sin Datos</span>"
+
+#: ../classes/es-common.php:25
+msgid "<span style=\"color:#FF0000\">Disable</span>"
+msgstr "<span style=\"color:#FF0000\">Deshabilitad</span>"
+
+#: ../classes/es-common.php:28
+msgid "<span style=\"color:#FF0000\">In Queue</span>"
+msgstr "<span style=\"color:#FF0000\">En Cola</span>"
+
+#: ../classes/es-common.php:31
+msgid "<span style=\"color:#00FF00;font-weight:bold;\">Sent</span>"
+msgstr "<span style=\"color:#00FF00;font-weight:bold;\">Enviado</span>"
+
+#: ../classes/es-common.php:34
+msgid "<span style=\"color:#ffd700;font-weight:bold;\">Cron Mail</span>"
+msgstr "<span style=\"color:#ffd700;font-weight:bold;\">Correo Cron</span>"
+
+#: ../classes/es-common.php:37
+msgid "<span style=\"color:#993399;\">Instant Mail</span>"
+msgstr "<span style=\"color:#993399;\">Correo Instantáneo</span>"
+
+#: ../subscribers/view-subscriber-add.php:28
+#: ../subscribers/view-subscriber-add. php:119
+#: ../subscribers/view-subscriber-edit.php:43 ../subscribers/view-
+#: subscriber-edit.php:103
+msgid "Please enter subscriber email address."
+msgstr "Por favor introduce la dirección de correo de suscriptor."
+
+#: ../subscribers/view-subscriber-add.php:45
+msgid "Please select or create your group for this email."
+msgstr "Por favor selecciona o crea tu grupo para este correo."
+
+#: ../subscribers/view-subscriber-add.php:54 ../subscribers/view-subscriber-
+#: import.php:45
+msgid ""
+"Error: Special characters (['^$%&*()}{@#~?><>,|=_+\\\"]) are not allowed in "
+"the group name."
+msgstr ""
+"Error: los caracteres especiales (['^$%&*()}{@#~?><>,|=_+\\\"]) no se "
+"permiten como nombre de grupo."
+
+#: ../subscribers/view-subscriber-add.php:66
+msgid "Email was successfully inserted."
+msgstr "El correo ha sido correctamente añadido."
+
+#: ../subscribers/view-subscriber-add.php:70
+msgid "Email already exist in our list."
+msgstr "El correo ya existe en nuestro listado."
+
+#: ../subscribers/view-subscriber-add.php:75
+msgid "Email is invalid."
+msgstr "Correo no válido."
+
+#: ../subscribers/view-subscriber-add.php:92
+#: ../subscribers/view-subscriber-add. php:101
+#: ../subscribers/view-subscriber-edit.php:86 ../subscribers/view-
+#: subscriber-import.php:107 ../subscribers/view-subscriber-import.php:138 ..
+#: /notification/notification-edit.php:100
+#: ../notification/notification-add.php:91 ../compose/compose-edit.php:67
+#: ../compose/compose-add.php:59
+msgid "Click here"
+msgstr "Haz clic aquí"
+
+#: ../subscribers/view-subscriber-add.php:92
+#: ../subscribers/view-subscriber-add. php:101
+#: ../subscribers/view-subscriber-edit.php:86 ../subscribers/view-
+#: subscriber-import.php:107 ../subscribers/view-subscriber-import.php:138 ..
+#: /notification/notification-edit.php:101
+#: ../notification/notification-add.php:92 ../compose/compose-edit.php:68
+#: ../compose/compose-add.php:60
+msgid " to view the details"
+msgstr " para ver los detalles"
+
+#: ../subscribers/view-subscriber-add.php:111
+msgid "Add email"
+msgstr "Añadir correo"
+
+#: ../subscribers/view-subscriber-add.php:113
+#: ../subscribers/view-subscriber-edit. php:97
+msgid "Enter full name"
+msgstr "Introduce nombre completo"
+
+#: ../subscribers/view-subscriber-add.php:115
+#: ../subscribers/view-subscriber-edit. php:99
+msgid "Please enter subscriber full name."
+msgstr "Por favor, introduce nombre completo del suscriptor."
+
+#: ../subscribers/view-subscriber-add.php:117
+#: ../subscribers/view-subscriber-edit. php:101
+msgid "Enter email address."
+msgstr "Introduce dirección de correo."
+
+#: ../subscribers/view-subscriber-add.php:128
+#: ../subscribers/view-subscriber-edit. php:112
+#: ../subscribers/view-subscriber-import.php:162
+msgid "Please select subscriber email status."
+msgstr "Por favor selecciona el estado de correo de suscriptor."
+
+#: ../subscribers/view-subscriber-add.php:130 ../subscribers/view-subscriber-
+#: import.php:164
+msgid "Select (or) Create Group"
+msgstr "Selecciona (o) Crear Grupo"
+
+#: ../subscribers/view-subscriber-add.php:132
+#: ../subscribers/view-subscriber-sync. php:99
+#: ../subscribers/view-subscriber-sync.php:130 ../subscribers/view-
+#: subscriber-edit.php:116 ../subscribers/view-subscriber-import.php:166 ..
+#: /notification/notification-edit.php:122
+#: ../notification/notification-add.php:105
+#: ../notification/notification-add.php:123 ../sendmail/sendmail.php:107
+#: /sendmail/sendmail.php:153
+msgid "Select"
+msgstr "Seleccionar"
+
+#: ../subscribers/view-subscriber-add.php:148
+#: ../subscribers/view-subscriber-edit. php:140
+#: ../subscribers/view-subscriber-import.php:182
+msgid "Please select or create group for this subscriber."
+msgstr "Por favor selecciona o crea grupo para este suscriptor."
+
+#: ../subscribers/view-subscriber-add.php:153
+#: ../subscribers/view-subscriber-sync. php:156
+#: ../subscribers/view-subscriber-edit.php:146 ..
+#: /notification/notification-edit.php:236
+#: ../notification/notification-add.php:215 ../compose/compose-edit.php:108
+#: ../compose/compose-add.php:98 ../cron/cron- add.php:88
+#: ../roles/roles-add.php:154
+msgid "Submit"
+msgstr "Enviar"
+
+#: ../subscribers/view-subscriber-sync.php:33
+#: ../subscribers/view-subscriber-sync. php:119
+msgid "Please select default group to newly registered user."
+msgstr ""
+"Por favor selecciona el grupo por defecto para el usuario recién registrado."
+
+#: ../subscribers/view-subscriber-sync.php:39
+#: ../subscribers/view-subscriber-sync. php:150
+msgid "Please select default group to newly commented user."
+msgstr ""
+"Por favor, selecciona el grupo por defecto para el usuario recién comentado."
+
+#: ../subscribers/view-subscriber-sync.php:56
+msgid "Sync email successfully updated."
+msgstr "La sincronización de correos ha sido actualizada correctamente."
+
+#: ../subscribers/view-subscriber-sync.php:88
+msgid "Sync email"
+msgstr "Sincronizar correo"
+
+#: ../subscribers/view-subscriber-sync.php:90
+msgid "Sync newly registered user"
+msgstr "Sincronizar usuario recientemente registrado"
+
+#: ../subscribers/view-subscriber-sync.php:95
+msgid ""
+"Automatically add a newly registered user email address to subscribers list."
+msgstr ""
+"Automáticamente añade una dirección de correo electrónico de usuario "
+"registrador recientemente a la lista de suscriptores."
+
+#: ../subscribers/view-subscriber-sync.php:97
+#: ../subscribers/view-subscriber-sync. php:128
+msgid "Select default group"
+msgstr "Selecciona grupo por defecto"
+
+#: ../subscribers/view-subscriber-sync.php:121
+msgid "Sync newly commented user"
+msgstr "Sincronizar usuario recientemente comentado"
+
+#: ../subscribers/view-subscriber-sync.php:126
+msgid ""
+"Automatically add a newly commented (who posted comments) user email address "
+"to subscribers list."
+msgstr ""
+"Automáticamente añadir una dirección de correo de usuario recientemente "
+"comentado (que envió comentarios) a la lista de suscriptores."
+
+#: ../subscribers/view-subscriber-export.php:22
+msgid "Export email address in csv format"
+msgstr "Exportar dirección de correo electrónico en formato csv"
+
+#: ../subscribers/view-subscriber-export.php:28 ../subscribers/view-subscriber-
+#: export.php:36
+msgid "Export option"
+msgstr "Opción Exportar"
+
+#: ../subscribers/view-subscriber-export.php:29 ../subscribers/view-subscriber-
+#: export.php:37
+msgid "Total email"
+msgstr "Total Correo"
+
+#: ../subscribers/view-subscriber-export.php:44
+msgid "Subscriber email address"
+msgstr "Dirección de correo Suscriptor"
+
+#: ../subscribers/view-subscriber-export.php:46 ../subscribers/view-subscriber-
+#: export.php:52 ../subscribers/view-subscriber-export.php:58
+msgid "Click to export csv"
+msgstr "Clic para exportar csv"
+
+#: ../subscribers/view-subscriber-export.php:50
+msgid "Registered email address"
+msgstr "Dirección de correo Registrada"
+
+#: ../subscribers/view-subscriber-export.php:56
+msgid "Comments author email address"
+msgstr "Dirección de correo electrónico del autor de los comentarios"
+
+#: ../subscribers/view-subscriber-export.php:65
+msgid "Add Email"
+msgstr "Añadir correo"
+
+#: ../subscribers/view-subscriber-export.php:66 ../subscribers/view-subscriber-
+#: show.php:445
+msgid "Import Email"
+msgstr "Importar correo"
+
+#: ../subscribers/view-subscriber-edit.php:54
+msgid "Error: Special characters are not allowed in the group name."
+msgstr "Error: No se permiten caracteres especiales en el nombre de grupo."
+
+#: ../subscribers/view-subscriber-edit.php:66
+msgid "Email was successfully updated."
+msgstr "El correo ha sido correctamente actualizado."
+
+#: ../subscribers/view-subscriber-edit.php:70
+msgid "Email already exist for this group."
+msgstr "El correo ya existe para este grupo."
+
+#: ../subscribers/view-subscriber-edit.php:95
+msgid "Edit email"
+msgstr "Editar correo"
+
+#: ../subscribers/view-subscriber-edit.php:114 ../subscribers/view-subscriber-
+#: show.php:328 ../subscribers/view-subscriber-show.php:341
+msgid "Group"
+msgstr "Grupo"
+
+#: ../subscribers/view-subscriber-import.php:103
+msgid "Email(s) was successfully imported."
+msgstr "El/Los correo(s) ha(n) sido correctamente importado(s)."
+
+#: ../subscribers/view-subscriber-import.php:104
+msgid "Email(s) are already in our database."
+msgstr "El/Los correo(s) ya está(n) en nuestra base de datos."
+
+#: ../subscribers/view-subscriber-import.php:105
+msgid "Email(s) are invalid."
+msgstr "Correo(s) no válido(s)."
+
+#: ../subscribers/view-subscriber-import.php:115
+msgid "File upload failed or no data available in the csv file."
+msgstr ""
+"Falló la subida del archivo o no hay datos disponibles en el archivo cv."
+
+#: ../subscribers/view-subscriber-import.php:149
+msgid "Upload email"
+msgstr "Subir correo"
+
+#: ../subscribers/view-subscriber-import.php:150
+msgid "Select csv file"
+msgstr "Selecciona archivo csv"
+
+#: ../subscribers/view-subscriber-import.php:152
+msgid "Select the input csv file. Check official website for csv structure : "
+msgstr ""
+"Selecciona el archivo de entrada csv. Consulta el sitio web oficial para ver "
+"la estructura csv: "
+
+#: ../subscribers/view-subscriber-import.php:153
+msgid "click here"
+msgstr "Haz clic aquí"
+
+#: ../subscribers/view-subscriber-import.php:187
+msgid "Upload CSV"
+msgstr "Subir CSV"
+
+#: ../subscribers/view-subscriber-show.php:11 ../compose/compose-show.php:13 ..
+#: /sendmail/sendmail.php:11
+msgid "Click Here"
+msgstr "Haz clic aquí"
+
+#: ../subscribers/view-subscriber-show.php:72
+#: ../subscribers/view-subscriber-show. php:125
+msgid ""
+"To send confirmation mail, Please change the Opt-in option to Double Opt In."
+msgstr ""
+"Para mandar correo de confirmación, por favor cambia la opción de Envío a "
+"Doble Envío."
+
+#: ../subscribers/view-subscriber-show.php:81
+msgid "Confirmation email resent successfully."
+msgstr "Correo de confirmación vuelto a enviar con éxito."
+
+#: ../subscribers/view-subscriber-show.php:110 ../subscribers/view-subscriber-
+#: show.php:156 ../subscribers/view-subscriber-show.php:201
+msgid "Oops, No record was selected."
+msgstr "Ups, no has seleccionado ningún registro."
+
+#: ../subscribers/view-subscriber-show.php:150
+msgid "Confirmation email(s) resent successfully."
+msgstr "Correo(s) de confirmación enviado(s) con éxito."
+
+#: ../subscribers/view-subscriber-show.php:186
+msgid "Selected subscribers group was successfully updated."
+msgstr ""
+"El grupo de suscriptores seleccionado ha sido correctamente actualizado."
+
+#: ../subscribers/view-subscriber-show.php:192
+msgid "Oops, New group name was not selected."
+msgstr "Ups, no has seleccionado nuevo nombre de grupo."
+
+#: ../subscribers/view-subscriber-show.php:232
+msgid "View subscriber"
+msgstr "Ver suscriptor"
+
+#: ../subscribers/view-subscriber-show.php:233 ../subscribers/view-subscriber-
+#: show.php:444 ../notification/notification-show.php:45 ..
+#: /notification/notification-show.php:151 ../compose/compose-show.php:56
+#: /compose/compose-show.php:112
+msgid "Add New"
+msgstr "Añadir nuevo"
+
+#: ../subscribers/view-subscriber-show.php:280
+msgid "All Groups"
+msgstr "Todos los Grupos"
+
+#: ../subscribers/view-subscriber-show.php:299
+msgid "All Status"
+msgstr "Todos los Estados"
+
+#: ../subscribers/view-subscriber-show.php:300
+msgid "Confirmed"
+msgstr "Confirmado"
+
+#: ../subscribers/view-subscriber-show.php:301
+msgid "Unconfirmed"
+msgstr "Sin Confirmar"
+
+#: ../subscribers/view-subscriber-show.php:302
+msgid "Unsubscribed"
+msgstr "Suscripciones canceladas "
+
+#: ../subscribers/view-subscriber-show.php:325 ../subscribers/view-subscriber-
+#: show.php:338
+msgid "Email address"
+msgstr "Dirección email"
+
+#: ../subscribers/view-subscriber-show.php:374
+#: ../notification/notification-show. php:90 ../compose/compose-show.php:93
+#: ../compose/compose-preview.php:34
+msgid "Edit"
+msgstr "Editar"
+
+#: ../subscribers/view-subscriber-show.php:377 ../subscribers/view-subscriber-
+#: show.php:422 ../notification/notification-show.php:93
+#: ../compose/compose-show. php:94
+msgid "Delete"
+msgstr "Borrar"
+
+#: ../subscribers/view-subscriber-show.php:385 ../subscribers/view-subscriber-
+#: show.php:423
+msgid "Resend Confirmation"
+msgstr "Reenviar Confirmación"
+
+#: ../subscribers/view-subscriber-show.php:401
+msgid ""
+"No records available. Please use the above alphabet search button to search."
+msgstr ""
+"No hay registros disponibles. Por favor utiliza el botón de búsqueda "
+"alfabética superior para buscar."
+
+#: ../subscribers/view-subscriber-show.php:421
+msgid "Bulk Actions"
+msgstr "Accione en bloque"
+
+#: ../subscribers/view-subscriber-show.php:424
+msgid "Update Subscribers Group"
+msgstr "Actualizar Grupo de Suscriptores"
+
+#: ../subscribers/view-subscriber-show.php:427
+msgid "Select Group"
+msgstr "Seleccionar Grupo"
+
+#: ../subscribers/view-subscriber-show.php:441
+msgid "Apply"
+msgstr "Aplicar"
+
+#: ../subscribers/view-subscriber-show.php:446
+msgid "Export Email"
+msgstr "Exportar Correo"
+
+#: ../subscribers/view-subscriber-show.php:447
+msgid "Sync Email"
+msgstr "Sincronizar Correo"
+
+#: ../notification/notification-edit.php:40
+#: ../notification/notification-add.php:26
+#: ../notification/notification-add.php:119
+msgid "Please select subscribers group."
+msgstr "Por favor selecciona el grupo de suscriptores."
+
+#: ../notification/notification-edit.php:46
+#: ../notification/notification-edit.php:231
+#: ../notification/notification-add.php:32 ../notification/notification-add.
+#: php:211
+msgid "Please select notification status."
+msgstr "Por favor selecciona el estado de notifiación."
+
+#: ../notification/notification-edit.php:52
+#: ../notification/notification-edit.php:142
+#: ../notification/notification-add.php:38 ../notification/notification-add.
+#: php:138
+msgid ""
+"Please select notification mail subject. Use compose menu to create new."
+msgstr ""
+"Por favor selecciona el asunto de notificación del correo. Utiliza el menú "
+"componer para crear uno nuevo."
+
+#: ../notification/notification-edit.php:58
+#: ../notification/notification-edit.php:182
+#: ../notification/notification-add.php:44 ../notification/notification-add.
+#: php:170
+msgid "Please select post categories."
+msgstr "Por favor selecciona categorías de entrada."
+
+#: ../notification/notification-edit.php:84
+msgid "Notification was successfully updated."
+msgstr "La notificación ha sido actualizada con éxito."
+
+#: ../notification/notification-edit.php:111
+msgid "Edit Notification"
+msgstr "Editar Notificación"
+
+#: ../notification/notification-edit.php:114
+#: ../notification/notification-add.php:103
+#: ../notification/notification-show.php:56 ../notification/notification-show.
+#: php:64
+msgid "Subscribers Group"
+msgstr "Grupo de suscriptores"
+
+#: ../notification/notification-edit.php:118
+msgid "Not allowed to update the subscribers group in edit page."
+msgstr ""
+"No se permite actualizar el grupo de suscriptores en la página de edición."
+
+#: ../notification/notification-edit.php:120
+#: ../notification/notification-add.php:121
+msgid "Notification Mail"
+msgstr "Correo de Notificación"
+
+#: ../notification/notification-edit.php:144
+#: ../notification/notification-add.php:140
+msgid "Post Categories"
+msgstr "Categorías de Entradas"
+
+#: ../notification/notification-edit.php:184
+#: ../notification/notification-add.php:172
+msgid "Custom post type"
+msgstr "Tipo de entrada personalizada"
+
+#: ../notification/notification-edit.php:223
+#: ../notification/notification-add.php:203
+msgid "Please select your custom post type (Optional)."
+msgstr "Por favor, selecciona tu tipo de entrada personalizada (Opcional)."
+
+#: ../notification/notification-edit.php:225
+#: ../notification/notification-add.php:205
+#: ../notification/notification-show.php:58 ../notification/notification-show.
+#: php:66
+msgid "Notification Status"
+msgstr "Estado de Notificación"
+
+#: ../notification/notification-add.php:69
+msgid "Notification was successfully created."
+msgstr "La notificación se ha creado con éxito."
+
+#: ../notification/notification-add.php:100
+msgid "Add Notification"
+msgstr "Añadir Notificación"
+
+#: ../notification/notification-show.php:55
+#: ../notification/notification-show.php:63
+msgid "Mail Subject"
+msgstr "Asunto Correo"
+
+#: ../notification/notification-show.php:57
+#: ../notification/notification-show.php:65
+msgid "Categories / Custom Post"
+msgstr "Categorías / Entrada personalizada"
+
+#: ../compose/compose-edit.php:41 ../compose/compose-add.php:28
+msgid "Please enter template heading."
+msgstr "Por favor, indica un encabezado de plantilla."
+
+#: ../compose/compose-edit.php:54
+msgid "Template was successfully updated."
+msgstr "La plantilla ha sido actualizada correctamente."
+
+#: ../compose/compose-edit.php:78 ../compose/compose-show.php:55 ..
+#: /compose/compose-add.php:69
+msgid "Compose Mail"
+msgstr "Componer Correo"
+
+#: ../compose/compose-edit.php:80 ../compose/compose-add.php:71 ..
+#: /sendmail/sendmail.php:132
+msgid "Mail Type"
+msgstr "Tipo de Correo"
+
+#: ../compose/compose-edit.php:82 ../compose/compose-add.php:73
+msgid "Static Template (For Newsletter Email)"
+msgstr "Plantilla Estática (Para Correo de Newsletter)"
+
+#: ../compose/compose-edit.php:83 ../compose/compose-add.php:74
+msgid "Dynamic Template (For Notification Email)"
+msgstr "Plantilla Dinámica (Para Correo de Notificación)"
+
+#: ../compose/compose-edit.php:85
+msgid "Please select your mail type"
+msgstr "Por favor selecciona tu tipo de correo."
+
+#: ../compose/compose-edit.php:87 ../compose/compose-add.php:78
+msgid "Enter Mail Subject"
+msgstr "Introduce asunto correo."
+
+#: ../compose/compose-edit.php:89 ../compose/compose-add.php:80
+msgid "Please enter your mail subject. Keyword: ###POSTTITLE###"
+msgstr "Por favor, introduce el asunto de tu correo. Keyword: ###POSTTITLE###"
+
+#: ../compose/compose-edit.php:91 ../compose/compose-add.php:82
+msgid "Mail Content"
+msgstr "Contenido correo"
+
+#: ../compose/compose-edit.php:95 ../compose/compose-add.php:86
+msgid "Please enter content for your mail"
+msgstr "Por favor, introduce contenido para tu correo."
+
+#: ../compose/compose-edit.php:96 ../compose/compose-add.php:87
+msgid ""
+"Keywords: ###POSTTITLE###, ###POSTLINK###, ###POSTIMAGE###, ###POSTDESC###, "
+"###POSTFULL###, ###DATE###, ###POSTLINK-ONLY###, ###POSTLINK-WITHTITLE###"
+msgstr ""
+"Palabras clave: ###POSTTITLE###, ###POSTLINK###, ###POSTIMAGE###, "
+"###POSTDESC###, ###POSTFULL###, ###DATE###, ###POSTLINK-ONLY###, ###POSTLINK-"
+"WITHTITLE###"
+
+#: ../compose/compose-edit.php:101 ../compose/compose-add.php:92
+msgid "Published"
+msgstr "Publicado"
+
+#: ../compose/compose-edit.php:103 ../compose/compose-add.php:94
+msgid "Please select your mail status"
+msgstr "Por favor, selecciona el estado de tu correo."
+
+#: ../compose/compose-show.php:66 ../compose/compose-show.php:74
+msgid "Email subject"
+msgstr "Asunto Correo"
+
+#: ../compose/compose-add.php:40
+msgid "Template was successfully created."
+msgstr "La plantilla se ha creado correctamente."
+
+#: ../compose/compose-add.php:76 ../sendmail/sendmail.php:50
+msgid "Please select your mail type."
+msgstr "Por favor selecciona tu tipo de correo."
+
+#: ../export/export-email-address.php:36 ../export/export-email-address.php:40
+#: .. /export/export-email-address.php:43
+msgid "Unexpected url submit has been detected"
+msgstr "Se ha detectado envío de URL inexperada"
+
+#: ../cron/cron-add.php:21
+msgid "Please enter valid mail count."
+msgstr "Por favor, introduzca una cuenta de correo válida."
+
+#: ../cron/cron-add.php:31
+msgid "Cron details successfully updated."
+msgstr "Detalles Cron actualizados correctamente."
+
+#: ../cron/cron-add.php:71
+msgid "Cron Details"
+msgstr "Detalles Cron"
+
+#: ../cron/cron-add.php:74
+msgid "Cron job URL"
+msgstr "URL tarea Cron"
+
+#: ../cron/cron-add.php:76
+msgid ""
+"Please find your cron job URL. This is readonly field not able to modify "
+"from admin."
+msgstr ""
+"Por favor, encuentra tu URL de tarea Cron. Este es un campo de sólo lectura "
+"no modificable desde administrador."
+
+#: ../cron/cron-add.php:78
+msgid "Mail Count"
+msgstr "Contador Correos"
+
+#: ../cron/cron-add.php:80
+msgid "Enter number of mails you want to send per hour/trigger."
+msgstr "Introduce el número de correos que quieres enviar por hora/disparador."
+
+#: ../cron/cron-add.php:82
+msgid "Admin Report"
+msgstr "Informe Admin"
+
+#: ../cron/cron-add.php:84
+msgid ""
+"Send above mail to admin whenever cron URL triggered in your server.<br /"
+">(Keywords: ###DATE###, ###SUBJECT###, ###COUNT###)"
+msgstr ""
+"Envía el correo superior al administrador cuando una URL Cron haya sido "
+"disparada en tu servidor.<br />(Keywords: ###DATE###, ###SUBJECT###, "
+"###COUNT###)"
+
+#: ../cron/cron-add.php:97
+msgid "How to setup auto emails using CRON Job through the cPanel or Plesk?"
+msgstr ""
+"¿Cómo configurar correos electrónicos automáticos utilizando (tarea cron) en "
+"cPanel o Plesk?"
+
+#: ../cron/cron-add.php:98
+msgid ""
+"<a target=\"_blank\" href=\"http://www.storeapps.org/docs/es-how-to-schedule-"
+"cron-emails-in-parallels-plesk/\">Setup cron job in Plesk</a>"
+msgstr ""
+"<a target=\"_blank\" href=\"http://www.storeapps.org/docs/es-how-to-schedule-"
+"cron-emails-in-parallels-plesk/\">Configurar tarea cron en Plesk</a>"
+
+#: ../cron/cron-add.php:99
+msgid ""
+"<a target=\"_blank\" href=\"http://www.storeapps.org/docs/es-how-to-schedule-"
+"cron-emails-in-cpanel/\">Setup cron job in cPanal</a>"
+msgstr ""
+"<a target=\"_blank\" href=\"http://www.storeapps.org/docs/es-how-to-schedule-"
+"cron-emails-in-cpanel/\">Configurar tarea cron en cPanel</a>"
+
+#: ../cron/cron-add.php:100
+msgid ""
+"<a target=\"_blank\" href=\"http://www.storeapps.org/docs/es-what-to-do-if-"
+"hosting-doesnt-support-cron-jobs/\">Hosting doesnt support cron jobs?</a>"
+msgstr ""
+"<a target=\"_blank\" href=\"http://www.storeapps.org/docs/es-what-to-do-if-"
+"hosting-doesnt-support-cron-jobs/\">¿Tu alojamiento no soporta tareas cron?</"
+"a>"
+
+#: ../sendmail/sendmail.php:35
+msgid "Please select your mail subject."
+msgstr "Por favor selecciona el asunto de tu correo."
+
+#: ../sendmail/sendmail.php:43
+msgid "No email address selected."
+msgstr "No se ha seleccionado dirección de correo."
+
+#: ../sendmail/sendmail.php:58
+msgid "Mail sent successfully"
+msgstr "Correo enviado con éxito"
+
+#: ../sendmail/sendmail.php:64
+msgid "Click here for details"
+msgstr "Haz clic aquí para detalles"
+
+#: ../sendmail/sendmail.php:73
+msgid "Oops.. We are getting some error. mail not sending."
+msgstr "Ups. Estamos obteniendo algún error. No se envía correo."
+
+#: ../sendmail/sendmail.php:101
+msgid "Select your mail subject"
+msgstr "Selecciona el asunto de tu correo"
+
+#: ../sendmail/sendmail.php:102
+msgid ""
+"Select a mail subject from available list. Go to Compose page to create new "
+"mail."
+msgstr ""
+"Selecciona un asunto de correo de la lista disponible. Accede a la página "
+"Componer para crear un nuevo correo."
+
+#: ../sendmail/sendmail.php:133
+msgid "Select your mail type."
+msgstr "Selecciona tu tipo de correo."
+
+#: ../sendmail/sendmail.php:147
+msgid "Select subscriber group"
+msgstr "Selecciona grupo suscriptores"
+
+#: ../sendmail/sendmail.php:148
+msgid "Select your subscriber group to send email."
+msgstr "Selecciona el grupo de suscriptores para enviar correos."
+
+#: ../sendmail/sendmail.php:173
+msgid "Check All"
+msgstr "Selecciona todo"
+
+#: ../sendmail/sendmail.php:174
+msgid "Uncheck All"
+msgstr "Deselecciona todo"
+
+#: ../sendmail/sendmail.php:237
+msgid "No subscribers available for this search criteria."
+msgstr "No hay suscriptores que cumplan este criterio de búsqueda."
+
+#: ../roles/roles-add.php:93
+msgid "Roles and Capabilities"
+msgstr "Roles y capacidades"
+
+#: ../roles/roles-add.php:95
+msgid "Subscribers Menu"
+msgstr "Menú suscriptores"
+
+#: ../roles/roles-add.php:97 ../roles/roles-add.php:105 ../roles/roles-add.php:
+#: 113 ../roles/roles-add.php:121 ../roles/roles-add.php:129
+#: ../roles/roles-add. php:137 ../roles/roles-add.php:145
+msgid "Administrator Only"
+msgstr "Sólo Administrador"
+
+#: ../roles/roles-add.php:98 ../roles/roles-add.php:106 ../roles/roles-add.php:
+#: 114 ../roles/roles-add.php:122 ../roles/roles-add.php:130
+#: ../roles/roles-add. php:138 ../roles/roles-add.php:146
+msgid "Administrator/Editor"
+msgstr "Administrador/Editor"
+
+#: ../roles/roles-add.php:99 ../roles/roles-add.php:107 ../roles/roles-add.php:
+#: 115 ../roles/roles-add.php:123 ../roles/roles-add.php:131
+#: ../roles/roles-add. php:139 ../roles/roles-add.php:147
+msgid "Administrator/Editor/Author/Contributor"
+msgstr "Administrador/Editor/Autor/Colaborador"
+
+#: ../roles/roles-add.php:101
+msgid ""
+"Select user role to access plugin Subscribers Menu. Only Admin user can "
+"change this value."
+msgstr ""
+"Selecciona el rol de usuario para acceder al menú de suscriptores del "
+"plugin. Sólo el administrador puede cambiar este valor."
+
+#: ../roles/roles-add.php:103
+msgid "Compose Menu"
+msgstr "Menú componer"
+
+#: ../roles/roles-add.php:109
+msgid ""
+"Select user role to access plugin Compose Menu. Only Admin user can change "
+"this value."
+msgstr ""
+"Selecciona el rol de usuario para acceder al menú de Componer del plugin. "
+"Sólo el administrador puede cambiar este valor."
+
+#: ../roles/roles-add.php:111
+msgid "Notification Menu"
+msgstr "Menú Notificación"
+
+#: ../roles/roles-add.php:117
+msgid ""
+"Select user role to access plugin Notification Menu. Only Admin user can "
+"change this value."
+msgstr ""
+"Selecciona el rol de usuario para acceder al menú de notificaciones del "
+"plugin. Sólo el administrador puede cambiar este valor."
+
+#: ../roles/roles-add.php:119
+msgid "Send Email Menu/Cron Menu"
+msgstr "Menú Envío Correo/Menú Cron"
+
+#: ../roles/roles-add.php:125
+msgid ""
+"Select user role to access plugin Send Email Menu. Only Admin user can "
+"change this value."
+msgstr ""
+"Selecciona el rol de usuario para acceder al menú de envío de correo del "
+"plugin. Sólo el administrador puede cambiar este valor."
+
+#: ../roles/roles-add.php:127
+msgid "Settings Menu"
+msgstr "Menú Configuración"
+
+#: ../roles/roles-add.php:133
+msgid ""
+"Select user role to access plugin Settings Menu. Only Admin user can change "
+"this value."
+msgstr ""
+"Selecciona el rol de usuario para acceder al menú de configuración del "
+"plugin. Sólo el administrador puede cambiar este valor."
+
+#: ../roles/roles-add.php:135
+msgid "Sent Mails Menu"
+msgstr "Menú Envío Correos"
+
+#: ../roles/roles-add.php:141
+msgid ""
+"Select user role to access plugin Sent Mails Menu. Only Admin user can "
+"change this value."
+msgstr ""
+"Selecciona el rol de usuario para acceder al menú de envío de correos del "
+"plugin. Sólo el administrador puede cambiar este valor."
+
+#: ../roles/roles-add.php:143
+msgid "Help & Info Menu"
+msgstr "Menú Ayuda e Info"
+
+#: ../roles/roles-add.php:149
+msgid ""
+"Select user role to access plugin Help & Info Menu. Only Admin user can "
+"change this value."
+msgstr ""
+"Selecciona el rol de usuario para acceder al menú de Ayuda e Información del "
+"plugin. Sólo el administrador puede cambiar este valor."
+
+#: ../help/help.php:44
+msgid "Welcome to Email Subscribers!"
+msgstr "¡Bienvenido a Suscriptores de correo!"
+
+#: ../help/help.php:45
+msgid ""
+"Thanks for installing and we hope you will enjoy using Email Subscribers."
+msgstr ""
+"Gracias por instalar y esperamos que disfrute el uso de Suscriptores de "
+"Correo."
+
+#: ../help/help.php:49
+msgid "For more help and tips..."
+msgstr "Para más ayuda y sugerencias..."
+
+#: ../help/help.php:93
+msgid "Frequently Asked Questions"
+msgstr "Preguntas más Frecuentes"
+
+#: ../help/help.php:104
+msgid "How to setup subscription box widget?"
+msgstr "¿Cómo configurar un widget de caja de suscripción?"
+
+#: ../help/help.php:111
+msgid "How to add unsubscribe link in welcome email?"
+msgstr ""
+"¿Cómo añadir un enlace de cancelación de suscripción en el correo de "
+"bienvenida?"
+
+#: ../help/help.php:119
+msgid "How to change/update/translate any text from the plugin?"
+msgstr "¿Cómo cambiar/actualizar/traducir cualquier texto del plugin?"
+
+#: ../help/help.php:120
+msgid ""
+"Refer steps from <a target=\"_blank\" href=\"http://www.storeapps.org/docs/"
+"es-how-to-change-update-translate-any-texts-from-email-subscribers/\">here</"
+"a>."
+msgstr ""
+"Consulta los pasos <a target=\"_blank\" href=\"http://www.storeapps.org/docs/"
+"es-how-to-change-update-translate-any-texts-from-email-subscribers/\">aquí</"
+"a>."
+
+#: ../help/help.php:123
+msgid "How to setup auto emails using CRON Job?"
+msgstr ""
+"¿Cómo configurar correos electrónicos automáticos utilizando tarea CRON?"
+
+#: ../help/help.php:124
+msgid ""
+" 1. <a target=\"_blank\" href=\"http://www.storeapps.org/docs/es-how-to-"
+"schedule-cron-emails-in-cpanel/\">Setup cron job in Plesk</a><br>\n"
+"\t\t\t\t\t\t\t\t\t\t   2. <a target=\"_blank\" href=\"http://www.storeapps."
+"org/docs/es-how-to-schedule-cron-emails-in-parallels-plesk/\">Setup cron job "
+"in cPanal</a><br>\n"
+"\t\t\t\t\t\t\t\t\t\t   3. <a target=\"_blank\" href=\"http://www.storeapps."
+"org/docs/es-what-to-do-if-hosting-doesnt-support-cron-jobs/\">Hosting doesnt "
+"support cron jobs?</a>"
+msgstr ""
+" 1. <a target=\"_blank\" href=\"http://www.storeapps.org/docs/es-how-to-"
+"schedule-cron-emails-in-cpanel/\">Configurar tarea cron en Plesk</a><br>\n"
+"\t\t\t\t\t\t\t\t\t\t   2. <a target=\"_blank\" href=\"http://www.storeapps."
+"org/docs/es-how-to-schedule-cron-emails-in-parallels-plesk/\">Configurar "
+"tarea cron en cPanel</a><br>\n"
+"\t\t\t\t\t\t\t\t\t\t   3. <a target=\"_blank\" href=\"http://www.storeapps."
+"org/docs/es-what-to-do-if-hosting-doesnt-support-cron-jobs/\">¿Su proveedor "
+"no soporta tareas cron?</a>"
+
+#: ../help/help.php:129
+msgid "Notification Emails are not being received by Subscribers?"
+msgstr "¿No están recibiendo los suscriptores Correos de Notificación?"
+
+#: ../help/help.php:130
+#, php-format
+msgid "Confirm steps from %s."
+msgstr "Confirmar pasos desde %s."
+
+#: ../help/help.php:130 ../help/help.php:134 ../help/help.php:138 ../help/help.
+#: php:142 ../help/help.php:146 ../help/help.php:150 ../help/help.php:154 ..
+#: /help/help.php:158 ../help/help.php:162 ../help/help.php:166
+msgid "here"
+msgstr "aquí"
+
+#: ../help/help.php:133
+msgid "How to import and export email address to subscriber list?"
+msgstr ""
+"¿Cómo importar y exportar direcciones de correo a la lista de suscriptores?"
+
+#: ../help/help.php:134 ../help/help.php:138 ../help/help.php:142 ../help/help.
+#: php:146 ../help/help.php:150 ../help/help.php:154 ../help/help.php:158 ..
+#: /help/help.php:162
+#, php-format
+msgid "Refer %s."
+msgstr "Consultar %s."
+
+#: ../help/help.php:137
+msgid "How to Compose and Send static newsletter mails?"
+msgstr "¿Cómo Componer y Enviar correos de newsletter estáticos?"
+
+#: ../help/help.php:141
+msgid ""
+"How to Configure and Send notification emails to subscribers when new posts "
+"are published?"
+msgstr ""
+"¿Cómo Configurar y Enviar correos de notificación para suscriptores cuando "
+"se publican nuevas entradas?"
+
+#: ../help/help.php:145
+msgid ""
+"How to install and activate Email Subscribers on multisite installations?"
+msgstr ""
+"¿Cómo instalar y activar Suscriptores de Correo en instalaciones multisitio?"
+
+#: ../help/help.php:149
+msgid ""
+"How to modify the existing mails (Opt-in mail, Welcome mail, Admin mails) "
+"content?"
+msgstr ""
+"¿Cómo modificar el contenido existente de correos (correo de envío, correo "
+"de bienvenida, correos al administrador)?"
+
+#: ../help/help.php:153
+msgid "How to Add/Update Existing Subscribers Group?"
+msgstr "¿Cómo Añadir/Actualizar un Grupo de Suscriptores Existentes?"
+
+#: ../help/help.php:157
+msgid "How to check Sent mails?"
+msgstr "¿Cómo revisar correos enviados?"
+
+#: ../help/help.php:161
+msgid "How to show subscribe form inside a popup?"
+msgstr "¿Cómo mostrar el formulario de suscripción dentro de un popup?"
+
+#: ../help/help.php:165
+msgid "Check more detailed documentation"
+msgstr "Comprueba documentación más detallada"
+
+#: ../help/help.php:166
+#, php-format
+msgid "From %s."
+msgstr "De %s."
+
+#~ msgid "These tables could not be created on installation "
+#~ msgstr "Estas tablas no han podido ser creadas tras la instalación"
+
+#~ msgid ""
+#~ "1. Use following shortcode in any page/post <br><strong>[email-"
+#~ "subscribers namefield=\"YES\" desc=\"\" group=\"Public\"]</"
+#~ "strong><br>OR<br>\n"
+#~ "\t\t\t\t\t\t\t\t\t\t  2. Go to Dashboard->Appearance->Widgets. You will "
+#~ "see a widget called Email subscribers. Click Add Widget button or drag it "
+#~ "to the sidebar on the right.<br>OR<br>\n"
+#~ "\t\t\t\t\t\t\t\t\t\t  3. Copy and past this php code to your desired "
+#~ "template location : <br><strong>"
+#~ msgstr ""
+#~ "1. Utiliza el siguiente shortcode en cualquier página/entrada <br/"
+#~ "><strong>[email-subscribers namefield=\"YES\" desc=\"\" group=\"Public"
+#~ "\"]</strong><br>O<br>\n"
+#~ "\t\t\t\t\t\t\t\t\t\t  2. Ve a Escritorio->Apariencia->Widgets. Verás un "
+#~ "widget llamado Suscriptores de correo. Haz clic en el botón Añadir Widget "
+#~ "o arrástrelo hasta la barra lateral de la derecha.<br>O<br />\n"
+#~ "\t\t\t\t\t\t\t\t\t\t  3. Copia y pega este código php en el lugar deseado "
+#~ "de tu plantilla : <br><strong>"
+
+#~ msgid ""
+#~ "Please make sure Email Subscribers version is 3.1.2+. <br>\n"
+#~ "\t\t\t\t\t\t\t\t\t\t\tThen go to WordPress -> Email Subscribers -> "
+#~ "Settings -> Subscriber welcome mail content.<br>\n"
+#~ "\t\t\t\t\t\t\t\t\t\t\tAdd the following code at the end of welcome email "
+#~ "content : <br><br>\n"
+#~ "\t\t\t\t\t\t\t\t\t\t\t<strong>Please "
+#~ msgstr ""
+#~ "Asegúrate de que la versión de Suscriptores de Correo es 3.1.2+. <br>\n"
+#~ "\t\t\t\t\t\t\t\t\t\t\tDespués ve a WordPress -> Suscriptores de Correo -> "
+#~ "Configuración -> Contenido del correo de bienvenida al suscriptor.<br>\n"
+#~ "\t\t\t\t\t\t\t\t\t\t\tAñade el siguiente código al final del contenido "
+#~ "del correo de bienvenida : <br><br>\n"
+#~ "\t\t\t\t\t\t\t\t\t\t\t<strong>Por favor "
+
+#~ msgid ""
+#~ "Email Subscribers has a POT file named <code>email-subscribers.pot</code> "
+#~ "present at /wp-content/plugins/email-subscribers/languages/. Use that "
+#~ "with <strong>Loco Translate</strong> plugin and change/update/translate "
+#~ "any text that you want.<br>\n"
+#~ "\t\t\t\t\t\t\t\t\t\t\tRefer steps from <a target=\"_blank\" href=\"http://"
+#~ "www.storeapps.org/support/documentation/translating-storeapps-plugins/"
+#~ "\">here</a>.<br>"
+#~ msgstr ""
+#~ "Suscriptores de Correo tiene un fichero POT llamado <code>email-"
+#~ "subscribers.pot</code> que está en /wp-content/plugins/email-subscribers/"
+#~ "languages/. Utilízalo con el plugin <strong>Loco Translate</strong> para "
+#~ "cambiar/actualizar/traducir cualquier texto que desees.<br>\n"
+#~ "\t\t\t\t\t\t\t\t\t\t\tConsulta los pasos <a target=\"_blank\" href="
+#~ "\"http://www.storeapps.org/support/documentation/translating-storeapps-"
+#~ "plugins/\">aquí</a>.<br>"
+
+#~ msgid "How to send static newsletter manually?"
+#~ msgstr "¿Cómo mandar newsletters estáticas manualmente?"
+
+#~ msgid "Is Mail not working in Email Subscribers?"
+#~ msgstr "¿Está fallando Mail en Suscriptores de Correo?"
+
+#~ msgid ""
+#~ "How to add new subscribers group? How to bulk update Subscribers group?"
+#~ msgstr ""
+#~ "¿Cómo añadir un grupo nuevo de suscriptores? ¿Cómo actualizar en bloque "
+#~ "grupo de Suscriptores?"
+
+#~ msgid "I can't find a way to do X..."
+#~ msgstr "No puedo encontrar un modo para X..."
+
+#~ msgid "If you can't find your favorite feature (or have a suggestion) %s."
+#~ msgstr ""
+#~ "Si no puedes encontrar tu característica favorita (o tienes una "
+#~ "sugerencia) %s."
+
+#~ msgid "contact us"
+#~ msgstr "Contáctanos"
+
+#~ msgid "Mail content for sent mail report."
+#~ msgstr "Contenido de correo para informe de correo enviado."
+
+#~ msgid ""
+#~ "I strongly recommend you to use \"Send mail via cron job\" option to send "
+#~ "your newsletters and notification. The following link explains how to "
+#~ "create a CRON job through the cPanel or Plesk."
+#~ msgstr ""
+#~ "Te recomiendo encarecidamente que utilices la opción \"Enviar correo con "
+#~ "tarea cron\" para enviar newsletters y notificaciones. El siguiente "
+#~ "enlace explican cómo crear una tarea CRON a través de cPanel o Plesk."
+
+#~ msgid "How to setup auto emails (cron job) in cPanal"
+#~ msgstr "Cómo configurar correos electrónicos (tarea cron) en cPanel"
+
+#~ msgid "Hosting doesnt support cron jobs?"
+#~ msgstr "¿El proveedor de alojamiento no soporta tareas Cron?"

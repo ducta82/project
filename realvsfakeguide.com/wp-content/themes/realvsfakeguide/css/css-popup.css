@@ -1,0 +1,117 @@
+.linhnguyen-modal-bg { 
+	position: fixed; 
+	height: 100%;
+	width: 100%;
+	background: #fff;
+	background: rgba(0,0,0,.75);
+	-moz-background: rgba(0,0,0,.75);
+	-webkit-background: rgba(0,0,0,.75);
+	z-index: 100;
+	display: none;
+	top: 0;
+	left: 0; 
+	}	
+.linhnguyen-modal {
+	visibility: hidden;
+	text-align:center;
+	top: 100px; 
+	left: 50%;
+	margin-left: -250px;
+	width: 475px;
+	background: #fff;
+	position: absolute;
+	z-index: 101;	
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px;
+	border-radius: 20px;
+	-moz-box-shadow: 0 0 10px rgba(0,0,0,.4);
+	-webkit-box-shadow: 0 0 10px rgba(0,0,0,.4);
+	-box-shadow: 0 0 10px rgba(0,0,0,.4);
+}
+.linhnguyen-modal .bg_top{
+	width: 100%;
+	height: 180px;
+	background: #2b7fc2;
+	border-top: 1px solid #2b7fc2;	
+	border-top-left-radius: 20px;
+	border-top-right-radius: 20px;
+}
+.linhnguyen-modal .bg_top p{
+	text-align: center;	
+	text-transform: uppercase;
+	font-size: 36px;
+	color: #fff;
+	padding-top: 50px;
+	font-family: 'Gotham-Bold';
+}
+.form_sign_up_popup	{
+	width:350px;
+	margin: 0 auto;
+}
+.linhnguyen-modal img.icon-popup{
+	margin-top: -70px;
+}
+.linhnguyen-modal p{
+	font-size: 24px;
+	padding-top: 35px;
+	padding-bottom: 50px;
+	line-height: 35px;
+	width: 75%;
+	margin: 0 auto;
+	font-weight: 200;
+}	
+.form_sign_up_popup input[type=text]{
+	
+    -webkit-box-sizing: content-box;
+    -moz-box-sizing: content-box;
+    box-sizing: content-box;
+    height: 45px;
+    padding: 0 1px 0 50px;
+    border-color: #888;
+    border-radius: 41px;
+    border-style: solid;
+    border-width: 1px;    
+    color: #333;   
+    font-size: 16px;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+	width: 85%;
+	font-family: 'Gotham-Light';
+	outline: none;
+	
+}
+.form_sign_up_popup img{
+	position: absolute;   
+    margin-top: -31px;   
+    left: 0%;
+    margin-left: 76px;
+}
+a.btn_sign_up_popup{
+	
+	padding: 12px 104px;
+    border-color: #4188c5;
+    border-radius: 22px;
+    border-style: solid;
+    border-width: 1px;
+    text-transform: uppercase;
+    margin-bottom: 60px;
+    display: block; 
+	font-weight: bold;
+	margin-top:20px;
+	text-decoration: none;
+	background: #2b7fc2;
+	color: #fff;	
+	font-size: 22px;
+}
+.linhnguyen-modal .close-linhnguyen-modal {
+	font-size: 22px;
+	line-height: .5;
+	position: absolute;
+	top: 10px;
+	right: 12px;
+	color: #aaa;
+	text-shadow: 0 -1px 1px rbga(0,0,0,.6);
+	font-weight: bold;
+	cursor: pointer;
+} 
+	
