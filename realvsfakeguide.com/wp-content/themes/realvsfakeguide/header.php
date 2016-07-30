@@ -33,10 +33,10 @@
 	    			</div>
 	    			<div class="icon-social">
 	    				<ul>
-	    					<li><a href="#"><img src="<?php echo bloginfo('template_url')?>/images/icon-facebook.png"></a></li>
-	    					<li><a href="#"><img src="<?php echo bloginfo('template_url')?>/images/twitter-icon-circle-logo.png"></a></li>
-	    					<li><a href="#"><img src="<?php echo bloginfo('template_url')?>/images/Icon_Google+.svg.png"></a></li>
-	    					<li><a href="#"><img src="<?php echo bloginfo('template_url')?>/images/pinterest.png"></a></li>
+	    					<li><a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
+	    					<li><a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
+	    					<li><a href="#"><i class="fa fa-google-plus" aria-hidden="true"></i></a></li>
+	    					<li><a href="#"><i class="fa fa-pinterest-p" aria-hidden="true"></i></li>
 	    				</ul>
 	    			</div>
 	    			<div class="clear"></div>
@@ -52,7 +52,7 @@
                     <a class="toggleMenu" href="#">MENU</a>
                 </div>    
               <nav class="mobile-menu">
-                <a href="#" id="menu-icon">MENU</a>
+                <span id="menu-icon">MENU</span>
                 <?php wp_nav_menu( array( 
                 'theme_location' => 'mobile_menu',
                 'container' => 'ul', 

@@ -6,7 +6,7 @@ get_header();?>
 <?php 
   $banner_text = get_field('banner_text');
   $banner_title = get_field('banner_title');
-  
+  global $wp_query;
 ?>
 <div id='bttop'><img src="<?php echo get_template_directory_uri();?>/images/icon-back-to-top.png"></div>
 <!-- 
@@ -81,8 +81,6 @@ get_header();?>
                     <a href="<?php echo get_category_link($value->term_id); ?>" class="btn_guild_item"><?php echo $value->name;?></a>
                   </div>  
                   <?php
-
-                  global $wp_query;
                     $args = array(
                       'post_type' => 'post',
                       'posts_per_page'=>2,
@@ -96,9 +94,9 @@ get_header();?>
                       ),
                   );
                   $wp_query = new WP_Query( $args );
-                  if($wp_query->have_posts()){
-                    while ( $wp_query->have_posts()) {
-                      $wp_query->the_post();
+                  if(have_posts()){
+                    while ( have_posts()) {
+                      the_post();
                       ?>
                         <div class="guild_item_1"> 
                            <a href="<?php the_permalink(); ?>" class="thubmail-link" style="background:url(<?php the_post_thumbnail_url();?>) center center no-repeat; background-size:cover;" title="<?php the_title_attribute(); ?>">
@@ -160,24 +158,29 @@ get_header();?>
           <img alt="" src="<?php echo get_template_directory_uri();?>/images/Rectangle5.png">
         </div>
         <div class="lastest_news_wrap"> 
-        <?php if(have_rows('lastest_news')) : while (have_rows('lastest_news')) : the_row('lastest_news')?>  
+        <?php 
+          $arg = array(
+            'post_type'=>'post',
+            'posts_per_page'=> 4
+            );
+          $wp_query = new WP_Query( $arg );
+        if(have_posts()) : while (have_posts()) : the_post();?>  
                             
                 <div class="lastest_item">
                     <div class="item relative">
                         <div class="thumbnail">
-                            <a href="<?php echo get_sub_field('lastest_news_item_link');?>">
-                            <span class="thumb" style="background-image: url('<?php echo get_sub_field('lastest_news_item_thumb');?> ');"></span>
+                            <a href="<?php the_permalink();?>">
+                            <span class="thumb" style="background: url('<?php the_post_thumbnail_url();?>') center center no-repeat; background-size:cover;"></span>
                             </a>
                         </div>
                         <div class="content">
                             <div class="_content">
                                 <div class="cell">
-                                    <a href="<?php echo get_sub_field('lastest_news_item_link');?>"><?php echo get_sub_field('lastest_news_item_title');?></a>
+                                    <a href="<?php the_permalink();?>"><?php the_title();?></a>
                                     <div class="line"></div>
                                     <p class="date">
-                                      <?php echo the_time('F jS, Y'); ?>
+                                      <?php the_time('F jS, Y'); ?>
                                     </p>
-                                    
                                 </div>
                             </div>
                         </div>

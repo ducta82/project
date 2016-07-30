@@ -1,3 +1,17 @@
+@media (min-width: 600px){
+	.lastest_news_wrap .lastest_item:nth-child(2n+1) .item{
+		padding-bottom: 73.91%;
+	}
+	.lastest_news_wrap .lastest_item:nth-child(2n) .item{
+		padding-top: 73.91%;
+	}
+	.lastest_news_wrap .lastest_item:nth-child(2n+1) .item .content{
+		bottom:0;
+	}
+	.lastest_news_wrap .lastest_item:nth-child(2n) .item .content{
+		top:0;
+	}
+}
 @media (max-width: 1200px){
 	.wrap_content{
 		width: 83.824%;
@@ -320,7 +334,8 @@
 /********************************  max-width: 768px  ******************************************/
 @media (max-width: 768px){
 	 .search{
-    	width: 35%;
+	    width: 100%;
+   	 	float: left;
     }
     .subcribe span{
     	margin-top: -16px;
@@ -381,6 +396,9 @@
 	}
 	a.btn_guild_item{
 		margin-left: 0px;
+	}
+	.guild_item{
+		width: 100%;
 	}
 	.guild_item_btn1, .guild_item_btn2, .guild_item_btn3
 	{
@@ -460,8 +478,8 @@
         padding-top: 40px;
     }
     .lastest_item {
-        width: 60%;
-        float: none;
+      	width: 50%;
+    	float: left;
         margin: 0 auto;
         display: block;
     }
@@ -491,15 +509,49 @@
     	padding-top: 7px;
     }
     .search-form-head{
-    	margin-left: 183px;
+    	margin-left: 0;
+    	float: right;
     }
     .icon-social {
     
     	margin-bottom: 7px;
 	}
 }
+@media (max-width: 767px){
+	
+}
+
+@media (max-width: 640px){
+	.search-form-head{
+		width: 50%;
+		float: right;
+		margin: 0;
+	}
+	.search-form-head .search-form{
+		width: 100%;
+	}
+	.icon-social{
+		width: 100%;
+	}
+	.icon-social ul{
+		float: right;
+	}
+}
 /********************************  max-width: 600px  ******************************************/
 @media (max-width: 600px){
+	.lastest_news{
+		width: 83.824%;
+	    margin: 0 auto;
+	}
+	.lastest_news_wrap .item .content:before{
+		display: none;
+	}
+	.lastest_news_wrap .lastest_item .item .content{
+		bottom:0;
+	}
+	.lastest_news_wrap .lastest_item .item{
+		padding-bottom: 73.91%;
+	}
 	 .wrap_content img.logo{
 	 	padding-left: 60px;
 	 }
@@ -510,9 +562,9 @@
     	margin-left: 0px;
     }
     .search-form-head .search-form{
-    	width: 250px;
-		float: right;
-		margin-right: 22px;
+    	width: 100%;
+		float: left;
+		margin-right: 0px;
     	
     }
     .icon-social {	    
@@ -611,10 +663,6 @@
         color: #fff;
         margin-top: 10px;
     }
-    .lastest_item {
-    width: 56%;
-    
-    }
     .text_banner{
         margin-right: 10px;
         
@@ -631,15 +679,57 @@
     .search-form-head{
     	width:250px;
     }
+	.lastest_item {
+        width: 100%;
+    }
 }
 /********************************  max-width: 480px  ******************************************/
 @media (max-width: 480px){
+	
 	.wrap_content img.logo{
-		padding-left: 20px ;
+		position: relative;
+		margin-left: 47px;
+		display: block;
 	}
-	.search {
-	    width: 53%;	    
-	    margin-left: 36px;
+	.search{
+		width: 100%;
+		float: left;
+		display: block;
+		position: relative;
+		padding-left: 0px;		
+		margin-left: 0px;
+	}
+	.search input[type="search"]{
+		margin-left: 0px;
+	}
+	.logo_top{
+		width: 100%;
+		margin: 0 auto;
+	}
+	.logo_top a img{
+	    max-width: 100%;
+	    height: auto;
+	    margin: 0 auto;
+	    display: block;
+	}
+	.wrap_content a.logo{
+		position: relative;
+	}
+	.search a {
+	    margin-top: 19px;
+	}
+	.search-form-head {
+	    margin-left: 0;
+	    width: 100%;
+	}
+	.icon-social{
+		display: block;
+		width: 100%;
+	}
+	.icon-social ul{
+	    text-align: center;
+	    margin: 0 auto;
+	    width: 100%;
 	}
 	.form_contact .contact-icon-name .form_contact_name{
 		width: 62%;
@@ -761,9 +851,6 @@
 		.linhnguyen-modal .bg_top {
 	    height: 75px;
 	}
-	.lastest_item {
-        width: 75%;
-    }
     .guild_item {
         margin-right: 0px;
         width: 100%;
@@ -789,43 +876,6 @@
 @media (max-width: 320px){
 	h2{
 		font-size: 30px;
-	}
-	.wrap_content img.logo{
-		position: relative;
-		margin-left: 47px;
-		display: block;
-	}
-	.search{
-		width: 100%;
-		float: left;
-		display: block;
-		position: relative;
-		padding-left: 0px;		
-		margin-left: 0px;
-	}
-	.search input[type="search"]{
-		margin-left: 0px;
-	}
-	.logo_top{
-		width: 160px;
-		margin: 0 auto;
-	}
-	.wrap_content a.logo{
-		position: relative;
-	}
-	.search a {
-	    margin-top: 19px;
-	}
-	.search-form-head {
-    margin-left: 43px;
-}
-	.icon-social{
-		display: block;
-		width: 100%;
-	}
-	.icon-social ul{
-		text-align: center;
-		margin-left: 66px;
 	}
 	.about_text_banner{
 		width: 160px;
@@ -1045,9 +1095,6 @@
 	    left: 18%;
 	    width: 216px;
 	}
-    .lastest_item {
-        width: 100%;
-    } 
     .page_text_banner h1{
     	font-size: 28px;
 	    line-height: 35px;
