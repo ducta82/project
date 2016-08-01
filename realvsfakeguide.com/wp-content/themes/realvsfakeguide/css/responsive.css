@@ -500,7 +500,7 @@
 	    display: block;
 	    width: 100%;
 	    overflow: hidden;
-	    background: #f6f6f6 none repeat scroll 0% 0%;
+	    background: rgba(255, 255, 255, 0.5);
 	    box-shadow: 0px 0px 0px 10px rgba(255, 255, 255, 0.5);
 	    padding-top: 33px;
 	    padding-bottom: 26px;

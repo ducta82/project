@@ -20,63 +20,21 @@ get_header();?>
 	</div> 
  --> 	
 <div class="container-fuild">
-    	<?php if (is_category('fashion')) : ?>
-				<div class="fashion_news_banner">           
-		       		<div class="fashion_news_text_banner">
-		       			<h1>Fashion </h1>    			
-		       		</div>
-		       		<div class="subcribe">
-		   					<div class="wrap_content">
-			   					<span>SUBSCRIBE TO NEW LETTERS</span> 
-			   					<input type="text" placeholder="Enter your email">
-			   					<a href="#" class="btn_subscribe">Subscribe</a>
-		   					</div>
-		   			</div>                      
-		   		</div><!-- End home_banner-->
-			<?php elseif (is_category('handbags')) : ?>
-				<div class="fashion_news_banner">           
-		       		<div class="fashion_news_text_banner">
-		       			<h1>handbags</h1>    			
-		       		</div>
-		       		<div class="subcribe">
-		   					<div class="wrap_content">
-			   					<span>SUBSCRIBE TO NEW LETTERS</span> 
-			   					<input type="text" placeholder="Enter your email">
-			   					<a href="#" class="btn_subscribe">Subscribe</a>
-		   					</div>
-		   			</div>                      
-		   		</div><!-- End home_banner-->
-		   	<?php elseif (is_category('sunglasses')) : ?>
-				<div class="fashion_news_banner">           
-		       		<div class="fashion_news_text_banner">
-		       			<h1>sunglasses</h1>    			
-		       		</div>
-		       		<div class="subcribe">
-		   					<div class="wrap_content">
-			   					<span>SUBSCRIBE TO NEW LETTERS</span> 
-			   					<input type="text" placeholder="Enter your email">
-			   					<a href="#" class="btn_subscribe">Subscribe</a>
-		   					</div>
-		   			</div>                      
-		   		</div><!-- End home_banner-->	
-			<?php else : (is_category($cat)) ?>
-			<div class="fashion_news_banner">           
-		       		<div class="fashion_news_text_banner">
-		       			<h1><?php echo get_the_category_by_ID($cat); ?></h1>    			
-		       		</div>
-		       		<div class="subcribe">					
-			 			<div class="wrap_content">
-			 				
-				  			<span>SUBSCRIBE TO NEW LETTERS</span>
-				  			<?php es_subbox($desc = "", $group = "" ); ?> 
-				  	<!-- <input type="text" placeholder="Enter your email"> 		
-				  			<a href="#" class="btn_subscribe">Subscribe</a>  -->
-			 			</div>
+	<?php
+	$cur_cat_id = get_cat_id( single_cat_title("",false) );
+	$imgcat = get_field( "image_category",'category_'.$cur_cat_id);
+	?>	
+		<div class="image_category" style="background:url('<?php echo $imgcat;?>') center center no-repeat;background-size:cover;">           
+       		<div class="fashion_news_text_banner">
+       			<h1><?php single_cat_title(); ?></h1>    			
+       		</div>
+       		<div class="subcribe">
+   					<div class="wrap_content">
+	   					<span>SUBSCRIBE TO NEW LETTERS</span> 
+       					<?php es_subbox( $namefield = "NO", $desc = "", $group = "" ); ?>
+   					</div>
    			</div>                      
-		   		</div><!-- End home_banner-->
-			<?php endif; ?>
-   		
-   		
+   		</div><!-- End home_banner-->
    		<div class="main_content">
    			<div class="wrap_content">
    				<div class="left_content">   					   					
@@ -121,8 +79,15 @@ get_header();?>
    				</div>
    				<div id="secondary" class="right_content" role="complementary">
 	            	<div class="search">
-	    				<?php get_search_form(); ?>	
-	    				
+	    				<div class="search-form-head">
+					        <form action="<?php echo home_url( '/' ); ?>" method="get" class="search-form">
+					            <div class="input-group seach-header">
+					                <input name="s" value="<?php the_search_query(); ?>" class="search-field" type="search" placeholder="search..." class="form-seach-header">
+					                <input type="hidden" name="post_type" value="post" />
+					                <input type="hidden" name="post_type" value="page" />
+					            </div>
+					         </form>
+					     </div> 
 	    			</div>
                     <div class="fashion_news_recent_post">
 	    				<h3>resent post</h3>

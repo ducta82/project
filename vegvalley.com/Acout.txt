@@ -1,0 +1,7 @@
+vegvalley:
+fpt: onego
+Pass: <wLj4"E>26xT'ru
+
+db:
+user:herbalva_onego
+pass:9Rg+mTy6cvP7

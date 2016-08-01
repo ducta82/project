@@ -164,7 +164,7 @@ get_header();?>
             'posts_per_page'=> 4
             );
           $wp_query = new WP_Query( $arg );
-        if(have_posts()) : while (have_posts()) : the_post();?>  
+        if(have_posts()) : $i = 1; while (have_posts() && $i <= 4) : the_post();?>  
                             
                 <div class="lastest_item">
                     <div class="item relative">
@@ -186,7 +186,7 @@ get_header();?>
                         </div>
                     </div>              
                 </div>
-              <?php endwhile;?>
+              <?php $i++; endwhile;?>
               <?php endif;?>                                                                                        
             </div>
       </div>
@@ -227,12 +227,8 @@ get_header();?>
         </div>
         <div class="subcribe">          
         <div class="wrap_content">
-          <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
             <span>SUBSCRIBE TO NEW LETTERS</span>
-          </div>
-          <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
            <?php es_subbox( $namefield = "NO", $desc = "", $group = "" ); ?>
-          </div>    
         </div>
         </div>
       </div>
