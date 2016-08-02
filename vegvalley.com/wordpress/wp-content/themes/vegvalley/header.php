@@ -55,7 +55,7 @@
 						</button>
 						<a class="logo" href="/"><img src="<?php echo bloginfo( 'template_url' );?>/images/logo.png" class="img-responsive" alt="Image"></a>
 					</div>
-			
+					<div class="collapse navbar-collapse">
 					<!-- Collect the nav links, forms, and other content for toggling -->
 					<?php
 						   /**
@@ -65,8 +65,6 @@
 							$args = array(
 								'theme_location' => 'primary',
 								'menu' => '',
-								'container' => 'div',
-								'container_class' => 'collapse navbar-collapse',
 								'menu_class' => 'nav navbar-nav navbar-right',
 								'before' => '',
 								'after' => '',
@@ -76,20 +74,20 @@
 						
 							wp_nav_menu( $args );
 					?>
-				 <form action="<?php echo home_url( '/' ); ?>" method="get" class="navbar-form box-search">
+				 <form action="" method="get" class="navbar-form box-search">
                     <div class="input-group seach-header">
                         <input name="s" value="<?php the_search_query(); ?>" type="text" placeholder="search..." class="form-seach-header">
 						<input type="hidden" name="post_type" value="product" />
-						<input type="hidden" name="post_type" value="post" />
-						<input type="hidden" name="post_type" value="page" />
                     </div>
                 </form>
+                </div>
 			</nav>
 		</section>
 	</header>
-	<?php if(is_front_page() && is_home()):
-		if( have_rows('slider','options')):
-			$rows = get_field('slider','options' ); // get all the rows
+	<?php 
+		if(is_front_page() || is_home()):
+		if( have_rows('slider_home')):
+			$rows = get_field('slider_home'); // get all the rows
 			$i = 1;
 			$j = 1;
 	?>
@@ -98,7 +96,7 @@
 		<div id="slider" class="nivoSlider">     
 			<?php foreach ($rows as $item) {
 				$div_end = $i == $max ? '</div>' : '';
-				$image = sprintf('%s','<img src="'.$item['image_slider']['url'].'" alt="'.$item['image_slider']['alt'].'" title="#htmlcaption'.$i.'"/>');
+				$image = sprintf('%s','<img src="'.$item['home_slider_img'].'" title="#htmlcaption'.$i.'"/>');
 				echo $image;
 		    	$i++;	
 		    } ?>
@@ -106,10 +104,7 @@
 		    <?php foreach ($rows as $item) {
 		    	$id = "htmlcaption$j";
 		    	$caption = sprintf('%s','<div id="'.$id.'" class="nivo-html-caption">
-		    		<div class="box-top-caption"><p class="top-caption">welcome to</p></div>
-				    <h2>veg valley</h2>
-				    <p class="bottom-caption">Pellentesque habitant morbi tristique senectus et netus
-					et malesuada fames ac turpis egestas.</p></div>');
+		    		'.$item['home_slide_caption'].'</div>');
 		    	echo $caption;
 		    	$j++;	
 		    } ?>  

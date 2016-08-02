@@ -43,7 +43,7 @@ get_header( 'shop' ); ?>
 			 * @hooked woocommerce_taxonomy_archive_description - 10
 			 * @hooked woocommerce_product_archive_description - 10
 			 */
-			do_action( 'woocommerce_archive_description' );
+			//do_action( 'woocommerce_archive_description' );
 		?>
 
 		<?php if ( have_posts() ) : ?>
@@ -57,14 +57,15 @@ get_header( 'shop' ); ?>
 				 */
 
 				remove_action('woocommerce_before_shop_loop','woocommerce_result_count', 20 );
-				//remove_action('woocommerce_before_shop_loop','woocommerce_catalog_ordering', 30 );
-				//do_action( 'woocommerce_before_shop_loop' );
+				remove_action('woocommerce_before_shop_loop','woocommerce_catalog_ordering', 30 );
+				do_action( 'woocommerce_before_shop_loop' );
 
 			?>
 
 			<?php woocommerce_product_loop_start(); ?>
 				<?php do_action( 'woocommerce_before_shop_loop' );?>
 				<div class="box-product-wrap">
+
 				<?php woocommerce_product_subcategories(); ?>
 
 				<?php while ( have_posts() ) : the_post(); ?>

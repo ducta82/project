@@ -33,7 +33,7 @@ $( document ).ready(function() {
 	//wistlist
 	$('.box-product-buttons').children('.clear').remove();
 	//qualyti
-	$(function() {
+	/*$(function() {
 	  $(".quantity").append('<span class="inc wc-button">+</span>').prepend('<span class="dec wc-button">-</span>');
 	  $(".wc-button").on("click", function() {
 	    var $button = $(this);
@@ -50,7 +50,16 @@ $( document ).ready(function() {
 		  }
 	    $button.parent().find("input").val(newVal);
 	  });
-	});
+	});*/
+	function Add_quatity(){
+		$('.quantity').find('.minus').addClass('wc-button');
+		$('.quantity').find('.plus').addClass('wc-button');
+	}
+	Add_quatity();
+	$( document.body ).on( 'updated_wc_div', function( event ) {
+		Add_quatity();
+	} );
+
 //share
 	//facebook
 	(function(d, s, id) {
@@ -69,12 +78,13 @@ $( document ).ready(function() {
 	//menu footer
 	 $('.menu-footer ul li.btn-search').remove();
 	//ajax
-  	var max_paged = $('.view-all').attr('paged');
+  	var max_paged = $('input.view-all').attr('paged');
   	if(max_paged <= 1){
   		$('.view-all').css('display','none');
+  		$('.view-all-shop').css('display','inline-block');
   	}
   	var page = 2; // What page we are on.
-	$('.view-all').click(function(event){
+	$('input.view-all').click(function(event){
       	event.preventDefault();
     	console.log("outside = " +page);
        	$.ajax({
@@ -108,7 +118,8 @@ $( document ).ready(function() {
 	$('.yith-wcwl-add-button a').click(function(e){
 		var add_url = $(this).attr('href'),
 			id = $(this).attr('data-product-id'),
-            el_wrap = $( '.add-to-wishlist-' + id );
+            el_wrap = $( '.add-to-wishlist-' + id ),
+            parent = $(this).parent().parent();
 		var type = $(this).attr('data-product-type');
 		e.preventDefault();
 		$.ajax({
@@ -119,8 +130,12 @@ $( document ).ready(function() {
 			    product_type: type,
 				action: 'add_to_wishlist'
 			},
+            beforeSend: function() {
+        		parent.find('.ajax-loading').css('visibility','visible');
+        		console.log(parent.find('.ajax-loading')[0]);
+            },
 			success:function(response){
-				console.log(response);
+				parent.find('.ajax-loading').css('visibility','hidden');
 				var msg = $( '#yith-wcwl-popup-message' ),
                     response_result = response.result,
                     response_message = response.message ;
@@ -163,15 +178,15 @@ $( document ).ready(function() {
                         el_wrap.find('.yith-wcwl-add-button').hide().removeClass('show').addClass('hide');
                     }
 
-                    el_wrap.find( '.yith-wcwl-wishlistexistsbrowse').hide().removeClass('show').addClass('hide').find('a').attr('href', response.wishlist_url);
-                    el_wrap.find( '.yith-wcwl-wishlistaddedbrowse' ).show().removeClass('hide').addClass('show').find('a').attr('href', response.wishlist_url).html('<i class="fa fa fa-heart" style="color:#f00;margin-right:5px;"></i>');
+                    el_wrap.find( '.yith-wcwl-wishlistexistsbrowse').hide().removeClass('show').addClass('hide').find('a').attr({'href': response.wishlist_url,'title':'Product add!'});
+                    el_wrap.find( '.yith-wcwl-wishlistaddedbrowse' ).show().removeClass('hide').addClass('show').find('a').attr({'href': response.wishlist_url,'title':'Product add!'}).html('<i class="fa fa fa-heart" style="color:#f00;margin-right:5px;"></i>');
                 	} else if( response_result == "exists" ) {
                     if( ! yith_wcwl_l10n.multi_wishlist || ! yith_wcwl_l10n.is_user_logged_in || ( yith_wcwl_l10n.multi_wishlist && yith_wcwl_l10n.is_user_logged_in && yith_wcwl_l10n.hide_add_button ) ) {
                         el_wrap.find('.yith-wcwl-add-button').hide().removeClass('show').addClass('hide');
                     }
 
-                    el_wrap.find( '.yith-wcwl-wishlistexistsbrowse' ).show().removeClass('hide').addClass('show').find('a').attr('href', response.wishlist_url);
-                    el_wrap.find( '.yith-wcwl-wishlistaddedbrowse' ).hide().removeClass('show').addClass('hide').find('a').attr('href', response.wishlist_url);
+                    el_wrap.find( '.yith-wcwl-wishlistexistsbrowse' ).show().removeClass('hide').addClass('show').find('a').attr({'href': response.wishlist_url,'title':'Product add!'});
+                    el_wrap.find( '.yith-wcwl-wishlistaddedbrowse' ).hide().removeClass('show').addClass('hide').find('a').attr({'href': response.wishlist_url,'title':'Product add!'});
                 } else {
                     el_wrap.find( '.yith-wcwl-add-button' ).show().removeClass('hide').addClass('show');
                     el_wrap.find( '.yith-wcwl-wishlistexistsbrowse' ).hide().removeClass('show').addClass('hide');
@@ -194,7 +209,7 @@ $( document ).ready(function() {
 $(window).load(function() {
 	$('#slider').nivoSlider({
 	 	animSpeed: 500,                   // Slide transition speed 
-		pauseTime: 3000000, 
+		pauseTime: 3000, 
 		directionNav: false,               // Next & Prev navigation 
 		controlNav: false,     
 	}); 

@@ -30,7 +30,7 @@ do_action( 'woocommerce_before_account_orders', $has_orders ); ?>
     'order-product-price'  => __( 'price', 'woocommerce' ),
     'order-product-quantily'  => __( 'quatily', 'woocommerce' ),
     'order-total'   => __( 'Total', 'woocommerce' ),
-    'order-date'    => __( 'Date', 'woocommerce' ),   
+    'order-date'    => __( 'Date', 'woocommerce' ),    
 ) );
 ?>
 <?php if ( $has_orders ) : ?>
@@ -72,6 +72,7 @@ do_action( 'woocommerce_before_account_orders', $has_orders ); ?>
 					    $order      = wc_get_order( $customer_order );
 					    $item_count = $order->get_item_count();
 					    $orders = new WC_Order( $order->id);//old
+
 					    //$items = $orders->get_items();
 					    /*for ($i=0; $i < $order_c ; $i++) { 
 					    	$items = $orders->get_items();
