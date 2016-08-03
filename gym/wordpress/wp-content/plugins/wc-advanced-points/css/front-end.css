@@ -1,0 +1,22 @@
+/* CSS Document */
+.point-cnt.point-style1 {display: table;border: 1px solid #ddd;}
+.point-cnt.point-style1 .number-cnt {display: table-cell;vertical-align: middle;padding: 5px 10px;background: #f0f0f0;text-align: center;border-right: 1px solid #ddd;}
+.point-cnt.point-style1 .number-txt {font-size: 20px;font-weight: bold;}
+.point-cnt.point-style1 .number-desc {font-size: 11px; text-transform:uppercase;}
+.point-cnt.point-style1 .desc-cnt {display: table-cell;vertical-align: middle;padding: 10px;background: #f8f8f8;font-size: 12px;text-transform: uppercase;}
+
+
+.point-cnt.point-style2 {display: table;border: 1px solid #ddd; padding:10px;  background:#fff;}
+.point-cnt.point-style2 .number-txt {display: table-cell;font-size: 20px;font-weight: bold;vertical-align: middle;background: #f0f0f0;text-align: center;border: 1px solid #ddd; width:50px; height:50px; -moz-border-radius:50%;-webkit-border-radius:50%;border-radius:50%;}
+.point-cnt.point-style2 .number-desc-cnt{ display:table-cell; vertical-align:middle; padding-left:10px; }
+.point-cnt.point-style2 .number-desc {font-size: 14px; font-weight:bold; text-transform:uppercase;}
+.point-cnt.point-style2 .desc-cnt {font-size: 12px;text-transform: uppercase;}
+
+.point-cnt.point-style3 {display: table;border: 1px solid #ddd;}
+.point-cnt.point-style3 .number-cnt {display: table-cell;vertical-align: middle;padding: 5px 10px;background: #f0f0f0;text-align: center;border-right: 1px solid #ddd; position:relative;}
+.point-cnt.point-style3 .number-cnt:before{content:''; position:absolute; right:-10px; top:10px; width: 0;height: 0;border-style: solid;border-width: 7.5px 0 7.5px 10px;border-color: transparent transparent transparent #f0f0f0; z-index:99; }
+.point-cnt.point-style3 .number-cnt:after{content:''; position:absolute; right:-10px; top:10px; width: 0;height: 0;border-style: solid;border-width: 8px 0 8px 10px;border-color: transparent transparent transparent #ddd;z-index:9; }
+.point-cnt.point-style3 .number-txt {font-size: 20px;font-weight: bold;}
+
+.point-cnt.point-style3 .desc-cnt {display: table-cell; padding-left:10px;vertical-align: middle;padding:7px 15px;background: #fff;font-size: 12px;text-transform: uppercase;}	
+.point-cnt.point-style3 .desc-cnt .number-desc {font-size: 14px; font-weight:bold; text-transform:uppercase;}
