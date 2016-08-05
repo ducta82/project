@@ -31,15 +31,12 @@ get_header();?>
 		   			</div>
 	   			</div>
    			</div>
-   			<div class="subcribe">					
-	 			<div class="wrap_content">
-	 				
-		  			<span>SUBSCRIBE TO NEW LETTERS</span>
-		  			
-		  	<input type="text" placeholder="Enter your email"> 		
-		  			<a href="#" class="btn_subscribe">Subscribe</a> 
-	 			</div>
-   			</div>      	  			
+   			<div class="subcribe subcribe-page">          
+	        <div class="wrap_content">
+	            <span>SUBSCRIBE TO NEW LETTERS</span>
+	           <?php es_subbox( $namefield = "NO", $desc = "", $group = "" ); ?>
+	        </div>
+	        </div>    	  			
    		</div>  	
    		
    		

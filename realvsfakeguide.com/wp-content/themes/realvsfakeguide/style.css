@@ -11,6 +11,28 @@ Text Domain: realvsfakeguide.com
 Tags:http://realvsfakeguide.onegovn.com/
 
 */
+
+@font-face {
+  font-family: 'Gotham-Bold';
+  src: url('fonts/GothamHTF-Bold.eot?#iefix') format('embedded-opentype'),  
+         url('fonts/GothamHTF-Bold.otf')  format('opentype'),
+         url('fonts/GothamHTF-Bold.woff') format('woff'), 
+         url('fonts/GothamHTF-Bold.ttf')  format('truetype'), 
+         url('fonts/GothamHTF-Bold.svg#GothamHTF-Bold') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Gotham-Light';
+  src: url('fonts/Gotham-Light.eot?#iefix') format('embedded-opentype'),  
+         url('fonts/GOTHAM-LIGHT.OTF')  format('opentype'),
+         url('fonts/Gotham-Light.woff') format('woff'), 
+         url('fonts/Gotham-Light.ttf')  format('truetype'), 
+         url('fonts/Gotham-Light.svg#Gotham-Light') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
 * {
 	margin: 0;
 	padding: 0;
@@ -20,10 +42,12 @@ Tags:http://realvsfakeguide.onegovn.com/
 h1,h2,h3,h4,h5,h6 {	
 	color: #2b2b2b;
 }
-
+strong,h1,h2,h3,h4,h5,h6{
+	font-family: Gotham-Bold,sans-serif;;
+}
 body {	
 	font-size: 14px;
-	font-family: 'Gotham-Light';
+	font-family: Gotham-Light,sans-serif;;
 }
 
 
@@ -57,19 +81,6 @@ p{
 	float: right;
 }
 /* CSS Theme */
-@font-face {
-    font-family: 'Gotham-Light';
-    src: url('fonts/GOTHAM-LIGHT.OTF');            
-    font-weight: normal;
-    font-style: normal;
-}
-
-@font-face {
-    font-family: 'Gotham-Bold';
-    src: url('fonts/GOTHAMHTF-BOLD_0.OTF');    
-    font-weight: bold;
-    
-}
 .container-fuild{
         position: relative;
     display: block;
@@ -84,7 +95,15 @@ header{
 .wrap_content{	
 	width:1140px;
 	margin: 0 auto;
-	
+}
+.wrap_content:before{
+    content: "";
+    display: table;
+}
+.wrap_content:after{
+    content: "";
+    display: table;
+    clear: both;
 }
 .wrap_content .logo{
 	
@@ -96,7 +115,7 @@ header{
 }
 .top_header{
 	width: 100%;
-	
+	position: relative;
 }
 .search-form-head{
 width:400px;
@@ -118,14 +137,14 @@ width:400px;
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
     box-sizing: border-box;
-    height: 35px;
+    height: 38px;
     padding: 0 1px 0 18px;
     border-color: #b7b7b7;
     border-radius: 41px;
     border-style: solid;
     border-width: 1px;    
     color: #333;   
-    font-size: 16px;
+    font-size: 14px;
     -webkit-appearance: none;
     -moz-appearance: none;
     outline: none;
@@ -135,9 +154,11 @@ width:400px;
 	width: 100%;
     float: left;
 }
-.search .seach-header:after{
-	content: "\f002";
-	font-family: FontAwesome;
+.search .search-submit{    
+	background: transparent;
+    border: none;
+    box-shadow: none;
+    font-size: 18px;
 	position: absolute;
 	right: 15px;
 	top: 50%;
@@ -164,9 +185,9 @@ width:400px;
     border-radius: 50%;
     background: #b4b4b4;
     color: #fff;
-    line-height: 33px;
+   	line-height: 32px;
     text-align: center;
-    font-size: 22px;
+    font-size: 21px;
 }
 .icon-social ul li i.fa-facebook:hover{
 	background:#416baa;
@@ -190,16 +211,14 @@ ul.menu {
   float: right;
   list-style-type: none;
   text-align: center;
-  height: 61px;
   transition: all 0.3s ease-in-out 0s, visibility 0s linear 0.3s, z-index 0s linear 0.01s;
   position: relative;
     z-index: 1;
+  margin-bottom: 0;
 }
 ul.menu li {
   color: #f1f1f1;
   display: inline-block;
-  height: 60px;
-  line-height: 60px;
   margin-left: -5px;
   position: relative;
   
@@ -209,11 +228,15 @@ ul.menu a {
   color: #fff;
   display: block;
   text-transform: uppercase;
-  padding: 0px 23px;
-  font-family: "Gotham-Bold";
+  padding: 0px 25px;
+  font-family: Gotham-Bold,sans-serif;    
+  line-height: 60px;
+  letter-spacing: 0.5px;
+}
+ul.menu li:hover {
+  background-color: #206fae;
 }
 ul.menu a:hover {
-  background: #206fae;
   color: #fff;
   -webkit-transition: all .55s ease;
   -moz-transition: all .55s ease;
@@ -221,10 +244,12 @@ ul.menu a:hover {
   -o-transition: all .55s ease;
   transition: all .55s ease;
 }
-ul.menu li.current-menu-item{
+ul#menu-mobie-menu li.current-menu-item{
 	background: #206fae;
-  	color: #fff;
   	height: auto;
+}
+ul.menu li.current-menu-item a{
+  	color: #fff;
 }
 /*==Dropdown Menu==*/
 ul.menu ul.sub-menu {
@@ -232,7 +257,7 @@ ul.menu ul.sub-menu {
     /* top: 100%; */
     z-index: 99999;    
     min-height: 30px;
-    width: 180px;    
+    width: 160px;    
     right: 0px;
     display: none;    
 }
@@ -248,20 +273,20 @@ ul.menu li:active ul.sub-menu{
     display: block;    
 }
 ul.sub-menu li{
-    height: 45px;
-    line-height: 45px;
+    height: 40px;
     margin-left: 0px;
     position: relative;
     float: left;
-    width: 180px;
-    margin-top: 2px;
+    width: 100%;
+    margin-top: 1px;
     background: #fff;
     
 }
 ul.sub-menu li a{
     text-align: left;
-    padding-left: 20px;
-    color:#2b7fc2;
+    color:#2b7fc2;    
+    padding: 0 0 0 20px;
+    line-height: 40px;
 }
 
 ul.sub-menu li:hover {
@@ -279,7 +304,7 @@ ul.sub-menu li:hover {
     padding: 22px 30px;
 	color: #fff;
 	float: right;
-    font-family: 'Gotham-Bold';
+    font-family: Gotham-Bold,sans-serif;
 }
 a.toggleMenu:hover{
 	text-decoration: none;
@@ -299,20 +324,18 @@ ul.menu > li > .parent {
     position: relative;
 }
 .text_banner{  
-    
-    width:555px;    	
+    width: 555px;
+    height: 280px;
 	background: rgba(255, 255, 255, 0.6);
-    box-shadow: 0px 0px 0px 10px rgba(255, 255, 255, 0.6);
-    -moz-box-shadow: 0px 0px 0px 10px rgba(255, 255, 255, 0.6);
-    -webkit-box-shadow: 0px 0px 0px 10px rgba(255, 255, 255, 0.6);    
-    padding: 40px 20px 40px 20px;
+    padding: 45px 40px;
     float: right;
      
 }
 
 .text_banner h3{
+	margin: 0;
     font-size: 30px;
-     font-family: 'Gotham-Bold';
+     font-family: Gotham-Bold,sans-serif;
     line-height: 40px;
     text-align: center;    
     color: #2b2b2b;
@@ -331,7 +354,9 @@ ul.menu > li > .parent {
     background: #ececec;
     height: auto;
 }
-
+.bx-wrapper{
+	margin: 0 auto;
+}
 /**== Guild ==**/
 .home_guild{
 	margin-top: 70px;
@@ -340,13 +365,13 @@ ul.menu > li > .parent {
 .guild_title{
 	text-align: center;
 	width: 100%;
-	padding-bottom: 60px;
+	padding-bottom: 50px;
 }
 .guild_title h2{
 	text-transform: uppercase;
 	font-size: 36px;
 	line-height: 30px;
-	font-family: 'Gotham-Bold';
+	font-family: Gotham-Bold,sans-serif;
 	 margin-bottom: 10px;	
 }
 
@@ -370,8 +395,8 @@ a.btn_guild_item{
     border-style: solid;
     border-width: 1px;
     text-transform: uppercase;
-    
-    font-family: 'Gotham-Bold';
+    display: inline-block;
+    font-family: Gotham-Bold,sans-serif;
     color: #000000;
 }
 a.btn_guild_item:hover{
@@ -387,8 +412,6 @@ a.btn_guild_item:hover{
 }
 .guild_item_btn1,.guild_item_btn2, .guild_item_btn3 {	   
     text-align: center;
-    padding-top: 10px;
-    margin-bottom: 25px;
 }
 .guild_item:last-child{
 	margin-right: 0px;
@@ -401,7 +424,7 @@ a.btn_guild_item:hover{
 .guild_item_1{
 	width: 100%;
 	float: left;
-	margin-top: 22px;
+	margin-top: 30px;
 	background: #ebebeb ;
 }
 .last_guild_item{
@@ -441,10 +464,10 @@ a.btn_guild_item:hover{
 	font-size: 18px;
 	line-height: 22px;
 	float:left;	
-	font-family: 'Gotham-Bold';
+	font-family: Gotham-Bold,sans-serif;
 	width: 100%;
     margin: 0 auto;    
-    min-height: 66px;
+    min-height: 44px;
 }
 .guild_item_1_content img{
 	width: 50px;
@@ -454,7 +477,6 @@ a.btn_guild_item:hover{
 	font-size: 14px;	
 	float: left;
 	line-height: 24px;
-	margin-top: 20px;
 	min-height: 120px;
 }
 .guild_item_action{
@@ -472,7 +494,11 @@ a.btn_readmore_guild_item{
     text-transform: uppercase;
     margin-bottom: 30px;
     margin-top: 15px;
-    font-family: 'Gotham-Bold';
+    font-family: Gotham-Bold,sans-serif;
+}
+.fashion_text a.btn_readmore_guild_item{
+	margin: 0;
+    padding: 4px 15px;
 }
 a.btn_readmore_guild_item:hover{
 	text-decoration: none;
@@ -499,8 +525,27 @@ a.btn_readmore_guild_item:hover{
 	padding-right: 5px;
 	float:left;
 }
+.guild_item_action_social i{
+    color: #808080;
+    padding: 0px 2px;
+    text-align: center;
+    font-size: 16px;
+    line-height: 1.3em;
+}
+.guild_item_action_social i.fa.fa-facebook:hover{
+	color: #416baa;
+}
+.guild_item_action_social i.fa.fa-twitter:hover{
+	color: #3486c5;
+}
+.guild_item_action_social i.fa.fa-google-plus:hover{
+	color: #bf4646;
+}
+.guild_item_action_social i.fa.fa-pinterest-p:hover{
+	color: #a31818;
+}
 .guild_item_action_social p{
-	font-family: 'Gotham-Bold';
+	font-family: Gotham-Bold,sans-serif;
 	font-size: 12px;
 	text-transform: uppercase;
 }
@@ -533,7 +578,7 @@ a.btn_readmore_guild_item:hover{
 	text-transform: uppercase;
 	color: #fff;
 	margin-top: 30px;
-	font-family: 'Gotham-Bold';
+	font-family: Gotham-Bold,sans-serif;
 }
 .bar_write_for_us p{
 	float: left;
@@ -554,7 +599,7 @@ a.btn_readmore_guild_item:hover{
     color: #fff;
     position: relative;
     margin-top: 35px;
-    font-family: 'Gotham-Bold';
+    font-family: Gotham-Bold,sans-serif;
 }
 .bar_write_for_us a.btn_write_for_us:hover{
 	text-decoration: none;
@@ -580,7 +625,7 @@ a.btn_readmore_guild_item:hover{
 	font-size: 36px;
 	text-transform: uppercase;
 	line-height: 20px;
-	font-family: 'Gotham-Bold';
+	font-family: Gotham-Bold,sans-serif;
 	margin-bottom: 10px;
 }
 
@@ -677,7 +722,7 @@ a.btn_readmore_guild_item:hover{
 	text-decoration: none;
 	display: block;
 	text-transform: uppercase;
-	font-family: 'Gotham-Bold';	
+	font-family: Gotham-Bold,sans-serif;	
 }
 .lastest_news_wrap .item .line{
 	width: 35px;
@@ -739,7 +784,7 @@ a.btn_readmore_guild_item:hover{
 	font-size: 36px;
 	text-transform: uppercase;
 	line-height: 35px;
-	font-family: 'Gotham-Bold';
+	font-family: Gotham-Bold,sans-serif;
 	margin-bottom: 13px;
 }
 .tips_and_tricks_item{
@@ -750,7 +795,7 @@ a.btn_readmore_guild_item:hover{
 .tips_and_tricks_item p{
 	text-align: center;
 	padding-top: 15px;
-	font-family: 'Gotham-Bold';
+	font-family: Gotham-Bold,sans-serif;
 	font-size: 18px;
 	padding-bottom: 80px;
 	    width: 80%;
@@ -770,7 +815,10 @@ a.btn_readmore_guild_item:hover{
     bottom: 0;
     background: rgba(255, 255, 255, 0.5);
     padding: 30px 0;
-    
+}
+.subcribe.subcribe-page{
+	position: relative;
+	margin-top: 80px;
 }
 .subcribe span{
 	width: 43%;
@@ -778,8 +826,7 @@ a.btn_readmore_guild_item:hover{
 	font-size: 24px;
 	text-transform: uppercase;
 	float:left;
-	font-family: 'Gotham-Bold';
-	line-height: 24px;
+	font-family: Gotham-Bold,sans-serif;
 	margin-top: 5px;
 	color: #2b2b2b;
 }
@@ -824,7 +871,7 @@ a.btn_readmore_guild_item:hover{
     text-transform: uppercase;      
     color: #fff;    
     background: #2b2b2b;
-    font-family: 'Gotham-Bold';
+    font-family: Gotham-Bold,sans-serif;
 }
 .subcribe .btn_subscribe:hover{
 	text-decoration: none;
@@ -878,9 +925,10 @@ a.btn_readmore_guild_item:hover{
 }
 p.copyright{
     background: #276fa9;
-    padding: 15px 0px;
+    padding: 10px 0px;
     color: #fff;
     font-size: 14px;   
+    margin-bottom: 0;
 }
 p.copyright a{
     color:#fff;
@@ -898,7 +946,7 @@ p.copyright a:hover{
 }
 /**===About page===**/
 .about_banner{
-	
+	position: relative;
 	width: 100%;
 	height:310px ;
 	background-size: cover;
@@ -911,7 +959,7 @@ p.copyright a:hover{
 }
 .about_text_banner h1{
 	text-transform: uppercase;   
-    font-family: 'Gotham-bold';
+    font-family: Gotham-Bold,sans-serif;
     font-size: 48px;
     color: #292929;       	
 	background: rgba(255, 255, 255, 0.8);
@@ -958,7 +1006,7 @@ p.copyright a:hover{
 }
 .about_real_and_face_social span{		
 	text-transform: uppercase;
-	 font-family: 'Gotham-Bold';
+	 font-family: Gotham-Bold,sans-serif;
 	 padding-right: 5px;
 }
 .about_real_and_face_social span a{
@@ -989,7 +1037,7 @@ p.copyright a:hover{
     position: relative;
 }
 .about_group_1 h2, .about_group_2 h2, .about_group_3 h2 {
-	font-family: 'Gotham-Bold';
+	font-family: Gotham-Bold,sans-serif;
 	font-size: 30px;
 	text-transform: uppercase;
 	color: #fff;
@@ -1041,7 +1089,7 @@ a.about_group_btn:hover{
 }
 .contact_text_banner h1{
 	text-transform: uppercase;   
-    font-family: 'Gotham-bold';
+    font-family: Gotham-Bold,sans-serif;
     font-size: 48px;
     color: #292929;       	
 	background: rgba(255, 255, 255, 0.8);
@@ -1056,7 +1104,7 @@ a.about_group_btn:hover{
 }
 .left-contact{
 	float:left;
-	width: 370px;
+	width: 32.456%;
 	padding-bottom: 50px;
 	padding-right: 30px;
 }
@@ -1065,7 +1113,7 @@ a.about_group_btn:hover{
 	color: #2b7fc2;
 	text-transform: uppercase;
 	padding-bottom: 30px;
-	font-family: 'Gotham-bold';
+	font-family: Gotham-Bold,sans-serif;
 }
 .left-contact p{
 	font-size: 18px;
@@ -1079,7 +1127,7 @@ a.about_group_btn:hover{
     text-transform: uppercase;      
     color: #fff;    
     background: #2b7fc2;
-    font-family: "Gotham-bold";
+    font-family: Gotham-Bold,sans-serif;
 }
 .left-contact a.btn_write_for_us:hover{
 	text-decoration: none;
@@ -1093,7 +1141,7 @@ a.about_group_btn:hover{
 }
 .right_contact{
 	float:left;
-	width: 770px;
+	width: 67.544%;
 	padding-left: 30px;
 	border-left: 1px solid #e1e1e1; 	
 }
@@ -1102,27 +1150,27 @@ a.about_group_btn:hover{
 	color: #2b7fc2;
 	text-transform: uppercase;
 	padding-bottom: 30px;
-	font-family: 'Gotham-bold';
+	font-family: Gotham-Bold,sans-serif;
 }
 .form_contact{
 	width: 100%;
-	padding-bottom: 20px;
 }
 .contact-icon-name{
-	width: 50%;
+	width: 49%;
 	float: left;
 }
 .contact-icon-mail{
-	width : 50%;
+	width : 49%;
 	float: right;
 	display: block;
 }
-.form_contact_name {
-	width: 85%;
+.form_contact_name, .form_contact_mail {
+	width: 88%;
     background: #ebebeb;
-    border: 1px solid #ebebeb;
-    padding: 12.5px 10px;
-     font-size: 14px
+    padding: 10px;
+    font-size: 14px;
+    border: none;
+    box-shadow: none;
 }
 .icon-name{
 	background: #ebebeb;
@@ -1137,35 +1185,38 @@ a.about_group_btn:hover{
     margin-right: 5px;    
     float: left;
 }
-.form_contact_mail{
-	width: 85%;
+/* .form_contact_mail{
+	width: 87%;
     background: #ebebeb;
-    border: 1px solid #ebebeb;
     padding: 12px 10px;
-        float: left;
-         font-size: 14px
+    float: left;
+     font-size: 14px
+} */
+p.mess-contact .wpcf7-form-control-wrap{
+	width: 100%;
+	display: block;
+	float: left;
+	margin: 20px 0 12px;
 }
 .form_contact textarea{
 	border: 1px solid #ebebeb;
     width: 100%;
-    max-width: 100%;
-    min-width: 100%;
-    height: 115px;
+    resize:none;
+    height: 120px;
     background: #ebebeb;
-    margin-top: 20px;
-    margin-bottom: 30px;
-    font-family: 'Gotham-Light';
+    font-family: Gotham-Light,sans-serif;;
     font-size: 14px;
     padding: 10px;
 }
-.btn_submit_contact input[type=submit]{
-	padding: 8px 24px;    
-    border-radius: 20px;   
-    border: 1px solid #2b7fc2;
-    text-transform: uppercase;      
-    color: #fff;    
+.btn_submit_contact input[type=submit], input#user-submitted-post{
+    padding: 7px 24px;
+    border-radius: 20px;
+    border: none;
+    text-transform: uppercase;
+    color: #fff;
+    line-height: 24px;
     background: #2b7fc2;
-     font-family: 'Gotham-bold';
+    font-family: Gotham-Bold,sans-serif;
 }
 .btn_submit_contact input[type=submit]:hover{
 	text-decoration: none;
@@ -1183,8 +1234,6 @@ a.about_group_btn:hover{
 }
 .contact_content .subcribe{
 	background: #e6e7e7;
-	padding-top: 26px;
-	padding-bottom: 26px;
 }
 .contact_content .subcribe span{
 	margin-top: 9px;
@@ -1204,7 +1253,7 @@ a.about_group_btn:hover{
 }
 .disclaimer_text_banner h1{
 	text-transform: uppercase;   
-    font-family: 'Gotham-bold';
+    font-family: Gotham-Bold,sans-serif;
     font-size: 48px;
     color: #292929;       	
 	background: rgba(255, 255, 255, 0.8);
@@ -1238,7 +1287,7 @@ a.about_group_btn:hover{
 	color: #2b7fc2;
 	text-transform: uppercase;
 	padding-bottom: 25px;
-	font-family: 'Gotham-Bold';
+	font-family: Gotham-Bold,sans-serif;
 }
 .disclaimer_right_content p{
 	font-size: 14px;
@@ -1267,7 +1316,7 @@ a.about_group_btn:hover{
 }
 .write_for_us_text_banner h1{
 	text-transform: uppercase;   
-    font-family: 'Gotham-bold';
+    font-family: Gotham-Bold,sans-serif;
     font-size: 48px;
     color: #292929;       	
 	background: rgba(255, 255, 255, 0.8);
@@ -1295,12 +1344,12 @@ a.about_group_btn:hover{
 	color: #2b7fc2;
 	text-transform: uppercase;
 	padding-bottom: 20px;
-	font-family: 'Gotham-Bold';
+	font-family: Gotham-Bold,sans-serif;
 }
 .write_for_us_text p{
 	font-size: 14px;
 	line-height: 20px;
-	font-family: 'Gotham-Light';
+	font-family: Gotham-Light,sans-serif;;
 }
 
 .write_for_us-icon-name{
@@ -1326,13 +1375,6 @@ a.about_group_btn:hover{
     padding: 11px 10px;
     font-size: 14px
 }
-.icon-name{
-	background: #ebebeb;
-    padding: 12px 14px;
-    margin-right: 5px;
-    display: block;
-    float: left;
-}
 .icon-phone{
 	background: #ebebeb;
     padding: 12px 14px;
@@ -1340,11 +1382,12 @@ a.about_group_btn:hover{
     display: block;
     float: left;
 }
-.icon-mail{
+.icon-mail, .icon-name{
 	background: #ebebeb;
-    padding: 11px 12px;
+    padding: 10px 12px;
     margin-right: 5px;    
-    float: left;
+    float: left;    
+    font-size: 21px;
 }
 .form_write_for_us_mail{
 	width: 85%;
@@ -1371,7 +1414,7 @@ a.about_group_btn:hover{
     background: #ebebeb;
     margin-top: 20px;
     margin-bottom: 30px;
-    font-family: 'Gotham-Light';
+    font-family: Gotham-Light,sans-serif;;
     font-size: 14px;
     padding: 10px;
 }
@@ -1388,7 +1431,7 @@ p.btn_send_write_for_us input[type=submit]{
     text-transform: uppercase;      
     color: #fff;    
     background: #2b7fc2;
-    font-family: 'Gotham-Bold';
+    font-family: Gotham-Bold,sans-serif;
 }
 p.btn_send_write_for_us input[type=submit]:hover{
 	text-decoration: none;
@@ -1425,7 +1468,7 @@ color: #2b7fc2;
 }
 .privacy_text_banner h1{
 	text-transform: uppercase;   
-    font-family: 'Gotham-bold';
+    font-family: Gotham-Bold,sans-serif;
     font-size: 48px;
     color: #292929;       	
 	background: rgba(255, 255, 255, 0.8);
@@ -1444,13 +1487,13 @@ color: #2b7fc2;
 }
 .main-privacy h4{
 	padding-bottom:18px ;	
-	font-family: 'Gotham-Bold';
+	font-family: Gotham-Bold,sans-serif;
 	font-size: 14px;
 }
 .main-privacy p{
 	padding-bottom: 40px;
 	line-height: 26px;
-	font-family: 'Gotham-Light';
+	font-family: Gotham-Light,sans-serif;;
 	font-size: 14px;
 }
 .privacy_content .subcribe{
@@ -1470,24 +1513,23 @@ color: #2b7fc2;
 	height:310px ;
 }
 .fashion_news_text_banner{
-	text-align: center;	
+    text-align: center;
     height: 80px;
-    width: 300px;
+    width: auto;
     position: absolute;
-    top: 15%;
+    top: 20%;
     left: 50%;
     transform: translateX(-50%);
 }
 .fashion_news_text_banner h1{
-	text-transform: uppercase;   
-    font-family: 'Gotham-bold';
+    margin: 0;
+    text-transform: uppercase;
+    font-family: Gotham-Bold,sans-serif;
     font-size: 48px;
     line-height: 80px;
-    color: #292929;       	
-	background: rgba(255, 255, 255, 0.8);
-    box-shadow: 0px 0px 0px 0px rgba(255, 255, 255, 0.8);
-    -moz-box-shadow: 0px 0px 0px 0px rgba(255, 255, 255, 0.8);
-    -webkit-box-shadow: 0px 0px 0px 0px rgba(255, 255, 255, 0.8);
+    color: #292929;
+    background: rgba(255, 255, 255, 0.8);    
+    padding: 0 40px;
 }
 .fashion_news_banner .subcribe{
 	margin-top: 95px;
@@ -1521,6 +1563,11 @@ color: #2b7fc2;
 	width: 205px;
 	height: 205px;
 }
+.fashion_post_content .post_thumbnail a{
+    width: 100%;
+    height: 100%;
+    display: block;
+}
 img.size-post-thumbnail{
 	float:left;
 	display: block;
@@ -1539,7 +1586,8 @@ img.size-post-thumbnail{
 	text-transform: uppercase;
 	color: #363636;
 	padding-top: 20px;
-	font-family: 'Gotham-Bold';
+	font-family: Gotham-Bold,sans-serif;
+	margin: 0;
 }
 .fashion_text h4 a{
 	color: #363636;
@@ -1562,15 +1610,23 @@ img.size-post-thumbnail{
 .fashion_text p{
 	font-size: 14px;
 	line-height: 20px;
+	margin: 0;
+    display: table-cell;
+    vertical-align: middle;
 }
 .fashion_text .guild_item_action{
-	margin-top: 0px;
+	margin-top: 15px;
 	float:left;
 }
+
 .fashion_text .guild_item_action .guild_item_action_social{
 	float:left;
 	margin-left: 30px;
-	margin-top: 5px;
+	margin-top: 0;
+	padding: 0;
+    display: table;
+    vertical-align: middle;
+    height: 30px;
 }
 .fashion_text .guild_item_action .guild_item_action_social img{
 	display:inline-block;
@@ -1593,14 +1649,16 @@ img.size-post-thumbnail{
 }
 .right_content .search .search-form-head,.right_content .search .search-form-head .search-form{     
 	width: 100%;
-	margin-left: 0;
+	margin: 0;
 }
 .right_content .search img{
 	
 }
-.fashion_news_recent_post{
+.fashion_news_recent_post,div#recent-posts-2, div#archives-2,div#categories-2{
 	float: left;
+	width: 100%;
 }
+
 .right_content h3{
 	padding-top: 10px;
 	padding-bottom: 10px;
@@ -1611,7 +1669,7 @@ img.size-post-thumbnail{
 	background: #2b7fc2;
 	margin-bottom: 20px;
     margin-top: 40px;
-	font-family: 'Gotham-Bold';
+	font-family: Gotham-Bold,sans-serif;
 }
 .resent_post_item1{
 	display: block;
@@ -1621,7 +1679,7 @@ img.size-post-thumbnail{
 }
 .resent_post_item1 img{
 	width:60px ;
-	height:60px;
+	height:auto;
 	float:left;
 	display: block;
 }
@@ -1710,7 +1768,7 @@ img.size-post-thumbnail{
 .fashion_news_categories ul li i.fa-angle-right{
 	float:left;
 	padding-right: 10px;
-	color: 2b7fc2;
+	color: #2b7fc2;
 }
 .fashion_news_categories ul li a{
 	color: #2e2e2e;
@@ -1741,7 +1799,7 @@ a.btn_become_a_contributor{
     text-transform: uppercase;      
     color: #2b7fc2;    
     background: #fff;
-    font-family: 'Gotham-Bold';
+    font-family: Gotham-Bold,sans-serif;
     text-align: center;
    
 }
@@ -1763,17 +1821,18 @@ a.btn_become_a_contributor:hover{
 .post_content_view img.thumb_post_view{
 	width: 100%;
 }
-.text_full h4{
+.text_full .title-post{
 	padding-top: 30px;
 	width: 100%;
-display: block;
-float: left;
+	display: block;
+	float: left;
 }
-.text_full h4 a{
+.text_full .title-post a{
 	color: #2b7fc2;
 	font-size: 24px;
+	text-transform: uppercase;
 }
-.text_full h4 a:hover{
+.text_full .title-post a:hover{
 	text-decoration: none;
 	background: #ebebeb;
 	-webkit-transition: all .55s ease;
@@ -1796,7 +1855,7 @@ float: left;
 	color: #b2b0b0;
 	padding: 0 10px;
 	font-size: 14px;
-	
+    font-weight: bold;
 }
 .post_content_view img.wp-post-image{
 	width: 100%;
@@ -1811,7 +1870,7 @@ float: left;
 .post_content_view .text_full h5{
 	color: #292929;	
 	padding-bottom: 30px;
-	font-family: 'Gotham-Bold';
+	font-family: Gotham-Bold,sans-serif;
 	font-size: 14px;
 }
 .post_content_view .text_full .guild_item_action{
@@ -1832,7 +1891,6 @@ float: left;
 }
 .post_comments_view {
 	width: 100%;	
-	padding-bottom: 80px;
 }
 .post_comments_view h3{
 	font-size: 18px;
@@ -1875,7 +1933,7 @@ float: left;
 	float: left;
 	padding-bottom: 0px;
 	padding-top: 0px;
-	font-family: 'Gotham-Bold';
+	font-family: Gotham-Bold,sans-serif;
 }
 .comment_item_text_tit .time_post_comments{
 	float:right;
@@ -1914,7 +1972,7 @@ float: left;
 	display: block;
 	width: 100%;
 	text-transform: uppercase;
-	font-family: 'Gotham-Bold';
+	font-family: Gotham-Bold,sans-serif;
 }
 .post_comments_view .form_contact {
 	padding-top: 20px;
@@ -1940,7 +1998,7 @@ float: left;
 }
 .tip_and_trick_text_banner h1{
 	text-transform: uppercase;   
-    font-family: 'Gotham-bold';
+    font-family: Gotham-Bold,sans-serif;
     font-size: 48px;
     color: #292929;       	
 	background: rgba(255, 255, 255, 0.8);
@@ -1982,7 +2040,7 @@ float: left;
     position: relative;
     border-radius: 50%;
     background: #fff;
-    box-shadow: 0px 10px 15px 7px rgba(0,0,0,.15);
+    box-shadow: 0px 10px 15px 6px rgba(0,0,0,.15);
 }
 .img_icon-tipatrick1:after{
     content: "";
@@ -1996,6 +2054,7 @@ float: left;
     background: -o-linear-gradient(red, yellow);
     background: -moz-linear-gradient(red, yellow);
     background: linear-gradient(90deg,#d6d6d6, #f5f5f5);
+    z-index: 3;
 }
 .tip_and_trick_item_left  .icon-tipatrick{
 	position: absolute;
@@ -2003,9 +2062,27 @@ float: left;
 	margin-top: 45px;
 }
 .tip_and_trick_item_text_left{
-	background: transparent url("images/left-content_tip_and_trick.png") no-repeat scroll 0% 0%;
-	height: 208px;
-	margin-left: 136px;
+	/* background: transparent url("images/left-content_tip_and_trick.png") no-repeat scroll 0% 0%; */
+	height: 201px;
+    margin-left: 0;
+    position: relative;
+    background: linear-gradient(90deg,#e6e6e6, #f7f7f7);
+    border-radius: 100px;
+    padding-left: 137px;
+    z-index: 2;
+    box-shadow: 0px 0px 10px 4px rgba(0,0,0,.15);
+}
+.tip_and_trick_item_text_left:before{
+    content: "";
+    position: absolute;
+    width: 200px;
+    top: 0;
+    bottom: 0;
+    left: 0px;
+    border-radius: 50%;
+    z-index: -1;
+    box-shadow: 6px 0px 0px 1px rgba(0,0,0,.15);
+    background: transparent;
 }
 .tip_and_trick_item_left img{	
 	float:left;	   
@@ -2013,7 +2090,7 @@ float: left;
 
 .tip_and_trick_item_text_left h3{
 	font-size: 18px;
-	font-family: 'Gotham-Bold';
+	font-family: Gotham-Bold,sans-serif;
 	text-transform: uppercase;
 	padding-top:30px ;
 	padding-bottom: 20px;
@@ -2047,7 +2124,7 @@ margin-right: 210px;
 }
 .tip_and_trick_item_text_right h3{
 	font-size: 18px;
-	font-family: 'Gotham-Bold';
+	font-family: Gotham-Bold,sans-serif;
 	text-transform: uppercase;
 	padding-top:30px ;
 	padding-bottom: 20px;		
@@ -2074,7 +2151,7 @@ a.btn_tip_and_trick_bottom{
     text-transform: uppercase;      
     color: #2b7fc2;    
     background: #dddddd;
-    font-family: 'Gotham-Bold';
+    font-family: Gotham-Bold,sans-serif;
    	margin-top: 30px;   
 }
 a.btn_tip_and_trick_bottom:hover{
@@ -2212,8 +2289,8 @@ a.btn_tip_and_trick_bottom:hover{
 	text-transform: uppercase;
 	color: #FFF;
 	background: #2B7FC2 none repeat scroll 0% 0%;
-	margin-top: 30px;
-	font-family: 'Gotham-Bold';
+	font-family: Gotham-Bold,sans-serif;
+    margin-bottom: 70px;
 }
 #submit:hover{
 	text-decoration: none;
@@ -2260,8 +2337,8 @@ textarea.form{
     height: 115px;
     background: #ebebeb;
     margin-top: 20px;
-    margin-bottom: 30px;
-    font-family: 'Gotham-Light';
+    margin-bottom: 10px;
+    font-family: Gotham-Light,sans-serif;;
     font-size: 14px;
     padding: 10px;
 }
@@ -2284,6 +2361,7 @@ textarea.form{
 }
 .comment-metadata{
 	float: right;
+    line-height: 1em;
 }
 .comment-author vcard{
 	
@@ -2294,7 +2372,7 @@ textarea.form{
         float: left;
     padding-bottom: 0px;
     padding-top: 0px;
-    font-family: 'Gotham-Bold';
+    font-family: Gotham-Bold,sans-serif;
         color: #2b2b2b;
 }
 .search-field{
@@ -2322,24 +2400,16 @@ textarea.form{
 .fashion_text .guild_item_action .guild_item_action_social span{
 	float: left;
 }
-.guild_item_action_social a:hover {
-    background: #2b7fc3;
-    -webkit-transition: all .55s ease;
-  -moz-transition: all .55s ease;
-  -ms-transition: all .55s ease;
-  -o-transition: all .55s ease;
-  transition: all .55s ease;
-}
+
 #pbd-alp-load-posts{
 	margin-top: 40px;
 	text-align: center;
 	margin-bottom: 80px;
-	display: none;
 }
 .load_more_post p{
 	text-transform: uppercase;
 	color:#b5b5b5;
-	font-family: 'Gotham-Bold'; 
+	font-family: Gotham-Bold,sans-serif; 
 }
 a.btn_load_more_post{
 	width: 30px;
@@ -2385,7 +2455,7 @@ a.btn_load_more_post:hover{
 }
 .page_text_banner h1{
 	text-transform: uppercase;
-    font-family: 'Gotham-bold';
+    font-family: Gotham-Bold,sans-serif;
     padding: 8px 30px;
     font-size: 48px;
     color: #292929;
@@ -2394,7 +2464,7 @@ a.btn_load_more_post:hover{
     -webkit-background: 0px 0px 0px 10px rgba(255, 255, 255, 0.8);
 }
 .menu-item-has-children{
-	background: url(images/arrow-208-11.png) no-repeat center right;
+	background: url(images/arrow-208-11.png) no-repeat 92% 50%;
 	line-height: 20px;
 }
 .main_content .subcribe {
@@ -2405,34 +2475,36 @@ a.btn_load_more_post:hover{
 	float:left;
 	margin-right: 30px;
 }
-.content_page{
+/* .content_page{
 	padding-bottom: 50px;
-}
+} */
 .pagination_page{
 	margin-bottom: 50px;
 	text-align: center;
 }
 ul.children {
     margin-top: 38px;
-    margin-left: 100px;
+    margin-left: 13%;
 }
-span.text-299 input[type=text]{
+ul.children ul.children{
+	margin-left: 0;
+}
+ul.children .comment-author.vcard{
+	width: 14.7%;
+}
+ul.children .comment-content{
+	width: 85.3%;
+}
+.form_contact span.wpcf7-form-control-wrap input.wpcf7-text{
 	width: 42%;
 	background: #EBEBEB none repeat scroll 0% 0%;
 	border: 1px solid #EBEBEB;
-	padding: 12.5px 10px;
+	padding: 7px 10px;
 	font-size: 14px;
 	float: left;
+}
+.form_contact span.wpcf7-form-control-wrap input[type=text]{
 	margin-right: 20px;
-}
-span.email-529 input[type=email]{
-	width: 42%;
-	background: #EBEBEB none repeat scroll 0% 0%;
-	border: 1px solid #EBEBEB;
-	padding: 12.5px 10px;
-	font-size: 14px;
-	float: left;
-
 }
 span.text-288 input[type=text]{
     width: 28%;
@@ -2478,6 +2550,7 @@ span.tel-970 input[type=tel]{
     color: #2b7fc2;
     font-size: 10px;
     line-height: 1.42857143;
+    padding-right: 5px;
 }
 .right_content ul li a{
     color: #2e2e2e;
@@ -2507,7 +2580,7 @@ span.tel-970 input[type=tel]{
 	text-transform: uppercase;
 	font-size: 36px;
 	line-height: 30px;
-	font-family: 'Gotham-Bold';
+	font-family: Gotham-Bold,sans-serif;
 	margin-bottom: 20px;	
 }
 .form-register{
@@ -2518,7 +2591,7 @@ span.tel-970 input[type=tel]{
 	
 }
 .form-group label {
-	font-family: 'Gotham-Light';
+	font-family: Gotham-Light,sans-serif;;
 	font-size: 16px;
 	line-height: 30px;
 	padding-bottom: 3px;
@@ -2557,7 +2630,7 @@ span.tel-970 input[type=tel]{
     text-transform: uppercase;      
     color: #2b7fc2;    
     background: #fff;
-    font-family: 'Gotham-Bold';
+    font-family: Gotham-Bold,sans-serif;
     text-align: center;
 }
 .btn-submit-register button.btn-primary:hover{
@@ -2580,4 +2653,178 @@ span.tel-970 input[type=tel]{
 .es_msg{
 	position: absolute;
 	bottom: 0;
+}
+/****** CSS WRITER FOR US ******/
+div#user-submitted-posts fieldset label{
+	display: none;
+}
+fieldset.usp-name,fieldset.usp-url,fieldset.usp-email, fieldset.usp-phone{
+	width: 32%;
+	float: left;
+}
+fieldset.usp-content{
+	width: 100%;
+	float: left;
+}
+div#user-submitted-posts textarea.usp-textarea{
+	min-height: 400px;
+	padding: 20px;
+}
+div#user-submitted-posts fieldset input.usp-input{
+    background: #EBEBEB none repeat scroll 0% 0%;
+    border: none;
+    padding: 10px;
+    font-size: 14px;
+    float: none;
+    width: 86%;
+}
+fieldset.usp-name:before, .contact-icon-name:before{
+    content: "\f007";
+    font-family: FontAwesome;
+    display: inline-block;
+    text-align: center;
+    font-size: 19px;
+    line-height: 38px;
+    background: #EBEBEB;
+    margin-right: 2%;
+    width: 11%;
+    height: 40px;
+}
+fieldset.usp-email:before, .contact-icon-mail:before{
+    content: "\f0e0";
+    font-family: FontAwesome;
+    display: inline-block;
+    text-align: center;
+    font-size: 19px;
+    line-height: 38px;
+    background: #EBEBEB;
+    margin-right: 2%;
+    width: 11%;
+    height: 40px;
+}
+.contact-icon-mail:before{
+	float: left;
+}
+.contact-icon-mail:before,.contact-icon-name:before{
+	margin-right: 1%;
+}
+fieldset.usp-phone:before{
+    content: "\f095";
+    font-family: FontAwesome;
+    display: inline-block;
+    text-align: center;
+    font-size: 19px;
+    line-height: 38px;
+    background: #EBEBEB;
+    margin-right: 2%;
+    width: 11%;
+    height: 40px;
+}
+div#usp-submit{
+	margin-bottom: 0;
+	text-align: center;    
+	width: 100%;
+    float: left;
+}
+div#user-submitted-image{
+	width: 100%;
+}
+fieldset.usp-title,div#user-submitted-posts fieldset.usp-title input.usp-input{
+	width: 100%;
+}
+fieldset.usp-category{
+	width: 100%;
+}
+div#user-submitted-posts fieldset{
+	float: left;
+}
+div#user-submitted-posts fieldset.usp-email {
+    margin: 10px 2%;
+}
+.subcribe input::-webkit-input-placeholder {
+   color: #1e1e1e;
+}
+
+.subcribe input:-moz-placeholder { /* Firefox 18- */
+   color: #1e1e1e;  
+}
+
+.subcribe input::-moz-placeholder {  /* Firefox 19+ */
+   color: #1e1e1e;  
+}
+
+.subcribe input:-ms-input-placeholder {  
+   color: #1e1e1e;  
+}
+
+.subcribe.subcribe-page input::-webkit-input-placeholder {
+   color: #a7a7a7;
+}
+
+.subcribe.subcribe-page input:-moz-placeholder { /* Firefox 18- */
+   color: #a7a7a7;  
+}
+
+.subcribe.subcribe-page input::-moz-placeholder {  /* Firefox 19+ */
+   color: #a7a7a7;  
+}
+
+.subcribe.subcribe-page input:-ms-input-placeholder {  
+   color: #a7a7a7;  
+}
+
+/*single*/
+.reply{
+	position: absolute;
+	bottom: 0;
+	right: 0;
+}
+a.comment-reply-link:after{
+    content: "\f178";
+    font-family: FontAwesome;
+    font-weight: bold;
+    padding-left: 8px;
+    color: #2b7fc2;	
+}
+
+ol.commentlist{
+	border-bottom: solid 1px #e1e1e1;
+	width: 100%;
+    float: left;
+}
+.comment-author.vcard{
+    width: 13%;
+    float: left;
+}
+b.fn{
+	position: absolute;
+	line-height: 1em;
+	color: #292929;
+	font-family: Gotham-Bold,sans-serif;;
+}
+span.says{
+	display: none;
+}
+.comment-body{
+    position: relative;
+    width: 100%;
+    float: left;
+    margin-bottom: 38px;
+}
+.comment-content{
+    width: 87%;
+    text-align: left;
+    float: left;
+    border-top: solid 1px #e1e1e1;
+    margin-top: 5px;
+}
+.comment-content p{
+	color: #353535;
+}
+time{
+	line-height: 1em;
+}
+p.form-submit{
+    width: 100%;
+    float: left;
 }

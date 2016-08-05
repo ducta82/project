@@ -38,29 +38,31 @@ get_header();?>
       </div><!-- End home_banner-->
       
       <div class="home_slider">         
-            <div class="wrap_content">  
-            <?php if(have_rows('slider_post')):?>             
-              <div class="slider1">
-                  <?php                 
-                while (have_rows('slider_post')):the_row('slider_post');
-                $image = get_sub_field('image');
-                $title = get_sub_field('text');
-                $link = get_sub_field('link');            
-            ?>            
-                  <div class="slide">
-                    <a href="<?php echo $link ?>">
-                      <img src="<?php echo $image['url'] ?>" >
-                      <span class="bx-caption"><span><?php echo $title?></span></span>
-                    </a>      
-                  </div>                                    
-               
-                  <?php endwhile; ?>
-                  
-              </div>
-              <?php endif;?>  
-            </div>             
-            </div><!-- End home_slider -->
-      
+        <div class="wrap_content">
+          <?php 
+            $arg = array(
+                'post_type'=>'post',
+                'posts_per_page'=>-1
+              );
+            $the_query = get_posts($arg);
+          ?>  
+          <?php if($the_query):?>             
+            <div class="slider1">
+          <?php                 
+            foreach ($the_query as $value) {
+              $url = wp_get_attachment_url( get_post_thumbnail_id($value->ID) ) ? wp_get_attachment_url( get_post_thumbnail_id($value->ID) ) : get_bloginfo('template_url').'/images/link-2.jpg';
+              ?>
+                <div class="slide">
+                  <a href="<?php echo get_permalink($value->ID); ?>">
+                    <img src="<?php echo $url; ?>" >
+                    <span class="bx-caption"><span><?php echo $value->post_title; ?></span></span>
+                  </a>      
+                </div>   
+              <?php } ?>              
+            </div>
+            <?php endif;?>  
+          </div>             
+        </div><!-- End home_slider -->
       <div class="home_guild">
          <div class="wrap_content">       
           <div class="guild_title">
@@ -100,28 +102,28 @@ get_header();?>
                       ?>
                         <div class="guild_item_1"> 
                            <a href="<?php the_permalink(); ?>" class="thubmail-link" style="background:url(<?php the_post_thumbnail_url();?>) center center no-repeat; background-size:cover;" title="<?php the_title_attribute(); ?>">
-                              <?php the_post_thumbnail('post-thumbnail',array('class'=>'thumb_guild_item_1')); ?>
+                              <?php //the_post_thumbnail('custom-size',array('class'=>'thumb_guild_item_1')); ?>
                           </a>
                           <div class="guild_item_author">
                             <?php
-                               /* $url = get_permalink();
+                                $url = get_permalink();
                                 $socialCounts = new socialNetworkShareCount(array(
                                     'url' => $url,
                                     'facebook' => true,
-                                    'twitter' => true,
+                                    /*'twitter' => true,*/
                                     'pinterest' => true,
                                     'linkedin' => true,
                                     'google' => true
                                 ));
-                                $total = json_decode($socialCounts->getShareCounts());*/   
+                                $total = json_decode($socialCounts->getShareCounts());   
                             ?>
                              <a>by <?php the_author(); ?></a>
                              <a><?php echo $value->name?></a>
-                             <a><?php comments_popup_link('No Comments', '1 Comment', '% Comments'); ?></a>
-                             <a><?php echo /*$total->total.*/'0 share';?></a>
+                             <?php comments_popup_link('No Comments', '1 Comment', '% Comments'); ?>
+                             <a><?php echo $total->total.' share';?></a>
                           </div>
                           <div class="guild_item_1_content">
-                            <h3><a href="<?php the_permalink(); ?>"><?php the_title();?></a></h3>
+                            <h3><a href="<?php the_permalink(); ?>"><?php the_title_max_charlength(50);?></a></h3>
                             <img alt="" src="<?php echo get_template_directory_uri();?>/images/Rectangle5.png">
                             <p><?php the_excerpt_max_charlength(187); ?></p>   
                           </div>  
@@ -179,7 +181,7 @@ get_header();?>
                                     <a href="<?php the_permalink();?>"><?php the_title();?></a>
                                     <div class="line"></div>
                                     <p class="date">
-                                      <?php the_time('F jS, Y'); ?>
+                                      <?php the_time('jS F, Y'); ?>
                                     </p>
                                 </div>
                             </div>
@@ -196,9 +198,8 @@ get_header();?>
           <h2><a href="http://realvsfakeguide.onegovn.com/tip-and-trick/">tips and tricks</a></h2>
           <img src="<?php echo get_template_directory_uri();?>/images/Rectangle5.png">
         </div>
-        <div class="tips_and_tricks_content">
-          <div class="wrap_content">
-          
+        <div class="wrap_content">
+          <div class="tips_and_tricks_content">
             <div class="tips_and_tricks_item">
               <img src="<?php echo get_template_directory_uri();?>/images/verify.png">
               <p><a href="http://realvsfakeguide.onegovn.com/tip-and-trick/">VERIFY WITH THE SOURCE</a></p>

@@ -19,24 +19,19 @@
 				
 							// If comments are open or we have at least one comment, load up the comment template.
 							if ( comments_open() || get_comments_number() ) {
-								comments_template();
+								comments_template('comments.php');
 							}			
 							// End of the loop.
 						endwhile;
 						?>
 					</div>  
-	   			</div>
-	   		<div class="subcribe">					
-	 			<div class="wrap_content">
-	 				
-		  			<span>SUBSCRIBE TO NEW LETTERS</span>
-		  			
-		  	<input type="text" placeholder="Enter your email"> 		
-		  			<a href="#" class="btn_subscribe">Subscribe</a> 
-	 			</div>
-   			</div>	
-   		</div>
-   		  		
-    </div>
+	   			</div>	
+	   		<div class="subcribe subcribe-page">          
+	        <div class="wrap_content">
+	            <span>SUBSCRIBE TO NEW LETTERS</span>
+	           <?php es_subbox( $namefield = "NO", $desc = "", $group = "" ); ?>
+	        </div>
+	        </div>
+    	</div>
 
 <?php get_footer();?>

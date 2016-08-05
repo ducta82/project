@@ -1,45 +1,76 @@
 <?php get_header(); ?>	
         <div id='bttop'><img src="<?php echo get_template_directory_uri();?>/images/icon-back-to-top.png"></div>
         <div class="container-fuild">
+        	<?php
+       	$categories = get_the_category( $post->ID );
+       	$cat_id = $categories[0]->term_id; 
+		$imgcat = get_field( "image_category",'category_'.$cat_id);
+		?>	
+			<div class="image_category" style="background:url('<?php echo $imgcat;?>') center center no-repeat;background-size:cover;">           
+	       		<div class="fashion_news_text_banner">
+	       			<h1><?php echo $categories[0]->cat_name; ?></h1>    			
+	       		</div>
+	       		<div class="subcribe">
+	   					<div class="wrap_content">
+		   					<span>SUBSCRIBE TO NEW LETTERS</span> 
+	       					<?php es_subbox( $namefield = "NO", $desc = "", $group = "" ); ?>
+	   					</div>
+	   			</div>                      
+	   		</div><!-- End home_banner-->
             <div class="wrap_content">
             <div class="main_content">
 	            <div class="left_content">
-	            <?php if(have_posts()) : while(have_posts()) :the_post();?>
+	            <?php if(have_posts()) : while(have_posts()) : the_post();?>
 	    			<div class="post_content_view">
    						<?php the_post_thumbnail(); ?>
    						<div class="text_full">
-   							<h4><a href="<?php the_permalink();?>"><?php the_title(); ?></a></h4>
+   							<h1 class="title-post"><a href="<?php the_permalink();?>"><?php the_title(); ?></a></h1>
    							<div class="guild_item_author">
+   							<?php
+   									$url = get_permalink();
+	                                $socialCounts = new socialNetworkShareCount(array(
+	                                    'url' => $url,
+	                                    'facebook' => true,
+	                                    /*'twitter' => true,*/
+	                                    'pinterest' => true,
+	                                    'linkedin' => true,
+	                                    'google' => true
+	                                ));
+	                                $total = json_decode($socialCounts->getShareCounts());
+   								?>
                                <a>by <?php the_author(); ?></a>
-                               <a><?php the_time('F jS, Y') ?></a>
-                               <a><?php the_category(', ') ?>.</a>
-                               <a><?php comments_popup_link('No Comments', '1 Comment', '% Comments'); ?></a>
-                               
-                             </div>
+                               <a><?php the_time('F j, Y'); ?></a>
+                               <?php the_category(', '); ?>
+                               <?php comments_popup_link('No Comments', '1 Comment', '% Comments'); ?>
+                               <a><?php echo $total->total.' share';?></a>
+                             </div>				
 		   					
 		   					<?php the_content();?>
 		   					<div class="guild_item_action">		   						
-		   						<div class="guild_item_action_social">
-		   							<p><span>Share:</span>
-		   								<a href="<?php echo get_field('share_face'); ?>"><img src="<?php echo get_template_directory_uri();?>/images/guild-icon-face.png"></a>
-		   								<a href="<?php echo get_field('share_twitter'); ?>"><img src="<?php echo get_template_directory_uri();?>/images/guild-icon-twi.png"></a>
-		   								<a href="<?php echo get_field('share_googleplus'); ?>"><img src="<?php echo get_template_directory_uri();?>/images/guild-icon-goo.png"></a>
-		   								<a href="<?php echo get_field('share_pinterest'); ?>"><img src="<?php echo get_template_directory_uri();?>/images/guild-icon-pri.png"></a>
-		   							</p>	
-		   						</div>	   						
+		   						<?php echo ButtonShare();?>						
 		   					</div>		   							   					  					
    						</div>
    					</div>
    					<div class="post_comments_view">
-		   					<?php if ( comments_open()) : comments_template(); endif; ?>									   						
+		   					<?php if ( comments_open() || get_comments_number() ) : comments_template(); endif; ?>									   						
 		   			</div>		 
 	            </div>
-	            <?php endwhile;?>
-	            <?php endif?>
+	            <?php endwhile; ?>
+	            <?php endif; ?>
 	            <div id="secondary" class="right_content" role="complementary">
 	            	<div class="search">
-	    				<?php get_search_form(); ?>	
-	    				
+    				<div class="search">
+	    				<div class="search-form-head">
+	    					 <form action="<?php echo home_url( '/' ); ?>" method="get" class="search-form">
+			                    <div class="input-group seach-header">
+			                        <input name="s" value="<?php the_search_query(); ?>" class="search-field" type="search" placeholder="Search" class="form-seach-header">
+									<input type="hidden" name="post_type" value="post" />
+									<input type="hidden" name="post_type" value="page" />
+									<button type="submit" class="search-submit"><i class="fa fa-search" aria-hidden="true"></i></button>
+			                    </div>
+			                </form>
+	    				</div>    
+	    			</div>
 	    			</div>
                     <div class="fashion_news_recent_post">
 	    				<h3>resent post</h3>

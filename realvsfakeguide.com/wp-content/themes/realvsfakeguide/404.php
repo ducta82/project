@@ -14,7 +14,20 @@
 					<p><?php esc_html_e( 'It looks like nothing was found at this location. Maybe try one of the links below or a search?', 'realvsfaceguild' ); ?></p>
 
 					<?php
-						get_search_form();
+						?>
+						<div class="search">
+		    				<div class="search-form-head">
+		    					 <form action="<?php echo home_url( '/' ); ?>" method="get" class="search-form">
+				                    <div class="input-group seach-header">
+				                        <input name="s" value="<?php the_search_query(); ?>" class="search-field" type="search" placeholder="Search" class="form-seach-header">
+										<input type="hidden" name="post_type" value="post" />
+										<input type="hidden" name="post_type" value="page" />
+										<button type="submit" class="search-submit"><i class="fa fa-search" aria-hidden="true"></i></button>
+				                    </div>
+				                </form>
+		    				</div>    
+		    			</div>
+						<?php
 						the_widget( 'WP_Widget_Recent_Posts' );						
 						/* translators: %1$s: smiley */
 						$archive_content = '<p>' . sprintf( esc_html__( 'Try looking in the monthly archives. %1$s', 'realvsfaceguide' ), convert_smilies( ':)' ) ) . '</p>';

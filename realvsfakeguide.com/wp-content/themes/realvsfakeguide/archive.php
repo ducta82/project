@@ -13,14 +13,24 @@
    						</div>
    						<div class="fashion_text">
    							<h4><a href="<?php the_permalink();?>"><?php the_title(); ?></a></h4>
-   							<div class="guild_item_author">
+   							<?php
+   									$url = get_permalink();
+	                                $socialCounts = new socialNetworkShareCount(array(
+	                                    'url' => $url,
+	                                    'facebook' => true,
+	                                    'twitter' => true,
+	                                    'pinterest' => true,
+	                                    'linkedin' => true,
+	                                    'google' => true
+	                                ));
+	                                $total = json_decode($socialCounts->getShareCounts());
+   								?>
                                <a>by <?php the_author(); ?></a>
-                               <a><?php the_time('F jS, Y') ?></a>
-                               <a><?php the_category(', ') ?>.</a>
-                               <a><?php comments_popup_link('No Comments', '1 Comment', '% Comments'); ?></a>
-                               
-                             </div>		
-		   					<p><?php the_excerpt(); ?></p>   					   											 							 	
+                               <?php the_category(', '); ?>
+                               <?php comments_popup_link('No Comments', '1 Comment', '% Comments'); ?>
+                               <a><?php echo $total->total.' share';?></a>
+                             </div>			
+		   					<p><?php the_excerpt_max_charlength(300);  ?></p>  			   											 							 	
 		   					<div class="guild_item_action">		   					
 		   						<a href="<?php the_permalink();?>" class="btn_readmore_guild_item">read more</a>
 		   						<div class="guild_item_action_social">

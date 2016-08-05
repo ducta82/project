@@ -45,16 +45,9 @@
    					
    				</div>
    				<div id="secondary" class="right_content" role="complementary">
-            	<div class="search">
-	    				<div class="search-form-head">
-                 <form action="<?php echo home_url( '/' ); ?>" method="get" class="search-form">
-                    <div class="input-group seach-header">
-                        <input name="s" value="<?php the_search_query(); ?>" class="search-field" type="search" placeholder="search..." class="form-seach-header">
-                        <input type="hidden" name="post_type" value="post" />
-                        <input type="hidden" name="post_type" value="page" />
-                    </div>
-                  </form>
-              </div>      
+	            	<div class="search">
+	    				<?php get_search_form(); ?>	
+	    				
 	    			</div>
                     <div class="fashion_news_recent_post">
 	    				<h3>resent post</h3>

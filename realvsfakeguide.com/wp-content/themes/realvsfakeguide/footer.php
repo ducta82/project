@@ -23,7 +23,7 @@
    				<a href="#"><img src="<?php echo get_template_directory_uri();?>/images/1420802158_googlesplus-2.png"></a>
    				<a href="#"><img src="<?php echo get_template_directory_uri();?>/images/1420802158_printerset-2.png"></a>
    			</div>
-   			<p class="copyright">Copyright &copy; 2016 <a href="#">realvsfakeguide.com</a>. All rights reserved.<p>			
+   			<p class="copyright">Copyright &copy; 2016 <a href="#">realvsfakeguide.com</a>. All rights reserved.</p>			
    		</div>
    	</footer>	
 <?php wp_footer(); ?>

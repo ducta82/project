@@ -4,6 +4,7 @@ if ( ! function_exists( 'realvsfaceguild_setup' ) ) :
 function realvsfaceguild_setup() {
 	load_theme_textdomain( 'realvsfaceguild', get_template_directory() . '/languages' );
 	add_theme_support( 'automatic-feed-links' );
+    add_image_size( 'custom-size', 360, 250,  array( 'left', 'top' ) );
 	add_theme_support( 'title-tag' );
 	add_theme_support( 'post-thumbnails' );	
     register_nav_menus(
@@ -79,7 +80,9 @@ function realvsfaceguild_scripts() {
     wp_enqueue_script('bootstrap-script');    
     wp_register_script( 'custom-script', get_template_directory_uri() . "/js/custom.js", array('jquery') );
     wp_enqueue_script('custom-script');
-    	
+    wp_localize_script( 'custom-script', 'ajax_object', array(
+        'ajax_url' => admin_url( 'admin-ajax.php' )     
+    ));	
     if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
         wp_enqueue_script( 'comment-reply' );
     }
@@ -198,6 +201,24 @@ function the_excerpt_max_charlength($charlength) {
         echo $excerpt;
     }
 }
+function the_title_max_charlength($charlength) {
+    $title = get_the_title();
+    $charlength++;
+
+    if ( mb_strlen( $title ) > $charlength ) {
+        $subex = mb_substr( $title, 0, $charlength - 5 );
+        $exwords = explode( ' ', $subex );
+        $excut = - ( mb_strlen( $exwords[ count( $exwords ) - 1 ] ) );
+        if ( $excut < 0 ) {
+            echo mb_substr( $subex, 0, $excut );
+        } else {
+            echo $subex;
+        }
+        echo '...';
+    } else {
+        echo $title;
+    }
+}
 /***Comments***/
 function raynoblog_change_submit_comment( $defaults ) {
     $defaults['label_submit'] = 'SUBMIT';
@@ -208,7 +229,7 @@ add_filter( 'comment_form_defaults', 'raynoblog_change_submit_comment' );
 add_filter( 'comment_form_defaults', 'rayno_comment_form_args' );
 function rayno_comment_form_args($defaults) {
     global $user_identity, $id;
-    $commenter = wp_get_current_commenter();
+   /* $commenter = wp_get_current_commenter();
     $req       = get_option( 'require_name_email' );
     $aria_req  = ( $req ? ' aria-required="true"' : '' );
     $author = 	'<div class="contact-icon-name">'.
@@ -218,23 +239,35 @@ function rayno_comment_form_args($defaults) {
     $email = 	'<div class="contact-icon-mail">'.
     			'<img class="icon-mail" src="http://realvsfakeguide.onegovn.com/wp-content/uploads/2016/07/contact-icon-mail.png">' .
              	'<input id="email" name="email" type="text" class="form_contact_mail" placeholder="Your email" value="' . esc_attr( $commenter['comment_author_email'] ) . '" size="30" tabindex="2"' . $aria_req . ' />' .            
- 				'</div>';
-    $comment_field = 	
-    				'<textarea id="comment" name="comment" class="form" placeholder="Massage" tabindex="4" aria-required="true"></textarea>' .
-                	'</br>';     
+ 				'</div>';*/
+    $comment_field = '<textarea id="comment" name="comment" class="form" placeholder="Massage" tabindex="4" aria-required="true"></textarea>';     
     $args = array(
-        'fields' => array(
-        'author' => $author,
-        'email'  => $email,),
         'comment_field'        => $comment_field,
-        'title_reply'          => __( 'COMMENTS'),
+        'title_reply'          => __( 'SUBMIT A COMMENT'),
         'comment_notes_before' => '',
         'comment_notes_after'  => '',
     );
     $args = wp_parse_args( $args, $defaults );
     return apply_filters( 'raynoblog_comment_form_args', $args, $user_identity, $id, $commenter, $req, $aria_req );
 }
+function custom_comment_form_fields($fields){
+    $commenter = wp_get_current_commenter();
+    $req       = get_option( 'require_name_email' );
+    $aria_req  = ( $req ? ' aria-required="true"' : '' );
+    unset($fields['url']);
+    $fields['author'] = '<div class="contact-icon-name"><input id="author" name="author" type="text" class="form_contact_name" placeholder="Your name" value="' . esc_attr( $commenter['comment_author'] ) . '" size="30" tabindex="1"' . $aria_req . '/></div>';
+    $fields['email'] = '<div class="contact-icon-mail"><input id="email" name="email" type="text" class="form_contact_mail" placeholder="Your email" value="' . esc_attr( $commenter['comment_author_email'] ) . '" size="30" tabindex="2"' . $aria_req . ' /></div>';
+    return $fields;
+}
+add_filter('comment_form_default_fields','custom_comment_form_fields');    
 
+function wpb_move_comment_field_to_bottom( $fields ) {
+$comment_field = $fields['comment'];
+unset( $fields['comment'] );
+$fields['comment'] = $comment_field;
+return $fields;
+}
+add_filter( 'comment_form_fields', 'wpb_move_comment_field_to_bottom' );
 
 function get_all_post_home_loop( $query ) {
     if ( is_home() && $query->is_main_query() )
@@ -260,11 +293,13 @@ if ( ! function_exists( 'wplift_pagination' ) ) {
 /************** Share Social ****************/
 function ButtonShare() {
 // Get current page URL 
+    $post_id = get_the_id();
     $crunchifyURL = str_replace( ' ', '%20', get_permalink());
     // Get current page title
     $crunchifyTitle = str_replace( ' ', '%20', get_the_title());
     // Get Post Thumbnail for pinterest
-    $crunchifyThumbnail = wp_get_attachment_image_src( get_post_thumbnail_id( $post->ID ), 'full' );
+    $thumbnail_id = get_post_thumbnail_id( $post_id );
+    $crunchifyThumbnail = wp_get_attachment_image_src( $thumbnail_id, 'full' );
     // Construct sharing URL without using any script
     $facebookURL = 'https://www.facebook.com/sharer/sharer.php?u='.$crunchifyURL;
     $googleURL = 'https://plus.google.com/share?url='.$crunchifyURL;
@@ -273,19 +308,15 @@ function ButtonShare() {
     ?>
     <div class="guild_item_action_social">  
         <p><span>Share: </span> 
-        <a href="http://www.facebook.com/sharer.php?u=<?php echo $crunchifyURL;?>" onclick="javascript:window.open(this.href,
-          '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');return false;" class="share-fb">
-        <img src="<?php echo bloginfo('template_url');?>/images/guild-icon-face.png" alt="Facebook" />
+        <a href="http://www.facebook.com/sharer.php?u=<?php echo $crunchifyURL;?>" onclick="javascript:window.open(this.href,'', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');return false;" class="share-fb">
+       <i class="fa fa-facebook" aria-hidden="true"></i>
         </a>
-        <a href="https://plus.google.com/share?url=<?php echo $crunchifyURL;?>" onclick="javascript:window.open(this.href,
-          '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');return false;"class="share-google"><img
-          src="<?php echo bloginfo('template_url');?>/images/guild-icon-goo.png" alt="Share on Google+"/></a>
         <a href="https://twitter.com/intent/tweet?text=<?php echo $crunchifyURL;?>&amp;url=<?php echo $crunchifyURL;?>&amp;via=Crunchify" onclick="javascript:window.open(this.href,
-        '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');return false;"class="share-twitter"><img
-        src="<?php echo bloginfo('template_url');?>/images/guild-icon-twi.png" alt="Share on twitter"/></a>
+        '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');return false;"class="share-twitter"><i class="fa fa-twitter" aria-hidden="true"></i>
+        <a href="https://plus.google.com/share?url=<?php echo $crunchifyURL;?>" onclick="javascript:window.open(this.href,
+          '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');return false;"class="share-google"><i class="fa fa-google-plus" aria-hidden="true"></i>
         <a href="https://pinterest.com/pin/create/button/?url=<?php echo $crunchifyURL;?>&amp;media=<?php echo $crunchifyThumbnail[0];?>&amp;description=<?php echo$crunchifyTitle; ?>" onclick="javascript:window.open(this.href,
-        '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');return false;"class="share-google"><img
-            src="<?php echo bloginfo('template_url');?>/images/guild-icon-pri.png" alt="Share on pinterest"/></a>
+        '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');return false;"class="share-google"><i class="fa fa-pinterest-p" aria-hidden="true"></i></a>
     </div>
     <?php
 }
@@ -324,10 +355,10 @@ class socialNetworkShareCount{
                 $this->getFacebookShares();
             }
 
-            // Get Twitter Shares
+           /* // Get Twitter Shares
             if(array_key_exists('twitter', $options)){
                 $this->getTwitterShares();
-            }
+            }*/
 
             // Get Twitter Shares
             if(array_key_exists('pinterest', $options)){
@@ -377,15 +408,15 @@ class socialNetworkShareCount{
     }
 
 
-    public function getTwitterShares(){
-        $api = file_get_contents( 'http://cdn.api.twitter.com/1/urls/count.json?url=' . $this->shareUrl );
+   /* public function getTwitterShares(){
+        $api = file_get_contents( 'https://api.twitter.com/1.1/search/tweets.json?q=' . $this->shareUrl );
         $count = json_decode( $api );
         if(isset($count->count) && $count->count != '0'){
             $this->twitterShareCount = $count->count;
         }
         $this->socialCounts['twittershares'] = $this->twitterShareCount;
         return $this->twitterShareCount;
-    }
+    }*/
 
 
     public function getPinterestShares(){
@@ -433,3 +464,102 @@ class socialNetworkShareCount{
     }
 
 }
+//ajax category
+
+add_action('wp_ajax_nopriv_more_post_ajax', 'more_post_ajax'); 
+add_action('wp_ajax_more_post_ajax', 'more_post_ajax');
+function more_post_ajax(){
+    $paged = isset($_POST["paged"]) ? $_POST["paged"] : 0;
+    $cat = isset($_POST["cat"]) ? $_POST["cat"]: 0;
+    header("Content-Type: text/html");
+    $args = array(
+        'cat'=> $cat,
+        'paged' => $paged,
+        );
+     //$wp_query = new WP_Query($args);
+    query_posts( $args );
+    if ( have_posts() ) {
+        while ( have_posts() ) : the_post();
+            ?>
+                <div class="fashion_post_content">
+                    <div class="post_thumbnail" style="background:url(<?php the_post_thumbnail_url(); ?>)center center no-repeat;background-size:cover;">                            
+                        <a href="<?php the_permalink();?>"><?php //the_post_thumbnail();?></a>
+                    </div>
+                    <div class="fashion_text">
+                        <h4><a href="<?php the_permalink();?>"><?php the_title_max_charlength(50); ?></a></h4>
+                        <div class="guild_item_author">
+                            <?php
+                                $url = get_permalink();
+                                $socialCounts = new socialNetworkShareCount(array(
+                                    'url' => $url,
+                                    'facebook' => true,/*
+                                    'twitter' => true,*/
+                                    'pinterest' => true,
+                                    'linkedin' => true,
+                                    'google' => true
+                                ));
+                                $total = json_decode($socialCounts->getShareCounts());
+                            ?>
+                            <a>by <?php the_author(); ?></a>
+                            <?php the_category(', ') ?>
+                            <?php comments_popup_link('No Comments', '1 Comment', '% Comments'); ?>
+                           <a><?php echo $total->total.' share';?></a>
+                         </div>         
+                        <p><?php the_excerpt_max_charlength(200);  ?></p>                       
+                        <div class="guild_item_action">                         
+                            <a href="<?php the_permalink();?>" class="btn_readmore_guild_item">read more</a>
+                            <?php echo ButtonShare();?>                         
+                        </div>
+                    </div>
+                </div>
+            <?php
+        endwhile;
+    } else {
+        echo '<p class="not-found">'.__( 'No products found' ).'</p>';
+    }
+    exit; 
+}
+//Comment 
+/**
+ * Theme comment
+ */
+function mytheme_comment($comment, $args, $depth) {
+     $GLOBALS['comment'] = $comment;
+    if ( 'div' === $args['style'] ) {
+        $tag       = 'div';
+        $add_below = 'comment';
+    } else {
+        $tag       = 'li';
+        $add_below = 'div-comment';
+    }
+    ?>
+    <<?php echo $tag ?> <?php comment_class( empty( $args['has_children'] ) ? '' : 'parent' ) ?> id="comment-<?php comment_ID() ?> style="">
+    <?php if ( 'div' != $args['style'] ) : ?>
+        <div id="div-comment-<?php comment_ID() ?>" class="comment-body">
+    <?php endif; ?>
+    <div class="comment-author vcard">
+        <div class="avatar-user">
+            <?php if ( $args['avatar_size'] != 0 ) echo get_avatar( $comment, $args['avatar_size'] ); ?>
+        </div>
+        <div class="cmt-text">
+            <div class="comment-meta commentmetadata"><a href="<?php echo htmlspecialchars( get_comment_link( $comment->comment_ID ) ); ?>">
+                <?php
+                /* translators: 1: date, 2: time */
+                printf( __('%1$s at %2$s'), get_comment_date(),  get_comment_time() ); ?></a><?php edit_comment_link( __( '(Edit)' ), '  ', '' );
+                ?>
+            </div>
+            <?php printf( __( '<cite class="fn">%s</cite>' ), get_comment_author_link() ); ?>
+            <?php comment_text(); ?>
+            <div class="reply">
+                <?php comment_reply_link( array_merge( $args, array( 'add_below' => $add_below, 'depth' => $depth, 'max_depth' => $args['max_depth'] ) ) ); ?>
+            </div>
+        </div>
+     </div>
+    <?php if ( $comment->comment_approved == '0' ) : ?>
+         <em class="comment-awaiting-moderation"><?php _e( 'Your comment is awaiting moderation.','justresidential-com-au' ); ?></em>
+          <br />
+    <?php endif; ?>
+    <?php if ( 'div' != $args['style'] ) : ?>
+    </div>
+    <?php endif;
+    }
