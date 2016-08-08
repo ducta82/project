@@ -29,7 +29,7 @@
 					<li><a href="<?php echo $twitter_url;?>" target="_blank"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
 					<li><a href="<?php echo $google_plus;?>" target="_blank"><i class="fa fa-google-plus" aria-hidden="true"></i></a></li>
 				</ul>
-				<img src="<?php echo bloginfo( 'template_url' );?>/images/logo-footer.png" alt="" class="logo-footer img-responsive">
+				<img src="<?php echo bloginfo('template_url');?>/images/logo-footer.png" alt="" class="logo-footer img-responsive">
 				<!-- <div class="menu-footer">
 					<ul>
 						<li><a href="#">PEPTIDE</a></li>

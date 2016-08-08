@@ -154,63 +154,6 @@ function wpcodex_add_excerpt_support_for_pages() {
 }
 add_action( 'init', 'wpcodex_add_excerpt_support_for_pages' );
 
-/*
-* Add custom post type
-*/
-/**
-* Registers a new post type
-* @uses $wp_post_types Inserts new post type object into the list
-*
-* @param string  Post type key, must not exceed 20 characters
-* @param array|string  See optional args description above.
-* @return object|WP_Error the registered post type object, or an error object
-*/
-function vegvalley_functions() {
-
-	$labels = array(
-		'name'                => __( 'Functions', 'vegvalley' ),
-		'singular_name'       => __( 'function', 'vegvalley' ),
-		'add_new'             => _x( 'Add New function', 'vegvalley', 'vegvalley' ),
-		'add_new_item'        => __( 'Add New function', 'vegvalley' ),
-		'edit_item'           => __( 'Edit function', 'vegvalley' ),
-		'new_item'            => __( 'New function', 'vegvalley' ),
-		'view_item'           => __( 'View function', 'vegvalley' ),
-		'search_items'        => __( 'Search Function', 'vegvalley' ),
-		'not_found'           => __( 'No Functions found', 'vegvalley' ),
-		'not_found_in_trash'  => __( 'No Functions found in Trash', 'vegvalley' ),
-		'parent_item_colon'   => __( 'Parent function:', 'vegvalley' ),
-		'menu_name'           => __( 'Functions', 'vegvalley' ),
-	);
-
-	$args = array(
-		'labels'                   => $labels,
-		'hierarchical'        => false,
-		'description'         => 'description',
-		'taxonomies'          => array(),
-		'public'              => true,
-		'show_ui'             => true,
-		'show_in_menu'        => true,
-		'show_in_admin_bar'   => true,
-		'menu_position'       => null,
-		'menu_icon'           => null,
-		'show_in_nav_menus'   => true,
-		'publicly_queryable'  => true,
-		'exclude_from_search' => false,
-		'has_archive'         => true,
-		'query_var'           => true,
-		'can_export'          => true,
-		'rewrite'             => true,
-		'capability_type'     => 'post',
-		'supports'            => array(
-			'title', 'editor', 'author', 'thumbnail',
-			'excerpt', 'page-attributes', 'post-formats'
-			)
-	);
-
-	register_post_type( 'function', $args );
-}
-
-add_action( 'init', 'vegvalley_functions' );
 function the_breadcrumb() {
 		echo '<nav class="vegvalley_breadcrumb">';
 	if (!is_home()) {
@@ -542,23 +485,20 @@ function vegvalley_function_block($atts){
 		<div role="tabpanel">
 			<!-- Nav tabs -->
 			<?php
-				$args = array(
-					'post_type' => 'function',
-					'order'=>'DESC',
-					'posts_per_page'=> -1
-				);
-				$query = query_posts($args);
+				if( have_rows('home_function',203)):
+				$rows = get_field('home_function',203); // get all the rows
+				endif;
 			?>
 			<section class="site-tabpanel">
 				<h3 class="site-top-caption">FUNCTION</h3>
 				<h2>FUNCTIONS of VEG VALLEY</h2>
 				<ul class="nav nav-tabs" role="tablist">
-					<?php if(have_posts()) :
+					<?php if(have_rows('home_function',203)) : 
 						$i = 1; $j = 1;
-						while (have_posts()) {
-							the_post();
+						while (have_rows('home_function',203)) {
+							the_row();
 							$href = '#tab'.$i.'';
-							$title = get_the_title();
+							$title = get_sub_field('name_function');
 							$active = $i == 1 ? 'active' : '';
 							$tab = sprintf('<li class="%1$s"><a href="%2$s" aria-controls="tab" role="tab" data-toggle="tab">%3$s</a></li>',$active,$href,$title);
 							echo $tab;
@@ -571,10 +511,10 @@ function vegvalley_function_block($atts){
 			<!-- Tab panes -->
 			<div class="tab-content">
 				<?php 
-						while (have_posts()) {
-							the_post();
+						while (have_rows('home_function',203)) {
+							the_row();
 							$href = 'tab'.$j.'';
-							$img = get_the_post_thumbnail_url();
+							$img = get_sub_field('img_function');
 							$active = $j == 1 ? 'active' : '';
 							
 							$tab = sprintf('<div " class="tab-pane %1$s" id="%2$s" style="
@@ -631,6 +571,7 @@ function add_to_wishlist( $array ) {
 // add the action 
 add_action( 'wp_ajax_nopriv_add_to_wishlist', 'add_to_wishlist', 10, 1 ); 
 add_action( 'wp_ajax_add_to_wishlist', 'add_to_wishlist', 10, 1 ); 
+<<<<<<< HEAD
 add_filter('woocommerce_get_discounted_price', 'new_price',10,2);
 function new_price($price, $values){
 	global $woocommerce;
@@ -649,6 +590,34 @@ function check_user(){
 	'meta_value'  => get_current_user_id()
 	) ) );
 	return $order;
+=======
+//quatity 
+add_action( 'wp_enqueue_scripts', 'wcqi_enqueue_polyfill' );
+function wcqi_enqueue_polyfill() {
+    wp_enqueue_script( 'wcqi-number-polyfill' );
+}
+
+//Discount price first register
+add_filter('woocommerce_get_discounted_price', 'Custom_price_new_customer', 10, 3);
+/**
+ * @param  $price   
+ * @return $price
+ */
+function Custom_price_new_customer($price, $values, $instance) {
+    if (!is_user_logged_in()) return $price;
+    if ( ! $price ) { return $price; }
+    $int = Check_user();
+    //check if user has't order discount price
+    if( $int<1 ) {    	
+        $price = intval($price) - 5;
+    }
+    return $price;
+}
+function Check_user(){
+	$user = wp_get_current_user();
+	$int = wc_get_customer_order_count( $user->ID );
+	return $int;
+>>>>>>> 66517c172a28c004874fcdaf9dd06ffac7dbb986
 }
 /**
  * Implement the Custom Header feature.

@@ -66,7 +66,12 @@ if ( ! defined( 'ABSPATH' ) ) {
 				<td><?php wc_cart_totals_coupon_html( $coupon ); ?></td>
 			</tr>
 		<?php endforeach; ?>
-
+		<?php $int = Check_user(); $new_price = '5'; if($int<1) :?>
+			<tr class="cart-user-discount?>">
+				<th><?php _e('New customer discount','woocommerce'); ?></th>
+				<td><?php  echo wc_price($new_price); ?></td>
+			</tr>
+		<?php endif;?>
 		<?php if ( WC()->cart->needs_shipping() && WC()->cart->show_shipping() ) : ?>
 
 			<?php do_action( 'woocommerce_review_order_before_shipping' ); ?>

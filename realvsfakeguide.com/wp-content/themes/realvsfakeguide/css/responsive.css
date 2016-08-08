@@ -1,0 +1,1250 @@
+@media (min-width: 600px){
+	.lastest_news_wrap .lastest_item:nth-child(2n+1) .item{
+		padding-bottom: 73.91%;
+	}
+	.lastest_news_wrap .lastest_item:nth-child(2n) .item{
+		padding-top: 73.91%;
+	}
+	.lastest_news_wrap .lastest_item:nth-child(2n+1) .item .content{
+		bottom:0;
+	}
+	.lastest_news_wrap .lastest_item:nth-child(2n) .item .content{
+		top:0;
+	}
+}
+@media (max-width: 1200px){
+	.wrap_content{
+		width: 83.824%;
+	}
+}
+@media (max-width: 1024px){
+	div#user-submitted-posts fieldset input.usp-input{
+		width: 85%;
+	}
+    .wrap_content img.logo{
+    	padding-left: 26px;
+    }
+    .search-form-head .search-form{
+    	margin-left: 0px;
+    }
+    ul.menu a{
+    	padding: 0px 15px;
+    }
+	ul.nav a {
+		text-decoration: none;
+		color: #fff;
+		display: block;
+		text-transform: uppercase;
+		padding: 0px 12px;
+		font-weight: bold;
+	}
+	ul.nav ul.sub_menu{
+		margin-right: 26px;
+	}	
+	.subcribe input[type="text"]{
+	    margin-left: 0;
+   	 	width: 90%;
+	}	
+	.subcribe span{
+		font-size: 22px;
+	}
+	.about_group_1, .about_group_2, .about_group_3 {	    
+	    display: block;
+	    margin-bottom: 20px;
+	}
+	.main-contact {	    
+	    width: 100%;
+	}
+	.left-contact{
+		width: 30%;
+	}
+	.right_contact{
+		width: 62%;
+	}
+	.form_contact .contact-icon-name .form_contact_name{
+		width: 71%;
+	}
+	.form_contact .contact-icon-mail .form_contact_mail{
+		width: 72%;
+	}
+	.main-disclaimer{
+		width: 100%;
+	}
+	.disclaimer_right_content{
+		width:74%;
+	}
+	.left_content{
+		width: 69%;
+	}
+	.right_content{
+		width: 27%;
+		margin-left: 2%;
+	}
+	.right_content .search{
+		width: 100%;
+	}
+	.fashion_text{
+		width: 60%;
+	}
+	a.btn_become_a_contributor{
+		margin-left: 0px;
+		width: 100%;
+		padding: 8px 8px;
+	}
+	.fashion_text h4{
+		padding-top: 12px;
+	}
+	.fashion_text .guild_item_author{
+		
+		margin-bottom: 5px;
+		padding-top: 5px;
+	}
+	.fashion_text p{
+		font-size: 13px;
+	}
+	.fashion_news_real_and_face{
+		width: 100%;
+	} 
+	.post_content_view img.thumb_post_view{
+		width: 100%;
+	}
+	.post_content_view {
+	    
+	    width: 100%;
+	}
+	.post_comments_view .form_contact .contact-icon-name input.form_contact_name {
+	    width: 78%;
+	}
+	.post_comments_view .form_contact .contact-icon-mail input.form_contact_mail {
+	    width: 78%;
+	}
+	.write_for_us-icon-name{
+		width: 31%;
+	}
+	.write_for_us-icon-mail{
+		width: 31%;
+	}
+	.write_for_us-icon-phone{
+		width: 31%;
+	}
+	.form_write_for_us_name{
+		width: 70%;
+	}
+	.form_write_for_us_mail{
+		width: 70%;
+	}
+	.form_write_for_us_phone{
+		width: 70%;
+	}
+	.guild_item_buton{
+		text-align: center;
+	}
+	
+	.guild_item_btn1 {
+	    text-align: center;	    
+	}
+	.lastest_news_wrap {    
+        width: 100%;
+        margin: 0 auto;
+        padding-top: 60px;
+    }
+	.group1_lastest_news_wrap{
+		overflow: hidden;
+	}
+	.group2_lastest_news_wrap{
+		overflow: hidden;
+	}
+	.tips_and_tricks_content{
+		width: 100%;    
+		float: left;
+	}
+	
+	.tip_and_trick_item_text_right {	    
+	    width: 91%;
+	    margin-left: -22px;
+	}
+	.home_slider_mask{
+		width: 184px;
+		margin-top: -63px;
+	}
+	.linhnguyen-modal {
+	    width: 350px;
+	    left: 34%;
+	    margin-left: 0px;
+	}
+	.linhnguyen-modal p {
+	    font-size: 22px;
+	    padding-top: 15px;
+	    padding-bottom: 25px;
+	    line-height: 30px;
+	    width: 93%;
+	    margin: 0 auto;
+	}
+	.form_sign_up_popup {
+	    width: 270px;
+	    margin: 0px auto;
+	}
+	.form_sign_up_popup img {
+	    position: absolute;
+	    margin-top: -32px;
+	    left: 0%;
+	    margin-left: 52px;
+	}
+	a.btn_sign_up_popup{
+		width: 100%;
+		padding: 11px 6px;
+	}
+	.linhnguyen-modal p{
+		font-size: 22px;
+		padding-top: 15px;
+		padding-bottom: 25px;		
+		width: 93%;
+		margin: 0px auto;
+	}
+	.linhnguyen-modal .bg_top{
+		height: 120px;
+	}
+    .guild_item_1 img.thumb_guild_item_1{
+        width: 100%;
+    }
+    .guild_item_1{
+        width: 100%;
+    }
+    .last_guild_item {
+        float: right;
+        margin-right: 0px;
+    }
+    .guild_item_action_social {
+        float: left;
+        padding-top: 0px;
+        padding-bottom: 15px;
+    }
+    a.btn_readmore_guild_item{
+        
+    }
+    .tips_and_tricks_item img{
+        width: 100%;
+        height: auto;
+    }
+    .tips_and_tricks_item {
+        width: 11%;
+    	margin: 0 2.66666667%;
+    }
+    .tips_and_tricks_item p a {
+        
+        font-size: 14px;
+    }
+    .bx-wrapper .bx-controls-direction a.bx-prev{
+        left: 10px;
+    }
+    .bx-wrapper .bx-controls-direction a.bx-next {
+        right: 10px;    
+    }
+    .avatar{
+    	margin-right: 8px;
+    }
+}
+/********************************  max-width: 980px  ******************************************/
+@media (max-width: 980px){
+	ul.menu li:hover ul.sub-menu{
+		-webkit-transition: none;
+	    -moz-transition: none;
+	    -ms-transition: none;
+	    -o-transition: none;
+	    transition: none;
+	}
+	.bx-wrapper .bx-controls-direction a.bx-next{
+		right: -8%;
+	}
+	.bx-wrapper .bx-controls-direction a.bx-prev{
+		left: -8%;
+	}
+	.avatar {
+    margin-right: 13px;
+	}
+	 .search{
+    	width: 47%;
+    }
+    .subcribe input[type="text"] {
+	    margin-left: 75px;
+	   	
+	}
+	.form_contact .contact-icon-name .form_contact_name{
+		width: 69%;
+	}
+	.form_contact .contact-icon-mail .form_contact_mail{
+		width: 70%;
+	}
+	.disclaimer_right_content{
+		width:70%;
+	}
+	.post_comments_view .form_contact .contact-icon-name input.form_contact_name {
+	    width: 77%;
+	}
+	.post_comments_view .form_contact .contact-icon-mail input.form_contact_mail {
+	    width: 77%;
+	}
+	.home_slider_mask {
+	    width: 251px;
+	    margin-top: -63px;
+	}
+	.linhnguyen-modal {   
+    left: 34%;    
+	}
+    .tips_and_tricks_item {
+	    width: 11%;
+	    margin: 0px 25px;
+	}
+    
+}
+@media (max-width: 979px){
+	ul#menu-mobie-menu{display: none;}
+	.navigation .wrap_content,ul#menu-mobie-menu li{
+		width: 100%;
+	    background: #2b7fc2;
+	}
+    .pc_menu{ display: none}
+    .mobile-menu{ display: block }
+    #menu-icon-mobile {
+		width: 80px;
+		height: 61px;
+		display: block;
+		background: #206fae ;
+		float: right;		
+		text-align: center;
+        font-weight: bold;
+        color: #fff;
+        padding-top: 20px;
+	}  
+    nav ul{
+        
+        display: block;
+        float: left;
+        width: 100%;
+    }
+	/* nav ul, nav:active ul { 
+		display: none;
+		position: absolute;		
+		background: #2B7FC2;
+		right: 0px;		
+		width: 100%;
+		border-radius: 4px 0 4px 4px;
+	} */
+
+	nav ul li {
+		list-style-type:none;
+		text-align: center;
+		width: 100%;		
+		margin: 0;
+        margin-left: 0px !important;
+        
+	}
+
+	nav li a{ 
+	   color:#fff !important; 
+       text-decoration:none !important; 
+       display:block;      
+       width: 100%;
+        text-align: right !important;
+       }
+	/* nav:hover ul { 
+	   display: block; 
+	    } */
+    nav ul li ul.sub-menu li a{
+        color: #fff !important;
+    	padding: 0 10px 0 0;
+    }
+    nav ul li ul.sub-menu{
+        border-radius:0 0 0 0 ;
+    }
+}
+/********************************  max-width: 768px  ******************************************/
+@media (max-width: 900px){
+	.subcribe .btn_subscribe{
+		width: 100%;
+	}
+	.guild_item_action_social i{
+		padding: 0 15px;
+	}
+	.subcribe form{
+		width: 100%;
+	}
+	 .search{
+	    width: 100%;
+   	 	float: left;
+    }
+    .subcribe span{
+    	margin-top: -16px;
+		padding-bottom: 10px;
+		width: 100%;
+    }
+    .subcribe input[type="text"] {
+	    margin-left: 0px;
+	    padding: 0px 35px 0px 10px;
+	    width: 100%;
+	    float: left;
+	}
+	.left-contact{
+		width: 100%;
+		padding-right: 0px;
+	}
+	.right_contact{
+		width: 100%;
+		border: none;
+		padding-left: 0px;
+	}
+	.form_contact .contact-icon-name .form_contact_name{
+		width: 75%;
+	}
+	.form_contact .contact-icon-mail .form_contact_mail{
+		width: 76%;
+	}
+	.disclaimer_right_content {
+	    width: 57%;
+	}
+	.left_content{
+		width: 100%;
+	}
+	.right_content{
+		width: 100%;
+		float: left;
+		margin-top: 0px;
+		margin-bottom: 0px;
+		margin-left: 0px;
+	}
+	.post_comments_view .form_contact .contact-icon-name input.form_contact_name {
+	    width: 79%;
+	}
+	.post_comments_view .form_contact .contact-icon-mail input.form_contact_mail {
+	    width: 79%;
+	}
+	.write_for_us-icon-name{
+		width: 100%;
+		margin-bottom: 10px;
+	}
+	.write_for_us-icon-mail{
+		width: 100%;
+		margin-bottom: 10px;
+	}
+	.write_for_us-icon-phone{
+		width: 100%;
+		
+	}
+	a.btn_guild_item{
+		margin-left: 0px;
+	}
+	.guild_item{
+		width: 100%;
+	}
+	.guild_item_btn1, .guild_item_btn2, .guild_item_btn3
+	{
+		
+	}
+	.guild_item_1 img.thumb_guild_item_1{
+		width: 100%;
+	}
+	.guild_item_1 {
+        width: 100%;
+    }
+    .guild_item_action_social {
+        float: right;
+        padding-top: 17px;
+    }
+    .tip_and_trick_item_text_left h3 {
+	    font-size: 16px;	    
+	    padding-top: 20px;
+	    padding-bottom: 12px;	    
+	}
+	.tip_and_trick_item_text_left p {
+	    font-size: 12px;	    
+        width: 100%;
+	    padding-left: 93px;
+	    padding-right: 30px;
+	    margin: 0;
+	}
+	.tip_and_trick_item_text_right h3 {
+	    font-size: 16px;	    
+	    padding-top: 20px;
+	    padding-bottom: 12px;	 
+        float: none;
+	    text-align: center;
+	    padding-right: 0;  
+	}
+	.tip_and_trick_item_text_right p {
+	    font-size: 12px;	    
+     	width: 100%;
+	    padding-left: 50px;
+	    padding-right: 136px;
+	}
+	.home_slider_mask {
+	    width: 184px;
+	    margin-top: -63px;
+	}
+	.linhnguyen-modal {
+	    left: 29%;
+	    width: 270px;
+	}
+	.linhnguyen-modal .bg_top {
+	    height: 100px;
+	}
+	.linhnguyen-modal p {
+	    font-size: 18px;
+	    width: 93%;
+	    margin: 0px auto;
+	    padding-top: 0px;
+	    padding-bottom: 15px;
+	}
+	.form_sign_up_popup {
+	    width: 210px;
+	    margin: 0px auto;
+	}
+	.form_sign_up_popup input[type="text"]{
+		width: 75%;
+	}
+	.form_sign_up_popup img{
+		margin-left: 40px;
+	}
+	a.btn_sign_up_popup {
+	    width: 94%;
+	    padding: 11px 5px;
+	}
+	.guild_item_wrap {
+	    width: 100%;
+	    overflow: hidden;
+	    
+	}
+	.lastest_news_wrap {
+        margin-left: 0px;
+        padding-top: 40px;
+    }
+    .lastest_item {
+      	width: 50%;
+    	float: left;
+        margin: 0 auto;
+        display: block;
+    }
+	.tips_and_tricks{
+		background: none;
+	}
+	.tips_and_tricks_content{
+	    padding-top: 60px;
+	    padding-bottom: 30px;
+	}
+	.tips_and_tricks_item {
+      	width: 16.6666667%;
+	    margin: 0 auto;
+	    float: left;
+    }
+    .tips_and_tricks_item p{
+        padding-bottom: 0px;
+    }
+	.subcribe {
+	    display: block;
+	    width: 100%;
+	    overflow: hidden;
+	    background: rgba(255, 255, 255, 0.5);
+	    padding-top: 33px;
+	    padding-bottom: 26px;
+	}
+    .search{
+    	padding-top: 7px;
+    }
+    .search-form-head{
+    	margin-left: 0;
+    	float: right;
+    }
+}
+@media (max-width: 736px){
+	.fashion_text .guild_item_action .guild_item_action_social{
+		float: none;
+	}
+}
+@media(max-width: 667px){
+	.comment-author.vcard{
+		width: 15%;
+	}
+	.comment-content{
+		width: 85%;
+	}
+}
+@media (max-width: 640px){
+	.search-form-head{
+		width: 50%;
+		float: right;
+		margin: 0;
+	}
+	.search-form-head .search-form{
+		width: 100%;
+	}
+	.icon-social{
+		width: 100%;
+	}
+	.icon-social ul{
+		float: right;
+	}
+}
+/********************************  max-width: 600px  ******************************************/
+@media (max-width: 600px){
+	.fashion_post_content .post_thumbnail{
+		width: 100%;
+	}
+	.guild_item_action{
+		width: 95%;
+	}
+	.fashion_text {
+	    width: 95%;
+	    padding-left: 10px;
+	    height: auto;    
+	    padding-bottom: 10px;
+	}
+	.fashion_text .guild_item_action .guild_item_action_social{
+		float: right;
+	}
+	.lastest_news{
+		width: 83.824%;
+	    margin: 0 auto;
+	}
+	.lastest_news_wrap .item .content:before{
+		display: none;
+	}
+	.lastest_news_wrap .lastest_item .item .content{
+		bottom:0;
+	}
+	.lastest_news_wrap .lastest_item .item{
+		padding-bottom: 73.91%;
+	}
+	 .wrap_content img.logo{
+	 	padding-left: 60px;
+	 }
+	 .search{
+    	width: 53%;
+    	display: block;
+    	
+    	margin-left: 0px;
+    }
+    .search-form-head .search-form{
+    	width: 100%;
+		float: left;
+		margin-right: 0px;
+    	
+    }
+    .icon-social {	    
+	    float: right;
+	    margin-top: 5px;
+	    margin-bottom: 15px;	
+	}
+	.about_real_and_face {	    
+	    overflow: hidden;
+	}
+	.about_real_and_face_text{
+		width: 100%;
+		position: relative;
+		float: left;
+		display: block;
+		padding-top: 30px;
+	}
+	.form_contact .contact-icon-name .form_contact_name{
+		width: 70%;
+	}
+	.form_contact .contact-icon-mail .form_contact_mail{
+		width: 70%;
+	}
+	.disclaimer_right_content {
+	    width: 50%;
+	}
+	.post_comments_view .form_contact .contact-icon-name input.form_contact_name {
+	    width: 74%;
+	}
+	.post_comments_view .form_contact .contact-icon-mail input.form_contact_mail {
+	    width: 75%;
+	}
+	.comment_item .comment_item_text{
+		width: 80%;
+	}
+	.comment_item_sub .comment_item_text{
+		width: 76%;
+	}
+	
+	.tip_and_trick_item_left{
+		padding-bottom: 50px;
+	}
+	.tip_and_trick_item_right{
+		padding-bottom: 30px;
+	}
+	.tip_and_trick_item_text_left{
+		background: none;
+		
+	}
+	.tip_and_trick_item_text_right{
+		background: none;
+		
+	}
+	.home_slider_mask {
+    width: 225px;
+    margin-top: -63px;
+	}
+	.guild_item_wrap {
+	    width: 100%;
+	    overflow: hidden;
+	    margin: 0px auto;
+	}
+	.guild_item_1 {
+    width: 100%;
+	}
+    .bar_write_for_us_text {
+        width: 60%;
+        
+    }
+    .bar_write_for_us span {
+        float: left;
+        font-size: 18px;
+        line-height: 25px;
+        text-transform: uppercase;
+        color: #fff;
+        margin-top: 20px;
+        font-weight: bold;
+    }
+    .bar_write_for_us p {
+        float: left;
+        font-size: 16px;
+        color: #fff;
+        margin-top: 10px;
+    }
+    .text_banner{
+        margin-right: 10px;
+        
+    }
+    .text_banner h3{
+        font-size: 18px;
+    }
+    .text_banner p{
+        font-size: 13px;
+    }
+    .guild_item {
+        margin-right: 26px;
+    }
+    .search-form-head{
+    	width:250px;
+    }
+	.lastest_item {
+        width: 100%;
+    }
+}
+@media (max-width: 568px){
+	fieldset.usp-name, fieldset.usp-url, fieldset.usp-email, fieldset.usp-phone{
+		width: 100%;
+	}
+	div#user-submitted-posts fieldset.usp-email{
+		margin: 10px 0;
+	}
+}
+/********************************  max-width: 480px  ******************************************/
+@media (max-width: 480px){
+	.page_text_banner{
+		width: 80%;
+	}
+	.page_text_banner h1{
+		font-size: 33px;
+	}
+	.wrap_content.new .wrap_content{
+		width: 100%;
+	}
+	.bar_write_for_us, .text_banner{
+		height: auto;
+	}
+	.home_banner .wrap-text{
+		padding: 60px 0;
+	}
+	.subcribe{
+	    padding-top: 10px;
+    	padding-bottom: 10px;
+	}
+	.subcribe span{
+	    margin: 0;
+		text-align: center;
+		padding: 0;
+	}
+	.tip_and_trick_item_text_left p{
+		padding: 0;
+	}
+	.tip_and_trick_item_text_left:before, .tip_and_trick_item_text_left:after{
+		display: none;
+	}
+	.guild_item_action_social i{
+		padding: 0 8px;
+	}
+	.contact-icon-mail, .contact-icon-name{
+		width: 100%;
+		float: left;
+	}
+	.contact-icon-mail{
+		margin-top: 10px;
+	}
+	.comment-author.vcard{
+		width: 100%;
+    	float: none;	
+	}
+	.post_content_view .text_full .guild_item_author a{
+		float: left;
+	    width: 50%;
+	    padding: 0;
+	    margin-bottom: 10px;
+        border: none;
+	}
+	.post_content_view .text_full .guild_item_author a:nth-child(2n){
+		text-align: right;
+	}
+	.subcribe form .es_button,.subcribe form .es_textbox{
+		width: 100%;
+	}
+	.subcribe form .es_button{
+		margin-top: 10px;
+	}
+	b.fn{
+		position: relative;
+	}
+	.comment-content{
+		width: 100%;
+	}
+	.comment-metadata{
+		float: none;
+	}
+	.wrap_content img.logo{
+		position: relative;
+		margin-left: 47px;
+		display: block;
+	}
+	.search{
+		width: 100%;
+		float: left;
+		display: block;
+		position: relative;
+		padding-left: 0px;		
+		margin-left: 0px;
+	}
+	.search input[type="search"]{
+		margin-left: 0px;
+	}
+	.logo_top{
+		width: 100%;
+		margin: 0 auto;
+	}
+	.logo_top a img{
+	    max-width: 100%;
+	    height: auto;
+	    margin: 0 auto;
+	    display: block;
+	}
+	.wrap_content a.logo{
+		position: relative;
+	}
+	.search a {
+	    margin-top: 19px;
+	}
+	.search-form-head {
+	    margin-left: 0;
+	    width: 100%;
+	}
+	.icon-social{
+		display: block;
+		width: 100%;
+	}
+	.icon-social ul{
+	    text-align: center;
+	    margin: 0 auto;
+	    width: 100%;
+	}
+	.form_contact .contact-icon-name .form_contact_name{
+		width: 62%;
+	}
+	.form_contact .contact-icon-mail .form_contact_mail{
+		width: 62%;
+	}
+	.disclaimer_right_content {
+	    width: 43%;
+	}
+	.fashion_news_text_banner h1{
+		font-size: 24px;
+	}
+	.fashion_news_text_banner{
+		width: 250px;
+	}
+	.post_comments_view .form_contact .contact-icon-name {
+	    width: 100%;
+	    margin-bottom: 10px;
+	}
+	.post_comments_view .form_contact .contact-icon-mail {
+	    width: 100%;
+	}
+	.post_comments_view .form_contact .contact-icon-name input.form_contact_name {
+	    width: 84%;
+	}
+	.post_comments_view .form_contact .contact-icon-mail input.form_contact_mail {
+	    width: 84%;
+	}
+	.comment_item .comment_item_text{
+		width: 76%;
+	}
+	.comment_item_sub .comment_item_text{
+		width: 70%;
+	}
+	.text_banner{
+		width: 95%;	   
+        margin-right: 12px;   
+	}
+    
+	.text_banner h3{
+		font-size: 24px;
+		line-height: 23px;
+		padding-top: 30px;
+	}
+	
+	.guild_item_1 {
+	    width: 100%;
+	}
+	.bar_write_for_us_text {
+	    width: 100%;
+	    float: left;
+	}
+	.bar_write_for_us a.btn_write_for_us{
+		padding: 12px 22px;
+		width: 100%;
+		margin: 0 0 10px;
+		text-align: center;
+	}
+	.bar_write_for_us span{
+		font-size:16px;	
+        line-height: 20px;
+	}
+	.bar_write_for_us p{
+		font-size:14px;
+	}
+	.tips_and_tricks_item{
+		width: 40%;
+		
+	}
+	.tips_and_tricks_item img{
+		width: 100%;
+		height:auto;
+	}
+	.tips_and_tricks_item p{
+		font-size:16px;	
+		padding-bottom: 30px;
+	}
+	.tip_and_trick_item_text_left {
+	     width: 100%;
+	    float: left;
+	    box-shadow: none;
+	    border-radius: 0;
+	    padding: 0;
+	    height: auto;
+	}
+
+	.img_icon-tipatrick img{
+		position: relative;
+	}
+	.tip_and_trick_item_text_right{
+		width: 100%;
+		margin: 0;
+	    height: auto;
+	}
+	.img_icon-tipatrick1, .img_icon-tipatrick, .img_icon-tipatrick img{
+		float: none;
+		margin: 0 auto;
+    	text-align: center;
+	}
+	.tip_and_trick_item_text_right h3,.tip_and_trick_item_text_left h3 {
+		text-align: center;
+		padding-right: 0;
+		padding-left: 0;
+	}
+	.tip_and_trick_item{
+	    padding-top: 10px;
+	    width: 100%;
+	    float: left;
+	}
+	.tip_and_trick_item_text_right p{
+		float: none;
+	}
+	.tip_and_trick_item_text_right p, .tip_and_trick_item_left,.tip_and_trick_item_right{
+		padding: 0;
+   	 	text-align: center;
+	}
+	.home_slider_mask {
+	    width: 168px;
+	    margin-top: -63px;
+	}
+	.linhnguyen-modal {
+	    left: 29%;
+	    width: 216px;
+	}
+	.form_sign_up_popup {
+	    width: 175px;
+	    margin: 0px auto;
+	}
+	.form_sign_up_popup input[type="text"] {
+	    width: 70%;
+	}
+		.linhnguyen-modal .bg_top {
+	    height: 75px;
+	}
+    .guild_item {
+        margin-right: 0px;
+        width: 100%;
+        
+    }
+    div#user-submitted-posts .usp-name {
+    width: 100%;  
+	}
+	div#user-submitted-posts .usp-email {
+    width: 100%;
+    
+	}
+		div#user-submitted-posts .usp-title {
+	    width: 100%;
+	    
+	}
+		div#user-submitted-posts .usp-category {
+	    width: 100%;
+	    margin-left: 0px; 
+	}
+	.fashion_text .guild_item_action a.btn_readmore_guild_item{
+		margin-bottom: 0px;
+	}
+	.fashion_text .guild_item_action .guild_item_action_social{
+		margin-left: 0px;
+		padding-top: 10px;
+		padding-bottom:10px;    
+		width: 100%;
+	}
+}
+/********************************  max-width: 320px  ******************************************/
+@media (max-width: 320px){
+	.guild_item_action_social{
+		width: 81%;
+	}
+	.home_guild{
+		margin-top: 10px;
+	}
+	.subcribe{
+		padding-top: 25px;
+	}
+	.guild_item_action{
+		float: left;
+		display: block;
+    	text-align: center;
+    	width: 100%;
+	}
+	a.btn_readmore_guild_item{
+	    display: inline-block;
+	    float: none;
+	    margin-top: 10px;
+	    margin-bottom: 0;
+	}
+	h2{
+		font-size: 30px;
+	}
+	div#user-submitted-posts select{
+		width: 100%;
+	}
+	.about_text_banner{
+		width: 160px;
+	}
+	.about_text_banner h1{
+		font-size: 24px;
+	}
+	.subcribe span{
+		font-size: 16px;
+		padding-bottom: 5px;
+		margin-top: -20px;
+	}
+	.subcribe a.btn_subscribe {
+        width: 100%;
+        margin-top: 10px;
+        text-align: center;
+    }
+	.about_real_and_face_logo img {
+	    width: 100%;
+	}
+	.about_group_1, .about_group_2, .about_group_3 {
+		width: 100%;
+	}
+	.contact_text_banner{
+		width: 180px;
+	}
+	.contact_text_banner h1{
+		font-size: 24px;
+	}
+	.left-contact p{
+		font-size: 14px;
+	}
+	.form_contact .contact-icon-name{
+		width: 100%;
+		margin-bottom: 20px;
+	}
+	.form_contact .contact-icon-name .form_contact_name{
+		width: 72%;
+	}
+	.form_contact .contact-icon-mail{
+		width:100%;
+	}
+	.form_contact .contact-icon-mail .form_contact_mail{
+		width: 72%;
+	}
+	.disclaimer_right_content {
+	    width: 100%;
+	    margin-left: 0px;
+	    margin-top: 20px;
+	}
+	.disclaimer_text_banner{
+		width: 180px;
+	}
+	.disclaimer_text_banner h1{
+		font-size: 24px;
+	}
+	
+	.comment_item .comment_item_text{
+		width: 95%;
+		margin-top: 10px;
+		
+	}
+	.comment_item_sub .comment_item_text{
+		width: 90%;
+		margin-top: 10px;
+	}
+	.comment_item_sub .comment_item_text_tit .time_post_comments {
+	    float: left;
+	}
+	.post_comments_view .form_contact .contact-icon-name input.form_contact_name {
+	    width: 70%;
+	}
+	.post_comments_view .form_contact .contact-icon-mail input.form_contact_mail {
+	    width: 70%;
+	}
+	.form_contact textarea {	   
+	    width: 86.5%;
+	    max-width: 86.5%;
+	    min-width: 86.5%;
+	}
+	.right_content .search a.search-icon{
+		margin-top: 15px;
+	}
+	.privacy_text_banner{
+		width: 250px;
+	}
+	.privacy_text_banner h1{
+		font-size: 24px;
+	}
+	.write_for_us_text_banner{
+		width: 250px;
+	}
+	.write_for_us_text_banner h1{
+		font-size: 24px;
+	}
+	.tip_and_trick_text_banner{
+		width: 250px;
+	}
+	.tip_and_trick_text_banner h1{
+		font-size: 24px;
+	}
+	.home_slider_mask {
+	    width: 244px;
+	    margin-top: -63px;
+	}
+	.guild_item_btn1, .guild_item_btn2, .guild_item_btn3{
+		width: 100%;
+		display: block;
+		margin-bottom: 0;
+	}
+	.guild_item{
+		margin-top: 30px;
+	}
+	.guild_item_btn3{
+		margin-bottom: 0px;
+	}
+	.guild_item_1 {
+	    width: 100%;
+	}
+	.bar_write_for_us span{
+		font-size: 14px;
+		margin-top: 10px;
+	}
+	.lastest_news_wrap {
+	    margin-left: 0px;
+	}
+	.news_item_content h4{
+		width: 85%;
+		margin: 0 auto;
+	}
+	.tips_and_tricks_title {
+	    text-align: center;
+	    padding-top: 30px;
+	}
+	.tips_and_tricks_title h2 {	    
+	    margin-bottom: 10px;
+	    font-size: 28px;
+	}
+	.tips_and_tricks_item {
+      	width: 50%;
+	    margin: 0 auto;
+	    float: none;
+	    padding: 0;
+	}
+	.tips_and_tricks_content{
+		padding-top: 10px;
+	}
+	.tips_and_tricks_item p {
+   	 font-size: 13px;
+	 padding-bottom: 10px;
+	}
+	.guild_title h2 {    
+	    font-size: 28px;
+	    line-height: 35px;	    
+	}
+	.text_banner h3 {
+	    font-size: 18px;
+	    line-height: 23px;
+	    padding-top: 0px;
+	}
+	.text_banner p {
+	    margin-top: 27px;
+	    text-align: center;
+	    font-size: 13px;
+	}
+	.lastest_news_title h2 {
+	    font-size: 28px;	    
+	    line-height: 36px;	    
+	}
+	.linhnguyen-modal {
+	    left: 18%;
+	    width: 216px;
+	}
+    .page_text_banner h1{
+    	font-size: 28px;
+	    line-height: 35px;
+    }  
+    .footer_links a{
+	    padding-left: 0;
+	    float: left;
+	    display: block;
+	    width: 50%;
+	    padding-bottom: 10px;
+	    border: none;
+    }
+    .fashion_news_text_banner{
+    	width: auto;
+    }
+    .fashion_news_text_banner h1{
+    	padding: 0 10px;
+    	line-height: 50px;
+    }
+    .guild_item_action_social a{
+    	padding-right: 21px;
+    }
+    .guild_item_action_social a:last-child{
+    	padding-right: 0;
+    }
+    .page_text_banner{
+    	width: 90%;
+    }
+}

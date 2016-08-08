@@ -10,7 +10,7 @@ get_header(); ?>
 
 			<?php
 			$arg = array(
-				'page_id'=>149
+				'page_id'=>134
 				);
 			$the_query = new WP_Query($arg);
 			while ( $the_query->have_posts() ) : $the_query->the_post();			

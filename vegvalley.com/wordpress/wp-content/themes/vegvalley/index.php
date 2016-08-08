@@ -1,7 +1,7 @@
 <?php
 /**
  * The main template file.
- *
+ *	Template name: Home
  * This is the most generic template file in a WordPress theme
  * and one of the two required files for a theme (the other being style.css).
  * It is used to display a page when nothing more specific matches a query.
@@ -17,7 +17,7 @@ get_header(); ?>
 	<section class="site-info">
 		<?php 
 			$arg = array(
-				'page_id'=>149,
+				'page_id'=>134,
 				'post_type'=>'page'
 				);
 			query_posts($arg);
@@ -69,7 +69,7 @@ get_header(); ?>
 					?>
 			</div><!--/box-product-wrap-->
 		</div><!--end content-->
-		<!-- <a href="#" class="view-all">see all product</a> -->
+		<a href="<?php echo get_site_url();?>/shop" class="view-all view-all-shop" style="display:none;">see all product</a>
 		<input type="submit" class="view-all" paged ="<?php echo $query->max_num_pages;?>" name="update_cart" value="see all product">
 	</section><!--end wc-products-->
 <?php
