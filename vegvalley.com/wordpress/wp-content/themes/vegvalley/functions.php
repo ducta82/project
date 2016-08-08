@@ -631,6 +631,25 @@ function add_to_wishlist( $array ) {
 // add the action 
 add_action( 'wp_ajax_nopriv_add_to_wishlist', 'add_to_wishlist', 10, 1 ); 
 add_action( 'wp_ajax_add_to_wishlist', 'add_to_wishlist', 10, 1 ); 
+add_filter('woocommerce_get_discounted_price', 'new_price',10,2);
+function new_price($price, $values){
+	global $woocommerce;
+	if(!is_user_logged_in()){return $price;}
+	$user = get_current_user_id();
+	$order = check_user();
+	$qty = $woocommerce->cart->quantity;
+	print_r($qty);
+	$price = $price -5;
+	return $price;
+}
+function check_user(){
+	global $woocommerce;
+	$customer_orders = get_posts( apply_filters( 'woocommerce_my_account_my_orders_query', array(
+	'meta_key'    => '_customer_user',
+	'meta_value'  => get_current_user_id()
+	) ) );
+	return $order;
+}
 /**
  * Implement the Custom Header feature.
  */

@@ -40,7 +40,12 @@ if ( ! defined( 'ABSPATH' ) ) {
 				<td data-title="<?php echo esc_attr( wc_cart_totals_coupon_label( $coupon, false ) ); ?>"><?php wc_cart_totals_coupon_html( $coupon ); ?></td>
 			</tr>
 		<?php endforeach; ?>
-
+		<?php $order = check_user(); if($order<1):?>
+			<tr class="cart-discount coupon-<?php echo esc_attr( sanitize_title( $code ) ); ?>">
+				<th><?php  _e( 'New customer', 'woocommerce' );?></th>
+				<td><?php echo "5"; ?></td>
+			</tr>
+		<?php endif;?>
 		<?php if ( WC()->cart->needs_shipping() && WC()->cart->show_shipping() ) : ?>
 
 			<?php do_action( 'woocommerce_cart_totals_before_shipping' ); ?>

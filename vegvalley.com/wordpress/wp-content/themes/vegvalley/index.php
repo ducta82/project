@@ -38,6 +38,7 @@ get_header(); ?>
 		<?php endif;?>
 	</section><!--end site-info-->
 	<?php echo do_shortcode('[vegvalley_function_block]');?>
+
 	<section class="wc-products">
 		<div class="head-block">
 			<h3 class="site-top-caption">PRODUCTS</h3>
