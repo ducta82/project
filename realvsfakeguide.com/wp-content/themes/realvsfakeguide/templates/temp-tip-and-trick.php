@@ -43,7 +43,7 @@ get_header();?>
 					</div>
 					<div class="tip_and_trick_item_left">
 						<div class="img_icon-tipatrick1">
-							<img class="bg-icon-tipatrick" src="<?php echo get_template_directory_uri();?>/images/tip_and_trick_icon.png">	
+							<img class="bg-icon-tipatrick" src="<?php echo get_template_directory_uri();?>/images/tip-price.png">	
 						</div>								
 						<div class="tip_and_trick_item_text_left">							
 							<h3>PRICE COMPARISON</h3>
@@ -53,7 +53,7 @@ get_header();?>
 					</div>
 					<div class="tip_and_trick_item_right">	
 						<div class="img_icon-tipatrick">
-							<img class="bg-icon-tipatrick" src="<?php echo get_template_directory_uri();?>/images/reques2t.png">	
+							<img class="bg-icon-tipatrick" src="<?php echo get_template_directory_uri();?>/images/tip-tag.png">	
 						</div>				
 						<div class="tip_and_trick_item_text_right">
 							<h3>BAR CODES AND TAGS</h3>
@@ -63,7 +63,7 @@ get_header();?>
 					</div>	
 					<div class="tip_and_trick_item_left">
 						<div class="img_icon-tipatrick1">
-							<img class="bg-icon-tipatrick" src="<?php echo get_template_directory_uri();?>/images/tip_and_trick_icon.png">	
+							<img class="bg-icon-tipatrick" src="<?php echo get_template_directory_uri();?>/images/tip-location.png">	
 						</div>								
 						<div class="tip_and_trick_item_text_left">							
 							<h3>THE SELLER'S LOCATION</h3>
@@ -73,7 +73,7 @@ get_header();?>
 					</div>
 					<div class="tip_and_trick_item_right">	
 						<div class="img_icon-tipatrick">
-							<img class="bg-icon-tipatrick" src="<?php echo get_template_directory_uri();?>/images/reques2t.png">	
+							<img class="bg-icon-tipatrick" src="<?php echo get_template_directory_uri();?>/images/tip-feedback.png">	
 						</div>				
 						<div class="tip_and_trick_item_text_right">
 							<h3>FEEDBACK AND FORUMS</h3>

@@ -22,7 +22,9 @@
 	            <div class="left_content">
 	            <?php if(have_posts()) : while(have_posts()) : the_post();?>
 	    			<div class="post_content_view">
-   						<?php the_post_thumbnail(); ?>
+	    				<div class="thumbnail-single-post">
+   							<?php the_post_thumbnail(); ?>
+   						</div>
    						<div class="text_full">
    							<h1 class="title-post"><a href="<?php the_permalink();?>"><?php the_title(); ?></a></h1>
    							<div class="guild_item_author">
@@ -53,10 +55,10 @@
    					</div>
    					<div class="post_comments_view">
 		   					<?php if ( comments_open() || get_comments_number() ) : comments_template(); endif; ?>									   						
-		   			</div>		 
-	            </div>
-	            <?php endwhile; ?>
+		   			</div>	
+	            <?php endwhile; ?>	 
 	            <?php endif; ?>
+	            </div>
 	            <div id="secondary" class="right_content" role="complementary">
 	            	<div class="search">
     				<div class="search">
@@ -73,7 +75,7 @@
 	    			</div>
 	    			</div>
                     <div class="fashion_news_recent_post">
-	    				<h3>resent post</h3>
+	    				<h3>Recent post</h3>
 	    				<div class="resent_post_item1">	    					
                             <?php query_posts('showposts=6'); ?>
                             <ul>

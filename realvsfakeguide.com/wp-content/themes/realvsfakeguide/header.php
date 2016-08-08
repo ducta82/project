@@ -31,12 +31,22 @@
 			                </form>
 	    				</div>    
 	    			</div>
+	    			<?php
+					      if( have_rows('social','options')):
+					      $rows = get_field('social','options' ); // get all the rows
+					      $first_row = $rows[0]; // get the first row
+					      $facebook = $first_row['facebook'] ? $first_row['facebook'] : '#' ; 
+					      $twitter = $first_row['twitter'] ? $first_row['twitter'] : '#' ; 
+					      $googlesplus = $first_row['googlesplus'] ? $first_row['googlesplus'] : '#' ; 
+					      $printerset = $first_row['printerset'] ? $first_row['printerset'] : '#' ;
+					      endif;
+					   ?>
 	    			<div class="icon-social">
 	    				<ul>
-	    					<li><a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
-	    					<li><a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
-	    					<li><a href="#"><i class="fa fa-google-plus" aria-hidden="true"></i></a></li>
-	    					<li><a href="#"><i class="fa fa-pinterest-p" aria-hidden="true"></i></a></li>
+	    					<li><a href="<?php echo $facebook;?>" target="_blank"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
+	    					<li><a href="<?php echo $twitter;?>" target="_blank"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
+	    					<li><a href="<?php echo $googlesplus;?>" target="_blank"><i class="fa fa-google-plus" aria-hidden="true"></i></a></li>
+	    					<li><a href="<?php echo $printerset;?>" target="_blank"><i class="fa fa-pinterest-p" aria-hidden="true"></i></a></li>
 	    				</ul>
 	    			</div>
 	    			<div class="clear"></div>

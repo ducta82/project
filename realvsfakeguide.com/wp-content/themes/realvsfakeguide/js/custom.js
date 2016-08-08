@@ -6,8 +6,9 @@ $(document).ready(function(){
     $('#commentform').append('<textarea id="comment" name="comment" class="form" placeholder="Massage" tabindex="4" aria-required="true"></textarea>');*/
 	//ajax category
 	var page = 2; // What page we are on.
-	var cat_id = $('#load_more').attr('cat');
-	var max_paged = $('#load_more').attr('max-page');
+	var cat_id = $('#load_more').attr('cat') ? $('#load_more').attr('cat') : '';
+    var max_paged = $('#load_more').attr('max-page') ? $('#load_more').attr('max-page') : 1;
+	var key = $('#load_more').attr('key') ? $('#load_more').attr('key') : '';
 	if(max_paged == 1){
 		$('#pbd-alp-load-posts').css('display','none');
 	}
@@ -20,7 +21,9 @@ $(document).ready(function(){
             data: {
                     action: 'more_post_ajax',
 		            paged: page,
-		            cat:cat_id
+		            cat:cat_id,
+                    key:key,
+                    query_vars:ajax_object.query_vars
         		},
             beforeSend: function() {
         		$('#load_more').attr('disabled',true).css('cursor','not-allowed');
@@ -46,5 +49,16 @@ $(document).ready(function(){
     $('#menu-icon-mobile').click(function(e){
         e.preventDefault();
             $('#menu-mobie-menu').toggle('fast');
+    });
+    $(function() {
+    $('li.menu-item-has-children>a').click(function() {
+        console.log('click');
+        $(this).find('.sub-menu').toggle('fast');
+        return false;
+    }).dblclick(function() {
+        console.log('dbclick');
+        window.location.href = this.href;
+        return false;
+    });
     });
 });

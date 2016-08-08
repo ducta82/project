@@ -246,6 +246,13 @@
 }
 /********************************  max-width: 980px  ******************************************/
 @media (max-width: 980px){
+	ul.menu li:hover ul.sub-menu{
+		-webkit-transition: none;
+	    -moz-transition: none;
+	    -ms-transition: none;
+	    -o-transition: none;
+	    transition: none;
+	}
 	.bx-wrapper .bx-controls-direction a.bx-next{
 		right: -8%;
 	}
@@ -344,7 +351,8 @@
 	   display: block; 
 	    } */
     nav ul li ul.sub-menu li a{
-        color: #2B7FC2 !important;
+        color: #fff !important;
+    	padding: 0 10px 0 0;
     }
     nav ul li ul.sub-menu{
         border-radius:0 0 0 0 ;
@@ -732,6 +740,21 @@
 }
 /********************************  max-width: 480px  ******************************************/
 @media (max-width: 480px){
+	.page_text_banner{
+		width: 80%;
+	}
+	.page_text_banner h1{
+		font-size: 33px;
+	}
+	.wrap_content.new .wrap_content{
+		width: 100%;
+	}
+	.bar_write_for_us, .text_banner{
+		height: auto;
+	}
+	.home_banner .wrap-text{
+		padding: 60px 0;
+	}
 	.subcribe{
 	    padding-top: 10px;
     	padding-bottom: 10px;
@@ -744,7 +767,7 @@
 	.tip_and_trick_item_text_left p{
 		padding: 0;
 	}
-	.tip_and_trick_item_text_left:before{
+	.tip_and_trick_item_text_left:before, .tip_and_trick_item_text_left:after{
 		display: none;
 	}
 	.guild_item_action_social i{
@@ -880,12 +903,14 @@
 	    width: 100%;
 	}
 	.bar_write_for_us_text {
-	    width: 60%;
+	    width: 100%;
 	    float: left;
 	}
 	.bar_write_for_us a.btn_write_for_us{
 		padding: 12px 22px;
-		margin-top: 50px;
+		width: 100%;
+		margin: 0 0 10px;
+		text-align: center;
 	}
 	.bar_write_for_us span{
 		font-size:16px;	
@@ -995,6 +1020,12 @@
 }
 /********************************  max-width: 320px  ******************************************/
 @media (max-width: 320px){
+	.guild_item_action_social{
+		width: 81%;
+	}
+	.home_guild{
+		margin-top: 10px;
+	}
 	.subcribe{
 		padding-top: 25px;
 	}
@@ -1002,6 +1033,7 @@
 		float: left;
 		display: block;
     	text-align: center;
+    	width: 100%;
 	}
 	a.btn_readmore_guild_item{
 	    display: inline-block;
@@ -1116,13 +1148,16 @@
 		font-size: 24px;
 	}
 	.home_slider_mask {
-    width: 244px;
-    margin-top: -63px;
+	    width: 244px;
+	    margin-top: -63px;
 	}
 	.guild_item_btn1, .guild_item_btn2, .guild_item_btn3{
 		width: 100%;
 		display: block;
-		margin-bottom: 30px;
+		margin-bottom: 0;
+	}
+	.guild_item{
+		margin-top: 30px;
 	}
 	.guild_item_btn3{
 		margin-bottom: 0px;
@@ -1130,17 +1165,9 @@
 	.guild_item_1 {
 	    width: 100%;
 	}
-	.bar_write_for_us_text {
-	    width: 54%;
-	    float: left;
-	}
 	.bar_write_for_us span{
 		font-size: 14px;
 		margin-top: 10px;
-	}
-	.bar_write_for_us a.btn_write_for_us {
-	    padding: 14px 9px;
-	    margin-top: 65px;
 	}
 	.lastest_news_wrap {
 	    margin-left: 0px;
@@ -1158,8 +1185,13 @@
 	    font-size: 28px;
 	}
 	.tips_and_tricks_item {
-	    width: 60%;
-	    
+      	width: 50%;
+	    margin: 0 auto;
+	    float: none;
+	    padding: 0;
+	}
+	.tips_and_tricks_content{
+		padding-top: 10px;
 	}
 	.tips_and_tricks_item p {
    	 font-size: 13px;
@@ -1191,4 +1223,28 @@
     	font-size: 28px;
 	    line-height: 35px;
     }  
+    .footer_links a{
+	    padding-left: 0;
+	    float: left;
+	    display: block;
+	    width: 50%;
+	    padding-bottom: 10px;
+	    border: none;
+    }
+    .fashion_news_text_banner{
+    	width: auto;
+    }
+    .fashion_news_text_banner h1{
+    	padding: 0 10px;
+    	line-height: 50px;
+    }
+    .guild_item_action_social a{
+    	padding-right: 21px;
+    }
+    .guild_item_action_social a:last-child{
+    	padding-right: 0;
+    }
+    .page_text_banner{
+    	width: 90%;
+    }
 }

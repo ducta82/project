@@ -95,7 +95,7 @@ get_header();?>
 	    				</div>    
 	    			</div>
                     <div class="fashion_news_recent_post">
-	    				<h3>resent post</h3>
+	    				<h3>Recent post</h3>
 	    				<div class="resent_post_item1">	    					
                             <?php query_posts('showposts=5'); ?>
                             <ul>

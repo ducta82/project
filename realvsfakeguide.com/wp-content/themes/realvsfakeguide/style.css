@@ -248,8 +248,9 @@ ul#menu-mobie-menu li.current-menu-item{
 	background: #206fae;
   	height: auto;
 }
-ul.menu li.current-menu-item a{
+ul.menu li.current-menu-item>a{
   	color: #fff;
+    background: #2b7fc2;
 }
 /*==Dropdown Menu==*/
 ul.menu ul.sub-menu {
@@ -359,7 +360,7 @@ ul.menu > li > .parent {
 }
 /**== Guild ==**/
 .home_guild{
-	margin-top: 70px;
+	margin-top: 50px;
 	width: 100%;
 }
 .guild_title{
@@ -370,7 +371,6 @@ ul.menu > li > .parent {
 .guild_title h2{
 	text-transform: uppercase;
 	font-size: 36px;
-	line-height: 30px;
 	font-family: Gotham-Bold,sans-serif;
 	 margin-bottom: 10px;	
 }
@@ -512,17 +512,17 @@ a.btn_readmore_guild_item:hover{
 }
 .guild_item_action_social{
 	float:right;
-	padding-top: 17px;
+	padding-top: 22px;
 }
 .guild_item_action_social span{
 	float: left;
-	margin-right: 5px;
+	margin-right: 10px;
 }
 .guild_item_action_social a:first-child{
 	padding-left: 5px;
 }
 .guild_item_action_social a{
-	padding-right: 5px;
+	padding-right: 10px;
 	float:left;
 }
 .guild_item_action_social i{
@@ -564,7 +564,7 @@ a.btn_readmore_guild_item:hover{
 .bar_write_for_us{
 	width: 100%;
 	background: #2b7fc2 ;
-	height:120px ;
+	height:auto ;
 	margin-top: 80px;
 }
 .bar_write_for_us_text{
@@ -577,7 +577,7 @@ a.btn_readmore_guild_item:hover{
 	line-height: 20px;
 	text-transform: uppercase;
 	color: #fff;
-	margin-top: 30px;
+	margin-top: 26px;
 	font-family: Gotham-Bold,sans-serif;
 }
 .bar_write_for_us p{
@@ -598,7 +598,7 @@ a.btn_readmore_guild_item:hover{
     margin-top: 10px;
     color: #fff;
     position: relative;
-    margin-top: 35px;
+    margin-top: 30px;
     font-family: Gotham-Bold,sans-serif;
 }
 .bar_write_for_us a.btn_write_for_us:hover{
@@ -614,7 +614,7 @@ a.btn_readmore_guild_item:hover{
 /**=== lastest_news ===**/
 .lastest_news{
 	width: 100%;
-	margin-top: 80px;
+	margin-top: 50px;
 	overflow: hidden;
 }
 .lastest_news_title{
@@ -624,7 +624,6 @@ a.btn_readmore_guild_item:hover{
 .lastest_news_title h2{
 	font-size: 36px;
 	text-transform: uppercase;
-	line-height: 20px;
 	font-family: Gotham-Bold,sans-serif;
 	margin-bottom: 10px;
 }
@@ -783,7 +782,6 @@ a.btn_readmore_guild_item:hover{
 .tips_and_tricks_title h2{
 	font-size: 36px;
 	text-transform: uppercase;
-	line-height: 35px;
 	font-family: Gotham-Bold,sans-serif;
 	margin-bottom: 13px;
 }
@@ -797,8 +795,8 @@ a.btn_readmore_guild_item:hover{
 	padding-top: 15px;
 	font-family: Gotham-Bold,sans-serif;
 	font-size: 18px;
-	padding-bottom: 80px;
-	    width: 80%;
+	padding-bottom: 75px;
+	    width: 88%;
     margin: 0 auto;
 }
 .tips_and_tricks_item img{
@@ -1052,10 +1050,7 @@ p.copyright a:hover{
     text-transform: uppercase;      
     color: #fff;    
     background: rgba(255, 255, 255, 0);
-    box-shadow: 0px 0px 0px 10px rgba(255, 255, 255, 0);
-    -moz-box-shadow: 0px 0px 0px 10px rgba(255, 255, 255, 0);
-    -webkit-box-shadow: 0px 0px 0px 10px rgba(255, 255, 255, 0);
-    
+	font-family: Gotham-Bold,sans-serif;
 }
 a.about_group_btn:hover{
 	text-decoration: none;
@@ -1207,6 +1202,7 @@ p.mess-contact .wpcf7-form-control-wrap{
     font-family: Gotham-Light,sans-serif;;
     font-size: 14px;
     padding: 10px;
+    margin-top: 20px;
 }
 .btn_submit_contact input[type=submit], input#user-submitted-post{
     padding: 7px 24px;
@@ -1217,6 +1213,7 @@ p.mess-contact .wpcf7-form-control-wrap{
     line-height: 24px;
     background: #2b7fc2;
     font-family: Gotham-Bold,sans-serif;
+    font-size: 14px;
 }
 .btn_submit_contact input[type=submit]:hover{
 	text-decoration: none;
@@ -1636,10 +1633,8 @@ img.size-post-thumbnail{
 .right_content{
 	width: 320px;
 	float:right;
-	margin-left: 30px;
 	position: relative;
     background: #fff;
-	
 }
 .right_content .search{
 	width:100%;
@@ -1679,7 +1674,7 @@ img.size-post-thumbnail{
 }
 .resent_post_item1 img{
 	width:60px ;
-	height:auto;
+	height:60px;
 	float:left;
 	display: block;
 }
@@ -1822,10 +1817,11 @@ a.btn_become_a_contributor:hover{
 	width: 100%;
 }
 .text_full .title-post{
-	padding-top: 30px;
+	padding-top: 14px;
 	width: 100%;
 	display: block;
 	float: left;
+	margin: 0;
 }
 .text_full .title-post a{
 	color: #2b7fc2;
@@ -1844,9 +1840,8 @@ a.btn_become_a_contributor:hover{
 .post_content_view .text_full .guild_item_author{
 	width: 100%;
 	float:left;
-	padding-top: 30px;
+	padding-top: 10px;
 	padding-bottom: 30px;
-	
 }
 .post_content_view .text_full .guild_item_author a:first-child{
 	padding-left: 0px;
@@ -1860,6 +1855,11 @@ a.btn_become_a_contributor:hover{
 .post_content_view img.wp-post-image{
 	width: 100%;
 	height: auto;
+}
+.thumbnail-single-post{
+    max-height: 440px;
+    width: 100%;
+    overflow: hidden;
 }
 .post_content_view .text_full p{
 	font-size: 14px;
@@ -1886,8 +1886,8 @@ a.btn_become_a_contributor:hover{
 }
 .post_content_view .text_full .guild_item_action .guild_item_action_social p{
 	padding-top: 10px;
-	padding-bottom: 10px
-	
+	padding-bottom: 10px;
+	margin:0;
 }
 .post_comments_view {
 	width: 100%;	
@@ -1900,7 +1900,10 @@ a.btn_become_a_contributor:hover{
 	display: block;
 	width: 100%;
 	text-transform: uppercase;
-	margin-top: 20px;
+	margin-top: 4px;
+}
+h3#reply-title{
+	margin-top: 24px;
 }
 .post_comments_view_content{
 	clear: both;
@@ -2066,11 +2069,22 @@ a.btn_become_a_contributor:hover{
 	height: 201px;
     margin-left: 0;
     position: relative;
-    background: linear-gradient(90deg,#e6e6e6, #f7f7f7);
+    background: #fff;
     border-radius: 100px;
     padding-left: 137px;
     z-index: 2;
     box-shadow: 0px 0px 10px 4px rgba(0,0,0,.15);
+}
+.tip_and_trick_item_text_left:after{
+	content: "";
+    position: absolute;
+    top: 2px;
+    bottom: 0;
+    right: 0;
+    left: -3px;
+    background: linear-gradient(90deg,#e6e6e6, #f7f7f7);
+    z-index: -2;
+    border-radius: 100px;	
 }
 .tip_and_trick_item_text_left:before{
     content: "";
@@ -2092,21 +2106,21 @@ a.btn_become_a_contributor:hover{
 	font-size: 18px;
 	font-family: Gotham-Bold,sans-serif;
 	text-transform: uppercase;
-	padding-top:30px ;
+	padding-top:38px ;
 	padding-bottom: 20px;
-	padding-left: 130px;
+	padding-left: 110px;
 	margin: 0;
 }
 .tip_and_trick_item_text_left p{
 	font-size: 14px;
 	line-height: 22px;
-	padding-left: 130px;
+	padding-left: 110px;
 	width: 90%;
 }
 .tip_and_trick_item_right{
 	float:right;
 	width:100%;
-	padding-bottom:5px;
+	padding-bottom:10px;
 }
 .tip_and_trick_item_text_right {
     background: transparent url("images/right-content_tip_and_trick.png") no-repeat scroll 0% 0%;
@@ -2126,10 +2140,11 @@ margin-right: 210px;
 	font-size: 18px;
 	font-family: Gotham-Bold,sans-serif;
 	text-transform: uppercase;
-	padding-top:30px ;
+	padding-top:42px;
 	padding-bottom: 20px;		
 	float:right;
 	padding-right: 110px;
+	margin: 0;
 }
 .tip_and_trick_item_text_right p{
 	font-size: 14px;
@@ -2170,7 +2185,7 @@ a.btn_tip_and_trick_bottom:hover{
 	 text-align:center;
 	 padding:13px;
 	 position:fixed;
-	 bottom:210px;
+	 bottom:50px;
 	 right:10px;
 	 cursor:pointer;
 	 display:none;
@@ -2473,7 +2488,7 @@ a.btn_load_more_post:hover{
 }
 .alignleft{
 	float:left;
-	margin-right: 30px;
+	margin: 0.5em 1em 0.5em 0;
 }
 /* .content_page{
 	padding-bottom: 50px;
@@ -2533,6 +2548,9 @@ span.tel-970 input[type=tel]{
     font-size: 14px;
      float:left;
      
+}
+div#categories-2 ul li{
+	margin-bottom: 16px;
 }
 .main_content .subcribe .wrap_content input[type=text]{
 	background: #fff;
@@ -2817,6 +2835,7 @@ span.says{
     float: left;
     border-top: solid 1px #e1e1e1;
     margin-top: 5px;
+    padding-top: 13px;
 }
 .comment-content p{
 	color: #353535;
@@ -2827,4 +2846,13 @@ time{
 p.form-submit{
     width: 100%;
     float: left;
+}
+input[type=number]::-webkit-outer-spin-button,
+input[type=number]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+input[type=number] {
+    -moz-appearance:textfield;
 }

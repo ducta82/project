@@ -66,7 +66,7 @@ get_header();?>
       <div class="home_guild">
          <div class="wrap_content">       
           <div class="guild_title">
-            <h2><a href="http://realvsfakeguide.onegovn.com/category/fashion/">real and face guild</a></h2>
+            <h2>real and face guild</h2>
             <img alt="" src="<?php echo get_template_directory_uri();?>/images/Rectangle5.png">
           </div>
           <div class="guild_item_wrap">                                     
@@ -156,7 +156,7 @@ get_header();?>
       
       <div class="lastest_news">
         <div class="lastest_news_title">
-          <h2><a href="http://realvsfakeguide.onegovn.com/new/">Lastest news</a></h2>
+          <h2>Lastest news</h2>
           <img alt="" src="<?php echo get_template_directory_uri();?>/images/Rectangle5.png">
         </div>
         <div class="lastest_news_wrap"> 
@@ -195,7 +195,7 @@ get_header();?>
       
       <div class="tips_and_tricks">
         <div class="tips_and_tricks_title">
-          <h2><a href="http://realvsfakeguide.onegovn.com/tip-and-trick/">tips and tricks</a></h2>
+          <h2>tips and tricks</h2>
           <img src="<?php echo get_template_directory_uri();?>/images/Rectangle5.png">
         </div>
         <div class="wrap_content">

@@ -56,6 +56,7 @@ function my_jquery_enqueue() {
 }
 
 function realvsfaceguild_scripts() {
+    global $wp_query;
     wp_enqueue_style( 'css-popup-style', get_template_directory_uri() . "/css/css-popup.css",false,'1.1', 'all' );
     wp_enqueue_style( 'font-awesome.min-style', get_template_directory_uri() . "/css/font-awesome.min.css",false,'1.1', 'all' );
     wp_enqueue_style( 'jquery.bxslider-style', get_template_directory_uri() . "/css/jquery.bxslider.css",false,'1.1', 'all' );
@@ -81,7 +82,8 @@ function realvsfaceguild_scripts() {
     wp_register_script( 'custom-script', get_template_directory_uri() . "/js/custom.js", array('jquery') );
     wp_enqueue_script('custom-script');
     wp_localize_script( 'custom-script', 'ajax_object', array(
-        'ajax_url' => admin_url( 'admin-ajax.php' )     
+        'ajax_url' => admin_url( 'admin-ajax.php' ),
+        'query_vars' => json_encode( $wp_query->query )
     ));	
     if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
         wp_enqueue_script( 'comment-reply' );
@@ -168,7 +170,8 @@ function slider_style() {
                
             }
             .bx-wrapper .bx-controls-direction a{
-                height: 46px;
+                height: 46px;    
+                width: 22px;
             }
             .bx-wrapper img {			    
 			    height: 220px;
@@ -240,7 +243,7 @@ function rayno_comment_form_args($defaults) {
     			'<img class="icon-mail" src="http://realvsfakeguide.onegovn.com/wp-content/uploads/2016/07/contact-icon-mail.png">' .
              	'<input id="email" name="email" type="text" class="form_contact_mail" placeholder="Your email" value="' . esc_attr( $commenter['comment_author_email'] ) . '" size="30" tabindex="2"' . $aria_req . ' />' .            
  				'</div>';*/
-    $comment_field = '<textarea id="comment" name="comment" class="form" placeholder="Massage" tabindex="4" aria-required="true"></textarea>';     
+    $comment_field = '<textarea id="comment" name="comment" class="form" placeholder="Comment" tabindex="4" aria-required="true"></textarea>';     
     $args = array(
         'comment_field'        => $comment_field,
         'title_reply'          => __( 'SUBMIT A COMMENT'),
@@ -469,53 +472,102 @@ class socialNetworkShareCount{
 add_action('wp_ajax_nopriv_more_post_ajax', 'more_post_ajax'); 
 add_action('wp_ajax_more_post_ajax', 'more_post_ajax');
 function more_post_ajax(){
-    $paged = isset($_POST["paged"]) ? $_POST["paged"] : 0;
-    $cat = isset($_POST["cat"]) ? $_POST["cat"]: 0;
+    $paged = isset($_POST["paged"]) ? $_POST["paged"] : 1;
+    $cat = isset($_POST["cat"]) ? $_POST["cat"]: '';
+    $key = isset($_POST["key"]) ? $_POST["key"]: '';
     header("Content-Type: text/html");
-    $args = array(
-        'cat'=> $cat,
-        'paged' => $paged,
-        );
-     //$wp_query = new WP_Query($args);
-    query_posts( $args );
-    if ( have_posts() ) {
-        while ( have_posts() ) : the_post();
-            ?>
+    if(is_search()){
+        $args = array(
+            's' => $key,
+            'paged' => $paged,
+            );
+         //$wp_query = new WP_Query($args);
+        query_posts( $args );
+            if ( have_posts() ) :          
+                while ( have_posts() ) : the_post(); ?>                  
                 <div class="fashion_post_content">
-                    <div class="post_thumbnail" style="background:url(<?php the_post_thumbnail_url(); ?>)center center no-repeat;background-size:cover;">                            
-                        <a href="<?php the_permalink();?>"><?php //the_post_thumbnail();?></a>
+                  <div class="post_thumbnail" style="background:url(<?php the_post_thumbnail_url(); ?>)center center no-repeat;background-size:cover;">                
+                    <a href="<?php the_permalink();?>"><!-- <?php the_post_thumbnail();?> --></a>
+                  </div>
+                  <div class="fashion_text">
+                    <h4><a href="<?php the_permalink();?>"><?php the_title_max_charlength(50); ?></a></h4>
+                    <div class="guild_item_author">
+                                 <?php
+                        $url = get_permalink();
+                                      $socialCounts = new socialNetworkShareCount(array(
+                                          'url' => $url,
+                                          'facebook' => true,/*
+                                          'twitter' => true,
+    */                                      'pinterest' => true,
+                                          'linkedin' => true,
+                                          'google' => true
+                                      ));
+                                      $total = json_decode($socialCounts->getShareCounts());?>
+                                   <a>by <?php the_author(); ?></a>
+                                   <?php the_category(', '); ?>
+                                   <?php comments_popup_link('No Comments', '1 Comment', '% Comments'); ?>
+                                   <a><?php echo $total->total.' share';?></a>
+                                 </div>     
+                    <p><?php the_excerpt_max_charlength(200);  ?></p>
+                    <div class="guild_item_action">               
+                      <a href="<?php the_permalink();?>" class="btn_readmore_guild_item">read more</a>
+                      <?php echo ButtonShare();?>                  
                     </div>
-                    <div class="fashion_text">
-                        <h4><a href="<?php the_permalink();?>"><?php the_title_max_charlength(50); ?></a></h4>
-                        <div class="guild_item_author">
-                            <?php
-                                $url = get_permalink();
-                                $socialCounts = new socialNetworkShareCount(array(
-                                    'url' => $url,
-                                    'facebook' => true,/*
-                                    'twitter' => true,*/
-                                    'pinterest' => true,
-                                    'linkedin' => true,
-                                    'google' => true
-                                ));
-                                $total = json_decode($socialCounts->getShareCounts());
-                            ?>
-                            <a>by <?php the_author(); ?></a>
-                            <?php the_category(', ') ?>
-                            <?php comments_popup_link('No Comments', '1 Comment', '% Comments'); ?>
-                           <a><?php echo $total->total.' share';?></a>
-                         </div>         
-                        <p><?php the_excerpt_max_charlength(200);  ?></p>                       
-                        <div class="guild_item_action">                         
-                            <a href="<?php the_permalink();?>" class="btn_readmore_guild_item">read more</a>
-                            <?php echo ButtonShare();?>                         
+                  </div>
+                </div>
+                <?php endwhile;
+            endif;
+    }else{
+        $query_vars = json_decode( stripslashes( $_POST['query_vars'] ), true );
+        $query_vars['paged'] = $paged;
+        $query_vars['post_status'] = 'publish';
+        $posts = new WP_Query( $query_vars );
+        $GLOBALS['wp_query'] = $posts;
+        /*$arg = array(
+            'cat'=> $cat,
+            'post_status'=> 'publish',
+            'paged'=> $paged
+            );
+        query_posts( $arg );*/
+        if ( have_posts() ) {
+            while ( have_posts() ) : the_post();
+                ?>
+                    <div class="fashion_post_content">
+                        <div class="post_thumbnail" style="background:url(<?php the_post_thumbnail_url(); ?>)center center no-repeat;background-size:cover;">                            
+                            <a href="<?php the_permalink();?>"><?php //the_post_thumbnail();?></a>
+                        </div>
+                        <div class="fashion_text">
+                            <h4><a href="<?php the_permalink();?>"><?php the_title_max_charlength(50); ?></a></h4>
+                            <div class="guild_item_author">
+                                <?php
+                                    $url = get_permalink();
+                                    $socialCounts = new socialNetworkShareCount(array(
+                                        'url' => $url,
+                                        'facebook' => true,/*
+                                        'twitter' => true,*/
+                                        'pinterest' => true,
+                                        'linkedin' => true,
+                                        'google' => true
+                                    ));
+                                    $total = json_decode($socialCounts->getShareCounts());
+                                ?>
+                                <a>by <?php the_author(); ?></a>
+                                <?php the_category(', ') ?>
+                                <?php comments_popup_link('No Comments', '1 Comment', '% Comments'); ?>
+                               <a><?php echo $total->total.' share';?></a>
+                             </div>         
+                            <p><?php the_excerpt_max_charlength(200);  ?></p>                       
+                            <div class="guild_item_action">                         
+                                <a href="<?php the_permalink();?>" class="btn_readmore_guild_item">read more</a>
+                                <?php echo ButtonShare();?>                         
+                            </div>
                         </div>
                     </div>
-                </div>
-            <?php
-        endwhile;
-    } else {
-        echo '<p class="not-found">'.__( 'No products found' ).'</p>';
+                <?php
+            endwhile;
+        } else {
+            echo '<p class="not-found">'.__( 'No products found' ).'</p>';
+        }
     }
     exit; 
 }
