@@ -1,0 +1,1321 @@
+<!doctype html>
+<!--[if IE 8 ]>    <html lang="en" class="no-js ie8"> <![endif]-->
+<!--[if (gt IE 9)|!(IE)]><!--> <html lang="en" class="no-js"> <!--<![endif]-->
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1" />
+  <link rel="canonical" href="/" />
+  
+  <meta name="description" content="" />
+  
+  <title>GameWorld HTML Template</title>
+  
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Roboto:400,700" rel="stylesheet" type="text/css">
+  
+  <link href="./assets/stylesheets/cs.animate.css" rel="stylesheet" type="text/css" media="all">
+  <link href="./assets/stylesheets/application.css" rel="stylesheet" type="text/css" media="all">
+  <link href="./assets/stylesheets/bootstrap.min.3x.css" rel="stylesheet" type="text/css" media="all">
+  <link href="./assets/stylesheets/cs.bootstrap.3x.css" rel="stylesheet" type="text/css" media="all">
+  <link href="./assets/stylesheets/owl.carousel.css" rel="stylesheet" type="text/css" media="all">
+  <link href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css" rel="stylesheet" type="text/css" media="all">
+  <link href="./assets/stylesheets/cs.global.css" rel="stylesheet" type="text/css" media="all">
+  <link href="./assets/stylesheets/cs.style.css" rel="stylesheet" type="text/css" media="all">
+  <link href="./assets/stylesheets/cs.media.3x.css" rel="stylesheet" type="text/css" media="all">
+  <!--[if IE 8 ]> 
+  <link href="./assets/stylesheets/ie8.css" rel="stylesheet" type="text/css" media="all">
+  <![endif]-->
+  
+  <script src="./assets/javascripts/jquery-2.1.0.min.js" type="text/javascript"></script>
+  <script src="./assets/javascripts/modernizr.js" type="text/javascript"></script>
+</head>
+
+<body class="template">
+  <div class="bg-image-sidebar">
+	<a id="bg-left" href="#"><img src="./assets/images/image_left.png" alt=""></a>
+	<a id="bg-right" href="#"><img src="./assets/images/image_right.png" alt=""></a>
+  </div>
+  <!-- Header -->
+  <header id="top" class="clearfix">
+    
+    <!--top-other-->
+    <div id="top-other">
+      <div class="container">
+        <div class="row">
+          <div class="welcome col-md-9 text-left">
+            Welcome to game world
+          </div>
+          <div class="top-other col-md-15">
+            <ul class="list-inline text-right">
+              <li class="currencies-switcher">
+                <div class="currency-plain">
+                  <ul class="currencies list-inline unmargin">
+                    <li class="heading">Currency </li>
+                    <li class="currency-EUR active">
+                      <a href="#">EUR</a>
+                      <input type="hidden" value="EUR">
+                    </li>
+                    <li class="currency-USD">
+                      <a href="#">USD</a>
+                      <input type="hidden" value="USD">
+                    </li>
+                    <li class="currency-GBP">
+                      <a href="#">GBP</a>
+                      <input type="hidden" value="GBP">
+                    </li>
+                  </ul>
+                  <select class="currencies_src hide" name="currencies">
+                    <option value="EUR" selected="selected">EUR</option>
+                    <option value="USD">USD</option>
+                    <option value="GBP">GBP</option>
+                  </select>
+                </div>
+              </li>
+              <li class="customer-links">
+                <ul id="accounts" class="list-inline">
+                  <li class="login">
+                    <span id="loginButton" class="dropdown-toggle" data-toggle="dropdown">
+                      Login
+                      <i class="sub-dropdown1"></i>
+                      <i class="sub-dropdown"></i>
+                    </span>
+                    <div id="loginBox" class="dropdown-menu text-left" style="overflow:hidden;display:none">
+                      <form method="post" action="./login.html" id="customer_login" accept-charset="UTF-8">
+                        <input name="form_type" type="hidden" value="customer_login">
+                        <input name="utf8" type="hidden" value="✓">
+                        <div id="bodyBox">
+                          <div class="sb-title">Login</div>
+                          <ul class="control-container customer-accounts list-unstyled">
+                            <li class="clearfix">
+                              <label for="customer_email_box" class="control-label">Email Address <span class="req">*</span></label>
+                              <input type="email" value="" name="customer[email]" id="customer_email_box" class="form-control">
+                            </li>
+                            <li class="clearfix">
+                              <label for="customer_password_box" class="control-label">Password <span class="req">*</span></label>
+                              <input type="password" value="" name="customer[password]" id="customer_password_box" class="form-control password">
+                            </li>
+                            <li class="clearfix last1">
+                              <button class="btn btn-1" type="submit">Login</button>
+                            </li>
+                            <li>
+                              <a class="register" href="./register.html">Creat New Account</a>
+                            </li>
+                          </ul>
+                        </div>
+                      </form>
+                    </div>
+                  </li>
+                  <li>or</li>
+                  <li class="register">
+                    <a href="./register.html" id="customer_register_link">Register</a>
+                  </li>
+                </ul>
+              </li>
+              <li class="umbrella">
+                <div id="umbrella" class="list-inline unmargin">
+                  <div class="cart-link">
+                    <div class="dropdown-toggle" data-toggle="dropdown">
+                      <i class="sub-dropdown1"></i>
+                      <i class="sub-dropdown"></i>
+                      <a class="num-items-in-cart link-dropdown" href="./cart.html">
+                        <span>My Cart</span>
+                        <span class="icon">
+                          <span class="number">2</span> items
+                          <span class="total"> - <span class="money" >€118.00</span></span>
+                        </span>
+                      </a>
+                    </div>
+                    <div id="cart-info" class="dropdown-menu">
+                      <div id="cart-content">
+                        <div class="sb-title">
+                          <a href="/cart">My cart</a>
+                        </div>
+                        <div class="action">
+                          <span>Cart Subtotal:</span>
+                          <span class="cart-total-right"><span class="money">€118.00</span></span>
+                        </div>
+                        <div class="action">
+                          <button class="btn btn-1">CHECKOUT</button>
+                        </div>
+                        <div class="recently">
+                          <span>Recently added items</span>
+                        </div>
+                        <div class="items control-container">
+                          <div class="row">
+                            <a class="cart-close" title="Remove" href="#">
+                              <i class="fa fa-times"></i>
+                            </a>
+                            <div class="col-md-7 cart-left">
+                              <a class="cart-image" href="./product.html">
+                                <img src="./screen/demos/demo_60x85.png" alt="" title="">
+                              </a>
+                            </div>
+                            <div class="col-md-17 cart-right">
+                              <div class="cart-title">
+                                <a href="./product.html">Curabitur mattis tellus rutrum enim facilisis - Ferrari / Modern</a>
+                              </div>
+                              <div class="cart-price">1<span class="x"> x </span><span class="money">€59.00</span></div>
+                            </div>
+                          </div>
+                          <div class="row">
+                            <a class="cart-close" title="Remove" href="#">
+                              <i class="fa fa-times"></i>
+                            </a>
+                            <div class="col-md-7 cart-left">
+                              <a class="cart-image" href="./product.html">
+                                <img src="./screen/demos/demo_60x85.png" alt="" title=""></a>
+                            </div>
+                            <div class="col-md-17 cart-right">
+                              <div class="cart-title">
+                                <a href="./product.html">Nam at lectus eget mi vista hendrerit tincidunt - action</a>
+                              </div>
+                              <div class="cart-price">1<span class="x"> x </span><span class="money">€59.00</span></div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--end top-other -->
+    
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12 top-logo">
+          <a id="site-title" href="./index.html" title="HTML Game Store Theme">
+            <img src="./assets/images/logo.png" alt="HTML Game Store Theme">
+          </a>
+        </div>
+        <div class="col-md-12 top-support">
+          <div class="support">
+            <span class="h5 txt_color">Customer Support</span><span>1800-000-GameWorld</span>
+            <span class="line"></span>
+            <a href="ymsgr:sendIM?quocbao0415">Chat with us</a>
+          </div>
+          <div class="top-search">
+            <form id="header-search" class="search-form" action="./index.html" method="get">
+              <input type="hidden" name="type" value="product">
+              <input type="text" class="input-block-level" name="q" value="" accesskey="4" autocomplete="off" placeholder="search entire store here">
+              <button type="submit" class="search-submit" title="Search">
+                <i class="fa fa-search"></i>
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="container">
+      <div class="row top-navigation">
+        <nav class="navbar" role="navigation">
+          <div class="clearfix">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="sr-only">Toggle main navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+            </div>
+            <div class="is-mobile visible-xs">
+              <ul class="list-inline">
+                <li class="is-mobile-menu">
+                  <div class="btn-navbar" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar-group">
+                      <span class="icon-bar"></span>
+                      <span class="icon-bar"></span>
+                      <span class="icon-bar"></span>
+                    </span>
+                  </div>
+                </li>
+                <li class="is-mobile-login">
+                  <div class="btn-group">
+                    <div class="dropdown-toggle" data-toggle="dropdown">
+                      <i class="fa fa-user"></i>
+                    </div>
+                    <ul class="customer dropdown-menu">
+                      <li class="logout">
+                        <a href="./login.html">Log in</a>
+                      </li>
+                      <li class="account">
+                        <a href="./register.html">Register</a>
+                      </li>
+                    </ul>
+                  </div>
+                </li>
+                <li class="is-mobile-currency currencies-switcher">
+                  <div class="currency btn-group uppercase">
+                    <a class="currency_wrapper dropdown-toggle" href="#" data-toggle="dropdown">
+                      <i class="sub-dropdown1"></i>
+                      <i class="sub-dropdown"></i>
+                      <span class="currency_code">EUR</span>
+                      &nbsp;<i class="icon-caret-down"></i>
+                    </a>
+                    <ul class="currencies dropdown-menu text-left">
+                      <li class="currency-EUR active">
+                        <a href="javascript:">EUR</a>
+                        <input type="hidden" value="EUR">
+                      </li>
+                      <li class="currency-USD">
+                        <a href="javascript:">USD</a>
+                        <input type="hidden" value="USD">
+                      </li>
+                      <li class="currency-GBP">
+                        <a href="javascript:">GBP</a>
+                        <input type="hidden" value="GBP">
+                      </li>
+                    </ul>
+                    <select class="currencies_src hide" name="currencies">
+                      <option value="EUR" selected="selected">EUR</option>
+                      <option value="USD">USD</option>
+                      <option value="GBP">GBP</option>
+                    </select>
+                  </div>
+                </li>
+                <li class="is-mobile-cart">
+                  <a href="./cart.html"><i class="fa fa-shopping-cart"></i></a>
+                </li>
+              </ul>
+            </div>
+            <div class="collapse navbar-collapse">
+              <ul class="nav navbar-nav hoverMenuWrapper">
+                <li class="dropdown">
+                  <a href="./collection.html" class="dropdown-toggle link-dropdown" data-toggle="dropdown">
+                    Xbox 360
+                    <i class="fa fa-caret-down"></i>
+                    <i class="sub-dropdown1 visible-md visible-lg"></i>
+                    <i class="sub-dropdown visible-md visible-lg"></i>
+                  </a>
+                  <ul class="dropdown-menu" style="overflow:hidden;display:none">
+                    <li><a tabindex="-1" href="./product.html" title="Curabitur mattis tellus rutrum enim facilisis">Curabitur mattis tellus rutrum enim facilisis</a></li>
+                    <li><a tabindex="-1" href="./product.html">Curabitur sollicitudin</a></li>
+                    <li><a tabindex="-1" href="./product.html" title="Pellentesque habitant morbi  tristique senectus">Pellentesque habitant morbi tristique senectus</a></li>
+                    <li><a tabindex="-1" href="./product.html" title="Suspendisse sed libero consequat">Suspendisse sed libero consequat</a></li>
+                  </ul>
+                </li>
+                <li class="dropdown">
+                  <a href="./collection.html" class="dropdown-toggle link-dropdown" data-toggle="dropdown">
+                    PlayStation 3
+                    <i class="fa fa-caret-down"></i>
+                    <i class="sub-dropdown1 visible-md visible-lg"></i>
+                    <i class="sub-dropdown visible-md visible-lg"></i>
+                  </a>
+                  <ul class="dropdown-menu" style="overflow:hidden;display:none">
+                    <li><a tabindex="-1" href="./product.html" title="Cras in nunc non ipsum duo  cursus ultrices">Cras in nunc non ipsum duo cursus ultrices</a></li>
+                    <li><a tabindex="-1" href="./product.html" title="Curabitur mattis tellus rutrum enim facilisis">Curabitur mattis tellus rutrum enim facilisis</a></li>
+                    <li><a tabindex="-1" href="./product.html">Curabitur sollicitudin</a></li>
+                    <li><a tabindex="-1" href="./product.html" title="Nam at lectus eget mi vista  hendrerit tincidunt">Nam at lectus eget mi vista hendrerit tincidunt</a></li>
+                    <li><a tabindex="-1" href="./product.html" title="Pellentesque habitant morbi  tristique senectus">Pellentesque habitant morbi tristique senectus</a></li>
+                    <li><a tabindex="-1" href="./product.html" title="Suspendisse sed libero consequat">Suspendisse sed libero consequat</a></li>
+                    <li><a tabindex="-1" href="./product.html" title="Suspendisse sed libero tesla  magna consequat">Suspendisse sed libero tesla magna consequat</a></li>
+                    <li><a tabindex="-1" href="./product.html" title="Auctor semper">Auctor semper</a></li>
+                  </ul>
+                </li>
+                <li class="dropdown">
+                  <a href="./collection.html" class="dropdown-toggle link-dropdown" data-toggle="dropdown">
+                    Wii
+                    <i class="fa fa-caret-down"></i>
+                    <i class="sub-dropdown1 visible-md visible-lg"></i>
+                    <i class="sub-dropdown visible-md visible-lg"></i>
+                  </a>
+                  <ul class="dropdown-menu" style="overflow:hidden;display:none">
+                    <li><a tabindex="-1" href="./product.html" title="Suspendisse sed libero tesla  magna consequat">Suspendisse sed libero tesla magna consequat</a></li>
+                    <li><a tabindex="-1" href="./product.html" title="Suspendisse sed libero consequat">Suspendisse sed libero consequat</a></li>
+                    <li><a tabindex="-1" href="./product.html" title="Auctor semper">Auctor semper</a></li>
+                    <li><a tabindex="-1" href="./product.html" title="Nam at lectus eget mi vista  hendrerit tincidunt">Nam at lectus eget mi vista hendrerit tincidunt</a></li>
+                  </ul>
+                </li>
+                <li class="">
+                  <a href="./collection.html">
+                    3DS
+                    <span></span>
+                  </a>
+                </li>
+                <li class="">
+                  <a href="./collection.html">
+                    PSP
+                    <span></span>
+                  </a>
+                </li>
+                <li class="">
+                  <a href="./collection.html">
+                    PC
+                    <span></span>
+                  </a>
+                </li>
+                <li class="">
+                  <a href="./collection.html">
+                    Gear and Gadgets
+                    <span></span>
+                  </a>
+                </li>
+                <li class="">
+                  <a href="./product.html">
+                    PlayStation 2
+                    <span></span>
+                  </a>
+                </li>
+                <li class="">
+                  <a href="./product.html">
+                    Nintendo GBA
+                    <span></span>
+                  </a>
+                </li>
+                <li class="">
+                  <a href="./typography.html">
+                    Typography
+                    <span></span>
+                  </a>
+                </li>
+                <li class="last">
+                  <a href="./collection.html">
+                    More +
+                    <span></span>
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </nav>
+      </div>
+    </div>
+    
+    <div class="gr-below-nav">
+      <div class="container">
+        <div class="top-below-nav clearfix">
+          <div class="sub_menu">
+            <ul class="list-inline list-unstylet text-left clearfix">
+              <li class="col-md-5">
+                <a href="./collection.html">
+                  <span>Downloads</span>
+                </a>
+                <span>Games &amp; Add-ons</span>
+              </li>
+              <li class="col-md-5">
+                <a href="./collection.html">
+                  <span>Pre-owned</span>
+                </a>
+                <span>Great Values</span>
+              </li>
+              <li class="col-md-5">
+                <a href="./collection.html">
+                  <span>Trade-Ins</span>
+                </a>
+                <span>Great Offers</span>
+              </li>
+              <li class="col-md-5">
+                <a href="./collection.html">
+                  <span>Monthly-Deals</span>
+                </a>
+                <span>Current Sales</span>
+              </li>
+            </ul>
+            <span class="sub_nav"></span>
+          </div>
+          <div class="social">
+            <ul class="list-inline list-unstyle text-right">
+              <li class="">
+                <a href="#">
+                  <img src="./assets/images/bb_nav_right_img_1.png" alt="">
+                </a>
+              </li>
+              <li class="">
+                <a href="#">
+                  <img src="./assets/images/bb_nav_right_img_2.png" alt="">
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+  </header>
+  
+  <div id="content-wrapper-parent">
+    <div id="content-wrapper">
+      <div id="content" class="container clearfix">
+        <div class="group_breadcrumb">
+          <div id="breadcrumb" class="row breadcrumb">
+            <div class="col-md-24">
+              <a href="./index.html" class="homepage-link" title="Back to the frontpage">Home</a>
+              <i class="angle-right">&gt;</i>
+              <a href="./collection.html" title="">XBOX 360</a>
+              <i class="angle-right">&gt;</i>
+              <span class="page-title">Curabitur mattis tellus rutrum enim facilisis</span>
+            </div>
+          </div>
+        </div>
+        <section class="row content">
+          
+          <!--sidebar-->
+          <div class="col-md-5 sidebar hidden-xs">
+            <div class="sb-wrapper">
+              <div class="sb-title box featured_game">Featured Games</div>
+              <ul class="featured-products sb-content list-unstyled list-styled">
+                <li>
+                  <div class="row">
+                    <div class="col-md-8 row-left unpadding-right">
+                      <a href="./product.html" class="product-link">
+                        <img src="./screen/demos/demo_60x85.png" class="image-fly img-responsive" alt="Cras in nunc non ipsum duo  cursus ultrices">
+                      </a>
+                    </div>
+                    <div class="col-md-16 row-right parent-fly">
+                      <div class="product-wrapper">
+                        <div class="fprod-title">
+                          <a href="./product.html">Cras in nunc non ipsum duo cursus ultrices</a>
+                        </div>
+                        <a class="col-title" href="./collection.html">
+                          XBOX 360
+                        </a>
+                        <div class="product-price">
+                          <span class="price">
+                            <span class="money">€59.00</span>
+                          </span>
+                        </div>
+                        <div class="clearfix">
+                          <form action="/cart/add" method="post" enctype="multipart/form-data">
+                            <div class="hide clearfix">
+                              <select name="id">
+                                <option selected="selected" value="455695565">martial - €59.00</option>
+                                <option value="502624265">animation - €65.00</option>
+                              </select>
+                            </div>
+                            <input type="hidden" name="quantity" value="1">
+                            <button class="btn add-to-cart" data-parent=".parent-fly" type="submit" name="add">Add to Cart</button>
+                          </form>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </li>
+                <li>
+                  <div class="row">
+                    <div class="col-md-8 row-left unpadding-right">
+                      <a href="./product.html" class="product-link">
+                        <img src="./screen/demos/demo_60x85.png" class="image-fly img-responsive" alt="Curabitur mattis tellus rutrum enim facilisis">
+                      </a>
+                    </div>
+                    <div class="col-md-16 row-right parent-fly">
+                      <div class="product-wrapper">
+                        <div class="fprod-title">
+                          <a href="./product.html">Curabitur mattis tellus rutrum enim facilisis</a>
+                        </div>
+                        <a class="col-title" href="./collection.html">
+                          XBOX 360
+                        </a>
+                        <div class="product-price">
+                          <del class="price_compare"> <span class="money">€69.00</span></del>
+                          <span class="price_sale"><span class="money">€59.00</span></span>
+                        </div>
+                        <div class="clearfix">
+                          <form action="/cart/add" method="post" enctype="multipart/form-data">
+                            <div class="hide clearfix">
+                              <select name="id">
+                                <option selected="selected" value="455695609">Ferrari / Modern - €59.00</option>
+                                <option value="502625841">Lamborghini / Modern - €70.00</option>
+                              </select>
+                            </div>
+                            <input type="hidden" name="quantity" value="1">
+                            <button class="btn add-to-cart" data-parent=".parent-fly" type="submit" name="add">Add to Cart</button>
+                          </form>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </li>
+                <li>
+                  <div class="row">
+                    <div class="col-md-8 row-left unpadding-right">
+                      <a href="./product.html" class="product-link">
+                        <img src="./screen/demos/demo_60x85.png" class="image-fly img-responsive" alt="Curabitur sollicitudin">
+                      </a>
+                    </div>
+                    <div class="col-md-16 row-right parent-fly">
+                      <div class="product-wrapper">
+                        <div class="fprod-title">
+                          <a href="./product.html">Curabitur sollicitudin</a>
+                        </div>
+                        <a class="col-title" href="./collection.html">
+                          XBOX 360
+                        </a>
+                        <div class="product-price">
+                          <span class="price">
+                            <span class="money">€59.00</span>
+                          </span>
+                        </div>
+                        <div class="clearfix">
+                          <form action="/cart/add" method="post" enctype="multipart/form-data">
+                            <div class="hide clearfix">
+                              <select name="id">
+                                <option selected="selected" value="455695597">animation - €59.00</option>
+                              </select>
+                            </div>
+                            <input type="hidden" name="quantity" value="1">
+                            <button class="btn add-to-cart" data-parent=".parent-fly" type="submit" name="add">Add to Cart</button>
+                          </form>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="sb-wrapper">
+              <div class="sb-title box text_widget">Welcome</div>
+              <ul class="list-unstyled sb-content textwidget list-styled">
+                <li><p>Maecenas vitae urna in arcu pla vulputate ut eu dui. Fusce quisst neque vulputate, viverra orci vel, accumsan lorem. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris sit amet felis sed tellus</p></li>
+              </ul>
+            </div>
+            <div class="sb-wrapper">
+              <div class="sb-title box">Product Vendors</div>
+              <ul class="list-unstyled sb-content list-styled">
+                <li>
+                  <a href="./collection.html" title="Vendor 1">Vendor 1</a>
+                </li>
+                <li>
+                  <a href="./collection.html" title="Vendor 2">Vendor 2</a>
+                </li>
+                <li>
+                  <a href="./collection.html" title="Vendor 3">Vendor 3</a>
+                </li>
+                <li>
+                  <a href="./collection.html" title="Vendor 4">Vendor 4</a>
+                </li>
+              </ul>
+            </div>
+            <div class="sb-wrapper">
+              <div class="sb-title box">Product Types</div>
+              <ul class="list-unstyled sb-content list-styled">
+                <li>
+                  <a href="./collection.html" title="CD Key">CD Key</a>
+                </li>
+                <li>
+                  <a href="./collection.html" title="Digital Copy">Digital Copy</a>
+                </li>
+                <li>
+                  <a href="./collection.html" title="Game Box">Game Box</a>
+                </li>
+                <li>
+                  <a href="./collection.html" title="Powerleveling Services">Powerleveling Services</a>
+                </li>
+              </ul>
+            </div>
+            <div class="sb-wrapper">
+              <div class="sb-title box">Product Categories</div>
+              <ul class="list-unstyled sb-content list-styled">
+                <li>
+                  <a href="./collection.html">3DS</a>
+                </li>
+                <li>
+                  <a href="./collection.html">Gears and Gadgets</a>
+                </li>
+                <li>
+                  <a href="./collection.html">PC</a>
+                </li>
+                <li>
+                  <a href="./collection.html">PlayStation 3</a>
+                </li>
+                <li>
+                  <a href="./collection.html">PSP</a>
+                </li>
+                <li>
+                  <a href="./collection.html">Wii</a>
+                </li>
+                <li>
+                  <a href="./collection.html">XBOX 360</a>
+                </li>
+              </ul>
+            </div>
+          </div>
+          <!--end sidebar-->
+          
+          <!--col-main-->
+          <div id="col-main" class="product-page col-content col-md-19">
+            <div itemscope="" itemtype="http://schema.org/Product">
+              <meta itemprop="url" content="/products/curabitur-mattis-tellus-rutrum-enim-facilisis">
+              <div id="product" class="content row clearfix">
+                <div id="product-image" class="col-md-12 product-image">
+                  <div class="product-image-wrapper">
+                    <a target="_blank" href="./screen/products/product_03_1024x1024.jpg" class="main-image elevatezoom">
+                      <img itemprop="image" class="img-zoom img-responsive image-fly" src="./screen/demos/demo_420x600.png" data-zoom-image="./screen/demos/demo_420x600.png" alt="Curabitur mattis tellus rutrum enim facilisis">
+                      <span class="main-image-bg"></span>
+                    </a>
+                    <div id="gallery_main" class="product-image-thumb">
+                      <a target="_blank" class="image-thumb active" data-image="./screen/demos/demo_420x600.png" data-zoom-image="./screen/demos/demo_420x600.png" href="./screen/demos/demo_420x600.png">
+                        <img src="./screen/demos/demo_60x60.png" alt="Curabitur mattis tellus rutrum enim facilisis">
+                      </a>
+                      <a target="_blank" class="image-thumb" data-image="./screen/demos/demo_420x600.png" data-zoom-image="./screen/demos/demo_420x600.png" href="./screen/demos/demo_420x600.png">
+                        <img src="./screen/demos/demo_60x60.png" alt="Curabitur mattis tellus rutrum enim facilisis">
+                      </a>
+                      <a target="_blank" class="image-thumb" data-image="./screen/demos/demo_420x600.png" data-zoom-image="./screen/demos/demo_420x600.png" href="./screen/demos/demo_420x600.png">
+                        <img src="./screen/demos/demo_60x60.png" alt="Curabitur mattis tellus rutrum enim facilisis">
+                      </a>
+                      <a target="_blank" class="image-thumb" data-image="./screen/demos/demo_420x600.png" data-zoom-image="./screen/demos/demo_420x600.png" href="./screen/demos/demo_420x600.png">
+                        <img src="./screen/demos/demo_60x60.png" alt="Curabitur mattis tellus rutrum enim facilisis">
+                      </a>
+                      <a target="_blank" class="image-thumb" data-image="./screen/demos/demo_420x600.png" data-zoom-image="./screen/demos/demo_420x600.png" href="./screen/demos/demo_420x600.png">
+                        <img src="./screen/demos/demo_60x60.png" alt="Curabitur mattis tellus rutrum enim facilisis">
+                      </a>
+                      <a target="_blank" class="image-thumb" data-image="./screen/demos/demo_420x600.png" data-zoom-image="./screen/demos/demo_420x600.png" href="./screen/demos/demo_420x600.png">
+                        <img src="./screen/demos/demo_60x60.png" alt="Curabitur mattis tellus rutrum enim facilisis">
+                      </a>
+                    </div>
+                  </div>
+                </div>
+                <div id="product-information" class="col-md-12 product-information">
+                  <div id="product-header" class="clearfix">
+                    <h3 id="page-product-title" itemprop="name">
+                      Curabitur mattis tellus rutrum enim facilisis
+                    </h3>
+                    <div class="description" itemprop="description">
+                      <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.</p>
+                      <p>Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt.</p>
+                    </div>
+                    <div class="sharing">
+                      <div class="addthis_toolbox addthis_default_style">
+                        <a class="addthis_button_email"></a>
+                        <a class="addthis_button_print"></a>
+                        <a class="addthis_button_facebook"></a>
+                        <a class="addthis_button_twitter"></a>
+                        <a class="addthis_button_pinterest_share"></a>
+                        <a class="addthis_button_compact"></a>
+                        <a class="addthis_counter addthis_bubble_style"></a>
+                      </div>
+                      <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=xa-526dd1ed7110a16a"></script>
+                    </div>
+                    <div class="relative">
+                      <ul class="list-unstyled">
+                        <li class="vendor">
+                          <span>Vendor:</span>
+                          <a href="./collection.html" title="Vendor 2">Vendor 2</a>
+                        </li>
+                        <li class="type">
+                          <span>Type:</span>
+                          <a href="./collection.html" title="Digital Copy">Digital Copy</a>
+                        </li>
+                        <li class="tags">
+                          <span>Tag:</span>
+                          <a href="./collection.html">
+                            need-for-speed<span>,</span>
+                          </a>
+                          <a href="./collection.html">
+                            racing
+                          </a>
+                        </li>
+                      </ul>
+                    </div>
+                    <div itemprop="offers" itemscope="" itemtype="http://schema.org/Offer">
+                      <meta itemprop="priceCurrency" content="EUR">
+                      <link itemprop="availability" href="http://schema.org/InStock">
+                      <form action="/cart/add" method="post" class="variants" id="product-actions">
+                        <div id="product-actions-200046165" class="options clearfix">
+                          <div id="purchase-200046165">
+                            <div class="detail-price" itemprop="price">
+                              <span class="price_sale"><span class="money">€59.00</span></span>
+                              <del class="price_compare"><span class="money">€69.00</span></del>
+                            </div>
+                          </div>
+                          <div class="variants-wrapper clearfix">
+                            <div class="selector-wrapper clearfix">
+                              <label for="product-select-200046165-option-0">Retailer</label>
+                              <div class="wrapper">
+                                <select class="single-option-selector col-md-12" id="product-select-200046165-option-0" style="z-index:1000;position:absolute;opacity:0;font-size:11px">
+                                  <option value="Ferrari">Ferrari</option>
+                                  <option value="Lamborghini">Lamborghini</option>
+                                </select>
+                                <button type="button" class="custom-style-select-box btn-block changed">
+                                  <span class="custom-style-select-box-inner">Ferrari</span>
+                                </button>
+                                <i class="fa fa-caret-up"></i>
+                                <i class="fa fa-caret-down"></i>
+                              </div>
+                            </div>
+                            <div class="selector-wrapper clearfix">
+                              <label for="product-select-200046165-option-1">Style</label>
+                              <div class="wrapper">
+                                <select class="single-option-selector col-md-12" id="product-select-200046165-option-1" style="z-index:1000;position:absolute;opacity:0;font-size:11px">
+                                  <option value="Modern">Modern</option>
+                                </select>
+                                <button type="button" class="custom-style-select-box btn-block changed">
+                                  <span class="custom-style-select-box-inner">Modern</span>
+                                </button>
+                                <i class="fa fa-caret-up"></i>
+                                <i class="fa fa-caret-down"></i>
+                              </div>
+                            </div>
+                            <select id="product-select-200046165" name="id" style="display:none">
+                              <option value="455695609">Ferrari / Modern - €59.00</option>
+                              <option value="502625841">Lamborghini / Modern - €70.00</option>
+                            </select>
+                          </div>
+                          <div class="quantity-wrapper clearfix">
+                            <label class="wrapper-title">Qty</label>
+                            <div class="wrapper pos-relative">
+                              <input id="quantity" type="text" name="quantity" value="1" maxlength="5" size="5" class="btn-block item-quantity">
+                              <span class="qty-group">
+                                <span class="qty-wrapper">
+                                  <span class="qty-up btooltip" data-toggle="tooltip" data-placement="top" title="" data-src="#quantity" data-original-title="Increase">
+                                    <i class="fa fa-plus"></i>
+                                  </span>
+                                  <span class="qty-down btooltip" data-toggle="tooltip" data-placement="top" title="" data-src="#quantity" data-original-title="Decrease">
+                                    <i class="fa fa-minus"></i>
+                                  </span>
+                                </span>
+                              </span>
+                            </div>
+                          </div>
+                          <div class="others-bottom">
+                            <button id="add-to-cart" class="btn add-to-cart" data-parent=".product-information" type="submit" name="add">Add to Cart</button>
+                          </div>
+                          <div class="control-navigation">
+                            <a class="btn btn-prev" href="#">Prev Product</a>
+                            <a class="btn btn-next" href="#">Next Product</a>
+                          </div>
+                        </div>
+                      </form>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+            <section class="rel-container clearfix">
+              <div class="sb-title">
+                <h4 class="content-title">Related Products</h4>
+              </div>
+              <div id="prod-related-wrapper">
+                <div id="prod-related" class="clearfix">
+                  <div class="element not-animated" data-animate="bounceIn" data-delay="0">
+                    <form action="/cart/add" method="post" enctype="multipart/form-data">
+                      <ul class="row-container list-unstyled clearfix">
+                        <li class="row-left">
+                          <a href="./product.html" class="hoverBorder">
+                            <span class="hoverBorderWrapper">
+                              <img src="./screen/demos/demo_152x216.png" class="image-fly img-responsive" alt="Cras in nunc non ipsum duo  cursus ultrices">
+                            </span>
+                            <div class="product-ajax-cart hidden-phone">
+                              <span class="overlay_mask"></span>
+                              <div data-href="./ajax/_product-qs.html" data-target="#quick-shop-modal" class="btn btn-3 quick_shop" data-toggle="modal">
+                                Quickshop
+                              </div>
+                            </div>
+                          </a>
+                        </li>
+                        <li class="row-right text-left parent-fly animMix">
+                          <div class="group_info">
+                            <a class="title-5" href="./product.html">Cras in nunc non ipsum duo cursus ultrices</a>
+                            <br>
+                            <a class="col-title" href="./collection.html">
+                              XBOX 360
+                            </a>
+                            <p class="hidden-list">
+                              Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius...
+                            </p>
+                            <div class="product-price">
+                              <span class="price">
+                                <span class="money">€59.00</span>
+                              </span>
+                            </div>
+                            <div class="hide clearfix">
+                              <select name="id">
+                                <option selected="selected" value="455695565">martial - €59.00</option>
+                                <option value="502624265">animation - €65.00</option>
+                              </select>
+                            </div>
+                            <input type="hidden" name="quantity" value="1">
+                            <button class="btn add-to-cart" data-parent=".parent-fly" type="button" name="add">Add to Cart</button>
+                          </div>
+                        </li>
+                      </ul>
+                    </form>
+                  </div>
+                  <div class="element not-animated" data-animate="bounceIn" data-delay="400">
+                    <form action="/cart/add" method="post" enctype="multipart/form-data">
+                      <ul class="row-container list-unstyled clearfix">
+                        <li class="row-left">
+                          <a href="./product.html" class="hoverBorder">
+                            <span class="hoverBorderWrapper">
+                              <img src="./screen/demos/demo_152x216.png" class="image-fly img-responsive" alt="Curabitur sollicitudin">
+                            </span>
+                            <div class="product-ajax-cart hidden-phone">
+                              <span class="overlay_mask"></span>
+                              <div data-href="./ajax/_product-qs.html" data-target="#quick-shop-modal" class="btn btn-3 quick_shop" data-toggle="modal">
+                                Quickshop
+                              </div>
+                            </div>
+                          </a>
+                        </li>
+                        <li class="row-right text-left parent-fly animMix">
+                          <div class="group_info">
+                            <a class="title-5" href="./product.html">Curabitur sollicitudin</a>
+                            <br>
+                            <a class="col-title" href="./collection.html">
+                              XBOX 360
+                            </a>
+                            <p class="hidden-list">
+                              Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius...
+                            </p>
+                            <div class="product-price">
+                              <span class="price">
+                                <span class="money">€59.00</span>
+                              </span>
+                            </div>
+                            <div class="hide clearfix">
+                              <select name="id">
+                                <option selected="selected" value="455695597">animation - €59.00</option>
+                              </select>
+                            </div>
+                            <input type="hidden" name="quantity" value="1">
+                            <button class="btn add-to-cart" data-parent=".parent-fly" type="button" name="add">Add to Cart</button>
+                          </div>
+                        </li>
+                      </ul>
+                    </form>
+                  </div>
+                  <div class="element not-animated" data-animate="bounceIn" data-delay="600">
+                    <form action="/cart/add" method="post" enctype="multipart/form-data">
+                      <ul class="row-container list-unstyled clearfix">
+                        <li class="row-left">
+                          <a href="./product.html" class="hoverBorder">
+                            <span class="hoverBorderWrapper">
+                              <img src="./screen/demos/demo_152x216.png" class="image-fly img-responsive" alt="Nam at lectus eget mi vista  hendrerit tincidunt">
+                            </span>
+                            <div class="product-ajax-cart hidden-phone">
+                              <span class="overlay_mask"></span>
+                              <div data-href="./ajax/_product-qs.html" data-target="#quick-shop-modal" class="btn btn-3 quick_shop" data-toggle="modal">
+                                Quickshop
+                              </div>
+                            </div>
+                          </a>
+                        </li>
+                        <li class="row-right text-left parent-fly animMix">
+                          <div class="group_info">
+                            <a class="title-5" href="./product.html">Nam at lectus eget mi vista hendrerit tincidunt</a>
+                            <br>
+                            <a class="col-title" href="./collection.html">
+                              XBOX 360
+                            </a>
+                            <p class="hidden-list">
+                              Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius...
+                            </p>
+                            <div class="product-price">
+                              <span class="price">
+                                <span class="money">€59.00</span>
+                              </span>
+                            </div>
+                            <div class="hide clearfix">
+                              <select name="id">
+                                <option selected="selected" value="455695573">action - €59.00</option>
+                              </select>
+                            </div>
+                            <input type="hidden" name="quantity" value="1">
+                            <button class="btn add-to-cart" data-parent=".parent-fly" type="button" name="add">Add to Cart</button>
+                          </div>
+                        </li>
+                      </ul>
+                    </form>
+                  </div>
+                  <div class="element not-animated" data-animate="bounceIn" data-delay="800">
+                    <form action="/cart/add" method="post" enctype="multipart/form-data">
+                      <ul class="row-container list-unstyled clearfix">
+                        <li class="row-left">
+                          <a href="./product.html" class="hoverBorder">
+                            <span class="hoverBorderWrapper">
+                              <img src="./screen/demos/demo_152x216.png" class="image-fly img-responsive" alt="Pellentesque habitant morbi  tristique senectus">
+                            </span>
+                            <div class="product-ajax-cart hidden-phone">
+                              <span class="overlay_mask"></span>
+                              <div data-href="./ajax/_product-qs.html" data-target="#quick-shop-modal" class="btn btn-3 quick_shop" data-toggle="modal">
+                                Quickshop
+                              </div>
+                            </div>
+                          </a>
+                        </li>
+                        <li class="row-right text-left parent-fly animMix">
+                          <div class="group_info">
+                            <a class="title-5" href="./product.html">Pellentesque habitant morbi tristique senectus</a>
+                            <br>
+                            <a class="col-title" href="./collection.html">
+                              XBOX 360
+                            </a>
+                            <p class="hidden-list">
+                              Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius...
+                            </p>
+                            <div class="product-price">
+                              <span class="price">
+                                <span class="money">€59.00</span>
+                              </span>
+                            </div>
+                            <div class="hide clearfix">
+                              <select name="id">
+                                <option selected="selected" value="455695585">action - €59.00</option>
+                                <option value="502628309">horror - €65.00</option>
+                              </select>
+                            </div>
+                            <input type="hidden" name="quantity" value="1">
+                            <button class="btn add-to-cart" data-parent=".parent-fly" type="button" name="add">Add to Cart</button>
+                          </div>
+                        </li>
+                      </ul>
+                    </form>
+                  </div>
+                  <div class="element not-animated" data-animate="bounceIn" data-delay="1000">
+                    <form action="/cart/add" method="post" enctype="multipart/form-data">
+                      <ul class="row-container list-unstyled clearfix">
+                        <li class="row-left">
+                          <a href="./product.html" class="hoverBorder">
+                            <span class="hoverBorderWrapper">
+                              <img src="./screen/demos/demo_152x216.png" class="image-fly img-responsive" alt="Suspendisse sed libero consequat">
+                            </span>
+                            <div class="product-ajax-cart hidden-phone">
+                              <span class="overlay_mask"></span>
+                              <div data-href="./ajax/_product-qs.html" data-target="#quick-shop-modal" class="btn btn-3 quick_shop" data-toggle="modal">
+                                Quickshop
+                              </div>
+                            </div>
+                          </a>
+                        </li>
+                        <li class="row-right text-left parent-fly animMix">
+                          <div class="group_info">
+                            <a class="title-5" href="./product.html">Suspendisse sed libero consequat</a>
+                            <br>
+                            <a class="col-title" href="/collection.html">
+                              XBOX 360
+                            </a>
+                            <p class="hidden-list">
+                              Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius...
+                            </p>
+                            <div class="product-price">
+                              <span class="price">
+                                <span class="money">€59.00</span>
+                              </span>
+                            </div>
+                            <div class="hide clearfix">
+                              <select name="id">
+                                <option selected="selected" value="455709309">animation - €59.00</option>
+                              </select>
+                            </div>
+                            <input type="hidden" name="quantity" value="1">
+                            <button class="btn add-to-cart" data-parent=".parent-fly" type="button" name="add">Add to Cart</button>
+                          </div>
+                        </li>
+                      </ul>
+                    </form>
+                  </div>
+                  <div class="element not-animated" data-animate="bounceIn" data-delay="1200">
+                    <form action="/cart/add" method="post" enctype="multipart/form-data">
+                      <ul class="row-container list-unstyled clearfix">
+                        <li class="row-left">
+                          <a href="./product.html" class="hoverBorder">
+                            <span class="hoverBorderWrapper">
+                              <img src="./screen/demos/demo_152x216.png" class="image-fly img-responsive" alt="Suspendisse sed libero consequat">
+                            </span>
+                            <div class="product-ajax-cart hidden-phone">
+                              <span class="overlay_mask"></span>
+                              <div data-href="./ajax/_product-qs.html" data-target="#quick-shop-modal" class="btn btn-3 quick_shop" data-toggle="modal">
+                                Quickshop
+                              </div>
+                            </div>
+                          </a>
+                        </li>
+                        <li class="row-right text-left parent-fly animMix">
+                          <div class="group_info">
+                            <a class="title-5" href="./product.html">Suspendisse sed libero consequat</a>
+                            <br>
+                            <a class="col-title" href="./collection.html">
+                              XBOX 360
+                            </a>
+                            <p class="hidden-list">
+                              Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius...
+                            </p>
+                            <div class="product-price">
+                              <span class="price">
+                                <span class="money">€59.00</span>
+                              </span>
+                            </div>
+                            <div class="hide clearfix">
+                              <select name="id">
+                                <option selected="selected" value="455709193">martial - €59.00</option>
+                                <option value="502629429">action - €69.00</option>
+                              </select>
+                            </div>
+                            <input type="hidden" name="quantity" value="1">
+                            <button class="btn add-to-cart" data-parent=".parent-fly" type="button" name="add">Add to Cart</button>
+                          </div>
+                        </li>
+                      </ul>
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </section>
+          </div>
+          <!--end-col-main-->
+        </section>
+      </div>
+    </div>
+  </div>
+  
+  <div id="bottom">
+    <div class="container">
+      <div id="bottom-content" class="row">
+        <div class="clearfix">
+          <div id="widget-partners">
+            <div class="widget-wrapper text-center">
+              <div id="partners-container" class="clearfix">
+                <div id="partners" class="clearfix">
+                  <div class="logo not-animated text-center" data-animate="bounceIn" data-delay="150">
+                    <a class="animated" href="./collection.html">
+                      <img class="pulse" src="./screen/demos/demo_brand.png" alt="">
+                    </a>
+                  </div>
+                  <div class="logo not-animated text-center" data-animate="bounceIn" data-delay="300">
+                    <a class="animated" href="./collection.html">
+                      <img class="pulse" src="./screen/demos/demo_brand.png" alt="">
+                    </a>
+                  </div>
+                  <div class="logo not-animated text-center" data-animate="bounceIn" data-delay="450">
+                    <a class="animated" href="./collection.html">
+                      <img class="pulse" src="./screen/demos/demo_brand.png" alt="">
+                    </a>
+                  </div>
+                  <div class="logo not-animated text-center" data-animate="bounceIn" data-delay="600">
+                    <a class="animated" href="./collection.html">
+                      <img class="pulse" src="./screen/demos/demo_brand.png" alt="">
+                    </a>
+                  </div>
+                  <div class="logo not-animated text-center" data-animate="bounceIn" data-delay="750">
+                    <a class="animated" href="./collection.html">
+                      <img class="pulse" src="./screen/demos/demo_brand.png" alt="">
+                    </a>
+                  </div>
+                  <div class="logo not-animated text-center" data-animate="bounceIn" data-delay="900">
+                    <a class="animated" href="./collection.html">
+                      <img class="pulse" src="./screen/demos/demo_brand.png" alt="">
+                    </a>
+                  </div>
+                  <div class="logo not-animated text-center" data-animate="bounceIn" data-delay="1050">
+                    <a class="animated" href="./collection.html">
+                      <img class="pulse" src="./screen/demos/demo_brand.png" alt="">
+                    </a>
+                  </div>
+                  <div class="logo not-animated text-center" data-animate="bounceIn" data-delay="1200">
+                    <a class="animated" href="./collection.html">
+                      <img class="pulse" src="./screen/demos/demo_brand.png" alt="">
+                    </a>
+                  </div>
+                  <div class="logo not-animated text-center" data-animate="bounceIn" data-delay="1350">
+                    <a class="animated" href="./collection.html">
+                      <img class="pulse" src="./screen/demos/demo_brand.png" alt="">
+                    </a>
+                  </div>
+                  <div class="logo not-animated text-center" data-animate="bounceIn" data-delay="1500">
+                    <a class="animated" href="./collection.html">
+                      <img class="pulse" src="./screen/demos/demo_brand.png" alt="">
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="clearfix"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <footer id="footer">
+    <div class="container">
+      <div id="footer-content">
+        <div class="row widget-blog" id="widget-blog">
+          <div class="widget-header f_title text-center">
+            <h4>From our Blog</h4>
+            <span>Quisque justo turpis, sodales sit amet consectetur <span>-</span></span>
+            <a href="./blog.html"> GO TO BLOG</a>
+          </div>
+          <div class="wrap_item">
+            <div class="article-extras col-md-8 not-animated" data-animate="fadeInUp" data-delay="0">
+              <div class="group">
+                <a href="./blog.html"><img src="./screen/demos/demo_340x150.png" alt=""></a>
+                <h5 class="title"><a href="./blog.html" title="">Curabitur sagittis odio quis erat elementum nec dictum est consectetur</a></h5>
+                <span class="line"></span>
+                <p class="desc">Pellentesque ultricies ante sit amet felis mollis erat dictum mauris orci urna, accumsan vitae convallis quis mattis nec mi nunc (GameSpot) Lorem ipsum dolor sit amet, consectetur adipiscing elit vestibulum...</p>
+                <span class="date">Written on Thursday , 19 December 2013 03 : 08 AM </span>
+              </div>
+            </div>
+            <div class="article-extras col-md-8 not-animated" data-animate="fadeInUp" data-delay="300">
+              <div class="group">
+                <a href="./blog.html"><img src="./screen/demos/demo_340x150.png" alt=""></a>
+                <h5 class="title"><a href="./blog.html" title="">Aliquam a mauris tellus a dapibus ipsum</a></h5>
+                <span class="line"></span>
+                <p class="desc">Pellentesque ultricies ante sit amet felis mollis erat dictum mauris orci urna, accumsan vitae convallis quis mattis nec mi nunc (GameSpot) Lorem ipsum dolor sit amet, consectetur adipiscing elit vestibulum...</p>
+                <span class="date">Written on Thursday , 19 December 2013 03 : 08 AM </span>
+              </div>
+            </div>
+            <div class="article-extras col-md-8 not-animated" data-animate="fadeInUp" data-delay="600">
+              <div class="group">
+                <a href="./blog.html"><img src="./screen/demos/demo_video_340x150.png" alt=""></a>
+                <h5 class="title"><a href="./blog.html" title="">Donec tempor justo sit amet libero auctor quis interdum</a></h5>
+                <span class="line"></span>
+                <p class="desc">Pellentesque ultricies ante sit amet felis mollis erat dictum mauris orci urna, accumsan vitae convallis quis mattis nec mi nunc (GameSpot) Lorem ipsum dolor sit amet, consectetur adipiscing elit vestibulum...</p>
+                <span class="date">Written on Thursday , 19 December 2013 03 : 07 AM </span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="footer_bottom row">
+          <div class="footer-content-middle clearfix">
+            <div class="col-md-8">
+              <div class="group wrap_linklist">
+                <div class="col-md-12 widget-linklist not-animated" id="widget-linklist1" data-animate="fadeInLeft" data-delay="200">
+                  <h5>Company</h5>
+                  <ul class="list-unstyled list-styled">
+                    <li class="list-unstyled">
+                      <a href="./about-us.html">About us</a>
+                    </li>
+                    <li class="list-unstyled">
+                      <a href="./blog.html">Blog</a>
+                    </li>
+                    <li class="list-unstyled">
+                      <a href="./collection.html">Our partners</a>
+                    </li>
+                    <li class="list-unstyled">
+                      <a href="./contact-us.html">Work with us</a>
+                    </li>
+                  </ul>
+                </div>
+                <div class="col-md-12 widget-linklist not-animated" id="widget-linklist2" data-animate="fadeInUp" data-delay="400">
+                  <h5>Assistance</h5>
+                  <ul class="list-unstyled list-styled">
+                    <li>
+                      <a href="./contact-us.html">Contact us</a>
+                    </li>
+                    <li>
+                      <a href="./product.html">FAQs</a>
+                    </li>
+                    <li>
+                      <a href="./collection.html">Shipping information</a>
+                    </li>
+                    <li>
+                      <a href="./contact-us.html">Have a question? ask us</a>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+            <div id="widget-location" class="col-md-8 not-animated" data-animate="fadeInUp" data-delay="600">
+              <div class="group">
+                <h5>
+                  Store location
+                </h5>
+                <ul class="list-unstyled list-styled contact_us">
+                  <li class="address">
+                    <span class="address_span">1234 Fake address name <span>,</span></span>
+                    <span class="address_span"> Fake city name <span>,</span></span>
+                    <span class="address_span"> Country 01234 </span>
+                  </li>
+                  <li class="support">
+                    <span>(000) 123 456 7890</span>
+                    <span>/</span>
+                    <a href="mailto:info@yourdomain.com">info@yourdomain.com</a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+            <div id="newsletter" class="col-md-8 not-animated" data-animate="fadeInRight" data-delay="800">
+              <div class="group">
+                <h5>
+                  Sign up for our newsletter
+                </h5>
+                <div class="mail_action">
+                  <form action="./index.html" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" target="_blank">
+                    <input type="email" placeholder="" name="EMAIL" id="email-input">
+                    <button class="btooltip" title="" type="submit" data-original-title="Subscribe">Subscribe</button>
+                  </form>
+                </div>
+                <div class="footer_social_icons">
+                  <div class="unpadding">
+                    <ul class="list-inline social_icons animated">
+                      <li class="social_title">
+                        Follow
+                      </li>
+                      <li><a target="_blank" href="#" class="btooltip swing" data-toggle="tooltip" data-placement="top" title="" data-original-title="Facebook"><i class="fa fa-facebook-square"></i></a></li>
+                      <li><a target="_blank" href="#" class="btooltip swing" data-toggle="tooltip" data-placement="top" title="" data-original-title="Tumblr"><i class="fa fa-tumblr-square"></i></a></li>
+                      <li><a target="_blank" href="#" class="btooltip swing" data-toggle="tooltip" data-placement="top" title="" data-original-title="Flickr"><i class="fa fa-flickr"></i></a></li>
+                      <li><a target="_blank" href="#" class="btooltip swing" data-toggle="tooltip" data-placement="top" title="" data-original-title="RSS"><i class="fa fa-rss-square"></i></a></li>
+                      <li><a target="_blank" href="#" class="btooltip swing" data-toggle="tooltip" data-placement="top" title="" data-original-title="Vimeo"><i class="fa fa-vimeo-square"></i></a></li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="footer_categories not-animated" data-animate="fadeInUp" data-delay="300">
+            <ul class="list-inline">
+              <li><h5>Categories</h5></li>
+              <li>
+                <a href="./collection.html">3DS</a>
+                <span>|</span>
+              </li>
+              <li>
+                <a href="./collection.html">Gears and Gadgets</a>
+                <span>|</span>
+              </li>
+              <li>
+                <a href="./collection.html">PC</a>
+                <span>|</span>
+              </li>
+              <li>
+                <a href="./collection.html">PlayStation 3</a>
+                <span>|</span>
+              </li>
+              <li>
+                <a href="./collection.html">PSP</a>
+                <span>|</span>
+              </li>
+              <li>
+                <a href="./collection.html">Wii</a>
+                <span>|</span>
+              </li>
+              <li>
+                <a href="./collection.html">XBOX 360</a>
+              </li>
+            </ul>
+          </div>
+          <div class="wrap_bot">
+            <div class="footer_bot_info col-md-12">
+              <div>Suspendisse convallis lacus commodo augue imperdiet tincidunt duis fermentum congue.</div>
+              <div class="copyright">© 2014 <a href="./index.html">HTML Game Store Theme</a>. All Rights Reserved.<br>Designed by <a href="http://designshopify.com" title="">DesignShopify</a></div>
+            </div>
+            <div id="widget-payment" class="col-md-12">
+              <ul id="payments" class="list-inline animated">
+                <li class="btooltip tada" data-toggle="tooltip" data-placement="top" title="" data-original-title="Visa"><a href="javascript:" class="icons visa"></a></li>
+                <li class="btooltip tada" data-toggle="tooltip" data-placement="top" title="" data-original-title="Mastercard"><a href="javascript:" class="icons mastercard"></a></li>
+                <li class="btooltip tada" data-toggle="tooltip" data-placement="top" title="" data-original-title="American Express"><a href="javascript:" class="icons amex"></a></li>
+                <li class="btooltip tada" data-toggle="tooltip" data-placement="top" title="" data-original-title="Paypal"><a href="javascript:" class="icons paypal"></a></li>
+                <li class="btooltip tada" data-toggle="tooltip" data-placement="top" title="" data-original-title="Moneybookers"><a href="javascript:" class="icons moneybookers"></a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+  <div class="modal fade" id="quick-shop-modal"></div>
+  <script src="./assets/javascripts/bootstrap.min.3x.js" type="text/javascript"></script>
+  <script src="./assets/javascripts/cs.global.js" type="text/javascript"></script>
+  <script src="./assets/javascripts/owl.carousel.js" type="text/javascript"></script>
+  <script src="./assets/javascripts/jquery.responsive-slider.min.js" type="text/javascript"></script>
+  <script src="./assets/javascripts/jquery.imagesloaded.min.js" type="text/javascript"></script>
+  <script src="./assets/javascripts/application.js" type="text/javascript"></script>
+  <script src="./assets/javascripts/cs.script.js" type="text/javascript"></script>
+</body>
+</html>
