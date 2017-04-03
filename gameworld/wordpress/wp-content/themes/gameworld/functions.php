@@ -6,6 +6,7 @@
  *
  * @package gameworld
  */
+define('THEME_URI', get_template_directory_uri() );
 
 if ( ! function_exists( 'gameworld_setup' ) ) :
 /**
@@ -158,7 +159,10 @@ require get_template_directory() . '/inc/customizer.php';
  * Load Jetpack compatibility file.
  */
 require get_template_directory() . '/inc/jetpack.php';
-
+/**
+ * Load product core.
+ */
+require get_template_directory() . '/inc/product-core.php';
 /*
 * add script to product page
 */

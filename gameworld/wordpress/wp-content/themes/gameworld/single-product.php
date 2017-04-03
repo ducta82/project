@@ -67,18 +67,9 @@ get_header(); ?>
                       <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.</p>
                       <p>Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt.</p>
                     </div>
-                    <div class="sharing">
-                      <div class="addthis_toolbox addthis_default_style">
-                        <a class="addthis_button_email"></a>
-                        <a class="addthis_button_print"></a>
-                        <a class="addthis_button_facebook"></a>
-                        <a class="addthis_button_twitter"></a>
-                        <a class="addthis_button_pinterest_share"></a>
-                        <a class="addthis_button_compact"></a>
-                        <a class="addthis_counter addthis_bubble_style"></a>
-                      </div>
-                      <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=xa-526dd1ed7110a16a"></script>
-                    </div>
+
+                    <?php do_action( 'product_share', 'share_button' );?>
+
                     <div class="relative">
                       <ul class="list-unstyled">
                         <li class="vendor">
@@ -100,76 +91,21 @@ get_header(); ?>
                         </li>
                       </ul>
                     </div>
-                    <div itemprop="offers" itemscope="" itemtype="http://schema.org/Offer">
-                      <meta itemprop="priceCurrency" content="EUR">
-                      <link itemprop="availability" href="http://schema.org/InStock">
-                      <form action="/cart/add" method="post" class="variants" id="product-actions">
-                        <div id="product-actions-200046165" class="options clearfix">
-                          <div id="purchase-200046165">
-                            <div class="detail-price" itemprop="price">
-                              <span class="price_sale"><span class="money">€59.00</span></span>
-                              <del class="price_compare"><span class="money">€69.00</span></del>
-                            </div>
-                          </div>
-                          <div class="variants-wrapper clearfix">
-                            <div class="selector-wrapper clearfix">
-                              <label for="product-select-200046165-option-0">Retailer</label>
-                              <div class="wrapper">
-                                <select class="single-option-selector col-md-12" id="product-select-200046165-option-0" style="z-index:1000;position:absolute;opacity:0;font-size:11px">
-                                  <option value="Ferrari">Ferrari</option>
-                                  <option value="Lamborghini">Lamborghini</option>
-                                </select>
-                                <button type="button" class="custom-style-select-box btn-block changed">
-                                  <span class="custom-style-select-box-inner">Ferrari</span>
-                                </button>
-                                <i class="fa fa-caret-up"></i>
-                                <i class="fa fa-caret-down"></i>
-                              </div>
-                            </div>
-                            <div class="selector-wrapper clearfix">
-                              <label for="product-select-200046165-option-1">Style</label>
-                              <div class="wrapper">
-                                <select class="single-option-selector col-md-12" id="product-select-200046165-option-1" style="z-index:1000;position:absolute;opacity:0;font-size:11px">
-                                  <option value="Modern">Modern</option>
-                                </select>
-                                <button type="button" class="custom-style-select-box btn-block changed">
-                                  <span class="custom-style-select-box-inner">Modern</span>
-                                </button>
-                                <i class="fa fa-caret-up"></i>
-                                <i class="fa fa-caret-down"></i>
-                              </div>
-                            </div>
-                            <select id="product-select-200046165" name="id" style="display:none">
-                              <option value="455695609">Ferrari / Modern - €59.00</option>
-                              <option value="502625841">Lamborghini / Modern - €70.00</option>
-                            </select>
-                          </div>
-                          <div class="quantity-wrapper clearfix">
-                            <label class="wrapper-title">Qty</label>
-                            <div class="wrapper pos-relative">
-                              <input id="quantity" type="text" name="quantity" value="1" maxlength="5" size="5" class="btn-block item-quantity">
-                              <span class="qty-group">
-                                <span class="qty-wrapper">
-                                  <span class="qty-up btooltip" data-toggle="tooltip" data-placement="top" title="" data-src="#quantity" data-original-title="Increase">
-                                    <i class="fa fa-plus"></i>
-                                  </span>
-                                  <span class="qty-down btooltip" data-toggle="tooltip" data-placement="top" title="" data-src="#quantity" data-original-title="Decrease">
-                                    <i class="fa fa-minus"></i>
-                                  </span>
-                                </span>
-                              </span>
-                            </div>
-                          </div>
-                          <div class="others-bottom">
-                            <button id="add-to-cart" class="btn add-to-cart" data-parent=".product-information" type="submit" name="add">Add to Cart</button>
+                    <div itemprop="download" itemscope="" itemtype="http://schema.org/Offer">
+                      <div class="others-bottom">
+                            <a href="" title="">
+                              <img src="<?php echo THEME_URI;?>/assets/images/ios_icon_135x40.svg" alt="">
+                            </a>
+                            <a href="" title="">
+                              <img src="<?php echo THEME_URI;?>/assets/images/android_icon_135x40.svg" alt="">
+                            </a>
                           </div>
                           <div class="control-navigation">
                             <a class="btn btn-prev" href="#">Prev Product</a>
                             <a class="btn btn-next" href="#">Next Product</a>
                           </div>
-                        </div>
-                      </form>
                     </div>
+
                   </div>
                 </div>
               </div>
