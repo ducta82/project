@@ -44,7 +44,7 @@
 <?php wp_head(); ?>
 </head>
 
-<body <?php body_class('templateIndex'); ?>>
+<body <?php body_class(); ?>>
   <div class="bg-image-sidebar">
 	<a id="bg-left" href="#"><img src="<?php echo get_template_directory_uri();?>/assets/images/image_left.png" alt=""></a>
 	<a id="bg-right" href="#"><img src="<?php echo get_template_directory_uri();?>/assets/images/image_right.png" alt=""></a>
@@ -402,7 +402,9 @@
     
     <div class="gr-below-nav">
       <div class="container">
-        <div class="home_below_nav top-below-nav clearfix">
+      <?php
+        if(is_home()){
+          echo '<div class="home_below_nav top-below-nav clearfix">
           <div class="sub_menu">
             <ul class="list-inline list-unstylet text-left clearfix">
               <li class="col-md-5">
@@ -432,7 +434,56 @@
             </ul>
             <span class="sub_nav"></span>
           </div>
-        </div>
+        </div>';
+        }else{
+          echo '<div class="top-below-nav clearfix">
+          <div class="sub_menu">
+            <ul class="list-inline list-unstylet text-left clearfix">
+              <li class="col-md-5">
+                <a href="./collection.html">
+                  <span>Downloads</span>
+                </a>
+                <span>Games &amp; Add-ons</span>
+              </li>
+              <li class="col-md-5">
+                <a href="./collection.html">
+                  <span>Pre-owned</span>
+                </a>
+                <span>Great Values</span>
+              </li>
+              <li class="col-md-5">
+                <a href="./collection.html">
+                  <span>Trade-Ins</span>
+                </a>
+                <span>Great Offers</span>
+              </li>
+              <li class="col-md-5">
+                <a href="./collection.html">
+                  <span>Monthly-Deals</span>
+                </a>
+                <span>Current Sales</span>
+              </li>
+            </ul>
+            <span class="sub_nav"></span>
+          </div>
+          <div class="social">
+            <ul class="list-inline list-unstyle text-right">
+              <li class="">
+                <a href="#">
+                  <img src="./assets/images/bb_nav_right_img_1.png" alt="">
+                </a>
+              </li>
+              <li class="">
+                <a href="#">
+                  <img src="./assets/images/bb_nav_right_img_2.png" alt="">
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>';
+        }
+      ?>
+        
       </div>
     </div>
     

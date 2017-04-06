@@ -166,6 +166,19 @@ require get_template_directory() . '/inc/product-core.php';
 /*
 * add script to product page
 */
+
+/*
+* add body class
+*/
+add_filter( 'body_class', 'custom_class' );
+function custom_class( $classes ) {
+    if ( is_home() ) {
+        $classes[] = 'templateIndex';
+    }else{
+    	$classes[] = 'template notouch';
+    }
+    return $classes;
+}
 add_action('wp_footer','add_script' );
 if(!function_exists('add_script')){
 	function add_script(){
@@ -278,3 +291,27 @@ function cat_product_taxonomy() {
 
 add_action( 'init', 'cat_product_taxonomy' );
 
+/*
+* remove version
+*/
+function wpb_remove_version() {
+    return '';
+}
+add_filter('the_generator', 'wpb_remove_version');
+
+/*
+* add custom post type in tags page
+*/
+function wpse28145_add_custom_types( $query ) {
+    if( is_tag() && $query->is_main_query() ) {
+
+        // this gets all post types:
+        //$post_types = get_post_types();
+
+        // alternately, you can add just specific post types using this line instead of the above:
+        $post_types = array( 'post', 'product' );
+
+        $query->set( 'post_type', $post_types );
+    }
+}
+add_filter( 'pre_get_posts', 'wpse28145_add_custom_types' );

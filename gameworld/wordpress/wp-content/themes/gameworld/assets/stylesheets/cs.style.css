@@ -3498,6 +3498,8 @@ span.author span{
   opacity: 0.6;
   filter: alpha(opacity=60);   
   height: auto;
+  max-height: 63px;
+  width: 100px;
 }
 .product-image .image-thumb.active img,
 .notouch .product-image .image-thumb:hover img{  

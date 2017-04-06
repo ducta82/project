@@ -1,0 +1,1146 @@
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: WP-Appbox\n"
+"POT-Creation-Date: 2016-08-17 06:04+0200\n"
+"PO-Revision-Date: 2015-04-20 18:35+0100\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: en\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.8.8\n"
+"X-Poedit-Basepath: ..\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-KeywordsList: __;_e;_n:1,2;_x:1,2c;_ex:1,2c;_nx:4c,1,2;esc_attr__;"
+"esc_attr_e;esc_attr_x:1,2c;esc_html__;esc_html_e;esc_html_x:1,2c;_n_noop:1,2;"
+"_nx_noop:3c,1,2;__ngettext_noop:1,2\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Poedit-SearchPath-0: .\n"
+"X-Poedit-SearchPath-1: .\n"
+"X-Poedit-SearchPathExcluded-0: *.js\n"
+
+#: admin/admin-advanced.php:2
+msgid ""
+"Some advanced and experimental options for users, who want to configure a "
+"little bit more."
+msgstr ""
+
+#: admin/admin-advanced.php:5
+msgid "Amazon Product Advertising API"
+msgstr ""
+
+#: admin/admin-advanced.php:9
+msgid ""
+"Your public key, secret key or affiliate ID seems not correct. Please check "
+"or retry (maybe its just a server error)."
+msgstr ""
+
+#: admin/admin-advanced.php:16
+msgid "Use the Amazon API"
+msgstr ""
+
+#: admin/admin-advanced.php:23
+msgid ""
+"Uses the official Amazon API to get the app infos. Will be faster and more "
+"stable."
+msgstr ""
+
+#: admin/admin-advanced.php:23
+#, php-format
+msgid "%1$sNeed a little help?%2$s"
+msgstr ""
+
+#: admin/admin-advanced.php:29
+msgid "Your public key"
+msgstr ""
+
+#: admin/admin-advanced.php:36
+msgid "Your secret key"
+msgstr ""
+
+#: admin/admin-advanced.php:43
+msgid "Your affiliate ID"
+msgstr ""
+
+#: admin/admin-advanced.php:50
+msgid "Your region"
+msgstr ""
+
+#: admin/admin-advanced.php:66 admin/admin-general.php:137
+msgid "Stylesheets and Scripts"
+msgstr ""
+
+#: admin/admin-advanced.php:71 admin/admin-general.php:144
+msgid "Disable lean loading"
+msgstr ""
+
+#: admin/admin-advanced.php:75 admin/admin-general.php:148
+msgid "Loads stylesheet and font in the normal way (within the header)"
+msgstr ""
+
+#: admin/admin-advanced.php:81 admin/admin-general.php:154
+msgid "Disable the plugins sheet"
+msgstr ""
+
+#: admin/admin-advanced.php:85 admin/admin-general.php:158
+msgid "Disables the plugins stylesheets."
+msgstr ""
+
+#: admin/admin-advanced.php:91 admin/admin-general.php:164
+msgid "Disable Google Fonts"
+msgstr ""
+
+#: admin/admin-advanced.php:95 admin/admin-general.php:168
+msgid "Avoid loading of Google Fonts (OpenSans) through WP-Appbox."
+msgstr ""
+
+#: admin/admin-advanced.php:104 admin/admin-general.php:177
+msgid "Error output & troubleshooting"
+msgstr ""
+
+#: admin/admin-advanced.php:109 admin/admin-general.php:184
+msgid "Server timeout"
+msgstr ""
+
+#: admin/admin-advanced.php:113
+#, php-format
+msgid ""
+"The recommended timeout is %1$1s seconds. Only change if apps are not found."
+msgstr ""
+
+#: admin/admin-advanced.php:119 admin/admin-general.php:194
+msgid "Error messages"
+msgstr ""
+
+#: admin/admin-advanced.php:123 admin/admin-general.php:198
+msgid "Show \"App not found\"-badges only for authors."
+msgstr ""
+
+#: admin/admin-advanced.php:129
+msgid "Error output"
+msgstr ""
+
+#: admin/admin-advanced.php:133
+msgid "Activate error output. Only visible to administrators."
+msgstr ""
+
+#: admin/admin-advanced.php:139 admin/admin-general.php:228
+msgid "Apple App Store Icons"
+msgstr ""
+
+#: admin/admin-advanced.php:143 admin/admin-general.php:232
+msgid "Compatibility mode for app icons from the (Mac) App Store."
+msgstr ""
+
+#: admin/admin-advanced.php:152 admin/admin-general.php:241
+msgid "Experimental"
+msgstr ""
+
+#: admin/admin-advanced.php:157 admin/admin-general.php:248
+msgid "SSL for Apple App Store"
+msgstr ""
+
+#: admin/admin-advanced.php:162 admin/admin-general.php:253
+msgid ""
+"Use SSL urls for images from the Apple App Store. Highly experimental, some "
+"images may not exist on https server."
+msgstr ""
+
+#: admin/admin-advanced.php:168
+msgid "Auto-detect app links"
+msgstr ""
+
+#: admin/admin-advanced.php:173
+msgid "Detect urls of apps in a separated line within the post."
+msgstr ""
+
+#: admin/admin-advanced.php:173
+msgid "Very experimental, but it should work."
+msgstr ""
+
+#: admin/admin-affiliate.php:2
+msgid ""
+"If you have an affiliate ID for the (Mac) App Store, Amazon and Windows "
+"Store, you can enter your ID and links will be provided with your affiliate "
+"ID attached. Otherwise the plugin will use the affiliate ID of the "
+"developer. Development takes time and time again. ;-)"
+msgstr ""
+
+#: admin/admin-affiliate.php:5
+msgid "(Mac) App Store &amp; App Store: PHG"
+msgstr ""
+
+#: admin/admin-affiliate.php:11 admin/admin-affiliate.php:39
+#: admin/admin-affiliate.php:61
+msgid "Use my own ID"
+msgstr ""
+
+#: admin/admin-affiliate.php:13
+msgid "I have an ID at Apple/PHG and would like to use my own ID."
+msgstr ""
+
+#: admin/admin-affiliate.php:18
+msgid "Affiliate Token"
+msgstr ""
+
+#: admin/admin-affiliate.php:28
+msgid "Amazon Apps: Amazon PartnerNet"
+msgstr ""
+
+#: admin/admin-affiliate.php:34
+#, php-format
+msgid ""
+"Official Amazon Product Advertising API is activated and valid. Please "
+"change your affiliate settings %1$sin this tab%2$s."
+msgstr ""
+
+#: admin/admin-affiliate.php:41
+msgid "I have an affiliate ID at Amazon PartnerNet and want to use my own ID."
+msgstr ""
+
+#: admin/admin-affiliate.php:46 admin/user-profiles.php:42
+msgid "Amazon PartnerNet ID"
+msgstr ""
+
+#: admin/admin-affiliate.php:56
+msgid "Windows Store: Microsoft Private Affiliate Program at TradeDoubler"
+msgstr ""
+
+#: admin/admin-affiliate.php:63
+msgid ""
+"I have an affiliate ID at the Microsoft Private Affiliate Program and want "
+"to use my own ID."
+msgstr ""
+
+#: admin/admin-affiliate.php:68
+msgid "Country/Program ID"
+msgstr ""
+
+#: admin/admin-affiliate.php:82
+msgid "Your Site ID"
+msgstr ""
+
+#: admin/admin-affiliate.php:92
+msgid "Custom affiliate IDs"
+msgstr ""
+
+#: admin/admin-affiliate.php:97
+msgid "Activate custom ID"
+msgstr ""
+
+#: admin/admin-affiliate.php:99
+msgid ""
+"Each user and author can use his own affiliate IDs. If no ID is specified in "
+"the user profile, the global IDs are used."
+msgstr ""
+
+#: admin/admin-buttons.php:60
+msgid ""
+"Which buttons should be displayed in the WordPress-Editor? In addition to a "
+"combined button, it is also possible to display frequently used buttons "
+"separately."
+msgstr ""
+
+#: admin/admin-buttons.php:66
+msgid "Button behavior"
+msgstr ""
+
+#: admin/admin-buttons.php:69
+msgid "Show all App Store button in the editor"
+msgstr ""
+
+#: admin/admin-buttons.php:70
+msgid "Show all App Store button in the editor within the AppBox-Button"
+msgstr ""
+
+#: admin/admin-buttons.php:71
+msgid "Show no buttons in the editor"
+msgstr ""
+
+#: admin/admin-buttons.php:72
+msgid "Custom Settings"
+msgstr ""
+
+#: admin/admin-buttons.php:92 admin/admin-buttons.php:144
+msgid "Appbox-Button"
+msgstr ""
+
+#: admin/admin-buttons.php:94 admin/admin-buttons.php:101
+#: admin/admin-buttons.php:108 admin/admin-buttons.php:115
+msgid "All"
+msgstr ""
+
+#: admin/admin-buttons.php:95 admin/admin-buttons.php:102
+#: admin/admin-buttons.php:109 admin/admin-buttons.php:116
+msgid "None"
+msgstr ""
+
+#: admin/admin-buttons.php:99 admin/admin-buttons.php:145
+msgid "WYSIWYG-View"
+msgstr ""
+
+#: admin/admin-buttons.php:106 admin/admin-buttons.php:146
+msgid "HTML-View"
+msgstr ""
+
+#: admin/admin-buttons.php:113 admin/admin-buttons.php:147
+msgid "Hide button"
+msgstr ""
+
+#: admin/admin-cache-list.php:185 inc/createoutput.class.php:414
+msgid "Free"
+msgstr ""
+
+#: admin/admin-cache-list.php:219
+msgid "Title"
+msgstr ""
+
+#: admin/admin-cache-list.php:220
+msgid "Rating"
+msgstr ""
+
+#: admin/admin-cache-list.php:221 tpl/compact.php:8 tpl/feed.php:7
+#: tpl/screenshots.php:15 tpl/simple.php:15
+msgid "Price"
+msgstr ""
+
+#: admin/admin-cache-list.php:222
+msgid "Store"
+msgstr ""
+
+#: admin/admin-cache-list.php:223
+msgid "Expiry"
+msgstr ""
+
+#: admin/admin-cache-list.php:329
+msgid "Go to Store"
+msgstr ""
+
+#: admin/admin-cache-list.php:330 admin/admin-cache-list.php:348
+msgid "Renew cache"
+msgstr ""
+
+#: admin/admin-cache-list.php:331 admin/admin-cache-list.php:349
+msgid "Delete"
+msgstr ""
+
+#: admin/admin-cache-list.php:404 admin/admin-cache-list.php:406
+msgid "Search"
+msgstr ""
+
+#: admin/admin-cache-list.php:408 admin/admin-cache-list.php:429
+msgid "Clear search"
+msgstr ""
+
+#: admin/admin-cache-list.php:429
+msgid "No apps in WordPress-cache were found with this term."
+msgstr ""
+
+#: admin/admin-cache-list.php:431
+msgid "There are no apps in the WordPress-Cache."
+msgstr ""
+
+#: admin/admin-cache-list.php:455
+msgid "Your time"
+msgstr ""
+
+#: admin/admin-cache-list.php:455
+msgid "Servertime"
+msgstr ""
+
+#: admin/admin-cache.php:41 admin/admin-general.php:96
+msgid ""
+"The caching interval indicate how often the data is updated from the server "
+"- this increases the performance, and should not really be changed."
+msgstr ""
+
+#: admin/admin-cache.php:47 admin/admin-general.php:101
+msgid "Data caching (minutes)"
+msgstr ""
+
+#: admin/admin-cache.php:49
+#, php-format
+msgid "The recommended interval is %1$s minutes."
+msgstr ""
+
+#: admin/admin-cache.php:54 admin/admin-general.php:108
+msgid "Disable Auto-Caching"
+msgstr ""
+
+#: admin/admin-cache.php:58 admin/admin-general.php:112
+msgid "Disables the automatic renewal of the cache (not for authors)"
+msgstr ""
+
+#: admin/admin-cache.php:64 admin/admin-general.php:118
+msgid "Clear Post-Cache"
+msgstr ""
+
+#: admin/admin-cache.php:67 admin/admin-general.php:121
+msgid "Disabled"
+msgstr ""
+
+#: admin/admin-cache.php:68 admin/admin-cache.php:69 admin/admin-cache.php:70
+#: admin/admin-cache.php:71 admin/admin-cache.php:72 admin/admin-cache.php:73
+#: admin/admin-cache.php:74 admin/admin-general.php:122
+#: admin/admin-general.php:123 admin/admin-general.php:124
+#: admin/admin-general.php:125 admin/admin-general.php:126
+#: admin/admin-general.php:127
+msgid "Plugin"
+msgstr ""
+
+#: admin/admin-cache.php:68 admin/admin-general.php:122
+msgid "Cachify"
+msgstr ""
+
+#: admin/admin-cache.php:69 admin/admin-general.php:123
+msgid "W3 Total Cache"
+msgstr ""
+
+#: admin/admin-cache.php:70 admin/admin-general.php:124
+msgid "WP Super Cache"
+msgstr ""
+
+#: admin/admin-cache.php:71 admin/admin-general.php:125
+msgid "WP Rocket"
+msgstr ""
+
+#: admin/admin-cache.php:72 admin/admin-general.php:126
+msgid "WP Fastest Cache"
+msgstr ""
+
+#: admin/admin-cache.php:73 admin/admin-general.php:127
+msgid "ZenCache"
+msgstr ""
+
+#: admin/admin-cache.php:74
+msgid "Cache Enabler"
+msgstr ""
+
+#: admin/admin-cache.php:76 admin/admin-general.php:129
+msgid ""
+"Clears the post-cache of 3rd-party-plugins (only manually via the \"Reload\"-"
+"link)"
+msgstr ""
+
+#: admin/admin-general.php:1
+msgid "Output settings"
+msgstr ""
+
+#: admin/admin-general.php:3
+msgid "Some basic settings for the WP-Appbox and the badges. ;)"
+msgstr ""
+
+#: admin/admin-general.php:8 admin/admin-output.php:8
+msgid "Standard App-Badge"
+msgstr ""
+
+#: admin/admin-general.php:11 admin/admin-output.php:11
+msgid "Simple Badge"
+msgstr ""
+
+#: admin/admin-general.php:11 admin/admin-output.php:11
+#: admin/admin-output.php:57
+msgid "Default"
+msgstr ""
+
+#: admin/admin-general.php:12 admin/admin-output.php:12
+msgid "Screenshots"
+msgstr ""
+
+#: admin/admin-general.php:13 admin/admin-output.php:13
+msgid "Screenshots Only"
+msgstr ""
+
+#: admin/admin-general.php:14 admin/admin-output.php:14
+msgid "Compact Badge"
+msgstr ""
+
+#: admin/admin-general.php:16 admin/admin-output.php:16
+msgid ""
+"What app banners to be used in operation without format specification within "
+"the shortcodes?"
+msgstr ""
+
+#: admin/admin-general.php:34 admin/admin-output.php:54
+msgid "App-Ratings"
+msgstr ""
+
+#: admin/admin-general.php:38 admin/admin-output.php:61
+msgid ""
+"Show app-ratings from the stores in the banner (Variable {RATING} in the "
+"template-files)"
+msgstr ""
+
+#: admin/admin-general.php:44 admin/admin-output.php:34
+msgid "Watch icons"
+msgstr ""
+
+#: admin/admin-general.php:48 admin/admin-output.php:38
+msgid "Show icons of watch-apps (just for App Store)"
+msgstr ""
+
+#: admin/admin-general.php:54 admin/admin-output.php:44
+msgid "Colored store icons"
+msgstr ""
+
+#: admin/admin-general.php:58 admin/admin-output.php:48
+msgid "Show colored icons of the stores instead of the grey ones"
+msgstr ""
+
+#: admin/admin-general.php:64 admin/admin-output.php:102
+msgid "Nofollow"
+msgstr ""
+
+#: admin/admin-general.php:68
+msgid ""
+"Adds the <a href=\"http://en.wikipedia.org/wiki/Nofollow\" target=\"_blank"
+"\">nofollow</a> attribute to the links"
+msgstr ""
+
+#: admin/admin-general.php:74 admin/admin-output.php:112
+msgid "Open links in a new window"
+msgstr ""
+
+#: admin/admin-general.php:78 admin/admin-output.php:116
+msgid "Opens the links of apps in a new window (target=\"_blank\")"
+msgstr ""
+
+#: admin/admin-general.php:84 admin/admin-output.php:95
+msgid "Downloadbutton caption"
+msgstr ""
+
+#: admin/admin-general.php:86 admin/admin-output.php:97
+msgid "Caption of the \"Download\"-button in the app-badge"
+msgstr ""
+
+#: admin/admin-general.php:94
+msgid "Caching options"
+msgstr ""
+
+#: admin/admin-general.php:103
+msgid "The recommended interval is <strong>600</strong> minutes"
+msgstr ""
+
+#: admin/admin-general.php:139
+msgid ""
+"Use this options for optimization and customizing. You should know what "
+"you're doing."
+msgstr ""
+
+#: admin/admin-general.php:179
+msgid ""
+"The error output should only be turned on in case of problems. The design "
+"can be separated."
+msgstr ""
+
+#: admin/admin-general.php:188
+msgid ""
+"The recommended timeout is <strong>5</strong> seconds. Only change if apps "
+"are not found."
+msgstr ""
+
+#: admin/admin-general.php:204
+msgid "Parse output"
+msgstr ""
+
+#: admin/admin-general.php:208
+msgid "Activate parse output. Only visible to administrators."
+msgstr ""
+
+#: admin/admin-general.php:214
+msgid "Disable cache"
+msgstr ""
+
+#: admin/admin-general.php:216
+msgid ""
+"The cache can only be temporarily disabled by adding \"?wpappbox_nocache\" "
+"is appended to the URL of an article. Only for \"authors\"."
+msgstr ""
+
+#: admin/admin-general.php:221
+msgid "Force reloading"
+msgstr ""
+
+#: admin/admin-general.php:223
+msgid ""
+"If reloading of app-data (despite cache) is to be forced, then does this by "
+"\"?wpappbox_reload_cache\" is appended to the URL of an article. Only users, "
+"who are at least author."
+msgstr ""
+
+#: admin/admin-general.php:243
+msgid ""
+"Highly experimental options. You need to double-check an option to activate "
+"it."
+msgstr ""
+
+#: admin/admin-help.php:2
+msgid ""
+"Some quick-help about little functions of WP-Appbox and how to get the ID of "
+"an specific app. ;-)"
+msgstr ""
+
+#: admin/admin-help.php:5
+msgid "Get the ID of an app"
+msgstr ""
+
+#: admin/admin-help.php:20
+msgid "The shortcode"
+msgstr ""
+
+#: admin/admin-help.php:26
+msgid "App Store screenshots"
+msgstr ""
+
+#: admin/admin-help.php:27
+#, php-format
+msgid ""
+"Link to a universal app for iOS and Watch-App for Apple Watch, so you can "
+"just leave on request show the iPhone or iPad screenshots. For this, %1$s "
+"can be added to the App ID."
+msgstr ""
+
+#: admin/admin-help.php:27 admin/admin-help.php:32 admin/admin-help.php:37
+msgid "Example"
+msgstr ""
+
+#: admin/admin-help.php:31
+msgid "Windows Store screenshots"
+msgstr ""
+
+#: admin/admin-help.php:32
+#, php-format
+msgid ""
+"Link to a universal app for Windows 10 (Mobile), so you can just leave on "
+"request show the mobile or desktop screenshots. For this, %1$s can be added "
+"to the App ID."
+msgstr ""
+
+#: admin/admin-help.php:36
+msgid "Show old price"
+msgstr ""
+
+#: admin/admin-help.php:37
+#, php-format
+msgid ""
+"If you want besides a special price also specify an old price, then the day "
+"%1$s are used in the shortcode. This is only displayed if it differs from "
+"the current price."
+msgstr ""
+
+#: admin/admin-help.php:41
+msgid "Temporarily disable cache"
+msgstr ""
+
+#: admin/admin-help.php:42
+#, php-format
+msgid ""
+"The cache can be temporarily disabled by adding %1$s is appended to the URL "
+"of an article. Only for authors."
+msgstr ""
+
+#: admin/admin-info.php:40
+msgid "app in cache"
+msgid_plural "apps in cache"
+msgstr[0] ""
+msgstr[1] ""
+
+#: admin/admin-info.php:43
+msgid "Plugin version"
+msgstr ""
+
+#: admin/admin-info.php:44
+msgid "Installed version"
+msgstr ""
+
+#: admin/admin-info.php:45
+msgid "Database version"
+msgstr ""
+
+#: admin/admin-output.php:2
+msgid ""
+"Some general output options for rendered Appboxes. For your interest: You "
+"could style the look of rendered Appboxes within your themes's stylesheets."
+msgstr ""
+
+#: admin/admin-output.php:57
+msgid "Monochrome stars"
+msgstr ""
+
+#: admin/admin-output.php:58
+msgid "Colorful stars"
+msgstr ""
+
+#: admin/admin-output.php:59
+msgid "Hide app-ratings"
+msgstr ""
+
+#: admin/admin-output.php:106
+#, php-format
+msgid "Adds the %1$1s attribute to the links"
+msgstr ""
+
+#: admin/admin-storeurls.php:13
+msgid ""
+"Here you can change the query URL of the stores. Just copy the desired URL "
+"and set instead of the app ID wildcard {APPID}. If the URL is empty, the "
+"default URL (German) is used."
+msgstr ""
+
+#: admin/admin-storeurls.php:25
+msgid "No language selection supported."
+msgstr ""
+
+#: admin/admin-storeurls.php:30
+#, php-format
+msgid ""
+"Official Amazon Product Advertising API is activated and valid. Please "
+"change your region %1$sin this tab%2$s."
+msgstr ""
+
+#: admin/admin-storeurls.php:50
+msgid ""
+"Convert App-Store-URLs to geo.itunes. This geo-prefix redirects the users to "
+"a app-site in their language."
+msgstr ""
+
+#: admin/admin.php:53
+msgid "Info"
+msgstr ""
+
+#: admin/admin.php:54
+msgid "Output"
+msgstr ""
+
+#: admin/admin.php:55
+msgid "Cache"
+msgstr ""
+
+#: admin/admin.php:56
+msgid "Affiliate IDs"
+msgstr ""
+
+#: admin/admin.php:57
+msgid "Editor-Buttons"
+msgstr ""
+
+#: admin/admin.php:58
+msgid "Store-URLs"
+msgstr ""
+
+#: admin/admin.php:59
+msgid "Advanced"
+msgstr ""
+
+#: admin/admin.php:60
+msgid "Help"
+msgstr ""
+
+#: admin/admin.php:84
+msgid "Apps"
+msgstr ""
+
+#: admin/admin.php:290
+msgid "The cache was successfully cleared."
+msgstr ""
+
+#: admin/admin.php:291
+msgid "The cache can not be emptied or there are no apps in the cache."
+msgstr ""
+
+#: admin/admin.php:294 wp-appbox.php:838
+msgid "Follow me on Twitter"
+msgstr ""
+
+#: admin/admin.php:294
+msgid "Visit the Plugin plage"
+msgstr ""
+
+#: admin/admin.php:294
+msgid "Plugin at WordPress Directory"
+msgstr ""
+
+#: admin/admin.php:294
+msgid "Changelog"
+msgstr ""
+
+#: admin/admin.php:295
+msgid ""
+"Are you sure that the cache should be cleared? All data must be reloaded "
+"from the server of the operator."
+msgstr ""
+
+#: admin/admin.php:295
+msgid "Clear cache"
+msgstr ""
+
+#: admin/admin.php:298 wp-appbox.php:842
+msgid "PayPal-Donation"
+msgstr ""
+
+#: admin/admin.php:299
+msgid "Amazon Wishlist"
+msgstr ""
+
+#: admin/admin.php:318
+msgid "Save changes"
+msgstr ""
+
+#: admin/user-profiles.php:9
+msgid "WP-Appbox: Affiliate-IDs"
+msgstr ""
+
+#: admin/user-profiles.php:24
+msgid "Apple/PHG Token"
+msgstr ""
+
+#: admin/user-profiles.php:30 admin/user-profiles.php:48
+#: admin/user-profiles.php:69
+msgid "I have an own affiliate ID and want to use my own ID."
+msgstr ""
+
+#: admin/user-profiles.php:34
+msgid ""
+"Your affiliate ID at PHG. If no ID is specified, the default ID is used."
+msgstr ""
+
+#: admin/user-profiles.php:54
+msgid ""
+"Your affiliate ID at Amazon PartnerNet. If no ID is specified, the default "
+"ID is used."
+msgstr ""
+
+#: admin/user-profiles.php:63
+msgid "Microsoft/TradeDoubler"
+msgstr ""
+
+#: admin/user-profiles.php:85
+msgid ""
+"Your affiliate ID (site ID) at Microsoft/TradeDoubler. If no ID is "
+"specified, the default ID is used."
+msgstr ""
+
+#: inc/createoutput.class.php:307
+msgid "of 5 stars"
+msgstr ""
+
+#: inc/createoutput.class.php:370
+msgid "Screenshot"
+msgstr ""
+
+#: inc/createoutput.class.php:436
+msgid "Renew cached data of this app"
+msgstr ""
+
+#: inc/createoutput.class.php:457
+msgid "The App Store is not recognized."
+msgstr ""
+
+#: inc/createoutput.class.php:460
+msgid "The App ID is not recognized."
+msgstr ""
+
+#: inc/createoutput.class.php:463
+msgid "The app was not found in the store."
+msgstr ""
+
+#: inc/createoutput.class.php:478
+msgid "Temporary recognition as a bot"
+msgstr ""
+
+#: inc/createoutput.class.php:480
+msgid ""
+"Due to a temporary recognition as a bot can currently unfortunately no app "
+"details are displayed."
+msgstr ""
+
+#: inc/createoutput.class.php:492
+msgid "An unknown error has occurred."
+msgstr ""
+
+#: inc/createoutput.class.php:504
+msgid "Links"
+msgstr ""
+
+#: inc/createoutput.class.php:504
+msgid "Visit Store"
+msgstr ""
+
+#: inc/createoutput.class.php:504
+msgid "Search Google"
+msgstr ""
+
+#: inc/definitions.php:87
+msgid "Argentina"
+msgstr ""
+
+#: inc/definitions.php:88
+msgid "Australia"
+msgstr ""
+
+#: inc/definitions.php:89 inc/getstoreurls.class.php:15
+msgid "Austria"
+msgstr ""
+
+#: inc/definitions.php:90
+msgid "Belgium"
+msgstr ""
+
+#: inc/definitions.php:91 inc/getstoreurls.class.php:28
+msgid "Brazil"
+msgstr ""
+
+#: inc/definitions.php:92 inc/getstoreurls.class.php:29
+msgid "Canada"
+msgstr ""
+
+#: inc/definitions.php:93
+msgid "Chile"
+msgstr ""
+
+#: inc/definitions.php:94 inc/getstoreurls.class.php:30
+msgid "China"
+msgstr ""
+
+#: inc/definitions.php:95
+msgid "Columbia"
+msgstr ""
+
+#: inc/definitions.php:96
+msgid "Costa Rica"
+msgstr ""
+
+#: inc/definitions.php:97
+msgid "Czech Republic"
+msgstr ""
+
+#: inc/definitions.php:98
+msgid "Denmark"
+msgstr ""
+
+#: inc/definitions.php:99
+msgid "Estonia"
+msgstr ""
+
+#: inc/definitions.php:100
+msgid "Finland"
+msgstr ""
+
+#: inc/definitions.php:101 inc/getstoreurls.class.php:10
+#: inc/getstoreurls.class.php:31
+msgid "France"
+msgstr ""
+
+#: inc/definitions.php:102 inc/getstoreurls.class.php:7
+#: inc/getstoreurls.class.php:32
+msgid "Germany"
+msgstr ""
+
+#: inc/definitions.php:103
+msgid "Greece"
+msgstr ""
+
+#: inc/definitions.php:104
+msgid "Honk Kong"
+msgstr ""
+
+#: inc/definitions.php:105
+msgid "Hungary"
+msgstr ""
+
+#: inc/definitions.php:106 inc/getstoreurls.class.php:33
+msgid "India"
+msgstr ""
+
+#: inc/definitions.php:107
+msgid "Indonesia"
+msgstr ""
+
+#: inc/definitions.php:108
+msgid "Ireland"
+msgstr ""
+
+#: inc/definitions.php:109
+msgid "Israel"
+msgstr ""
+
+#: inc/definitions.php:110 inc/getstoreurls.class.php:14
+#: inc/getstoreurls.class.php:34
+msgid "Italy"
+msgstr ""
+
+#: inc/definitions.php:111 inc/getstoreurls.class.php:17
+#: inc/getstoreurls.class.php:35
+msgid "Japan"
+msgstr ""
+
+#: inc/definitions.php:112
+msgid "Kuwait"
+msgstr ""
+
+#: inc/definitions.php:113
+msgid "Luxembourg"
+msgstr ""
+
+#: inc/definitions.php:114
+msgid "Malaysia"
+msgstr ""
+
+#: inc/definitions.php:115 inc/getstoreurls.class.php:36
+msgid "Mexico"
+msgstr ""
+
+#: inc/definitions.php:116
+msgid "Netherlands"
+msgstr ""
+
+#: inc/definitions.php:117
+msgid "New Zealand"
+msgstr ""
+
+#: inc/definitions.php:118
+msgid "Norway"
+msgstr ""
+
+#: inc/definitions.php:119
+msgid "Peru"
+msgstr ""
+
+#: inc/definitions.php:120
+msgid "Philippines"
+msgstr ""
+
+#: inc/definitions.php:121 inc/getstoreurls.class.php:18
+msgid "Poland"
+msgstr ""
+
+#: inc/definitions.php:122
+msgid "Portugal"
+msgstr ""
+
+#: inc/definitions.php:123
+msgid "Republic of Korea"
+msgstr ""
+
+#: inc/definitions.php:124 inc/getstoreurls.class.php:12
+msgid "Russia"
+msgstr ""
+
+#: inc/definitions.php:125
+msgid "Saudi Arabia"
+msgstr ""
+
+#: inc/definitions.php:126
+msgid "Singapore"
+msgstr ""
+
+#: inc/definitions.php:127
+msgid "Slovakia"
+msgstr ""
+
+#: inc/definitions.php:128 inc/getstoreurls.class.php:11
+#: inc/getstoreurls.class.php:37
+msgid "Spain"
+msgstr ""
+
+#: inc/definitions.php:129
+msgid "Sweden"
+msgstr ""
+
+#: inc/definitions.php:130 inc/getstoreurls.class.php:16
+msgid "Switzerland"
+msgstr ""
+
+#: inc/definitions.php:131
+msgid "Taiwan"
+msgstr ""
+
+#: inc/definitions.php:132
+msgid "Thailand"
+msgstr ""
+
+#: inc/definitions.php:133 inc/getstoreurls.class.php:13
+msgid "Turkey"
+msgstr ""
+
+#: inc/definitions.php:134
+msgid "South Africa"
+msgstr ""
+
+#: inc/definitions.php:135
+msgid "United Arab Emirates"
+msgstr ""
+
+#: inc/definitions.php:136 inc/getstoreurls.class.php:9
+#: inc/getstoreurls.class.php:38
+msgid "United Kingdom"
+msgstr ""
+
+#: inc/definitions.php:137 inc/getstoreurls.class.php:8
+#: inc/getstoreurls.class.php:39
+msgid "United States"
+msgstr ""
+
+#: inc/definitions.php:138
+msgid "Venezuela"
+msgstr ""
+
+#: inc/definitions.php:159 inc/getappinfo.class.php:1223
+msgid "Download"
+msgstr ""
+
+#: inc/getappinfo.class.php:826
+msgid "various"
+msgstr ""
+
+#: inc/getappinfo.class.php:1188
+msgid "Unknown"
+msgstr ""
+
+#: inc/getstoreurls.class.php:6
+msgid "Use own URL"
+msgstr ""
+
+#: tpl/screenshots.php:14 tpl/simple.php:14
+msgid "Developer"
+msgstr ""
+
+#: wp-appbox.php:812
+msgid "Settings"
+msgstr ""
+
+#: wp-appbox.php:839
+msgid "Plugin page"
+msgstr ""
+
+#: wp-appbox.php:840
+msgid "Rate the plugin"
+msgstr ""
+
+#: wp-appbox.php:841
+msgid "My Amazon Wishlist"
+msgstr ""
+
+#: wp-appbox.php:875
+msgid "To use this plugin requires at least PHP version 5.3 is required."
+msgstr ""
+
+#: wp-appbox.php:876
+msgid ""
+"\"cURL\" is disabled on this server, but is required. Please enable this "
+"feature (or contact your hoster)."
+msgstr ""
+
+#: wp-appbox.php:877
+msgid ""
+"\"curl_exec\" is disabled on this server, but is required. Please enable "
+"this feature (or contact your hoster)."
+msgstr ""
+
+#: wp-appbox.php:878
+msgid ""
+"\"json_decode\" is disabled on this server, but is required. Please enable "
+"this feature (or contact your hoster)."
+msgstr ""

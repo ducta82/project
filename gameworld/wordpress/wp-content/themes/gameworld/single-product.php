@@ -30,84 +30,14 @@ get_header(); ?>
             <div itemscope="" itemtype="http://schema.org/Product">
               <meta itemprop="url" content="/products/curabitur-mattis-tellus-rutrum-enim-facilisis">
               <div id="product" class="content row clearfix">
-                <div id="product-image" class="col-md-12 product-image">
-                  <div class="product-image-wrapper">
-                    <a target="_blank" href="<?php echo get_template_directory_uri();?>/screen/products/product_03_1024x1024.jpg" class="main-image elevatezoom">
-                      <img itemprop="image" class="img-zoom img-responsive image-fly" src="<?php echo get_template_directory_uri();?>/screen/demos/demo_420x600.png" data-zoom-image="<?php echo get_template_directory_uri();?>/screen/demos/demo_420x600.png" alt="Curabitur mattis tellus rutrum enim facilisis">
-                      <span class="main-image-bg"></span>
-                    </a>
-                    <div id="gallery_main" class="product-image-thumb">
-                      <a target="_blank" class="image-thumb active" data-image="<?php echo get_template_directory_uri();?>/screen/demos/demo_420x600.png" data-zoom-image="<?php echo get_template_directory_uri();?>/screen/demos/demo_420x600.png" href="<?php echo get_template_directory_uri();?>/screen/demos/demo_420x600.png">
-                        <img src="<?php echo get_template_directory_uri();?>/screen/demos/demo_60x60.png" alt="Curabitur mattis tellus rutrum enim facilisis">
-                      </a>
-                      <a target="_blank" class="image-thumb" data-image="<?php echo get_template_directory_uri();?>/screen/demos/demo_420x600.png" data-zoom-image="<?php echo get_template_directory_uri();?>/screen/demos/demo_420x600.png" href="<?php echo get_template_directory_uri();?>/screen/demos/demo_420x600.png">
-                        <img src="<?php echo get_template_directory_uri();?>/screen/demos/demo_60x60.png" alt="Curabitur mattis tellus rutrum enim facilisis">
-                      </a>
-                      <a target="_blank" class="image-thumb" data-image="<?php echo get_template_directory_uri();?>/screen/demos/demo_420x600.png" data-zoom-image="<?php echo get_template_directory_uri();?>/screen/demos/demo_420x600.png" href="<?php echo get_template_directory_uri();?>/screen/demos/demo_420x600.png">
-                        <img src="<?php echo get_template_directory_uri();?>/screen/demos/demo_60x60.png" alt="Curabitur mattis tellus rutrum enim facilisis">
-                      </a>
-                      <a target="_blank" class="image-thumb" data-image="<?php echo get_template_directory_uri();?>/screen/demos/demo_420x600.png" data-zoom-image="<?php echo get_template_directory_uri();?>/screen/demos/demo_420x600.png" href="<?php echo get_template_directory_uri();?>/screen/demos/demo_420x600.png">
-                        <img src="<?php echo get_template_directory_uri();?>/screen/demos/demo_60x60.png" alt="Curabitur mattis tellus rutrum enim facilisis">
-                      </a>
-                      <a target="_blank" class="image-thumb" data-image="<?php echo get_template_directory_uri();?>/screen/demos/demo_420x600.png" data-zoom-image="<?php echo get_template_directory_uri();?>/screen/demos/demo_420x600.png" href="<?php echo get_template_directory_uri();?>/screen/demos/demo_420x600.png">
-                        <img src="<?php echo get_template_directory_uri();?>/screen/demos/demo_60x60.png" alt="Curabitur mattis tellus rutrum enim facilisis">
-                      </a>
-                      <a target="_blank" class="image-thumb" data-image="<?php echo get_template_directory_uri();?>/screen/demos/demo_420x600.png" data-zoom-image="<?php echo get_template_directory_uri();?>/screen/demos/demo_420x600.png" href="<?php echo get_template_directory_uri();?>/screen/demos/demo_420x600.png">
-                        <img src="<?php echo get_template_directory_uri();?>/screen/demos/demo_60x60.png" alt="Curabitur mattis tellus rutrum enim facilisis">
-                      </a>
-                    </div>
-                  </div>
-                </div>
-                <div id="product-information" class="col-md-12 product-information">
-                  <div id="product-header" class="clearfix">
-                    <h3 id="page-product-title" itemprop="name">
-                      Curabitur mattis tellus rutrum enim facilisis
-                    </h3>
-                    <div class="description" itemprop="description">
-                      <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.</p>
-                      <p>Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt.</p>
-                    </div>
+              <?php
+                  while ( have_posts() ) : the_post();
 
-                    <?php do_action( 'product_share', 'share_button' );?>
+                      the_content();
 
-                    <div class="relative">
-                      <ul class="list-unstyled">
-                        <li class="vendor">
-                          <span>Vendor:</span>
-                          <a href="./collection.html" title="Vendor 2">Vendor 2</a>
-                        </li>
-                        <li class="type">
-                          <span>Type:</span>
-                          <a href="./collection.html" title="Digital Copy">Digital Copy</a>
-                        </li>
-                        <li class="tags">
-                          <span>Tag:</span>
-                          <a href="./collection.html">
-                            need-for-speed<span>,</span>
-                          </a>
-                          <a href="./collection.html">
-                            racing
-                          </a>
-                        </li>
-                      </ul>
-                    </div>
-                    <div itemprop="download" itemscope="" itemtype="http://schema.org/Offer">
-                      <div class="others-bottom">
-                            <a href="" title="">
-                              <img src="<?php echo THEME_URI;?>/assets/images/ios_icon_135x40.svg" alt="">
-                            </a>
-                            <a href="" title="">
-                              <img src="<?php echo THEME_URI;?>/assets/images/android_icon_135x40.svg" alt="">
-                            </a>
-                          </div>
-                          <div class="control-navigation">
-                            <a class="btn btn-prev" href="#">Prev Product</a>
-                            <a class="btn btn-next" href="#">Next Product</a>
-                          </div>
-                    </div>
-
-                  </div>
-                </div>
+                  endwhile; // End of the loop.
+                ?>
+                
               </div>
             </div>
             
