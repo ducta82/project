@@ -31,16 +31,6 @@
 	</tr>
 	
 	<tr valign="top">
-		<th scope="row"><label for="wpAppbox_showWatchIcon"><?php esc_html_e('Watch icons', 'wp-appbox'); ?>:</label></th>
-		<td>	
-			<label for="wpAppbox_showWatchIcon">
-				<input type="checkbox" name="wpAppbox_showWatchIcon" id="wpAppbox_showWatchIcon" value="1" <?php checked( get_option('wpAppbox_showWatchIcon') ); ?>/>
-				<?php esc_html_e('Show icons of watch-apps (just for App Store)', 'wp-appbox'); ?>
-			</label>
-		</td>
-	</tr>
-	
-	<tr valign="top">
 		<th scope="row"><label for="wpAppbox_colorfulIcons"><?php esc_html_e('Colored store icons', 'wp-appbox'); ?>:</label></th>
 		<td>	
 			<label for="wpAppbox_colorfulIcons">

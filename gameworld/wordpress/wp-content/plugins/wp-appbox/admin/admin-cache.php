@@ -1,5 +1,7 @@
 <?php
 
+global $wpAppbox_optionsDefault;
+
 function wpAppbox_checkIfCachePlugin() {
 	$cachePlugin = '';
 	if ( has_action( 'cachify_remove_post_cache' ) ) {
@@ -28,35 +30,41 @@ function wpAppbox_checkIfCachePlugin() {
 	
 ?>
 
-<script>
-	function show_hide_cache_table() {
-		var status = wpAppbox_disableCache.checked;
-		var table = document.getElementById("table_caching_options");
-		if( status == false ) { table.style.display = ""; }
-		else { table.style.display = "none"; }
-	}
-</script>
-
 <div class="wpa-infobox wpa-notice">
     <p><?php esc_html_e('The caching interval indicate how often the data is updated from the server - this increases the performance, and should not really be changed.', 'wp-appbox'); ?></p>
 </div>
 
-<table class="form-table" id="table_caching_options">
+<h3><?php esc_html_e('General caching settings', 'wp-appbox'); ?></h3>
+
+<table class="form-table">
 	
 	<tr valign="top">
-		<th scope="row"><label for="wpAppbox_cacheTime"><?php esc_html_e('Data caching (minutes)', 'wp-appbox'); ?>:</label></th>
+		<th scope="row"><label for="wpAppbox_cacheTime"><?php esc_html_e('Cache expiry', 'wp-appbox'); ?>:</label></th>
 		<td>
-			<input type="number" <?php disabled( get_option('wpAppbox_disableAutoCache') ); ?> pattern="[0-9]*" name="wpAppbox_cacheTime" id="wpAppbox_cacheTime" value="<?php echo( get_option('wpAppbox_cacheTime') ); ?>" /> <label for="wpAppbox_cacheTime"><?php printf( esc_html__( 'The recommended interval is %1$s minutes.', 'wp-appbox' ), '<strong>600</strong>' ); ?></label>
+			<input type="number" pattern="[0-9]*" name="wpAppbox_cacheTime" id="wpAppbox_cacheTime" value="<?php echo( get_option('wpAppbox_cacheTime') ); ?>" /> <label for="wpAppbox_cacheTime"><?php printf( esc_html__( 'The recommended interval is %1$s minutes.', 'wp-appbox' ), '<strong>' . $wpAppbox_optionsDefault['cacheTime'] . '</strong>' ); ?></label>
 		</td>
 	</tr>
 
 	<tr valign="top">
-		<th scope="row"><label for="wpAppbox_cacheTime"><?php esc_html_e('Disable Auto-Caching', 'wp-appbox'); ?>:</label></th>
+		<th scope="row"><label for="wpAppbox_cacheMode"><?php esc_html_e('Mode for auto caching', 'wp-appbox'); ?>:</label></th>
 		<td>
-			<label for="wpAppbox_disableAutoCache">
-				<input type="checkbox" onClick="javascript:disableInput('cacheTime', 'disableAutoCache')" name="wpAppbox_disableAutoCache" id="wpAppbox_disableAutoCache" value="1" <?php checked( get_option('wpAppbox_disableAutoCache') ); ?>/>
-				<?php esc_html_e('Disables the automatic renewal of the cache (not for authors)', 'wp-appbox'); ?>
+			<select name="wpAppbox_cacheMode" id="wpAppbox_cacheMode" class="postform">
+				<option <?php selected( get_option('wpAppbox_cacheMode'), 'all' ); ?> class="level-0" value="all"><?php esc_html_e('Every page impresssion, if cache has expired', 'wp-appbox'); ?> (<?php esc_html_e('Default', 'wp-appbox'); ?>)</option>
+				<option <?php selected( get_option('wpAppbox_cacheMode'), 'loggedin' ); ?> class="level-0" value="loggedin"><?php esc_html_e('Only to logged in users, if cache has expired', 'wp-appbox'); ?></option>
+				<option <?php selected( get_option('wpAppbox_cacheMode'), 'manually' ); ?> class="level-0" value="manually"><?php esc_html_e('Only manually using the button, visible for logged in users only', 'wp-appbox'); ?></option>
+				<?php if ( get_option('wpAppbox_cacheCronjob') ): ?><option <?php selected( get_option('wpAppbox_cacheMode'), 'cronjob' ); ?> class="level-0" value="cronjob"><?php esc_html_e('Update automatically via Cronjob and manually', 'wp-appbox'); ?> (<?php esc_html_e('Experimental', 'wp-appbox'); ?>)</option><?php endif; ?>
+			</select>
+			<label for="wpAppbox_cacheMode"><?php esc_html_e('Mode which is used to renew the data of an app (depending on cache time settings)', 'wp-appbox'); ?></label>
+		</td>
+	</tr>
+	
+	<tr valign="top" class="cronSettings" <?php if( 'cronjob' != get_option( 'wpAppbox_cacheMode' ) ): ?> style="display:none;"<?php endif; ?>>
+		<th scope="row"><label for="wpAppbox_cronjobSettings"><?php esc_html_e('Cronjob settings', 'wp-appbox'); ?>:</label></th>
+		<td>
+			<label for="wpAppbox_cronjobSettings">
+				<?php printf( esc_html__( 'Run the cronjob every %1$s minutes and update %2$s expired apps at once', 'wp-appbox' ), '<input type="number" style="width: 70px;" pattern="[0-9]*" name="wpAppbox_cronIntervall" id="wpAppbox_cronIntervall" value="' . get_option('wpAppbox_cronIntervall') . '" />', '<input type="number" style="width: 55px;" pattern="[0-9]*" name="wpAppbox_cronCount" id="wpAppbox_cronCount" value="' . get_option('wpAppbox_cronCount') . '" />' ); ?>. <?php printf( esc_html__( 'Default values are %1$s minutes and %2$s apps at once.', 'wp-appbox' ), '<strong>' . $wpAppbox_optionsDefault['cronIntervall'] . '</strong>', '<strong>' . $wpAppbox_optionsDefault['cronCount'] . '</strong>' ); ?>
 			</label>
+			<p style="margin-top:.9em;"><strong><?php _e( 'Please note', 'wp-appbox' ); ?>:</strong> <?php _e( 'The higher the values the higher the server capacity utilisation and the queries to the external store servers. Don\'t forget: you could still update the cache of an app manually.', 'wp-appbox' ); ?></p>
 		</td>
 	</tr>
 	
@@ -76,5 +84,168 @@ function wpAppbox_checkIfCachePlugin() {
 			<label for="wpAppbox_cachePlugin"><?php esc_html_e('Clears the post-cache of 3rd-party-plugins (only manually via the "Reload"-link)', 'wp-appbox'); ?></label>
 		</td>
 	</tr>
+		
+	<tr valign="top">
+		<th scope="row"><label for="wpAppbox_blockMissing"><?php esc_html_e('Apps not found', 'wp-appbox'); ?>:</label></th>
+		<td>
+			<label for="wpAppbox_blockMissing">
+				<input type="checkbox" name="wpAppbox_blockMissing" id="wpAppbox_blockMissing" value="1" <?php checked( get_option('wpAppbox_blockMissing') ); ?>/>
+				<?php esc_html_e('Block queries for missing apps', 'wp-appbox'); ?> 
+			</label>
+			<label for="wpAppbox_blockMissingTime" <?php if( true != get_option( 'wpAppbox_blockMissing' ) ): ?> style="display:none;"<?php endif; ?>>
+				<?php printf( esc_html__( 'for %1$s minutes', 'wp-appbox' ), '<input type="number" style="width: 65px;" pattern="[0-9]*" name="wpAppbox_blockMissingTime" id="wpAppbox_blockMissingTime" value="' . get_option('wpAppbox_blockMissingTime') . '" />' ); ?>
+			</label>
+		</td>
+	</tr>
+
+</table>
+
+<hr />
+
+<h3><?php esc_html_e('Image caching', 'wp-appbox'); ?></h3>
+
+<table class="form-table">
+
+	<tr valign="top">
+		<th scope="row"><label for="wpAppbox_imgCache"><?php esc_html_e('Activate image caching', 'wp-appbox'); ?>:</label></th>
+		<td colspan="7">
+			<label for="wpAppbox_imgCache">
+				<input type="checkbox" name="wpAppbox_imgCache" id="wpAppbox_imgCache" value="1" <?php checked( get_option('wpAppbox_imgCache') ); ?>/>
+				<?php esc_html_e('Cache app images on your own server (needs more ressources when caching an app)', 'wp-appbox'); ?> 
+			</label>
+		</td>
+	</tr>
+	
+	<tr valign="top" class="imgCachingMode" <?php if( true != get_option( 'wpAppbox_imgCache' ) ): ?> style="display:none;"<?php endif; ?>>
+		<th scope="row"><label for="wpAppbox_imgCacheMode"><?php esc_html_e('Image caching mode', 'wp-appbox'); ?>:</label></th>
+		<td colspan="7">
+			<label for="wpAppbox_imgCacheMode">
+				<select name="wpAppbox_imgCacheMode" id="wpAppbox_imgCacheMode" class="postform">
+				  	<option <?php selected( get_option('wpAppbox_imgCacheMode'), 'appicon' ); ?> class="level-0" value="appicon"><?php esc_html_e('App icon only', 'wp-appbox'); ?> (<?php esc_html_e('Default', 'wp-appbox'); ?>)</option>
+					<option <?php selected( get_option('wpAppbox_imgCacheMode'), 'screenshots' ); ?> class="level-0" value="screenshots"><?php esc_html_e('Screenshots only', 'wp-appbox'); ?> (<?php esc_html_e('Experimental', 'wp-appbox'); ?>)</option>
+					<option <?php selected( get_option('wpAppbox_imgCacheMode'), 'appicon+screenshots' ); ?> class="level-0" value="appicon+screenshots"><?php esc_html_e('App icon and screenshots', 'wp-appbox'); ?> (<?php esc_html_e('Experimental', 'wp-appbox'); ?>)</option>
+				</select>
+				<?php esc_html_e('Which app images should be cached?', 'wp-appbox'); ?>
+			</label>
+		</td>
+	</tr>
+		
+	<tr valign="top" class="imgCachingDelay" <?php if( true != get_option( 'wpAppbox_imgCache' ) ): ?> style="display:none;"<?php endif; ?>>
+		<th scope="row"><label for="wpAppbox_imgCacheDelay"><?php esc_html_e('Delayed clearing', 'wp-appbox'); ?>:</label></th>
+		<td>
+			<label for="wpAppbox_imgCacheDelay">
+				<input type="checkbox" name="wpAppbox_imgCacheDelay" id="wpAppbox_imgCacheDelay" value="1" <?php checked( get_option('wpAppbox_imgCacheDelay') ); ?>/>
+				<?php esc_html_e('Keep outdated images', 'wp-appbox'); ?> 
+			</label>
+			<label for="wpAppbox_imgCacheDelayTime" <?php if( true != get_option( 'wpAppbox_imgCacheDelay' ) ): ?> style="display:none;"<?php endif; ?>> 
+				<?php printf( esc_html__( 'for %1$s more hours (set expiry of your plugin)', 'wp-appbox' ), '<input type="number" style="width: 65px;" pattern="[0-9]*" name="wpAppbox_imgCacheDelayTime" id="wpAppbox_imgCacheDelayTime" value="' . get_option('wpAppbox_imgCacheDelayTime') . '" />' ); ?>
+			</label>
+			<label for ="wpAppbox_imgCacheDelay"> 
+				 <?php esc_html_e('to prevent missing images in combination with a caching plugin', 'wp-appbox'); ?> 
+			</label>
+		</td>
+	</tr>
 	
 </table>
+
+
+<script>
+
+	$j=jQuery.noConflict();
+	
+	$j("#wpAppbox_blockMissing").click(function () {
+		if ( $j(this).attr('checked') ) {
+			$j("label[for='wpAppbox_blockMissingTime']").show();
+		} else {
+			$j("label[for='wpAppbox_blockMissingTime']").hide();
+		}
+	} );
+	
+	$j("#wpAppbox_cacheMode").change(function () {
+		if ( this.value == 'cronjob' ) {
+			$j('.cronSettings').show();
+		} else {
+			$j('.cronSettings').hide();
+		}
+	} );
+	
+	<?php if ( get_option('wpAppbox_imgCache') ): ?>
+	$j("#wpAppbox_imgCache").change(function () {
+		var success = true;
+		if ( !$j(this).is(":checked") ) {
+			success = confirm( '<?php _e( 'Do you want to deactivate the image caching? All local images will be deleted.', 'wp-appbox' ); ?>' );
+		}
+		if (success == false) {
+			$j(this).prop( 'checked', !$j(this).prop('checked') );
+		}
+		if ( $j(this).attr('checked') ) {
+			$j('tr.imgCachingMode').show();
+			$j('tr.imgCachingDelay').show();
+		} else {
+			$j('tr.imgCachingMode').hide();
+			$j('tr.imgCachingDelay').hide();
+		}
+	});
+	<?php endif; ?>
+	
+	$j("#wpAppbox_imgCacheDelay").click(function () {
+		if ( $j(this).attr('checked') ) {
+			$j('.imgCacheDelayTime').show();
+			$j("label[for='wpAppbox_imgCacheDelayTime']").show();
+		} else {
+			$j('.imgCacheDelayTime').hide();
+			$j("label[for='wpAppbox_imgCacheDelayTime']").hide();
+		}
+	} );
+	
+</script>
+<script>
+
+	$j=jQuery.noConflict();
+	
+	$j("#wpAppbox_blockMissing").click(function () {
+		if ( $j(this).attr('checked') ) {
+			$j("label[for='wpAppbox_blockMissingTime']").show();
+		} else {
+			$j("label[for='wpAppbox_blockMissingTime']").hide();
+		}
+	} );
+	
+	$j("#wpAppbox_cacheMode").change(function () {
+		if ( this.value == 'cronjob' ) {
+			$j('.cronSettings').show();
+		} else {
+			$j('.cronSettings').hide();
+		}
+	} );
+	
+	<?php if ( get_option('wpAppbox_imgCache') ): ?>
+	$j("#wpAppbox_imgCache").change(function () {
+		var success = true;
+		if ( !$j(this).is(":checked") ) {
+			success = confirm( '<?php _e( 'Do you want to deactivate the image caching? All local images will be deleted.', 'wp-appbox' ); ?>' );
+		}
+		if (success == false) {
+			$j(this).prop( 'checked', !$j(this).prop('checked') );
+		}
+		if ( $j(this).attr('checked') ) {
+			$j('tr.imgCachingMode').show();
+			$j('tr.imgCachingDelay').show();
+		} else {
+			$j('tr.imgCachingMode').hide();
+			$j('tr.imgCachingDelay').hide();
+		}
+	});
+	<?php endif; ?>
+	
+	$j("#wpAppbox_imgCacheDelay").click(function () {
+		if ( $j(this).attr('checked') ) {
+			$j('.imgCacheDelayTime').show();
+			$j("label[for='wpAppbox_imgCacheDelayTime']").show();
+		} else {
+			$j('.imgCacheDelayTime').hide();
+			$j("label[for='wpAppbox_imgCacheDelayTime']").hide();
+		}
+	} );
+	
+</script>

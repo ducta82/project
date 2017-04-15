@@ -1,5 +1,4 @@
 <?php
-	
 
 /**
 * wpAppbox_CreateAttributs
@@ -106,7 +105,7 @@ class wpAppbox_CreateAttributs {
 			return( 'feed' );
 		}
 		$style_id = array_search( $style, $wpAppbox_styleNames );
-		if ( in_array( $style_id, $wpAppbox_storeStyles[$storeID] ) ) {
+		if ( in_array( $style_id, (array)$wpAppbox_storeStyles[$storeID] ) ) {
 			return( $style );
 		} else {
 			return( $wpAppbox_styleNames[get_option('wpAppbox_defaultStyle')] );
@@ -157,8 +156,6 @@ class wpAppbox_CreateAttributs {
 		return( $attr );
 	}
 	
-	
 } /* Class beenden */
-
 
 ?>

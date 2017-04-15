@@ -10,7 +10,7 @@
 	<tr valign="top">
 		<th scope="row"><label for="wpAppbox_affiliateApple"><?php esc_html_e('Use my own ID', 'wp-appbox'); ?>:</label></th>
 		<td>	
-			<label for="wpAppbox_affiliateApple"><input type="checkbox" onClick="javascript:hideElementByClass('affiliateApple', 'affiliateApple')" name="wpAppbox_affiliateApple" id="wpAppbox_affiliateApple" value="1" <?php checked( get_option('wpAppbox_affiliateApple') ); ?>/> <?php esc_html_e('I have an ID at Apple/PHG and would like to use my own ID.', 'wp-appbox'); ?></label>
+			<label for="wpAppbox_affiliateApple"><input type="checkbox" name="wpAppbox_affiliateApple" id="wpAppbox_affiliateApple" value="1" <?php checked( get_option('wpAppbox_affiliateApple') ); ?>/> <?php esc_html_e('I have an ID at Apple/PHG and would like to use my own ID.', 'wp-appbox'); ?></label>
 		</td>
 	</tr>
 	
@@ -38,7 +38,7 @@
 	<tr valign="top" <?php if ( wpAppbox_checkAmazonAPI() ) echo( ' style="display:none;"' ); ?>>
 		<th scope="row"><label for="wpAppbox_affiliateAmazon"><?php esc_html_e('Use my own ID', 'wp-appbox'); ?>:</label></th>
 		<td>	
-			<label for="wpAppbox_affiliateAmazon"><input type="checkbox" onClick="javascript:hideElementByClass('affiliateAmazon', 'affiliateAmazon')" name="wpAppbox_affiliateAmazon" id="wpAppbox_affiliateAmazon" value="1" <?php checked(get_option('wpAppbox_affiliateAmazon') ); ?>/> <?php esc_html_e('I have an affiliate ID at Amazon PartnerNet and want to use my own ID.', 'wp-appbox'); ?></label>
+			<label for="wpAppbox_affiliateAmazon"><input type="checkbox" name="wpAppbox_affiliateAmazon" id="wpAppbox_affiliateAmazon" value="1" <?php checked(get_option('wpAppbox_affiliateAmazon') ); ?>/> <?php esc_html_e('I have an affiliate ID at Amazon PartnerNet and want to use my own ID.', 'wp-appbox'); ?></label>
 		</td>
 	</tr>
 	
@@ -60,7 +60,7 @@
 	<tr valign="top">
 		<th scope="row"><label for="wpAppbox_affiliateMicrosoft"><?php esc_html_e('Use my own ID', 'wp-appbox'); ?>:</label></th>
 		<td>	
-			<label for="wpAppbox_affiliateMicrosoft"><input type="checkbox" onClick="javascript:hideElementByClass('affiliateMicrosoft', 'affiliateMicrosoft');" name="wpAppbox_affiliateMicrosoft" id="wpAppbox_affiliateMicrosoft" value="1" <?php checked( get_option('wpAppbox_affiliateMicrosoft') ); ?>/> <?php esc_html_e('I have an affiliate ID at the Microsoft Private Affiliate Program and want to use my own ID.', 'wp-appbox'); ?></label>
+			<label for="wpAppbox_affiliateMicrosoft"><input type="checkbox" name="wpAppbox_affiliateMicrosoft" id="wpAppbox_affiliateMicrosoft" value="1" <?php checked( get_option('wpAppbox_affiliateMicrosoft') ); ?>/> <?php esc_html_e('I have an affiliate ID at the Microsoft Private Affiliate Program and want to use my own ID.', 'wp-appbox'); ?></label>
 		</td>
 	</tr>
 	
@@ -96,8 +96,41 @@
 	<tr valign="top">
 		<th scope="row"><label for="wpAppbox_userAffiliate"><?php esc_html_e('Activate custom ID', 'wp-appbox'); ?>:</label></th>
 		<td>	
-			<input type="checkbox" name="wpAppbox_userAffiliate" id="wpAppbox_userAffiliate" value="1" <?php checked(get_option('wpAppbox_userAffiliate') ); ?>/><?php esc_html_e('Each user and author can use his own affiliate IDs. If no ID is specified in the user profile, the global IDs are used.', 'wp-appbox'); ?>
+			<label for="wpAppbox_userAffiliate"><input type="checkbox" name="wpAppbox_userAffiliate" id="wpAppbox_userAffiliate" value="1" <?php checked(get_option('wpAppbox_userAffiliate') ); ?>/><?php esc_html_e('Each user and author can use his own affiliate IDs. If no ID is specified in the user profile, the global IDs are used.', 'wp-appbox'); ?></label>
 		</td>
 	</tr>
 	
 </table>
+
+
+<script>
+
+	$j=jQuery.noConflict();
+	
+	$j("#wpAppbox_affiliateApple").click(function () {
+		if ( $j(this).attr('checked') ) {
+			$j('tr.affiliateApple').show();
+		} else {
+			$j('tr.affiliateApple').hide();
+		}
+	} );
+	
+	<?php if ( !wpAppbox_checkAmazonAPI() ): ?>
+	$j("#wpAppbox_affiliateAmazon").click(function () {
+		if ( $j(this).attr('checked') ) {
+			$j('tr.affiliateAmazon').show();
+		} else {
+			$j('tr.affiliateAmazon').hide();
+		}
+	} );
+	<?php endif; ?>
+	
+	$j("#wpAppbox_affiliateMicrosoft").click(function () {
+		if ( $j(this).attr('checked') ) {
+			$j('tr.affiliateMicrosoft').show();
+		} else {
+			$j('tr.affiliateMicrosoft').hide();
+		}
+	} );
+		
+</script>

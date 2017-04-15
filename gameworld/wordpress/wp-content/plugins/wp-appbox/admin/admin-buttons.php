@@ -1,61 +1,3 @@
-<script>
-	function disable_enable_checkboxes(store) {
-		var status = document.getElementById("wpAppbox_buttonHidden_"+store).checked;
-		var checkbox1 = document.getElementById("wpAppbox_buttonAppbox_"+store);
-		var checkbox2 = document.getElementById("wpAppbox_buttonWYSIWYG_"+store);
-		var checkbox3 = document.getElementById("wpAppbox_buttonHTML_"+store);
-		checkbox1.disabled = status;
-		checkbox2.disabled = status;
-		checkbox3.disabled = status;
-		if( status == true ) {
-			checkbox1.checked = false;
-			checkbox2.checked = false;
-			checkbox3.checked = false;
-		}
-	}
-	function show_hide_table() {
-		var status = document.getElementById("wpAppbox_defaultButton").selectedIndex;
-		var table = document.getElementById("table_buttons_settings");
-		if( status == "3" ) { table.style.display = ""; }
-		else { table.style.display = "none"; }
-	}
-	function select_buttons_appbox(status) {
-		<?php foreach ( $wpAppbox_storeNames as $storeID => $storeName ) { ?>
-			var checkbox_<?php echo( $storeID ); ?> = document.getElementById("wpAppbox_buttonAppbox_<?php echo( $storeID ); ?>");
-			checkbox_<?php echo( $storeID ); ?>.checked = status;
-		<?php } ?>
-	}
-	function select_buttons_text(status) {
-		<?php foreach ( $wpAppbox_storeNames as $storeID => $storeName ) { ?>
-			var checkbox_<?php echo( $storeID ); ?> = document.getElementById("wpAppbox_buttonHTML_<?php echo( $storeID ); ?>");
-			checkbox_<?php echo( $storeID ); ?>.checked = status;
-		<?php } ?>
-	}
-	function select_buttons_alone(status) {
-		<?php foreach ( $wpAppbox_storeNames as $storeID => $storeName ) { ?>
-			var checkbox_<?php echo( $storeID ); ?> = document.getElementById("wpAppbox_buttonWYSIWYG_<?php echo( $storeID ); ?>");
-			checkbox_<?php echo( $storeID ); ?>.checked = status;
-		<?php } ?>
-	}
-	function select_buttons_hidden(status) {
-		<?php foreach ( $wpAppbox_storeNames as $storeID => $storeName ) { ?>
-			var checkbox_<?php echo( $storeID ); ?> = document.getElementById("wpAppbox_buttonHidden_<?php echo( $storeID ); ?>");
-			var checkbox1_<?php echo( $storeID ); ?> = document.getElementById("wpAppbox_buttonAppbox_<?php echo( $storeID ); ?>");
-			var checkbox2_<?php echo( $storeID ); ?> = document.getElementById("wpAppbox_buttonWYSIWYG_<?php echo( $storeID ); ?>");
-			var checkbox3_<?php echo( $storeID ); ?> = document.getElementById("wpAppbox_buttonHTML_<?php echo( $storeID ); ?>");
-			checkbox_<?php echo( $storeID ); ?>.checked = status;
-			checkbox1_<?php echo( $storeID ); ?>.disabled = status;
-			checkbox2_<?php echo( $storeID ); ?>.disabled = status;
-			checkbox3_<?php echo( $storeID ); ?>.disabled = status;
-			if(status == true) {
-				checkbox1_<?php echo( $storeID ); ?>.checked = false;
-				checkbox2_<?php echo( $storeID ); ?>.checked = false;
-				checkbox3_<?php echo( $storeID ); ?>.checked = false;
-			}
-		<?php } ?>
-	}
-</script>
-
 <div class="wpa-infobox wpa-notice">
     <p><?php esc_html_e('Which buttons should be displayed in the WordPress-Editor? In addition to a combined button, it is also possible to display frequently used buttons separately.', 'wp-appbox'); ?></p>
 </div>
@@ -149,3 +91,61 @@
 	</tr>
 	
 </table>
+
+<script>
+	function disable_enable_checkboxes(store) {
+		var status = document.getElementById("wpAppbox_buttonHidden_"+store).checked;
+		var checkbox1 = document.getElementById("wpAppbox_buttonAppbox_"+store);
+		var checkbox2 = document.getElementById("wpAppbox_buttonWYSIWYG_"+store);
+		var checkbox3 = document.getElementById("wpAppbox_buttonHTML_"+store);
+		checkbox1.disabled = status;
+		checkbox2.disabled = status;
+		checkbox3.disabled = status;
+		if( status == true ) {
+			checkbox1.checked = false;
+			checkbox2.checked = false;
+			checkbox3.checked = false;
+		}
+	}
+	function show_hide_table() {
+		var status = document.getElementById("wpAppbox_defaultButton").selectedIndex;
+		var table = document.getElementById("table_buttons_settings");
+		if( status == "3" ) { table.style.display = ""; }
+		else { table.style.display = "none"; }
+	}
+	function select_buttons_appbox(status) {
+		<?php foreach ( $wpAppbox_storeNames as $storeID => $storeName ) { ?>
+			var checkbox_<?php echo( $storeID ); ?> = document.getElementById("wpAppbox_buttonAppbox_<?php echo( $storeID ); ?>");
+			checkbox_<?php echo( $storeID ); ?>.checked = status;
+		<?php } ?>
+	}
+	function select_buttons_text(status) {
+		<?php foreach ( $wpAppbox_storeNames as $storeID => $storeName ) { ?>
+			var checkbox_<?php echo( $storeID ); ?> = document.getElementById("wpAppbox_buttonHTML_<?php echo( $storeID ); ?>");
+			checkbox_<?php echo( $storeID ); ?>.checked = status;
+		<?php } ?>
+	}
+	function select_buttons_alone(status) {
+		<?php foreach ( $wpAppbox_storeNames as $storeID => $storeName ) { ?>
+			var checkbox_<?php echo( $storeID ); ?> = document.getElementById("wpAppbox_buttonWYSIWYG_<?php echo( $storeID ); ?>");
+			checkbox_<?php echo( $storeID ); ?>.checked = status;
+		<?php } ?>
+	}
+	function select_buttons_hidden(status) {
+		<?php foreach ( $wpAppbox_storeNames as $storeID => $storeName ) { ?>
+			var checkbox_<?php echo( $storeID ); ?> = document.getElementById("wpAppbox_buttonHidden_<?php echo( $storeID ); ?>");
+			var checkbox1_<?php echo( $storeID ); ?> = document.getElementById("wpAppbox_buttonAppbox_<?php echo( $storeID ); ?>");
+			var checkbox2_<?php echo( $storeID ); ?> = document.getElementById("wpAppbox_buttonWYSIWYG_<?php echo( $storeID ); ?>");
+			var checkbox3_<?php echo( $storeID ); ?> = document.getElementById("wpAppbox_buttonHTML_<?php echo( $storeID ); ?>");
+			checkbox_<?php echo( $storeID ); ?>.checked = status;
+			checkbox1_<?php echo( $storeID ); ?>.disabled = status;
+			checkbox2_<?php echo( $storeID ); ?>.disabled = status;
+			checkbox3_<?php echo( $storeID ); ?>.disabled = status;
+			if(status == true) {
+				checkbox1_<?php echo( $storeID ); ?>.checked = false;
+				checkbox2_<?php echo( $storeID ); ?>.checked = false;
+				checkbox3_<?php echo( $storeID ); ?>.checked = false;
+			}
+		<?php } ?>
+	}
+</script>

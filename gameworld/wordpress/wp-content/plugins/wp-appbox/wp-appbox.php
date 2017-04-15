@@ -1,7 +1,7 @@
 <?php
 /*
 Plugin Name: WP-Appbox
-Version: 3.4.8
+Version: 4.0.1
 Plugin URI: https://tchgdns.de/wp-appbox-app-badge-fuer-google-play-mac-app-store-windows-store-windows-phone-store-co/
 Description: "WP-Appbox" ermöglicht es, via Shortcode schnell und einfach App-Details von Apps aus einer Reihe an App Stores in Artikeln oder Seiten anzuzeigen.
 Author: Marcel Schmilgeit
@@ -29,10 +29,10 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 */
 
-
 /* PHP-Fehlerausgabe deaktivieren */
-error_reporting( 0 );
+//error_reporting( E_ALL );
 //
+
 
 /**
 * Ein paar Variablen
@@ -46,18 +46,19 @@ load_plugin_textdomain( 'wp-appbox', false, basename( dirname( __FILE__ ) ) . '/
 */
 include_once( "inc/definitions.php" );
 include_once( "inc/appboxdb.php" );
+include_once( "inc/imagecache.class.php" );
+include_once( "inc/getstoreurls.class.php" );
 if ( is_admin() ) {
 	include_once( "admin/admin.php" );
 	include_once( "admin/user-profiles.php" );
-	if ( $_GET['page'] == 'wp-appbox' ) {
-		switch ( $_GET['tab'] ) {
+	if ( isset( $_GET['page'] ) && $_GET['page'] == 'wp-appbox' ) {
+		switch ( isset( $_GET['tab'] ) ) {
 			case 'storeurls':
 			case 'advanced':
 				include_once( "inc/getstoreurls.class.php" );
 				break;
 			case 'cache-list':
 				include_once( "inc/getappinfo.class.php" );
-				include_once( "inc/getstoreurls.class.php" );
 				include_once( "inc/createoutput.class.php" );
 				break;
 		}
@@ -65,7 +66,6 @@ if ( is_admin() ) {
 }
 if ( !is_admin() ) {
 	include_once( "inc/getappinfo.class.php" );
-	include_once( "inc/getstoreurls.class.php" );
 	include_once( "inc/createattributs.class.php" );
 	include_once( "inc/createoutput.class.php" );
 }
@@ -73,6 +73,63 @@ if ( !defined('ABSPATH') ) {
 	require_once('./wp-load.php');
 }
 require_once( ABSPATH . "wp-includes/pluggable.php" );
+
+
+/**
+* Ausgabe diverser Fehlerchen ;-)
+*/
+function print_me( $message ) {
+	if ( is_user_logged_in() ) {
+		print_r( $message . '<br />' );
+	}
+}
+
+
+function wpAppbox_updateOption( $theOption, $theValue ) {
+}
+
+function wpAppbox_getOption( $theOption ) {
+}
+
+function wpAppbox_deleteOption( $theOption ) {
+}
+
+
+/**
+* Cron Schedules für den Cache-Cronjob festlegen und Cron registrieren
+*
+* @since   4.0.0
+*
+* @param 	ka		$schedules		ka
+* @return 	ka		$schedules		ka
+*/
+
+function wpAppbox_cronSchedules( $schedules ) {
+	global $wpAppbox_optionsDefault;
+	$cronIntervall = intval( get_option( 'wpAppbox_cronIntervall' ) );
+	if ( !is_int( $cronIntervall ) || 0 == $cronIntervall ) {
+		$cronIntervall = $wpAppbox_optionsDefault['cronIntervall'];
+	}
+    $schedules["wp_appbox_cache"] = array(
+	    'interval' => $cronIntervall * 60,
+	    'display' => sprintf( __( 'Every %1$s minutes', 'wp-appbox' ), $cronIntervall )
+    );
+    return( $schedules );
+}
+
+function wpAppbox_setupCronCache() {
+	if ( wp_get_schedule('wpAppbox_cacheCron' ) ) {
+		wp_clear_scheduled_hook( 'wpAppbox_cacheCron' );
+	}
+	if ( 'cronjob' == get_option( 'wpAppbox_cacheMode' ) ) {
+		wp_schedule_event( time(), 'wp_appbox_cache', 'wpAppbox_cacheCron' );
+	}
+}
+
+if ( 'cronjob' == get_option( 'wpAppbox_cacheMode' ) ) {
+	add_filter( 'cron_schedules', 'wpAppbox_cronSchedules' );
+	add_action( 'wpAppbox_cacheCron', 'wpAppbox_cacheCron' );
+}
 
 
 /**
@@ -86,7 +143,7 @@ require_once( ABSPATH . "wp-includes/pluggable.php" );
 
 function wpAppbox_isUserAuthor() {
 	$userdata = get_userdata( get_current_user_id() );
-	if ( ( isset($userdata) ) && ( intval( $userdata->user_level ) ) >= 2 ) {
+	if ( ( isset( $userdata ) ) && ( intval( $userdata->user_level ) ) >= 2 ) {
 		return( true );
 	} else {
 		return( false );
@@ -117,35 +174,26 @@ function wpAppbox_isUserAdmin() {
 * Ausgabe der Fehlermeldungen
 *
 * @since   2.0.0
-* @change  3.2.0
+* @change  4.0.0
 *
 * @param   string  $output  Fehlermeldung [optional]
 * @print   error message
 */
 
 function wpAppbox_errorOutput( $output = "" ) {
-	if ( get_option( "wpAppbox_eOutput" ) && wpAppbox_isUserAdmin() ) {
-		print_r( "<pre>$output</pre>" );
-	}
-}
-
-
-/**
-* Prüfen ob "?wpappbox_nocache" angehangen
-*
-* @since   2.0.0
-* @change  3.2.0
-*
-* @return  boolean  true/false  TRUE when $_GET[]
-*/
-
-function wpAppbox_isCacheInactive() {
-	if ( wpAppbox_isUserAuthor() ) {
-		if( isset( $_GET['wpappbox_nocache'] ) ){
-			 return( true );
-		} else {
-			return( false );
-		}
+	if ( wpAppbox_isUserAdmin() ) {
+		 switch( get_option( "wpAppbox_eOutput" ) ) {
+		 	case 'output':
+		 		print_r( "<pre>$output</pre>" );
+		 	break;
+		 	case 'errorlog':
+		 		error_log( $output );
+		 	break;
+		 	case 'output+errorlog':
+		 		print_r( "<pre>$output</pre>" );
+		 		error_log( $output );
+		 	break;
+		 }
 	}
 }
 
@@ -154,17 +202,17 @@ function wpAppbox_isCacheInactive() {
 * Prüfen ob "?wpappbox_reload_cache" angehangen
 *
 * @since   2.0.0
-* @change  3.2.0
+* @change  4.0.0
 *
 * @return  boolean  true/false  TRUE when $_GET[]
 */
 
-function wpAppbox_forceNewCache( $appID ) {
+function wpAppbox_forceNewCache( $cacheID ) {
 	if ( wpAppbox_isUserAuthor() ) {
 		if ( ( isset( $_GET["wpappbox_reload_cache"] ) ) || ( isset( $_GET["action"] ) && $_GET["action"] === 'wpappbox_reload_cache' ) ) {
-			if ( !isset( $_GET["wpappbox_cacheid"] ) ) {
-				return( true );
-			} elseif ( $_GET["wpappbox_cacheid"] === $appID ) {
+			if ( !isset( $_GET["app_cache_id"] ) ) {
+				return( false );
+			} elseif ( $_GET["app_cache_id"] === $cacheID ) {
 				return( true );
 			}
 		}
@@ -202,7 +250,7 @@ function wpAppbox_loadTemplate( $styleName, $themeTemplate = false ) {
 /**
 * Löscht den Seiten-Cache eines Cache-Plugins
 *
-* @since   3.2.0
+* @since   4.0.0
 *
 * @param   string    $postID       ID des Posts
 */
@@ -210,9 +258,9 @@ function wpAppbox_loadTemplate( $styleName, $themeTemplate = false ) {
 function wpAppbox_clearCachePlugin( $postID = '') {
 	global $post;
 	$postID = $post->ID;
+	if ( false == get_option( 'wpappbox_cachePlugin' ) || !is_single() || $postID == '' ) return;
 	if ( $postID != '' ) {
-		$usedPlugin = get_option( 'wpappbox_cachePlugin' );
-		switch ( $usedPlugin ) {
+		switch ( get_option( 'wpappbox_cachePlugin' ) ) {
 			case 'cachify':
 				if ( has_action( 'cachify_remove_post_cache' ) ) {
 				    do_action( 'cachify_remove_post_cache', $postID );
@@ -266,7 +314,7 @@ function wpAppbox_clearCachePlugin( $postID = '') {
 
 function wpAppbox_checkOlderVersion( $this_ver = '', $comp_ver = '' ) {
 	if ( $this_ver == '' ) $this_ver = WPAPPBOX_PLUGIN_VERSION;
-	if ( $comp_ver == '' ) $comp_ver = get_option( "wpAppbox_pluginVersion" );
+	if ( $comp_ver == '' ) $comp_ver = get_option( 'wpAppbox_pluginVersion' );
 	$this_ver = str_pad( str_replace( ".", "", $this_ver ), 5, '0', STR_PAD_RIGHT );
 	$comp_ver = str_pad( str_replace( ".", "", $comp_ver ), 5, '0', STR_PAD_RIGHT );
 	if ( $this_ver > $comp_ver ) {
@@ -352,7 +400,9 @@ function wpAppbox_autoDetectLinks( $content ) {
 	}, $content );
 	
 	//Links zu Amazon-Apps
-	$pattern = '/^(?:<p>)?http.?:\/\/www\.amazon\.*(?:.*?)\/dp\/([A-Za-z0-9]*)(?:.*)(?:<\/p>)?$/m';
+	$pattern = array(	'/^(?:<p>)?http.?:\/\/www\.amazon\.*(?:.*?)\/dp\/([A-Za-z0-9]*)(?:.*)(?:<\/p>)?$/m',
+						'/^(?:<p>)?http.?:\/\/www\.amazon\.*(?:.*?)\/exec\/obidos\/ASIN\/([A-Za-z0-9]*)(?:.*)(?:<\/p>)?$/m'
+					);
 	$content = preg_replace_callback( $pattern, function ( $matches ) {
 		$appID = Trim($matches[1]);
 		return( '[appbox amazonapps ' . $appID . ']' );
@@ -420,12 +470,31 @@ if ( is_admin() ) {
 * Benötigte Update-Funktionen durchführen
 *
 * @since   3.1.6
-* @change  3.4.0
+* @change  4.0.0
 */
 
 if ( is_admin() ) wpAppbox_UpdateAction();
 
 function wpAppbox_UpdateAction() {
+	if ( wpAppbox_checkOlderVersion( '4.0.0' ) ) {
+		global $wpdb; 
+		$whereQuery =  "option_name = 'wpAppbox_pluginVersion'";
+		$whereQuery .= " OR option_name = 'wpAppbox_cacheTime'";
+		$whereQuery .= " OR option_name = 'wpAppbox_disableDefer'";
+		$whereQuery .= " OR option_name = 'wpAppbox_dbVersion'";
+		$whereQuery .= " OR option_name = 'wpAppbox_pluginVersion'";
+		$wpdb->query( "UPDATE $wpdb->options SET autoload = 'yes' WHERE $whereQuery" );
+		delete_option( 'wpAppbox_disableAutoCache' );
+		delete_option( 'wpAppbox_disableCache' );
+		delete_option( 'wpAppbox_showReload' );
+		delete_option( 'wpAppbox_imageCache' );
+		delete_option( 'wpAppbox_imageCacheMode' );
+		if ( true == get_option('wpAppbox_eOutput') ) {
+			update_option( 'wpAppbox_eOutput', 'output', 'no' );
+		}
+		wpAppbox_setOptions();
+		wpAppbox_createTable();
+	}
 	if ( wpAppbox_checkOlderVersion( '3.4.8' ) ) {
 		delete_option( 'wpAppbox_showWatchIcon' );
 	}
@@ -917,11 +986,13 @@ function wpAppbox_activatePlugin( $network_wide ) {
 * Aktivierung-Actions des Plugins
 *
 * @since  3.2.7
+* @change 4.0.0
 */
 
 function wpAppbox_activateActions() {
 	wpAppbox_setOptions(); /* Standard-Einstellungen in wp_options schreiben */
 	wpAppbox_createTable(); /* Tabelle für "WP-Appbox" erstellen */
+	wpAppbox_setupCronCache();
 }
 
 
@@ -952,13 +1023,49 @@ function wpAppbox_uninstallPlugin() {
 * Deinstallation-Actions des Plugins
 *
 * @since  3.2.2
+* @change 4.0.0
 */
 
 function wpAppbox_uninstallActions() {
 	global $wpdb;
 	$wpdb->query( "DELETE FROM " . $wpdb->prefix . "options WHERE option_name LIKE 'wpAppbox_%';" );
 	delete_option( "wpAppbox" ); //Für ältere Versionen ==> bis 3.1.6
+	wp_clear_scheduled_hook( 'wpAppbox_cacheCron' );
 	wpAppbox_deleteTable();
+	$delete = wpAppbox_imageCache::deleteImageCache( true );
+}
+
+
+/**
+* Deaktivierung des Plugins
+*
+* @since   4.0.0
+*/
+
+function wpAppbox_deactivatePlugin() {
+    if ( function_exists( 'is_multisite' ) && is_multisite() ) {
+        global $wpdb;
+        $current_blog = $wpdb->blogid;
+        $blogs = $wpdb->get_col( "SELECT blog_id FROM $wpdb->blogs" );
+        foreach ( $blogs as $blog ) {
+        	switch_to_blog( $blog );
+        	wpAppbox_deactivateActions();
+        }
+        switch_to_blog( $current_blog );
+    } else {
+    	wpAppbox_deactivateActions();
+    }
+}
+
+
+/**
+* Deaktivierungs-Actions des Plugins
+*
+* @since  4.0.0
+*/
+
+function wpAppbox_deactivateActions() {
+	wp_clear_scheduled_hook( 'wpAppbox_cacheCron' );
 }
 
 
@@ -1018,6 +1125,7 @@ add_action( 'plugins_loaded', 'wpAppbox_UpdateAction' );
 add_action( 'admin_menu', 'wpAppbox_pageInit' );
 add_action( 'admin_print_footer_scripts', 'wpAppbox_addButtonsHTML' );
 register_activation_hook( __FILE__, 'wpAppbox_activatePlugin' );
+register_deactivation_hook( __FILE__, 'wpAppbox_deactivatePlugin' );
 register_uninstall_hook( __FILE__, 'wpAppbox_uninstallPlugin' );
 
 

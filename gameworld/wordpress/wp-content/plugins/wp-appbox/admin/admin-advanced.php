@@ -3,12 +3,6 @@
 </div>
 
 <h3 id="amazonapi"><?php esc_html_e('Amazon Product Advertising API', 'wp-appbox'); ?></h3>
-
-<?php  if( !wpAppbox_checkAmazonAPI() && get_option( 'wpAppbox_amaAPIuse' ) ) { ?>
-	<div class="wpa-infobox wpa-error amaAPItr" <?php if( true != get_option( 'wpAppbox_amaAPIuse' ) ) { ?> style="display:none;"<?php } ?>>
-		<p><?php esc_html_e('Your public key, secret key or affiliate ID seems not correct. Please check or retry (maybe its just a server error).', 'wp-appbox'); ?> ;-)</p>
-	</div>
-<?php } ?>
 	
 <table class="form-table">
 
@@ -19,34 +13,34 @@
 				<?php
 					$helpLink = ( ( get_locale() == 'de_DE' ) ? 'https://tchgdns.de/wp-appbox-3-4-0-integration-der-amazon-product-advertising-api/' : 'https://translate.google.com/translate?sl=de&tl=en&js=y&prev=_t&hl=de&ie=UTF-8&u=https%3A%2F%2Ftchgdns.de%2Fwp-appbox-3-4-0-integration-der-amazon-product-advertising-api%2F&edit-text=&act=url' );
 				?>
-				<input type="checkbox" onClick="javascript:hideElementByClass('amaAPItr', 'amaAPIuse')" name="wpAppbox_amaAPIuse" id="wpAppbox_amaAPIuse" value="1" <?php checked( get_option('wpAppbox_amaAPIuse') ); ?>/>
+				<input type="checkbox" name="wpAppbox_amaAPIuse" id="wpAppbox_amaAPIuse" value="1" <?php checked( get_option('wpAppbox_amaAPIuse') ); ?>/>
 				<?php esc_html_e('Uses the official Amazon API to get the app infos. Will be faster and more stable.', 'wp-appbox'); echo( ' ' ); printf( esc_html__( '%1$sNeed a little help?%2$s', 'wp-appbox' ), '<a href="' . $helpLink . '" target="_blank">', '</a>' ); ?>
 			</label>
 		</td>
 	</tr>
 	
-	<tr valign="top" class="amaAPItr" <?php if( true != get_option( 'wpAppbox_amaAPIuse' ) ) { ?> style="display:none;"<?php } ?>>
+	<tr valign="top" class="amaAPItr" <?php if( true != get_option( 'wpAppbox_amaAPIuse' ) ): ?> style="display:none;"<?php endif; ?>>
 		<th scope="row"><label for="wpAppbox_amaAPIpublicKey"><?php esc_html_e('Your public key', 'wp-appbox'); ?>:</label></th>
 		<td>	
 			<input type="text" style="width: 400px;" name="wpAppbox_amaAPIpublicKey" id="wpAppbox_amaAPIpublicKey" value="<?php echo( get_option('wpAppbox_amaAPIpublicKey') ); ?>" />
 		</td>
 	</tr>
 	
-	<tr valign="top" class="amaAPItr" <?php if( true != get_option( 'wpAppbox_amaAPIuse' ) ) { ?> style="display:none;"<?php } ?>>
+	<tr valign="top" class="amaAPItr" <?php if( true != get_option( 'wpAppbox_amaAPIuse' ) ): ?> style="display:none;"<?php endif; ?>>
 		<th scope="row"><label for="wpAppbox_amaAPIsecretKey"><?php esc_html_e('Your secret key', 'wp-appbox'); ?>:</label></th>
 		<td>	
 			<input type="text" style="width: 400px;" name="wpAppbox_amaAPIsecretKey" id="wpAppbox_amaAPIsecretKey" value="<?php echo( base64_decode( get_option('wpAppbox_amaAPIsecretKey') ) ); ?>" />
 		</td>
 	</tr>
 	
-	<tr valign="top" class="amaAPItr" <?php if( true != get_option( 'wpAppbox_amaAPIuse' ) ) { ?> style="display:none;"<?php } ?>>
+	<tr valign="top" class="amaAPItr" <?php if( true != get_option( 'wpAppbox_amaAPIuse' ) ): ?> style="display:none;"<?php endif; ?>>
 		<th scope="row"><label for="wpAppbox_affiliateAmazonID"><?php esc_html_e('Your affiliate ID', 'wp-appbox'); ?>:</label></th>
 		<td>	
 			<input type="text" style="width: 300px;" name="wpAppbox_affiliateAmazonID" id="wpAppbox_affiliateAmazonID" value="<?php echo( get_option('wpAppbox_affiliateAmazonID') ); ?>" />
 		</td>
 	</tr>
 	
-	<tr valign="top" class="amaAPItr" <?php if( true != get_option( 'wpAppbox_amaAPIuse' ) ) { ?> style="display:none;"<?php } ?>>
+	<tr valign="top" class="amaAPItr" <?php if( true != get_option( 'wpAppbox_amaAPIuse' ) ): ?> style="display:none;"<?php endif; ?>>
 		<th scope="row"><label for="wpAppbox_amaAPIregion"><?php esc_html_e('Your region', 'wp-appbox'); ?>:</label></th>
 		<td>
 			<select style="width: 300px;" name="wpAppbox_amaAPIregion" id="wpAppbox_amaAPIregion" class="postform">
@@ -59,6 +53,34 @@
 		</td>
 	</tr>
 
+</table>
+
+<hr />
+
+<h3><?php esc_html_e('Miscellaneous settings', 'wp-appbox'); ?></h3>
+
+<table class="form-table">
+
+	<tr valign="top">
+		<th scope="row"><label for="wpAppbox_autoLinks"><?php esc_html_e('Auto-detect app links', 'wp-appbox'); ?>:</label></th>
+		<td>	
+			<label for="wpAppbox_autoLinks">
+				<input type="checkbox" name="wpAppbox_autoLinks" id="wpAppbox_autoLinks" value="1" <?php checked( get_option('wpAppbox_autoLinks') ); ?>/>
+				<?php esc_html_e('Detect urls of apps in a separated line within the post.', 'wp-appbox'); ?> <?php esc_html_e('Very experimental, but it should work.', 'wp-appbox'); ?>
+			</label>
+		</td>
+	</tr>
+	
+	<tr valign="top">
+		<th scope="row"><label for="wpAppbox_anonymizeLinks"><?php esc_html_e('Anonymize URLs', 'wp-appbox'); ?>:</label></th>
+		<td>	
+			<label for="wpAppbox_anonymizeLinks">
+				<input type="checkbox" name="wpAppbox_anonymizeLinks" id="wpAppbox_anonymizeLinks" value="1" <?php checked( get_option('wpAppbox_anonymizeLinks') ); ?>/>
+				<?php esc_html_e('Anonymizes outgoing URLs via Anon.to - removes referer.', 'wp-appbox'); ?>
+			</label>
+		</td>
+	</tr>
+	
 </table>
 
 <hr />
@@ -129,8 +151,13 @@
 		<th scope="row"><label for="wpAppbox_eOutput"><?php esc_html_e('Error output', 'wp-appbox'); ?>:</label></th>
 		<td>	
 			<label for="wpAppbox_eOutput">
-				<input type="checkbox" name="wpAppbox_eOutput" id="wpAppbox_eOutput" value="1" <?php checked( get_option('wpAppbox_eOutput') ); ?>/>
-				<?php esc_html_e('Activate error output. Only visible to administrators.', 'wp-appbox'); ?>
+				<select name="wpAppbox_eOutput" id="wpAppbox_eOutput" class="postform">
+				  	<option <?php selected( get_option('wpAppbox_eOutput'), '0' ); ?> class="level-0" value="0"><?php esc_html_e('Disabled', 'wp-appbox'); ?></option>
+				  	<option <?php selected( get_option('wpAppbox_eOutput'), 'output' ); ?> class="level-0" value="output"><?php esc_html_e('Only print on site', 'wp-appbox'); ?></option>
+				  	<option <?php selected( get_option('wpAppbox_eOutput'), 'errorlog' ); ?> class="level-0" value="errorlog"><?php esc_html_e('Only to the web server \'s PHP error log', 'wp-appbox'); ?></option>
+				  	<option <?php selected( get_option('wpAppbox_eOutput'), 'output+errorlog' ); ?> class="level-0" value="output+errorlog"><?php esc_html_e( 'Print on site and to the web server\'s PHP error log', 'wp-appbox'); ?></option>
+				</select>
+				<?php esc_html_e('Activate error output. (Note: "Print on site" is only visible to administrators)', 'wp-appbox'); ?>
 			</label>
 		</td>
 	</tr>
@@ -145,11 +172,21 @@
 		</td>
 	</tr>
 	
+	<tr valign="top">
+		<th scope="row"><label for="wpAppbox_flushCache"><?php esc_html_e('Flush cache', 'wp-appbox'); ?>:</label></th>
+		<td>	
+			<label for="wpAppbox_flushCache">
+				<a href="/wp-admin/options-general.php?page=wp-appbox&tab=<?php echo( $_GET['tab'] ); ?>&clearcache" onClick="return confirm('<?php esc_html_e('Are you sure that the cache should be cleared? All data must be reloaded from the server of the operator.', 'wp-appbox'); ?>')"><?php esc_html_e('Clear cache', 'wp-appbox'); ?></a>
+				<?php if ( wpAppbox_imageCache::quickcheckImageCache() ): ?> | <a href="/wp-admin/options-general.php?page=wp-appbox&tab=<?php echo( $_GET['tab'] ); ?>&clearimgcache" onClick="return confirm('<?php esc_html_e('Are you sure that all cached images should be deleted?', 'wp-appbox'); ?>')"><?php esc_html_e('Clear image cache', 'wp-appbox'); ?></a><?php endif; ?>
+			</label>
+		</td>
+	</tr>
+	
 </table>
 
 <hr />
 
-<h3><?php esc_html_e('Experimental', 'wp-appbox'); ?></h3>
+<h3><?php esc_html_e('Experimental settings', 'wp-appbox'); ?></h3>
 
 <table class="form-table">
 
@@ -163,16 +200,31 @@
 			</label>
 		</td>
 	</tr>
-	
+
+
 	<tr valign="top">
-		<th scope="row"><label for="wpAppbox_autoLinks"><?php esc_html_e('Auto-detect app links', 'wp-appbox'); ?>:</label></th>
+		<th scope="row"><label for="wpAppbox_cacheCronjob"><?php esc_html_e('Cronjob for caching', 'wp-appbox'); ?>:</label></th>
 		<td>	
-			<label for="wpAppbox_autoLinks">
-				<input type="checkbox" name="wpAppbox_autoLinks" id="wpAppbox_autoLinks" value="1" <?php checked( get_option('wpAppbox_autoLinks') ); ?>/>
-				<input type="checkbox" name="wpAppbox_autoLinksVerify" id="wpAppbox_autoLinksVerify" value="1" <?php checked( get_option('wpAppbox_autoLinks') ); ?>/>
-				<?php esc_html_e('Detect urls of apps in a separated line within the post.', 'wp-appbox'); ?> <?php esc_html_e('Very experimental, but it should work.', 'wp-appbox'); ?>
+			<label for="wpAppbox_cacheCronjob">
+				<input type="checkbox" name="wpAppbox_cacheCronjob" id="wpAppbox_cacheCronjob" value="1" <?php checked( get_option('wpAppbox_cacheCronjob') ); ?>/>
+				<input type="checkbox" name="wpAppbox_cacheCronjobVerify" id="wpAppbox_cacheCronjobVerify" value="1" <?php checked( get_option('wpAppbox_cacheCronjob') ); ?>/>
+				<?php printf( wp_kses( __( 'Show cronjob option to update apps in the cache, see more in <a href="%s">cache tab</a>. Warning: Needs much more ressources.', 'wp-appbox' ), array(  'a' => array( 'href' => array() ) ) ), esc_url( 'options-general.php?page=wp-appbox&tab=cache' ) ); ?>
 			</label>
 		</td>
 	</tr>
 		
 </table>
+
+<script>
+
+	$j=jQuery.noConflict();
+	
+	$j("#wpAppbox_amaAPIuse").click(function () {
+		if ( $j(this).attr('checked') ) {
+			$j('tr.amaAPItr').show();
+		} else {
+			$j('tr.amaAPItr').hide();
+		}
+	} );
+		
+</script>

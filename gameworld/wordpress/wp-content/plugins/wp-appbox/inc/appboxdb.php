@@ -1,5 +1,6 @@
 <?php 
 
+include_once( 'getappinfo.class.php' );
 
 /**
 * Prüft ob Apps im Cache vorhanden sind
@@ -73,7 +74,7 @@ function wpAppbox_tableExists() {
 * Erstelle Tabelle in der Datenbank
 *
 * @since   3.2.0
-* @change  3.2.3
+* @change  4.0.0
 */
 
 function wpAppbox_createTable() {
@@ -84,14 +85,13 @@ function wpAppbox_createTable() {
 				id VARCHAR(32) PRIMARY KEY NOT NULL,
 				app_id VARCHAR(100) NOT NULL,
 				app_url VARCHAR(255) NOT NULL,
-				app_icon VARCHAR(255) NOT NULL,
+				app_icon VARCHAR(350) NOT NULL,
 				app_title VARCHAR(255) NOT NULL,
-				app_description VARCHAR(5000) NOT NULL,
 				app_author VARCHAR(100) NOT NULL,
 				app_author_url VARCHAR(255) NULL,
 				app_price VARCHAR(10) NOT NULL,
 				app_has_iap INT(1) DEFAULT '0',
-				app_rating INT(2) DEFAULT '-1',
+				app_rating NUMERIC(2,1) DEFAULT '-1',
 				app_screenshots TEXT NOT NULL,
 				app_extend VARCHAR(255),
 				store_name VARCHAR(30) NOT NULL,
@@ -140,6 +140,7 @@ function wpAppbox_deleteTable() {
 * Räumt den App-Cache auf
 *
 * @since   3.2.0
+* @change  4.0.0
 *
 * @return  boolean  true/false  TRUE when cleaned
 * @output  function  errorOutput()  Fehlermeldung
@@ -150,7 +151,7 @@ function wpAppbox_cleanCache() {
 	if ( !get_option('wpAppbox_disableAutoCache') ) {
 		$timeNow = time(); 
 		$timeExpires = WPAPPBOX_CACHINGTIME * 60;
-		$sql = "DELETE FROM " . wpAppbox_databaseName() . " WHERE (created + $timeExpires) < $timeNow";
+		$sql = "DELETE FROM " . wpAppbox_databaseName() . " WHERE (created < (UNIX_TIMESTAMP() + $timeExpires) AND (deprecated = 0))";
 		$wpdb->query( $sql );
 		if ( $wpdb->last_error ) {
 			wpAppbox_errorOutput( "function: wpAppbox_cleanCache() ---> $wpdb->last_error" );
@@ -187,6 +188,7 @@ function wpAppbox_clearAppCache( $cacheID ) {
 * Löscht den kompletten App-Cache
 *
 * @since   3.2.0
+* @change  4.0.0
 *
 * @return  boolean  true/false  TRUE when cleared
 * @output  function  errorOutput()  Fehlermeldung
@@ -194,13 +196,58 @@ function wpAppbox_clearAppCache( $cacheID ) {
 
 function wpAppbox_clearCache() {
 	global $wpdb;
-	$sql = "TRUNCATE TABLE " . wpAppbox_databaseName();
+	$sql = "DELETE FROM " . wpAppbox_databaseName() . " WHERE deprecated = 0";
 	$wpdb->query( $sql );
 	if ( $wpdb->last_error ) {
 		wpAppbox_errorOutput( "function: wpAppbox_clearCache() ---> $wpdb->last_error" );
 	} else {
 		return( true );
 	}
+}
+
+
+/**
+* Die n abgelaufenen App-Daten zurückgeben
+*
+* @since   4.0.0
+*
+* @output  function  errorOutput()  Fehlermeldung
+*/
+
+function wpAppbox_cacheCron() {
+	if ( !defined( 'DOING_CRON' ) ) return;
+	global $wpdb, $wpAppbox_optionsDefault;
+	$cronCount = get_option( 'wpAppbox_cronCount' );
+	if ( '0' == $cronCount ) return;
+	if ( !is_int( intval( $cronCount ) ) ) {
+		$cronCount = $wpAppbox_optionsDefault['cronCount'];
+	}
+	$timeNow = time();
+	$timeExpires = WPAPPBOX_CACHINGTIME * 60;
+	$appList = $wpdb->get_results( "SELECT id, app_id, store_name_css FROM " . wpAppbox_databaseName() . " WHERE (created + $timeExpires) < $timeNow ORDER BY created ASC LIMIT $cronCount");
+	if ( $wpdb->last_error ) {
+		wpAppbox_errorOutput( "function: wpAppbox_cacheCron() ---> $wpdb->last_error" );
+		return;
+	}
+	$appArray = array();
+	foreach ( $appList as $appData ) {
+		$dataArray = array(
+			'id' => $appData->id,
+			'app_id' => $appData->app_id,
+			'store_name_css' => $appData->store_name_css
+		);
+		array_push( $appArray, $dataArray );
+	}
+	$currentStore = '';
+	foreach ( $appArray as $appData ) {
+		$appID = $appData['app_id'];
+		$storeNameCSS = ('macappstore' == $appData['store_name_css']) ? 'appstore' : $appData['store_name_css'];
+		$appCache = new wpAppbox_GetAppInfoAPI;
+		$appCache = $appCache->getTheAppData( $storeNameCSS, $appID, true );
+		if ( $currentStore == $storeNameCSS ) usleep( 2000 );
+		$currentStore = $storeNameCSS;
+	}
+	wpAppbox_errorOutput( "function: wpAppbox_cacheCron() ---> Cron was fired" );
 }
 
 

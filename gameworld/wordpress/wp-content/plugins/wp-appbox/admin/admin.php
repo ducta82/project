@@ -1,13 +1,11 @@
 <?php
 
-
 if ( ! defined( 'ABSPATH' ) ) exit;
 if ( ! is_admin() ) die;
 
-
 /* Variablen für das Backend definieren */
 define( 'WPAPPBOX_URL_PAYPAL', 'https://www.paypal.me/marcelismus' ); 
-define( 'WPAPPBOX_URL_AMAZON', 'http://www.amazon.de/gp/registry/wishlist/1FC2DA2J8SZW7?tag=tchgdns-21' . WPAPPBOX_AFFILIATE_AMAZON );
+define( 'WPAPPBOX_URL_AMAZON', 'http://www.amazon.de/gp/registry/wishlist/1FC2DA2J8SZW7?tag=' . WPAPPBOX_AFFILIATE_AMAZON );
 
 
 /**
@@ -18,7 +16,7 @@ define( 'WPAPPBOX_URL_AMAZON', 'http://www.amazon.de/gp/registry/wishlist/1FC2DA
 */
 
 function wpAppbox_pageInit() {
-	$settings_page = add_options_page( WPAPPBOX_PLUGIN_NAME . ' Einstellungen', WPAPPBOX_PLUGIN_NAME, 'manage_options', 'wp-appbox', 'wpAppbox_options_page' );
+	$settings_page = add_options_page( WPAPPBOX_PLUGIN_NAME . ' ' . __('settings', 'wp-appbox') , WPAPPBOX_PLUGIN_NAME, 'manage_options', 'wp-appbox', 'wpAppbox_options_page' );
 	add_action( "load-{$settings_page}", 'wpAppbox_loadSettingsPage' );
 }
 
@@ -32,6 +30,29 @@ function wpAppbox_pageInit() {
 
 function wpAppbox_adminInit() {
 }
+
+
+/**
+* Benachrichtigung im Admin-Panel anzeigen
+*
+* @since   4.0.0
+*/
+
+function wpAppbox_showAdminNotification() {
+	if ( '4.0.1' != get_option( 'wpAppbox_notifyLastV' ) ):
+		?>
+		<div class="notice notice-success is-dismissible">
+			<p>
+				🎉🎊 <strong><?php printf( esc_html__( 'WP-Appbox %1$s is here!', 'wp-appbox' ), WPAPPBOX_PLUGIN_VERSION ); ?> </strong>
+				<?php printf( wp_kses( __( '<a href="%s" target="_blank">See here</a> what is new.', 'wp-appbox' ), array(  'a' => array( 'href' => array(), 'target' => array( '_blank') ) ) ), esc_url( ( get_locale() == 'de_DE' ) ? 'https://tchgdns.de/wp-appbox-4-0-0/' : 'https://translate.google.de/translate?hl=de&sl=de&tl=en&u=https%3A%2F%2Ftchgdns.de%2Fwp-appbox-4-0-0-co%2F' ) ); ?>
+				<?php printf( wp_kses( __( 'Did it help? If you like this plugin and find it useful, please <a href="%s" target="_blank">consider to rate</a> this plugin.', 'wp-appbox' ), array(  'a' => array( 'href' => array(), 'target' => array( '_blank') ) ) ), esc_url( 'https://wordpress.org/support/plugin/wp-appbox/reviews/' ) ); ?> :-)
+			</p>
+		</div>
+		<?php
+		update_option( 'wpAppbox_notifyLastV', WPAPPBOX_PLUGIN_VERSION );
+	endif;
+}
+add_action( 'admin_notices', 'wpAppbox_showAdminNotification' );
 
 
 /**
@@ -100,7 +121,7 @@ function wpAppbox_createTabs( $currentTab = 'info' ) {
 */
 
 function wpAppbox_loadSettingsPage() {
-	if ( $_GET['tab'] === 'cachelist' ) {
+	if ( isset( $_GET['tab'] ) && 'cachelist' == $_GET['tab'] ) {
 		$args = array(
 			'label' => __('Apps', 'wp-appbox'),
 		  	'default' => 50,
@@ -108,7 +129,7 @@ function wpAppbox_loadSettingsPage() {
 		);
 		add_screen_option( 'per_page', $args) ;
 	}
-	if ( 'Y' == $_POST["wp-appbox-settings-submit"] ) {
+	if ( isset( $_POST["wp-appbox-settings-submit"]) && 'Y' == $_POST["wp-appbox-settings-submit"] ) {
 		check_admin_referer( "wp-appbox-setting-page" );
 		wpAppbox_saveSettings();
 		$url_parameters = isset( $_GET['tab'] ) ? 'updated=true&tab=' . $_GET['tab'] : 'updated=true';
@@ -142,11 +163,12 @@ add_filter( 'set-screen-option', 'wpAppbox_setScreenOptions', 10, 3 );
 * Einstellungen in "wp_options" speichern
 *
 * @since   1.0.0
-* @change  3.2.3
+* @change  4.0.0
 */
 
 function wpAppbox_saveSettings() {
 	global $wpAppbox_storeNames, $wpAppbox_optionsDefault;
+	$tab = 'info';
 	if ( isset( $_GET['tab'] ) ) {
 		$tab = $_GET['tab'];
 	}
@@ -157,38 +179,62 @@ function wpAppbox_saveSettings() {
 			update_option( 'wpAppbox_targetBlank', $_POST['wpAppbox_targetBlank'] );
 			update_option( 'wpAppbox_showRating', intval( $_POST['wpAppbox_showRating'] ) );
 			update_option( 'wpAppbox_colorfulIcons', $_POST['wpAppbox_colorfulIcons'] );
-			update_option( 'wpAppbox_defaultStyle', intval( $_POST['wpAppbox_defaultStyle'] ) );	   		
+			update_option( 'wpAppbox_defaultStyle', intval( $_POST['wpAppbox_defaultStyle'] ) );	 
+			update_option( 'wpAppbox_replaceAppIcons', $_POST['wpAppbox_replaceAppIcons'] );	   		
 			break;
 		case 'cache':
-			update_option( 'wpAppbox_disableCache', $_POST['wpAppbox_disableCache'] );
-			update_option( 'wpAppbox_cacheTime', ( trim( $_POST['wpAppbox_cacheTime'] ) != '' ? intval( $_POST['wpAppbox_cacheTime'] ) : $wpAppbox_optionsDefault['cacheTime'] ) );
-			//update_option( 'wpAppbox_imageCache', $_POST['wpAppbox_imageCache'] );
-			update_option( 'wpAppbox_disableAutoCache', $_POST['wpAppbox_disableAutoCache'] );
+			if ( TRUE == get_option('wpAppbox_blockMissing') && FALSE == $_POST['wpAppbox_blockMissing'] ) {
+				global $wpdb;
+				$wpdb->query( "DELETE FROM $wpdb->options WHERE option_name LIKE ('%_wpAppbox_blockQuery%')" );
+			}
+			update_option( 'wpAppbox_cacheTime', ( '' != intval( $_POST['wpAppbox_cacheTime'] ) ? intval( $_POST['wpAppbox_cacheTime'] ) : $wpAppbox_optionsDefault['cacheTime'] ) );
+			update_option( 'wpAppbox_blockMissing', $_POST['wpAppbox_blockMissing'] );
+			update_option( 'wpAppbox_blockMissingTime', ( '' != intval( $_POST['wpAppbox_blockMissingTime'] ) ? intval( $_POST['wpAppbox_blockMissingTime'] ) : $wpAppbox_optionsDefault['blockMissingTime'] ) );
+			update_option( 'wpAppbox_cacheMode', $_POST['wpAppbox_cacheMode'] );
+			update_option( 'wpAppbox_cronIntervall', ( '' != intval( $_POST['wpAppbox_cronIntervall'] ) ? intval( $_POST['wpAppbox_cronIntervall'] ) : $wpAppbox_optionsDefault['cronIntervall'] ) );
+			update_option( 'wpAppbox_cronCount', ( '' != intval( $_POST['wpAppbox_cronCount'] ) ? intval( $_POST['wpAppbox_cronCount'] ) : $wpAppbox_optionsDefault['cronCount'] ) );
 			update_option( 'wpAppbox_cachePlugin', $_POST['wpAppbox_cachePlugin'] );
+			$imageCacheWAS = get_option( 'wpAppbox_imgCache' );
+			update_option( 'wpAppbox_imgCache', false );
+			if ( isset( $_POST['wpAppbox_imgCache'] ) && $_POST['wpAppbox_imgCache'] ) {
+				if ( wpAppbox_imageCache::checkImageCache() ) update_option( 'wpAppbox_imgCache', $_POST['wpAppbox_imgCache'] );
+				else set_transient( 'wpAppbox_imgCacheBlocked', true, 12 * HOUR_IN_SECONDS );
+			}
+			if ( $imageCacheWAS && !get_option( 'wpAppbox_imgCache' ) ) {
+				$delete = wpAppbox_imageCache::deleteImageCache( true );
+			}
+			update_option( 'wpAppbox_imgCacheMode', $_POST['wpAppbox_imgCacheMode'] );
+			update_option( 'wpAppbox_imgCacheDelay', $_POST['wpAppbox_imgCacheDelay'] );
+			update_option( 'wpAppbox_imgCacheDelayTime', ( '' != intval( $_POST['wpAppbox_imgCacheDelayTime'] ) ? intval( $_POST['wpAppbox_imgCacheDelayTime'] ) : $wpAppbox_optionsDefault['imgCacheDelayTime'] ) );
+			wpAppbox_setupCronCache();
 	   		break;
     	case 'advanced':
-	    	update_option( 'wpAppbox_curlTimeout', ( trim( $_POST['wpAppbox_curlTimeout'] ) != '' ? intval( $_POST['wpAppbox_curlTimeout'] ) : $wpAppbox_optionsDefault['curlTimeout'] ) );
-	    	update_option( 'wpAppbox_disableDefer', $_POST['wpAppbox_disableDefer'] );
-    		update_option( 'wpAppbox_disableCSS', $_POST['wpAppbox_disableCSS'] );
-    		update_option( 'wpAppbox_disableFonts', $_POST['wpAppbox_disableFonts'] );
-    		update_option( 'wpAppbox_eOnlyAuthors', $_POST['wpAppbox_eOnlyAuthors'] );
-    		update_option( 'wpAppbox_eOutput', $_POST['wpAppbox_eOutput'] );
-    		update_option( 'wpAppbox_eImageApple', $_POST['wpAppbox_eImageApple'] );
-    		if ( ( $_POST['wpAppbox_sslAppleImages'] == true ) && ( $_POST['wpAppbox_sslAppleImagesVerify'] == true ) ) {
-    			update_option( 'wpAppbox_sslAppleImages', $_POST['wpAppbox_sslAppleImages'] );
-    		} else {
-    			update_option( 'wpAppbox_sslAppleImages', false );
-    		}
-    		if ( ( $_POST['wpAppbox_autoLinks'] == true ) && ( $_POST['wpAppbox_autoLinksVerify'] == true ) ) {
-    			update_option( 'wpAppbox_autoLinks', $_POST['wpAppbox_autoLinks'] );
-    		} else {
-    			update_option( 'wpAppbox_autoLinks', false );
-    		}
-    		update_option( 'wpAppbox_amaAPIuse', $_POST['wpAppbox_amaAPIuse'], 'no' );
-    		update_option( 'wpAppbox_amaAPIsecretKey', base64_encode( strip_tags( trim( $_POST['wpAppbox_amaAPIsecretKey'] ) ) ), 'no' );
+	    	update_option( 'wpAppbox_amaAPIuse', $_POST['wpAppbox_amaAPIuse'], 'no' );
+	    	update_option( 'wpAppbox_amaAPIsecretKey', base64_encode( strip_tags( trim( $_POST['wpAppbox_amaAPIsecretKey'] ) ) ), 'no' );
 	    	update_option( 'wpAppbox_amaAPIpublicKey', strip_tags( trim( $_POST['wpAppbox_amaAPIpublicKey'] ) ), 'no' );
 	    	update_option( 'wpAppbox_affiliateAmazonID', strip_tags( trim( $_POST['wpAppbox_affiliateAmazonID'] ) ), 'no' );
 	    	update_option( 'wpAppbox_amaAPIregion', $_POST['wpAppbox_amaAPIregion'], 'no' );
+	    	update_option( 'wpAppbox_autoLinks', $_POST['wpAppbox_autoLinks'] );
+	    	update_option( 'wpAppbox_anonymizeLinks', $_POST['wpAppbox_anonymizeLinks'] );
+	    	update_option( 'wpAppbox_disableDefer', $_POST['wpAppbox_disableDefer'] );
+	    	update_option( 'wpAppbox_disableCSS', $_POST['wpAppbox_disableCSS'] );
+	    	update_option( 'wpAppbox_disableFonts', $_POST['wpAppbox_disableFonts'] );
+	    	update_option( 'wpAppbox_curlTimeout', ( '' != intval( $_POST['wpAppbox_curlTimeout'] ) ? intval( $_POST['wpAppbox_curlTimeout'] ) : $wpAppbox_optionsDefault['curlTimeout'] ) );
+    		update_option( 'wpAppbox_eOnlyAuthors', $_POST['wpAppbox_eOnlyAuthors'] );
+    		update_option( 'wpAppbox_eOutput', $_POST['wpAppbox_eOutput'] );
+    		update_option( 'wpAppbox_eImageApple', $_POST['wpAppbox_eImageApple'] );
+	    	if ( ( $_POST['wpAppbox_sslAppleImages'] == true ) && ( $_POST['wpAppbox_sslAppleImagesVerify'] == true ) ) {
+	    		update_option( 'wpAppbox_sslAppleImages', $_POST['wpAppbox_sslAppleImages'] );
+	    	} else {
+	    		update_option( 'wpAppbox_sslAppleImages', false );
+	    	}
+	    	if ( ( $_POST['wpAppbox_cacheCronjob'] == true ) && ( $_POST['wpAppbox_cacheCronjobVerify'] == true ) ) {
+	    		update_option( 'wpAppbox_cacheCronjob', $_POST['wpAppbox_cacheCronjob'] );
+	    	} else {
+	    		update_option( 'wpAppbox_cacheCronjob', false );
+	    		update_option( 'wpAppbox_cacheMode', 'manually' );
+	    	}
+	    	wpAppbox_setupCronCache();
 	   		break;
 	   	case 'buttons':
 	   		update_option( 'wpAppbox_defaultButton', intval( $_POST['wpAppbox_defaultButton'] ) );
@@ -247,27 +293,6 @@ function wpAppbox_options_page() {
 		$tab = 'cache'; 
 	}
 	?>
-	<script>
-		function disableInput(toDisable, theStatus) {
-			var status = document.getElementById("wpAppbox_"+theStatus).checked;
-			var input = document.getElementById("wpAppbox_"+toDisable);
-			input.disabled = status;
-		}
-		function activateInput(toDisable, theStatus) {
-			var status = document.getElementById("wpAppbox_"+theStatus).checked;
-			var input = document.getElementById("wpAppbox_"+toDisable);
-			input.disabled = !status;
-		}
-		function hideElementByClass(toHide, theStatus) {
-			var status = document.getElementById("wpAppbox_"+theStatus).checked;
-			var hideit = document.getElementsByClassName(toHide);
-			var i;
-			for (i = 0; i < hideit.length; i++) {
-			    if(status == false) hideit[i].style.display = 'none';
-			    else hideit[i].style.display = '';
-			}
-		}
-	</script>
 	<div class="wrap">
 		<style>
 			hr {
@@ -306,13 +331,32 @@ function wpAppbox_options_page() {
 			<br>
 		</div>
 		<h2><?php echo WPAPPBOX_PLUGIN_NAME; ?> (Version <?php echo WPAPPBOX_PLUGIN_VERSION; ?>)</h2>
+		
 		<?php if ( isset($_GET['clearcache'] ) ) {
-			if(wpAppbox_clearCache()) echo('<div id="setting-error-settings_updated" class="updated settings-error"><p><strong>'.__('The cache was successfully cleared.', 'wp-appbox').'</strong></p></div>');
-			else echo('<div id="setting-error-settings_updated" class="updated settings-error"><p><strong>'.__('The cache can not be emptied or there are no apps in the cache.', 'wp-appbox').'</strong></p></div>');
+			if( wpAppbox_clearCache() ) echo( '<div id="setting-error-settings_updated" class="updated settings-error is-dismissible"><p><strong>'.__( 'The cache was successfully cleared.', 'wp-appbox' ).'</strong></p></div>' );
+			else echo( '<div id="setting-error-settings_updated" class="updated settings-error is-dismissible"><p><strong>'.__( 'The cache can not be emptied or there are no apps in the cache.', 'wp-appbox' ).'</strong></p></div>' );
 		} ?>
+		
+		<?php if ( isset($_GET['clearimgcache'] ) ) {
+			if( wpAppbox_imageCache::deleteImageCache() ) echo( '<div id="setting-error-settings_updated" class="updated settings-error is-dismissible"><p><strong>'.__( 'The image cache was successfully cleared.', 'wp-appbox' ).'</strong></p></div>' );
+			else echo( '<div id="setting-error-settings_updated" class="updated settings-error is-dismissible"><p><strong>'.__( 'The image cache can not be emptied.', 'wp-appbox' ).'</strong></p></div>' );
+		} ?>
+		
+		<?php if ( !wpAppbox_imageCache::checkImageCache() && ( get_option('wpAppbox_imgCache') || get_transient( 'wpAppbox_imgCacheBlocked' ) ) ): ?>
+			<div class="notice notice-error is-dismissible">
+				<p><span style="font-weight:bold;"><?php _e('Image cache is not active'); ?>: </span><?php echo( wpAppbox_imageCache::checkImageCache( true ) ); ?></p>
+			</div>
+			<?php delete_transient( 'wpAppbox_imgCacheBlocked' ); ?>
+		<?php endif; ?>
+		
+		<?php  if( !wpAppbox_checkAmazonAPI() && get_option( 'wpAppbox_amaAPIuse' ) ) { ?>
+			<div class="notice notice-error is-dismissible amaAPItr" <?php if( true != get_option( 'wpAppbox_amaAPIuse' ) ) { ?> style="display:none;"<?php } ?>>
+				<p><strong>Amazon Product Advertising API: </strong><?php esc_html_e('Your public key, secret key or affiliate ID seems not correct. Please check or retry (maybe its just a server error).', 'wp-appbox'); ?> ;-)</p>
+			</div>
+		<?php } ?>
+		
 		<div class="widget" style="margin:15px 0;"><p style="margin:10px;">
 			<a href="https://twitter.com/Marcelismus" target="_blank"><?php esc_html_e('Follow me on Twitter', 'wp-appbox'); ?></a> | <a href="<?php echo( ( get_locale() == 'de_DE' ) ? 'https://tchgdns.de/wp-appbox-app-badge-fuer-google-play-mac-app-store-windows-store-windows-phone-store-co/' : 'https://translate.google.de/translate?hl=de&sl=de&tl=en&u=https%3A%2F%2Ftchgdns.de%2Fwp-appbox-app-badge-fuer-google-play-mac-app-store-windows-store-windows-phone-store-co%2F' ); ?>" target="_blank"><?php esc_html_e('Visit the Plugin plage', 'wp-appbox'); ?></a> | <a href="http://wordpress.org/extend/plugins/wp-appbox/" target="_blank"><?php esc_html_e('Plugin at WordPress Directory', 'wp-appbox'); ?></a> | <a href="http://wordpress.org/plugins/wp-appbox/changelog/" target="_blank"><?php esc_html_e('Changelog', 'wp-appbox'); ?></a>
-			<?php if ( !WPAPPBOX_DISABLE_CACHE ) { ?><a href="/wp-admin/options-general.php?page=wp-appbox&tab=<?php echo( $_GET['tab'] ); ?>&clearcache" onClick="return confirm('<?php esc_html_e('Are you sure that the cache should be cleared? All data must be reloaded from the server of the operator.', 'wp-appbox'); ?>')" style="float:right;"><?php esc_html_e('Clear cache', 'wp-appbox'); ?></a><?php } ?>
 		</p></div>
 		<div style="float: right;">
 			<a href="<?php echo( WPAPPBOX_URL_PAYPAL ); ?>" class="button-primary" target="_blank" style="font-size: 12px; padding: 5px 6px; line-height: 13px !important; height: auto !important; margin-right: 6px; margin-top: 13px;"><?php esc_html_e('PayPal-Donation', 'wp-appbox'); ?></a>

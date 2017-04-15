@@ -42,5 +42,12 @@
 	?>
 	<?php esc_html_e('Plugin version', 'wp-appbox'); ?>: <?php echo( WPAPPBOX_PLUGIN_VERSION ); ?> | 
 	<?php esc_html_e('Installed version', 'wp-appbox'); ?>: <?php echo( get_option('wpAppbox_pluginVersion') ); ?> | 
-	<?php esc_html_e('Database version', 'wp-appbox'); ?>: <?php echo( get_option('wpAppbox_dbVersion') ); ?>
+	<?php esc_html_e('Database version', 'wp-appbox'); ?>: <?php echo( get_option('wpAppbox_dbVersion') ); ?> | 
+	<a href="options-general.php?page=wp-appbox&tab=info&showerrorlog"><?php esc_html_e('Log', 'wp-appbox'); ?></a>
 </small>
+
+<?php if ( isset( $_GET['showerrorlog'] ) ): ?>
+	<br /><br /><hr />
+	<h3><?php esc_html_e('Error log', 'wp-appbox'); ?></h3>
+	<textarea id="wpappbox-error-log" style="font-family: monospace; width: 100%; height: 400px; white-space: pre;"><?php include( 'admin-errorlog.php' ); ?></textarea>
+<?php endif; ?>

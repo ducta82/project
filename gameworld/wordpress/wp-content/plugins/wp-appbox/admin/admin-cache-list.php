@@ -1,6 +1,5 @@
 <?php
 
-
 /* Für die MySQL-Abfragen */
 global $wpdb;
 	
@@ -9,7 +8,7 @@ global $wpdb;
 if( !class_exists( 'WP_List_Table' ) ) {
 	require_once( ABSPATH . 'wp-admin/includes/class-wp-list-table.php' );
 }
-
+require_once( ABSPATH . 'wp-content/plugins/wp-appbox/inc/getappinfo.class.php' );
 
 /**
 * Cached_Apps
@@ -95,7 +94,7 @@ class Cached_Apps extends WP_List_Table {
 			$sql = "SELECT * FROM " . wpAppbox_databaseName() . " ORDER BY app_title";
 		}
 		$appResults = $wpdb->get_results( $sql );
-		if( $appResults ) {
+		if ( $appResults ) {
 			$cachedApps = array();
 			foreach ( $appResults as $appData ) {
 				$cachedApps[] = array(
@@ -104,19 +103,20 @@ class Cached_Apps extends WP_List_Table {
 					'app_store_url' => $appData->app_url,
 					'app_price' => $appData->app_price,
 					'app_rating' => $appData->app_rating,
-					'app_icon_bg' => $appData->app_extend,
+					'app_icon_bg' => ( isset( unserialize( $appData->app_extend )['windowsstorebg'] ) ? unserialize( $appData->app_extend )['windowsstorebg'] : ''),
 					'app_icon' => $appData->app_icon,
 					'app_cache_id' => $appData->id,
+					'app_deprecated' => $appData->deprecated,
 					'app_expiry' => $appData->created + ( WPAPPBOX_CACHINGTIME * 60 )
 				);
-				$appCacheID[$appData->cacheID] = trim( $appData->app_title );
-				$appTitle[$appData->cacheID] = trim( $appData->app_title );
-				$appRating[$appData->cacheID] = $appData->app_rating;
-				$appStoreName[$appData->cacheID] = $appData->store_name;
-				$appPrice[$appData->cacheID] = $appData->app_price;
-				$appIcon[$appData->cacheID] = $appData->app_icon;
-				$appIconBackground[$appData->cacheID] = ( 'windowsstore' == $appData->store_name_css && '' != $appData->app_extend ) ? trim( $appData->app_extend ) : '';
-				$appCreated[$appData->cacheID] = $appData->app_expiry;
+				$appCacheID[$appData->id] = trim( $appData->app_title );
+				$appTitle[$appData->id] = trim( $appData->app_title );
+				$appRating[$appData->id] = $appData->app_rating;
+				$appStoreName[$appData->id] = $appData->store_name;
+				$appPrice[$appData->id] = $appData->app_price;
+				$appDeprecated[$appData->id] = $appData->deprecated;
+				$appIcon[$appData->id] = $appData->app_icon;
+				$appCreated[$appData->id] = $appData->created + ( WPAPPBOX_CACHINGTIME * 60 );
 			}
 		}
 		return( $cachedApps );
@@ -163,6 +163,7 @@ class Cached_Apps extends WP_List_Table {
 		echo( '.wp-list-table .column-app_price { width: 15%; }' );
 		echo( '.wp-list-table .column-app_rating { width: 111px; }' );
 		echo( '.wp-list-table .column-app_expiry { width: 20%; }' );
+		echo( '.isDeprecated { -webkit-filter: grayscale(100%); -moz-filter: grayscale(100%); -ms-filter: grayscale(100%); -o-filter: grayscale(100%); filter: grayscale(100%); }' );
 		echo( '</style>' );
 	}
 	
@@ -171,7 +172,7 @@ class Cached_Apps extends WP_List_Table {
 	* Werte der einzelnen Spalten/Tulpen ausgeben
 	*
 	* @since   2.0.0
-	* @change  3.2.0
+	* @change  4.0.0
 	*/
 	
 	function column_default( $item, $columnName ) {
@@ -189,10 +190,12 @@ class Cached_Apps extends WP_List_Table {
 			case 'app_rating':
 				return( $this->outputRating( $item[$columnName] ) );
 			case 'app_icon':
+				$classDeprecated = '';
+				if ( $item['app_deprecated'] ) $classDeprecated = ' class="isDeprecated" ';
 				if ( 'windowsstore' == $item['app_store'] && '' != $item['app_icon_bg'] ) {
-					return( '<img src="' . $item[$columnName] . '" style="background-color: ' . $item['app_icon_bg'] .' ; width:48px; height:48px;" />' );
+					return( '<img src="' . $item[$columnName] . '" ' . $classDeprecated . ' style="' . $item['app_icon_bg'] .' ; width:48px; height:48px;" />' );
 				}
-				return( '<img src="' . $item[$columnName] . '" style="width:48px; height:48px;" />' );
+				return( '<img src="' . $item[$columnName] . '" ' . $classDeprecated . 'style="width:48px; height:48px;" />' );
 			case 'app_store':
 				return( '<img src="' . plugins_url( 'img/'.( ( 'macappstore' == $item[$columnName] ) ? 'macappstore' : $item[$columnName] ).'-small.png', dirname( __FILE__ ) ) . '" style="margin-right:8px; height:14px;" />'.( ( 'macappstore' == $item[$columnName] ) ? '(Mac) App Store' : $wpAppbox_storeNames[$item[$columnName]] ) );
 			case 'app_expiry':
@@ -246,7 +249,6 @@ class Cached_Apps extends WP_List_Table {
 		$this->_column_headers = array( $columns, $hidden, $sortable );
 		usort( $apps, array( &$this, 'usort_reorder' ) );
 		$per_page = 50;
-		
 		$current_page = $this->get_pagenum();
 		$total_items = count( $apps );
 		$found_data = array_slice( $apps, ( ( $current_page - 1 ) * $per_page ), $per_page );
@@ -304,7 +306,9 @@ class Cached_Apps extends WP_List_Table {
 	*/
 	
 	function column_cb( $item ) {
-		return( sprintf( '<input type="checkbox" name="app_cache_id[]" value="%s" />', $item['app_cache_id'] ) );    
+		if ( $item['app_deprecated'] != '1' ) {
+			return( sprintf( '<input type="checkbox" name="app_cache_id[]" value="%s" />', $item['app_cache_id'] ) );   
+		} 
 	 }
 	
 	
@@ -312,10 +316,11 @@ class Cached_Apps extends WP_List_Table {
 	* Zelle für den App-Titel erstellen
 	*
 	* @since   2.0.0
-	* @change  3.4.0
+	* @change  4.0.0
 	*/
 	
 	function column_app_title( $item ) {
+		if ( !isset( $getparam ) ) $getparam = '';
 		if ( isset($_GET['paged'] ) ) {
 			$getparam .= '&paged=' . $_GET['paged'];
 		}
@@ -325,12 +330,16 @@ class Cached_Apps extends WP_List_Table {
 		if ( isset($_GET['order'] ) ) {
 			$getparam .= '&order=' . $_GET['order'];
 		}
+		$isDeprecated = ( $item['app_deprecated'] == '1' ? '<span style="color:red;text-transform:uppercase;">' . __('Deprecated', 'wp-appbox') . '</span> ' : ''); 
 	  	$actions = array( 
-	  		'goto' => sprintf('<a href="' . $item['app_store_url'] . '" target="_blank">' . __('Go to Store', 'wp-appbox') . '</a>', $_REQUEST['page'], 'goto', $item['app_store_url'] ),
-	  		'reload' => sprintf( '<a href="?page=%s&action=%s&tab=cache-list' . $getparam . '&app_cache_id=%s">' . __('Renew cache', 'wp-appbox') . '</a>', $_REQUEST['page'], 'reload', $item['app_cache_id'] ),
+	  		'goto' => '<a target="_blank" href="'. esc_html( $item['app_store_url'] ) . '">' . __('Go to Store', 'wp-appbox') . '</a>',
+	  		'reload' => sprintf( '<a href="?page=%s&action=%s&tab=cache-list' . $getparam . '&app_cache_id=%s&wpappbox_reload_cache">' . __('Force refresh cache', 'wp-appbox') . '</a>', $_REQUEST['page'], 'reload', $item['app_cache_id'] ),
 	  		'delete' => sprintf( '<a href="?page=%s&action=%s&tab=cache-list' . $getparam . '&app_cache_id=%s">' . __('Delete', 'wp-appbox') . '</a>', $_REQUEST['page'], 'delete', $item['app_cache_id'] )
 	  	);
-	  	return( sprintf( '%1$s %2$s', $item['app_title'], $this->row_actions( $actions ) ) );
+	  	if ( 1 == $item['app_deprecated'] ) {
+	  		$actions['delete'] = sprintf( '<a href="?page=%s&action=%s&tab=cache-list' . $getparam . '&app_cache_id=%s" onClick="return confirm(\'' . __('This app is deprecated. If you delete this app, all data and images will be permanently deleted. Are you sure?', 'wp-appbox') . '\')">' . __('Delete', 'wp-appbox') . '</a>', $_REQUEST['page'], 'delete', $item['app_cache_id'] );
+	  	}
+	  	return( sprintf( '%1$s %2$s', $isDeprecated.$item['app_title'], $this->row_actions( $actions ) ) );
 	}
 	
 	
@@ -338,14 +347,14 @@ class Cached_Apps extends WP_List_Table {
 	* Bulk-Actions erstellen
 	*
 	* @since   2.0.0
-	* @change  3.2.0
+	* @change  4.0.0
 	*
 	* @return  array  $theURL  Array der Aktionen
 	*/
 	
 	function get_bulk_actions() {
 	  	$actions = array( 
-	  		'reload' => __('Renew cache', 'wp-appbox'), 
+	  		//'reload' => __('Renew cache', 'wp-appbox'), 
 	  		'delete' => __('Delete', 'wp-appbox')
 	  	);
 	  	return( $actions );
@@ -356,7 +365,7 @@ class Cached_Apps extends WP_List_Table {
 	* Bulk-Actions durchführen
 	*
 	* @since   2.0.0
-	* @change  3.4.0
+	* @change  4.0.0
 	*/
 	
 	function process_bulk_action() {
@@ -367,20 +376,25 @@ class Cached_Apps extends WP_List_Table {
 		}
 		$cacheIDs = explode( ',', $cacheIDs );
 		if( !empty( $cacheIDs ) ) {
-			if( 'delete' === $this->current_action() ) {
+			if ( 'delete' === $this->current_action() ) {
 				foreach ( $cacheIDs as $cacheID ) {
 					wpAppbox_clearAppCache( $cacheID );
+					if ( get_option('wpAppbox_imgCache') ) {
+						$imageCache = new wpAppbox_imageCache;
+						if ( $imageCache->quickcheckImageCache() )
+							$imageCache = $imageCache->deleteAppImages( $cacheID );
+					}
 				}
 			}
-			if( 'reload' === $this->current_action() ) {
+			if ( 'reload' === $this->current_action() ) {
 				foreach ( $cacheIDs as $cacheID ) {
 					$cachedApp = $wpdb->get_row( "SELECT app_id, store_name_css FROM " . wpAppbox_databaseName() . " WHERE id = '" . $cacheID . "'" );
-					if( $cachedApp != null ) {
+					if ( $cachedApp != null ) {
 						$appID = $cachedApp->app_id;
 						$storeNameCSS = ('macappstore' == $cachedApp->store_name_css) ? 'appstore' : $cachedApp->store_name_css;
+						$appData = new wpAppbox_GetAppInfoAPI;
+						$appData = $appData->getTheAppData( $storeNameCSS, $appID );
 					}
-					wpAppbox_clearAppCache( $cacheID );
-					$app_data = wpAppbox_CreateOutput::getTheAppData( $storeNameCSS, $appID );
 				}
 			}
 		}
@@ -391,7 +405,7 @@ class Cached_Apps extends WP_List_Table {
 	* Boxen und Textfelder über und unter der Tabelle einbauen
 	*
 	* @since   3.0.0
-	* @change  3.4.0
+	* @change  4.0.0
 	*
 	* @param   string  $which  Über oder unter der Tabelle(top, bottom)
 	* @output  string          HTML-Ausgabe der Optionsfelder
@@ -405,7 +419,7 @@ class Cached_Apps extends WP_List_Table {
 			   	<input id="search_id-search-input" style="height:27px;" type="text" name="s" value="<?php echo( $_POST['s'] ); ?>" /> 
 			   	<input id="search-submit" class="button" type="submit" name="" value="<?php _e('Search', 'wp-appbox') ?>" />
 			   	<?php if ( $this->isActiveSearch() ) { ?>
-			   		<a href="/wp-admin/options-general.php?page=wp-appbox&tab=cache-list" class="button"><?php _e('Clear search', 'wp-appbox') ?></a>
+			   		<a href="/wp-admin/options-general.php?page=wp-appbox&tab=cache-list" class="button" style="display: inline-block;margin-top:0;"><?php _e('Clear search', 'wp-appbox') ?></a>
 			   	<?php } ?>
 		   	</div>
 	   	<?php

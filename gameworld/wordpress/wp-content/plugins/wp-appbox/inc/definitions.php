@@ -12,20 +12,22 @@ global $wpdb;
 * Ein paar Definitionen #YOLO
 */
 define( 'WPAPPBOX_PLUGIN_NAME', 'WP-Appbox' ); 
-define( 'WPAPPBOX_PLUGIN_VERSION', '3.4.8' );
-define( 'WPAPPBOX_DB_VERSION', '1.0.2' );
+define( 'WPAPPBOX_PLUGIN_VERSION', '4.0.1' );
+define( 'WPAPPBOX_DB_VERSION', '1.0.3' );
 define( 'WPAPPBOX_PREFIX', 'wpAppbox_' );
 define( 'WPAPPBOX_AFFILIATE_APPLE', '11ltUj' );
 define( 'WPAPPBOX_AFFILIATE_AMAZON', 'wpappbox-21' );
 define( 'WPAPPBOX_AFFILIATE_MICROSOFT', '2795219' );
 define( 'WPAPPBOX_AFFILIATE_MICROSOFT_PROGRAM', '213688' );
 
-define( 'WPAPPBOX_DISABLE_CACHE', ( get_option('wpAppbox_disableCache') ? true : false ) ); 
-
 define( 'WPAPPBOX_CACHINGTIME', ( get_option('wpAppbox_cacheTime') != '' ? get_option('wpAppbox_cacheTime') : $wpAppbox_optionsDefault['cacheTime'] ) ); 
+define( 'WPAPPBOX_BLOCKMISSINGTIME', ( get_option('wpAppbox_blockMissingTime') != '' ? get_option('wpAppbox_blockMissingTime') : $wpAppbox_optionsDefault['blockMissingTime'] ) ); 
 
-define( 'WPAPPBOX_PLUGIN_BASE_DIR', basename( dirname( dirname( __FILE__ ) ) ) );
-define( 'WPAPPBOX_CACHE_DIR', WP_CONTENT_DIR.'/cache/wpappbox/' );
+define( 'WPAPPBOX_PLUGIN_BASE_DIR', basename( dirname( __FILE__ ) ) ); // Ornder wp-content/plugins/wp-appbox/
+define( 'WPAPPBOX_PLUGIN_BASE_DOMAIN', get_site_url() . '/' . basename( dirname( __FILE__ ) ) ); // http://domain.de/wp-content/...
+define( 'WPAPPBOX_PLUGIN_PATH', plugin_dir_path( __FILE__ ) ); // Server-Path
+define( 'WPAPPBOX_CACHE_PATH', WP_CONTENT_DIR . '/cache/wp-appbox/' );
+define( 'WPAPPBOX_CACHE_DIR', content_url() . '/cache/wp-appbox/' );
 
 			
 /**
@@ -33,18 +35,18 @@ define( 'WPAPPBOX_CACHE_DIR', WP_CONTENT_DIR.'/cache/wpappbox/' );
 */
 global $wpAppbox_storeNames;	
 $wpAppbox_storeNames = array(	
-	'amazonapps' => 'Amazon Apps',
-	'appstore' => '(Mac) App Store',
-	'chromewebstore' => 'Chrome Web Store',
-	'firefoxaddon' => 'Firefox Erweiterungen',
-	'firefoxmarketplace' => 'Firefox Marketplace',
-	'goodoldgames' => 'Good Old Games (GOG.com)',
-	'googleplay' => 'Google Play Apps',
-	'operaaddons' => 'Opera Add-ons',
-	'steam' => 'Steam',
-	'windowsstore' => 'Windows Store',
-	'wordpress' => 'WordPress Plugins',
-	'xda' => 'XDA Labs'
+	'amazonapps' => __( 'Amazon Apps', 'wp-appbox' ),
+	'appstore' => __( '(Mac) App Store', 'wp-appbox' ),
+	'chromewebstore' => __( 'Chrome Web Store', 'wp-appbox' ),
+	'firefoxaddon' => __( 'Firefox Add-ons', 'wp-appbox' ),
+	'firefoxmarketplace' => __( 'Firefox Marketplace', 'wp-appbox' ),
+	'goodoldgames' => __( 'GOG.com', 'wp-appbox' ),
+	'googleplay' => __( 'Google Play Apps', 'wp-appbox' ),
+	'operaaddons' => __( 'Opera Add-ons', 'wp-appbox' ),
+	'steam' => __( 'Steam', 'wp-appbox' ),
+	'windowsstore' => __( 'Windows Store', 'wp-appbox' ),
+	'wordpress' => __( 'WordPress Plugins', 'wp-appbox' ),
+	'xda' => __( 'XDA Labs', 'wp-appbox' )
 );
 					
 						
@@ -149,25 +151,23 @@ ksort( $wpAppbox_MicrosoftPrivateAffiliateProgramm );
 global $wpAppbox_optionsDefault;
 $wpAppbox_optionsDefault = array(
 	'pluginVersion' => WPAPPBOX_PLUGIN_VERSION,
-	'cacheTime' => intval( '600' ),
-	'disableAutoCache' => false,
-	'disableCache' => false,
-	'imageCache' => false,
+	'defaultStyle' => intval( '1' ),
+	'colorfulIcons' => false,
+	'showRating' => intval( '1' ),
+	'downloadCaption' => __('Download', 'wp-appbox'),
 	'nofollow' => true,
 	'targetBlank' => true,
-	'showRating' => intval( '1' ),
-	'colorfulIcons' => false,
-	'showReload' => true,
-	'downloadCaption' => __('Download', 'wp-appbox'),
-	'disableCSS' => false,
-	'disableFonts' => false,
-	'disableDefer' => false,
-	'eOnlyAuthors' => false,
-	'eOutput' => false,
-	'eImageApple' => false,
-	'iTunesGeo' => true,
-	'curlTimeout' => intval( '5' ),
-	'userAffiliate' => false,
+	'cacheTime' => intval( '720' ),
+	'cacheMode' => 'all',
+	'cronIntervall' => intval( '30' ),
+	'cronCount' => intval( '5' ),
+	'blockMissing' => true,
+	'blockMissingTime' => intval( '60' ),
+	'cachePlugin' => false,
+	'imgCache' => false,
+	'imgCacheMode' => 'appicon',
+	'imgCacheDelay' => false,
+	'imgCacheDelayTime' => intval( '8' ),
 	'affiliateApple' => false,
 	'affiliateAppleID' => '',
 	'affiliateAmazon' => false,
@@ -175,10 +175,20 @@ $wpAppbox_optionsDefault = array(
 	'affiliateMicrosoft' => false,
 	'affiliateMicrosoftID' => '',
 	'affiliateMicrosoftProgram' => '',
-	'defaultStyle' => intval( '1' ),
+	'userAffiliate' => false,
 	'defaultButton' => intval( '0' ),
+	'iTunesGeo' => true,
+	'autoLinks' => false,
+	'anonymizeLinks' => false,
+	'disableDefer' => false,
+	'disableCSS' => false,
+	'disableFonts' => false,
+	'curlTimeout' => intval( '5' ),
+	'eOnlyAuthors' => false,
+	'eOutput' => false,
+	'eImageApple' => false,
 	'sslAppleImages' => false,
-	'autoLinks' => false
+	'cacheCronjob' => false,
 );
 
 

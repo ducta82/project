@@ -1,13 +1,15 @@
-<script>
-	function show_hide_box(store) {
-		var box = document.getElementById("wpAppbox_storeURL_"+store);
-		var attr = document.getElementById("wpAppbox_storeURL_"+store).options[box.selectedIndex].getAttribute("data");
-		var txt = document.getElementById("wpAppbox_storeURL_URL_"+store);
-		txt.value = attr;
-		if(box.selectedIndex == 0) txt.disabled = false;
-		else txt.disabled = true;
+<?php if ( function_exists('curl_version') ) {
+	$ch = curl_init();
+	curl_setopt( $ch, CURLOPT_SSL_VERIFYPEER, false );
+	curl_setopt( $ch, CURLOPT_RETURNTRANSFER, true );
+	curl_setopt( $ch, CURLOPT_URL, 'https://api.ip2country.info/ip?' . $_SERVER['SERVER_ADDR'] );
+	$result = curl_exec( $ch );
+	curl_close( $ch );
+	$json = json_decode( $result );
+	if ( '' != $json->countryName ) {
+		$countryName = ' ' . sprintf( esc_html__( 'Your servers location is %1$s', 'wp-appbox' ), '<a href="https://api.ip2country.info/ip?' . $_SERVER['SERVER_ADDR'] . '" target="_blank">' . __( $json->countryName, 'wp-appbox' ) . '</a>.' );
 	}
-</script>
+} ?>
 
 <div class="update-nag wpa-update-nag">
     <p><?php esc_html_e('Here you can change the query URL of the stores. Just copy the desired URL and set instead of the app ID wildcard {APPID}. If the URL is empty, the default URL (German) is used.', 'wp-appbox'); ?></p>
@@ -22,7 +24,7 @@
 			<td>	
 				<?php 
 					if ( in_array( $storeID, $wpAppbox_storeURL_noLanguages ) ) { 
-						esc_html_e('No language selection supported.', 'wp-appbox'); 
+						echo( __('No language selection supported.', 'wp-appbox') . $countryName ); 
 					}  else { 
 					?>
 					<?php 
@@ -37,7 +39,7 @@
 							asort( $wpAppbox_storeURL_languages );
 							foreach( $wpAppbox_storeURL_languages as $languageID => $languageName ) { ?>
 							<?php if( ( '0' != $languageID ) && ( '' != $wpAppbox_storeURL[$storeID][$languageID] ) ) { ?>
-								<option <?php selected(get_option('wpAppbox_storeURL_'.$storeID), $languageID); ?> value="<?php echo( $languageID ); ?>" data="<?php echo( $wpAppbox_storeURL[$storeID][$languageID] ); ?>"><?php echo( $languageName ); ?></option>
+								<option <?php selected( get_option( 'wpAppbox_storeURL_' . $storeID ), $languageID); ?> value="<?php echo( $languageID ); ?>" data="<?php echo( $wpAppbox_storeURL[$storeID][$languageID] ); ?>"><?php echo( $languageName ); ?></option>
 							<?php } ?>
 						<?php } ?>
 					</select>
@@ -57,3 +59,16 @@
 	<?php } ?>
 	
 </table>
+
+<script>
+	function show_hide_box(store) {
+		var box = document.getElementById("wpAppbox_storeURL_"+store);
+		var attr = document.getElementById("wpAppbox_storeURL_"+store).options[box.selectedIndex].getAttribute("data");
+		var txt = document.getElementById("wpAppbox_storeURL_URL_"+store);
+		txt.value = attr;
+		if(box.selectedIndex == 0) txt.disabled = false;
+		else txt.disabled = true;
+	}
+</script>
+
+

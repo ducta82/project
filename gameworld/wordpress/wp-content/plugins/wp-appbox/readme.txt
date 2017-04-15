@@ -1,10 +1,10 @@
 === WP-Appbox ===
 Contributors: Marcelismus
 Donate link: https://www.paypal.me/marcelismus
-Tags: google play, google, android, apps, apple, app store, ios, windows, mobile, windows store, appbox, firefox, firefox marketplace, chrome, chrome web store, amazon, amazon apps, wordpress, opera, steam, phg, gog.com, good old games,xda labs
+Tags: google play, google, android, apps, apple, app store, ios, windows, mobile, windows store, appbox, firefox, firefox marketplace, chrome, chrome web store, amazon, amazon apps, wordpress, opera, steam, phg, gog.com, good old games, xda labs
 Requires at least: 3.4
 Tested up to: 4.6
-Stable tag: 3.4.8
+Stable tag: 4.0.1
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0
 
@@ -20,7 +20,7 @@ Via Shortcode schnell und einfach App-Details von Apps aus einer Reihe an App St
 * Chrome Web Store
 * Firefox Erweiterungen/Add-ons
 * Firefox Marketplace
-* Good Old Games (GOG.com)
+* GOG.com (Good Old Games)
 * Google Play Store
 * Opera Add-ons
 * Steam (nur einzelne Spiele)
@@ -58,6 +58,7 @@ Die Besonderheit gibt es im übrigen auch für den Windows Store: Auch hier lass
 * PHP ab 5.3
 * WordPress ab 3.4
 * Server mit laufendem cURL und mb_eregi
+* Ausgehende Anfragen müssen erlaubt sein
 
 = Support =
 Supportanfragen und Probleme im Idealfall bitte direkt im [Blog](https://tchgdns.de/wp-appbox-app-badge-fuer-google-play-mac-app-store-windows-store-windows-phone-store-co/ "Blog") oder noch besser via [Twitter](https://twitter.com/Marcelismus "Twitter") melden. 
@@ -112,7 +113,7 @@ Einfach in den Plugin-Ordner von WordPress extrahieren und aktivieren.
   Ja: Der Server muss mindestens auf PHP 5.3 laufen und cURL, sowie mb_eregi unterstützen.
 
 = Kann man die Ausgabe anpassen? =
-  Ja - sämtliche Ausgabeelemente können mittels HTML und CSS nach belieben angepasst werden.
+  Ja - sämtliche Ausgabeelemente können mittels HTML-Templates und CSS nach belieben angepasst werden.
 
 = Wieso werden die QR-Codes von 400x400 Pixel runterskaliert? =
   Der QR-Code-Generator von Google hat eine kleine Eigenheit, dass die QR-Codes nur im gesamten auf die fixe Größe erstellt werden - je kürzer die URL ist, desto kleiner wird der Code und desto höher ist der Wert "margin". Dies lässt sich derzeit auch mit einer "margin=0" Angabe nicht korrigieren. Ob es ein Feature oder ein Bug ist wird in den Google Groups diskutiert.
@@ -120,17 +121,40 @@ Einfach in den Plugin-Ordner von WordPress extrahieren und aktivieren.
 = Ich bekomme keine App-Icons aus dem (Mac) App Store angezeigt =
   Das Setzen des Häkchen "Kompabilitätsmodus für App-Icons aus dem (Mac) App Store" in den Einstellungen unter "Fehlerbehebung" sollte das Problem lösen.
   
-= Der Google-App-Badge liefert einen Bot-Fehler =
-  Google erkennt aufgrund zu vieler Anfragen den Server als Bot und sperrt die Seite. Derzeit wird ein Fallback-Badge angezeigt, ich arbeite aber an einer Lösung, das Problem mittels Captcha-Eingabe zu umgehen.
-  
 = Der Chrome Web Store zeigt nur den ersten Screenshots =
   "Soll so sein" und lässt sich (zum derzeitigen Stand) leider auch nicht anders lösen, da Google die restlichen Screenshots dynamisch nachlädt.
   
 = Wie kann ich eigene Templates nutzen? =
-	Wollt ihr eigene Templates zur Ausgabe der Appbox nutzen, reicht es aus, vier Dateien im Theme-Ordner zu erstellen: "wpappbox-simple.php", "wpappbox-screenshots.php", "wpappbox-compact.php" und "wpappbox-screenshots-only.php". Wahlweise können diese auch ohne den Prefix im Ordner "wpappbox" liegen. [Mehr Infos gibt es hier](https://tchgdns.de/wp-appbox-3-2-0/ "WP-Appbox 3.2.0")
+	Wollt ihr eigene Templates zur Ausgabe der Appbox nutzen, reicht es aus, vier Dateien im Theme-Ordner zu erstellen: "wpappbox-simple.php", "wpappbox-screenshots.php", "wpappbox-compact.php" und "wpappbox-screenshots-only.php". Wahlweise können diese auch ohne den Prefix im Ordner "wpappbox" liegen. [Mehr Infos gibt es hier](https://tchgdns.de/wp-appbox-3-2-0/ "WP-Appbox 3.2.0") oder in den Template-Dateien.
 
 
 == Changelog ==
+
+= 4.0.1 =
+* Fix beim User-Agent
+* [mehr Infos zu v4.0.0 im Blog](https://tchgdns.de/wp-appbox-4-0-0/ "WP-Appbox 4.0.0")
+
+= 4.0.0 =
+* [mehr Infos zu v4.0.0 im Blog](https://tchgdns.de/wp-appbox-4-0-0/ "WP-Appbox 4.0.0")
+* Aktualisierung des Cache nun via Cron möglich
+* App-Icons können auf dem eigenen Server gespeichert werden
+* Screenshots können auf dem eigenen Server gespeichert werden (experimentell)
+* Nicht mehr verfügbare Apps verbleiben nun in der Datenbank
+* Neue Template-Variable {DEPRECATED} für nicht mehr verfügbare Apps (Zusatz zur Klasse .wpappbox)
+* Überarbeitete Abfrage der App-Informationen
+* Alexa-Skills haben nun ein eigenes Store-Symbol (CSS-Klasse .amazonalexa)
+* Abfragen für nicht gefundene Apps lassen sich nun temporär deaktivieren
+* Fehlerausgaben überarbeitet, eigenes Template für "Nicht gefunden"-Meldungen
+* Erkennt der Play Store einen Bot, wird die Play-Store-Abfrage für 3 Stunden deaktiviert
+* Android-Logo gegen Play-Store-Logo im Editor ausgetauscht
+* Anonymisierung ausgehender Links via Anon.to möglich
+* (Fehler-)Meldungen können in ein PHP Error Log geschrieben werden
+* Fix für die Bewertungen, zeigen nun auch halbe Sterne an
+* Rabattierte Apps aus dem Play Store zeigen nun den alten Preis an
+* Kleinerer Fix in der URL-Erkennung
+
+= 3.4.9 + 3.4.10 =
+* Fix für den Windows Store
 
 = 3.4.8 =
 * Unterstützung für Alexa Skills
@@ -138,7 +162,6 @@ Einfach in den Plugin-Ordner von WordPress extrahieren und aktivieren.
 * Icon für die Apple Watch entfernt
 * Fix für PHP7
 * Ein paar Grafiken ausgetauscht
-* [mehr Infos zu v3.4.0 im Blog](https://tchgdns.de/wp-appbox-3-4-0-integration-der-amazon-product-advertising-api/ "WP-Appbox 3.4.0")
 
 = 3.4.7 =
 * Fix für die Amazon Product Advertising API

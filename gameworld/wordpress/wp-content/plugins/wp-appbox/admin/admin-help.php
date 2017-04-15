@@ -37,9 +37,4 @@
 		<td><?php printf( esc_html__( 'If you want besides a special price also specify an old price, then the day %1$s are used in the shortcode. This is only displayed if it differs from the current price.', 'wp-appbox' ), '<code>oldprice="xy"</code>' ); ?> <?php esc_html_e( 'Example', 'wp-appbox' ); ?>: <code>[appbox appstore appid oldprice="1,99€"]</code></td>
 	</tr>
 	
-	<tr valign="top">
-		<th scope="row"><?php esc_html_e('Temporarily disable cache', 'wp-appbox'); ?>:</th>
-		<td><?php printf( esc_html__( 'The cache can be temporarily disabled by adding %1$s is appended to the URL of an article. Only for authors.', 'wp-appbox' ), '<code>?wpappbox_reload_cache</code>' ); ?></td>
-	</tr>
-	
 </table>
