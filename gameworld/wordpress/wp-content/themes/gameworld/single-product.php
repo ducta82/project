@@ -32,7 +32,7 @@ get_header(); ?>
               <div id="product" class="content row clearfix">
               <?php
                   while ( have_posts() ) : the_post();
-
+                      $id = $post->ID;
                       the_content();
 
                   endwhile; // End of the loop.
@@ -45,8 +45,23 @@ get_header(); ?>
               <div class="sb-title">
                 <h4 class="content-title">Related Products</h4>
               </div>
+              <?php
+                  $args = array(
+                          'post__not_in' => array($post->ID),
+                          'posts_per_page'=>5,
+                          'post_type' => 'product'); 
+                  $my_query = new WP_Query($args);
+                  if( $my_query->have_posts() ) {
+                  while ($my_query->have_posts()) : $my_query->the_post();
+                    the_content();
+                  endwhile;
+                  }
+                  wp_reset_postdata();
+                  
+                ?>
               <div id="prod-related-wrapper">
                 <div id="prod-related" class="clearfix">
+                
                   <div class="element not-animated" data-animate="bounceIn" data-delay="0">
                     <form action="/cart/add" method="post" enctype="multipart/form-data">
                       <ul class="row-container list-unstyled clearfix">

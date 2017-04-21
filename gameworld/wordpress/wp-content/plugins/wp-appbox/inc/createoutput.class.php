@@ -640,6 +640,7 @@ class wpAppbox_CreateOutput {
 		$template = str_replace( '{APPIDHASH}', $appData['id'], $template );
 		$template = str_replace( '{ICON}', $this->returnAppIcon( $appData['id'], $appData['app_icon'], $appData['store_name_css'], ( $attr['store'] == 'windowsstore' ? $appData['app_extend']['windowsstorebg'] : '' ) ), $template );
 		$template = str_replace( '{TITLE}', $appData['app_title'], $template );
+		$template = str_replace( '{DESCRIPTION}', $appData['app_description'], $template );
 		$template = str_replace( '{STORE}', $appData['store_name'], $template );
 		$template = str_replace( '{RATING}', $this->returnRating( $appData['app_rating'] ), $template );
 		$template = str_replace( '{APPLINK}', $this->returnAppLink( $appData['app_url'], $appData['app_id']), $template );

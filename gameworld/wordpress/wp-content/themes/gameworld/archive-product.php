@@ -16,6 +16,7 @@
           <!--sidebar-->
           <div id="prodcoll" class="col-md-5 sidebar hidden-xs">
             <div class="sb-wrapper">
+            
               <div class="sb-title box featured_game">Featured Games</div>
               <ul class="featured-products sb-content list-unstyled list-styled">
                 <li>
@@ -281,6 +282,28 @@
             
             <div id="sandBox-wrapper">
               <ul id="sandBox" class="list-unstyled row isotope">
+              <?php
+              if ( have_posts() ) : ?>
+                <?php
+                /* Start the Loop */
+                while ( have_posts() ) : the_post();
+
+                  /*
+                   * Include the Post-Format-specific template for the content.
+                   * If you want to override this in a child theme, then include a file
+                   * called content-___.php (where ___ is the Post Format name) and that will be used instead.
+                   */
+                  the_content();
+
+                endwhile;
+
+                //the_posts_navigation();
+
+              else :
+
+                get_template_part( 'template-parts/content', 'none' );
+
+              endif; ?>
                 <li class="element first" data-alpha="Cras in nunc non ipsum duo  cursus ultrices" data-price="5900">
                   <form action="/cart/add" method="post" enctype="multipart/form-data">
                     <ul class="row-container list-unstyled clearfix">

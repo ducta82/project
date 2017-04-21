@@ -288,6 +288,7 @@ class wpAppbox_GetAppInfoAPI {
 			$appData['app_url'] = $cachedApp->app_url;
 			$appData['app_icon'] = $cachedApp->app_icon;
 			$appData['app_title'] = $cachedApp->app_title;
+			$appData['app_description'] = $cachedApp->app_description;
 			$appData['app_author'] = $cachedApp->app_author;
 			$appData['app_author_url'] = $cachedApp->app_author_url;
 			$appData['app_price'] = $cachedApp->app_price;
@@ -500,6 +501,7 @@ class wpAppbox_GetAppInfoAPI {
 				if ( substr( $appScreenshot, -8, 8) == '=h310-rw' ) $appScreenshot = str_replace( '=h500', '', $appScreenshot );
 				$appScreenshots[] = $appScreenshot;
 			}
+			$appDescription = pq( 'div[itemprop="description"]>div' )->html();
 			$appURL = $pageURL;
 			//App-Daten in Array schreiben
 			$appData['id'] = $cacheID;
@@ -507,6 +509,7 @@ class wpAppbox_GetAppInfoAPI {
 			$appData['app_url'] = $appURL;
 			$appData['app_icon'] = $appIcon;
 			$appData['app_title'] = trim( $appTitle );
+			$appData['app_description'] = $appDescription;
 			$appData['app_author'] = trim( $appAuthor );
 			$appData['app_author_url'] = $appAuthorURL;
 			$appData['app_price'] = $appPrice;

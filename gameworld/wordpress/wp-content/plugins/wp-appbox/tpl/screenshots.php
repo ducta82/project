@@ -31,8 +31,8 @@
 /* SCREENSHOTS 			=> List of the app screenshots (<li>...</li>)
 /* 
 /*-------------------------------------------------------------*/
+if(is_singular('product') || is_main_query()){
 ?>
-
 <div class="{WPAPPBOXCSSCLASSES} screenshots">
 	<div class="qrcode"><img src="{QRCODE}" alt="{TITLE_ATTR}" /></div>
 	<div class="appicon">
@@ -54,5 +54,38 @@
 			<ul>{SCREENSHOTS}</ul>
 		</div>
 	</div>
+	<div class="description" itemprop="description">
+      {DESCRIPTION}
+    </div>
 	<div style="clear:both;"></div>
 </div>
+<?php
+	}else{
+?>
+
+<li class="{WPAPPBOXCSSCLASSES} compact element" data-alpha="Curabitur sollicitudin" data-price="{PRICE}" >
+    <ul class="row-container list-unstyled clearfix">
+      <li class="row-left">
+        <a href="<?php the_permalink();?>" class="hoverBorder">
+          <span class="hoverBorderWrapper">
+            <img src="{ICON}" class="image-fly img-responsive" alt="{TITLE_ATTR}">
+          </span>
+        </a>
+      </li>
+      <li class="row-right text-left parent-fly animMix">
+        <div class="group_info">
+          <a class="title-5" href="<?php the_permalink(); ?>">{TITLE}</a>
+          <br>
+          <a class="col-title" href="./collection.html">
+            XBOX 360
+          </a>
+          <div class="product-price">
+            <span class="price">
+              <span class="money">{PRICE}</span>
+            </span>
+          </div>
+        </div>
+      </li>
+    </ul>
+</li>
+<?php }
