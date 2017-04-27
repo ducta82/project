@@ -31,7 +31,7 @@
 /* SCREENSHOTS 			=> List of the app screenshots (<li>...</li>)
 /* 
 /*-------------------------------------------------------------*/
-GLOBAL $is_related; 
+GLOBAL $is_related, $i; 
 if(is_singular('product')){
 	if(!$is_related == 10 ){
 		?>
@@ -92,8 +92,9 @@ if(is_singular('product')){
       </div>
 <?php }
 } else {
+	$cls = $i % 5 == 0 ? 'first' : '';
 ?>
-<li class="{WPAPPBOXCSSCLASSES} compact element" data-alpha="Curabitur sollicitudin" data-price="{PRICE}" >
+<li class="{WPAPPBOXCSSCLASSES} compact element <?php echo $cls; ?>" data-alpha="{TITLE}" data-price="{PRICE}" >
     <ul class="row-container list-unstyled clearfix">
       <li class="row-left">
         <a href="<?php the_permalink();?>" class="hoverBorder">

@@ -34,9 +34,10 @@ get_header(); ?>
                   while ( have_posts() ) : the_post();
                       $id = $post->ID;
                       $cats = get_the_terms( $id, 'cat-product' );
+                      if(isset($cats)){
                       foreach ($cats as $cat) {
                         $cat_ids[] .= $cat->term_id;
-                      }
+                      }}
                     the_content();
                   endwhile; // End of the loop.
                   wp_reset_query();
