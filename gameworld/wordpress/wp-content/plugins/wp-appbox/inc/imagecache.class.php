@@ -11,14 +11,14 @@ class wpAppbox_imageCache {
 	* Prüft ob der Bilder-Cache aktiv ist UND genutzt werden kann
 	*
 	* @since   4.0.0
+	* @change  4.0.11
 	*
 	* @return  boolean   true/false		true wenn aktiv und genutzt
 	*/
 	
 	public static function quickcheckImageCache() {
-		if ( wpAppbox_imageCache::checkImageCache() && get_option('wpAppbox_imgCache') ) {
+		if ( wpAppbox_imageCache::checkImageCache() && get_option('wpAppbox_imgCache') )
 			return( true );
-		}
 		return( false );
 	}
 	
@@ -43,17 +43,18 @@ class wpAppbox_imageCache {
 	* Prüft die Bedingungen des Bildercaches
 	*
 	* @since   4.0.0
+	* @change  4.0.11
 	*
 	* @param   boolean  	 $returnMsg       Soll der Fehler ausgegeben werden? [optional]
 	* @return  boolean   true/false
 	*/
 	
 	public static function checkImageCache( $returnMsg = false ) {
+		$canUse = false;
 		if ( !ini_get( 'allow_url_fopen' ) ) {
 			$msg2return = sprintf( esc_html__( '%1$s is not activated on this server. Please activate it or contact your hoster and try again.', 'wp-appbox' ), '"allow_url_fopen"' );
 			$canUse = false;
-		}
-		else if ( !file_exists( WPAPPBOX_CACHE_PATH ) ) {
+		} else if ( !file_exists( WPAPPBOX_CACHE_PATH ) ) {
 			if ( !mkdir( WPAPPBOX_CACHE_PATH, 0755, true ) ) {
 				$msg2return = sprintf( esc_html__( 'Folder %1$s cannot be created. Please create manually and try again.', 'wp-appbox' ), '"/wp-content/cache/wp-appbox/"' );
 				$canUse = false;
@@ -70,9 +71,8 @@ class wpAppbox_imageCache {
 				$canUse = true;
 			}
 		}
-		if ( $returnMsg ) {
+		if ( $returnMsg )
 			return( $msg2return );
-		}
 		return( $canUse );
 	}
 	
@@ -81,6 +81,7 @@ class wpAppbox_imageCache {
 	* Speichert externe App-Bilder auf dem eigenen Server
 	*
 	* @since   4.0.0
+	* @change  4.0.11
 	*
 	* @param   string/array  	$imageURL       		Die Bild-URL des Servers (mit http/https)
 	* @param   string  	 		$cacheID       			Die Cache-ID der App
@@ -92,27 +93,30 @@ class wpAppbox_imageCache {
 		global $wpdb;
 		
 		$imageURLarray = array();
-		if ( !is_array( $imageURL ) ) {
+		if ( !is_array( $imageURL ) ):
 			$imageURLarray[ $imageType . '-' . md5( $imageURL ) ] = $imageURL;
 			$returnURL = true;
-		} else {
+		else:
 			$imageURLarray = $imageURL;
 			$returnURL = false;
-		}
+		endif;
 		
-		if ( !$this->quickcheckImageCache() ) {
-			if ( !$returnURL) return;
+		if ( !$this->quickcheckImageCache() ):
+			if ( !$returnURL)
+				return;
 			return( $imageURL );
-		}
+		endif;
 		
-		switch ( $imageType ) {
+		switch ( $imageType ):
 			case 'ai':
-				if ( 'screenshots' == get_option('wpAppbox_imgCacheMode') ) return( $imageURL );
+				if ( 'screenshots' == get_option('wpAppbox_imgCacheMode') ) 
+					return( $imageURL );
 				break;
 			case 'ss':
-				if ( 'appicon' == get_option('wpAppbox_imgCacheMode') ) return( $imageURL );
+				if ( 'appicon' == get_option('wpAppbox_imgCacheMode') ) 
+					return( $imageURL );
 				break;
-		}
+		endswitch;
 		
 		global $wpdb;
 		
@@ -125,22 +129,17 @@ class wpAppbox_imageCache {
 			$cacheFolderDir .= '-deprecated';
 		}
 		
-		if ( !$isDeprecated && file_exists( $cacheFolderPath . '-deprecated' ) ) {
+		if ( !$isDeprecated && file_exists( $cacheFolderPath . '-deprecated' ) ) 
 			$this->markAsDeprecated( $cacheID, true );
-		}
 		
-		foreach ( $imageURLarray as $fileName => $theURL ) {
-				
+		foreach ( $imageURLarray as $fileName => $theURL ):
+		
 			$cacheImagePath = $cacheFolderPath . DIRECTORY_SEPARATOR . $fileName;
 			$cacheImageDir = $cacheFolderDir . DIRECTORY_SEPARATOR . $fileName;
-			
-			if ( $returnURL ) {
-				if ( file_exists( $cacheImagePath ) ) {
-					return( $cacheImageDir );
-				}
-			}
-			
+				
 			if ( file_exists( $cacheImagePath ) ) {
+				if ( $returnURL )
+					return( $cacheImageDir );
 				continue;
 			}
 			
@@ -149,11 +148,10 @@ class wpAppbox_imageCache {
 				continue;
 			}
 		
-			if ( substr( $theURL, 0, 2 ) == "//" ) {
+			if ( substr( $theURL, 0, 2 ) == "//" )
 				$fileURL = 'https:' . $theURL;
-			} else {
+			else
 				$fileURL = $theURL;
-			}
 			
 			$downloadedImage = @file_get_contents( $fileURL );
 			if ( !$downloadedImage || FALSE === file_put_contents( $cacheImagePath, $downloadedImage ) ) {
@@ -163,14 +161,15 @@ class wpAppbox_imageCache {
 			if ( $returnURL ) return( $cacheImageDir );
 			//usleep( 10000 );
 			
-		}
+		endforeach;
 	}
 	
 	
 	/**
-	* Löscht den Bildercache
+	* Löscht den Bildercache (siehe auch deleteAppImages())
 	*
 	* @since   4.0.0
+	* @change  4.0.11
 	*
 	* @param   boolean  	 $completeFlush     	Auch als "-deprecated" markierte Ordner löschen = true [optional]
 	* @return  boolean   true/false
@@ -181,25 +180,26 @@ class wpAppbox_imageCache {
 		if ( !file_exists( $dir ) ) { return ( false ); }
 		$it = new RecursiveDirectoryIterator( $dir, RecursiveDirectoryIterator::SKIP_DOTS );
 		$files = new RecursiveIteratorIterator( $it, RecursiveIteratorIterator::CHILD_FIRST );
-		foreach ( $files as $file ) {
-			if ( !$completeFlush && stristr( $file, '-deprecated' ) !== FALSE ) {
+		foreach ( $files as $file ):
+			if ( !$completeFlush && stristr( $file, '-deprecated' ) !== FALSE )
 				continue;
+			if ( file_exists( $file->getRealPath() ) ) {
+				if ( $file->isDir() )
+					rmdir( $file->getRealPath() );
+				else 
+					unlink( $file->getRealPath() );
 			}
-			if ( $file->isDir() ) {
-				rmdir( $file->getRealPath() );
-			} else {
-				unlink( $file->getRealPath() );
-			}
-		}
+		endforeach;
 		rmdir( $dir );
 		return( true );
 	} 
 	
 	
 	/**
-	* Löscht die gecachten Bilder einer App
+	* Löscht die gecachten Bilder einer App (siehe auch deleteImageCache())
 	*
 	* @since   4.0.0
+	* @change  4.0.11
 	*
 	* @param   string  	 	$cacheID       		Die Cache-ID der App
 	* @return  boolean   	true/false
@@ -207,16 +207,17 @@ class wpAppbox_imageCache {
 	
 	public static function deleteAppImages( $cacheID ) {
 		$dir = WPAPPBOX_CACHE_PATH . $cacheID . '/';
-		if ( !file_exists( $dir ) ) { return ( false ); }
+		if ( !file_exists( $dir ) ) return ( false );
 		$it = new RecursiveDirectoryIterator( $dir, RecursiveDirectoryIterator::SKIP_DOTS );
 		$files = new RecursiveIteratorIterator( $it, RecursiveIteratorIterator::CHILD_FIRST );
-		foreach ( $files as $file ) {
-			if ( $file->isDir() ) {
-				rmdir( $file->getRealPath() );
-			} else {
-				unlink( $file->getRealPath() );
+		foreach ( $files as $file ):
+			if ( file_exists( $file->getRealPath() ) ) {
+				if ( $file->isDir() )
+					rmdir( $file->getRealPath() );
+				else 
+					unlink( $file->getRealPath() );
 			}
-		}
+		endforeach;
 		rmdir( $dir );
 		return( true );
 	} 
@@ -264,6 +265,7 @@ class wpAppbox_imageCache {
 	* Räumt den Bilder-Ordner einer App auf
 	*
 	* @since   4.0.0
+	* @change  4.0.11
 	*
 	* @param   string  	 	$appIcon       		URL des App-Icons
 	* @param   array  	 	$appScreenshots     Array mit den Screenshot-URLs der App
@@ -272,19 +274,26 @@ class wpAppbox_imageCache {
 	
 	public static function cleanUp( $cacheID, $appIcon, $appScreenshots ) {
 		global $wpAppbox_optionsDefault;
-		if ( '' == $cacheID ) return( false );
-		$allImages = wpAppbox_imageCache::getURLarray( $appIcon, $appScreenshots );
+		if ( '' == $cacheID )
+		return( false );
+		$allImages = (new wpAppbox_imageCache)->getURLarray( $appIcon, $appScreenshots );
 		
-		if ( get_option('wpAppbox_imgCacheDelay') ) $delayedHours = ( is_integer( get_option('wpAppbox_imgCacheDelayTime') ) ? get_option('wpAppbox_imgCacheDelayTime') : $wpAppbox_optionsDefault['imgCacheDelayTime'] );
-		else $delayedHours = 0;
+		if ( get_option('wpAppbox_imgCacheDelay') ) 
+			$delayedHours = ( is_integer( get_option('wpAppbox_imgCacheDelayTime') ) ? get_option('wpAppbox_imgCacheDelayTime') : $wpAppbox_optionsDefault['imgCacheDelayTime'] );
+		else 
+			$delayedHours = 0;
 		
-		if ( empty( $allImages ) ) return( false );
+		if ( empty( $allImages ) ) 
+			return( false );
 		$dir = WPAPPBOX_CACHE_PATH . $cacheID;
-		foreach ( scandir( $dir ) as $fileName ) {
-			if ( $fileName == '.' || $fileName == '..' ) continue;
+		if ( !file_exists( $dir ) ) 
+			return( false );
+		foreach ( scandir( $dir ) as $fileName ):
+			if ( $fileName == '.' || $fileName == '..' )
+				continue;
 			$isOutdated = ( filemtime( $dir . DIRECTORY_SEPARATOR . $fileName ) <= strtotime( "-$delayedHours hours" ) ? true : false );
 			$shouldCached = false;
-			switch ( get_option('wpAppbox_imgCacheMode') ) {
+			switch ( get_option('wpAppbox_imgCacheMode') ):
 				case 'screenshots':
 					if ( FALSE !== strpos( $fileName, 'ss-' ) ) $shouldCached = true;
 					break;
@@ -294,11 +303,12 @@ class wpAppbox_imageCache {
 				default:
 					if ( FALSE !== strpos( $fileName, 'ss-' ) || FALSE !== strpos( $fileName, 'ai-' ) ) $shouldCached = true;
 					break;
-			}
-			if ( !$shouldCached || ( $isOutdated && !array_key_exists( $fileName, $allImages ) ) ) {
-				unlink( $dir . DIRECTORY_SEPARATOR . $fileName );
-			}
-		}
+			endswitch;
+			if ( !$shouldCached || ( $isOutdated && !array_key_exists( $fileName, $allImages ) ) ):
+				if ( file_exists( $dir . DIRECTORY_SEPARATOR . $fileName ) )
+					unlink( $dir . DIRECTORY_SEPARATOR . $fileName );
+			endif;
+		endforeach;
 	} 
 	
 	
@@ -306,6 +316,7 @@ class wpAppbox_imageCache {
 	* Markiert ausgewählte Ordner als "-deprecated"
 	*
 	* @since   4.0.0
+	* @change  4.0.11
 	*
 	* @param   string  	 	$cacheID       		Die Cache-ID der App
 	* @param   boolean  	 	$undoAction     	"-deprecated"-Markierung entfernen = true [optional]
@@ -314,15 +325,15 @@ class wpAppbox_imageCache {
 	
 	function markAsDeprecated( $cacheID, $undoAction = false ) {
 		$folderOld = WPAPPBOX_CACHE_PATH . $cacheID;
-		$folderNew = WPAPPBOX_CACHE_PATH . $cacheID . '-deprecated';
-		if ( $undoAction ) 
-			$result = rename( $folderNew, $folderOld );
-		else {
-			$result = rename( $folderOld, $folderNew );
+		$folderNew = $folderOld . '-deprecated';
+		if ( $undoAction ) {
+			if ( file_exists( $folderNew ) )
+				$result = rename( $folderNew, $folderOld );
+		} else {
+			if ( file_exists( $folderOld ) )
+				$result = rename( $folderOld, $folderNew );
 		}
-		if ( $result ) {
-			return( true );
-		}
+		if ( isset( $result ) && $result ) return( true );
 		return( false );
 	} 
 	

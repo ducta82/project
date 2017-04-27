@@ -416,7 +416,7 @@ class Cached_Apps extends WP_List_Table {
 		?>
 		   	<div class="alignleft actions bulkactions" style="margin-bottom:7px;">
 			   	<label class="screen-reader-text" for="search_id-search-input"><?php _e('Search', 'wp-appbox') ?>:</label> 
-			   	<input id="search_id-search-input" style="height:27px;" type="text" name="s" value="<?php echo( $_POST['s'] ); ?>" /> 
+			   	<input id="search_id-search-input" style="height:27px;" type="text" name="s" value="<?php if ( isset( $_POST['s'] ) ) echo( $_POST['s'] ); ?>" /> 
 			   	<input id="search-submit" class="button" type="submit" name="" value="<?php _e('Search', 'wp-appbox') ?>" />
 			   	<?php if ( $this->isActiveSearch() ) { ?>
 			   		<a href="/wp-admin/options-general.php?page=wp-appbox&tab=cache-list" class="button" style="display: inline-block;margin-top:0;"><?php _e('Clear search', 'wp-appbox') ?></a>

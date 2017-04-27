@@ -36,10 +36,11 @@ function wpAppbox_adminInit() {
 * Benachrichtigung im Admin-Panel anzeigen
 *
 * @since   4.0.0
+* @change  4.0.6
 */
 
 function wpAppbox_showAdminNotification() {
-	if ( '4.0.1' != get_option( 'wpAppbox_notifyLastV' ) ):
+	if ( WPAPPBOX_PLUGIN_VERSION != get_option( 'wpAppbox_notifyLastV' ) ):
 		?>
 		<div class="notice notice-success is-dismissible">
 			<p>
@@ -49,7 +50,7 @@ function wpAppbox_showAdminNotification() {
 			</p>
 		</div>
 		<?php
-		update_option( 'wpAppbox_notifyLastV', WPAPPBOX_PLUGIN_VERSION );
+		update_option( 'wpAppbox_notifyLastV', WPAPPBOX_PLUGIN_VERSION, 'no' );
 	endif;
 }
 add_action( 'admin_notices', 'wpAppbox_showAdminNotification' );
@@ -174,104 +175,100 @@ function wpAppbox_saveSettings() {
 	}
 	switch ( $tab ) {
 		case 'output':
-	    	update_option( 'wpAppbox_downloadCaption', (trim( $_POST['wpAppbox_downloadCaption'] ) != '' ? $_POST['wpAppbox_downloadCaption'] : $wpAppbox_optionsDefault['downloadCaption'] ) );
-			update_option( 'wpAppbox_nofollow', $_POST['wpAppbox_nofollow'] );
-			update_option( 'wpAppbox_targetBlank', $_POST['wpAppbox_targetBlank'] );
-			update_option( 'wpAppbox_showRating', intval( $_POST['wpAppbox_showRating'] ) );
-			update_option( 'wpAppbox_colorfulIcons', $_POST['wpAppbox_colorfulIcons'] );
-			update_option( 'wpAppbox_defaultStyle', intval( $_POST['wpAppbox_defaultStyle'] ) );	 
-			update_option( 'wpAppbox_replaceAppIcons', $_POST['wpAppbox_replaceAppIcons'] );	   		
+	    	update_option( 'wpAppbox_downloadCaption', ( !empty( $_POST['wpAppbox_downloadCaption'] ) != '' ? $_POST['wpAppbox_downloadCaption'] : $wpAppbox_optionsDefault['downloadCaption'] ), 'no' );
+			update_option( 'wpAppbox_nofollow', ( isset( $_POST['wpAppbox_nofollow'] ) ? true : false ), 'no' );
+			update_option( 'wpAppbox_targetBlank', ( isset( $_POST['wpAppbox_targetBlank'] ) ? true : false ), 'no' );
+			update_option( 'wpAppbox_showRating', intval( $_POST['wpAppbox_showRating'] ), 'no' );
+			update_option( 'wpAppbox_colorfulIcons', ( isset( $_POST['wpAppbox_colorfulIcons'] ) ? true : false ), 'no' );
+			update_option( 'wpAppbox_defaultStyle', intval( $_POST['wpAppbox_defaultStyle'] ), 'no' );	 
+			update_option( 'wpAppbox_replaceAppIcons', ( isset( $_POST['wpAppbox_replaceAppIcons'] ) ? true : false ), 'no' );	   		
 			break;
 		case 'cache':
 			if ( TRUE == get_option('wpAppbox_blockMissing') && FALSE == $_POST['wpAppbox_blockMissing'] ) {
 				global $wpdb;
 				$wpdb->query( "DELETE FROM $wpdb->options WHERE option_name LIKE ('%_wpAppbox_blockQuery%')" );
 			}
-			update_option( 'wpAppbox_cacheTime', ( '' != intval( $_POST['wpAppbox_cacheTime'] ) ? intval( $_POST['wpAppbox_cacheTime'] ) : $wpAppbox_optionsDefault['cacheTime'] ) );
-			update_option( 'wpAppbox_blockMissing', $_POST['wpAppbox_blockMissing'] );
-			update_option( 'wpAppbox_blockMissingTime', ( '' != intval( $_POST['wpAppbox_blockMissingTime'] ) ? intval( $_POST['wpAppbox_blockMissingTime'] ) : $wpAppbox_optionsDefault['blockMissingTime'] ) );
-			update_option( 'wpAppbox_cacheMode', $_POST['wpAppbox_cacheMode'] );
-			update_option( 'wpAppbox_cronIntervall', ( '' != intval( $_POST['wpAppbox_cronIntervall'] ) ? intval( $_POST['wpAppbox_cronIntervall'] ) : $wpAppbox_optionsDefault['cronIntervall'] ) );
-			update_option( 'wpAppbox_cronCount', ( '' != intval( $_POST['wpAppbox_cronCount'] ) ? intval( $_POST['wpAppbox_cronCount'] ) : $wpAppbox_optionsDefault['cronCount'] ) );
-			update_option( 'wpAppbox_cachePlugin', $_POST['wpAppbox_cachePlugin'] );
+			update_option( 'wpAppbox_cacheTime', ( '' != intval( $_POST['wpAppbox_cacheTime'] ) ? intval( $_POST['wpAppbox_cacheTime'] ) : $wpAppbox_optionsDefault['cacheTime'] ), 'no' );
+			update_option( 'wpAppbox_blockMissing', ( isset( $_POST['wpAppbox_blockMissing'] ) ? true : false ) );
+			update_option( 'wpAppbox_blockMissingTime', ( '' != intval( $_POST['wpAppbox_blockMissingTime'] ) ? intval( $_POST['wpAppbox_blockMissingTime'] ) : $wpAppbox_optionsDefault['blockMissingTime'] ), 'no' );
+			update_option( 'wpAppbox_cacheMode', $_POST['wpAppbox_cacheMode'], 'no' );
+			update_option( 'wpAppbox_cronIntervall', ( '' != intval( $_POST['wpAppbox_cronIntervall'] ) ? intval( $_POST['wpAppbox_cronIntervall'] ) : $wpAppbox_optionsDefault['cronIntervall'] ), 'no' );
+			update_option( 'wpAppbox_cronCount', ( '' != intval( $_POST['wpAppbox_cronCount'] ) ? intval( $_POST['wpAppbox_cronCount'] ) : $wpAppbox_optionsDefault['cronCount'] ), 'no' );
+			update_option( 'wpAppbox_cachePlugin', $_POST['wpAppbox_cachePlugin'], 'no' );
 			$imageCacheWAS = get_option( 'wpAppbox_imgCache' );
-			update_option( 'wpAppbox_imgCache', false );
-			if ( isset( $_POST['wpAppbox_imgCache'] ) && $_POST['wpAppbox_imgCache'] ) {
-				if ( wpAppbox_imageCache::checkImageCache() ) update_option( 'wpAppbox_imgCache', $_POST['wpAppbox_imgCache'] );
+			if ( isset( $_POST['wpAppbox_imgCache'] ) && $_POST['wpAppbox_imgCache'] ):
+				if ( wpAppbox_imageCache::checkImageCache() ) update_option( 'wpAppbox_imgCache', $_POST['wpAppbox_imgCache'], 'no' );
 				else set_transient( 'wpAppbox_imgCacheBlocked', true, 12 * HOUR_IN_SECONDS );
-			}
-			if ( $imageCacheWAS && !get_option( 'wpAppbox_imgCache' ) ) {
+			else:
+				update_option( 'wpAppbox_imgCache', false, 'no' );
+			endif;
+			if ( $imageCacheWAS && !get_option( 'wpAppbox_imgCache' ) ):
 				$delete = wpAppbox_imageCache::deleteImageCache( true );
-			}
-			update_option( 'wpAppbox_imgCacheMode', $_POST['wpAppbox_imgCacheMode'] );
-			update_option( 'wpAppbox_imgCacheDelay', $_POST['wpAppbox_imgCacheDelay'] );
-			update_option( 'wpAppbox_imgCacheDelayTime', ( '' != intval( $_POST['wpAppbox_imgCacheDelayTime'] ) ? intval( $_POST['wpAppbox_imgCacheDelayTime'] ) : $wpAppbox_optionsDefault['imgCacheDelayTime'] ) );
+			endif;
+			update_option( 'wpAppbox_imgCacheMode', $_POST['wpAppbox_imgCacheMode'], 'no' );
+			update_option( 'wpAppbox_imgCacheDelay', ( isset( $_POST['wpAppbox_imgCacheDelay'] ) ? true : false ), 'no' );
+			update_option( 'wpAppbox_imgCacheDelayTime', ( '' != intval( $_POST['wpAppbox_imgCacheDelayTime'] ) ? intval( $_POST['wpAppbox_imgCacheDelayTime'] ) : $wpAppbox_optionsDefault['imgCacheDelayTime'] ), 'no' );
 			wpAppbox_setupCronCache();
 	   		break;
     	case 'advanced':
-	    	update_option( 'wpAppbox_amaAPIuse', $_POST['wpAppbox_amaAPIuse'], 'no' );
+	    	update_option( 'wpAppbox_amaAPIuse', ( isset( $_POST['wpAppbox_amaAPIuse'] ) ? true : false ), 'no' );
 	    	update_option( 'wpAppbox_amaAPIsecretKey', base64_encode( strip_tags( trim( $_POST['wpAppbox_amaAPIsecretKey'] ) ) ), 'no' );
 	    	update_option( 'wpAppbox_amaAPIpublicKey', strip_tags( trim( $_POST['wpAppbox_amaAPIpublicKey'] ) ), 'no' );
 	    	update_option( 'wpAppbox_affiliateAmazonID', strip_tags( trim( $_POST['wpAppbox_affiliateAmazonID'] ) ), 'no' );
 	    	update_option( 'wpAppbox_amaAPIregion', $_POST['wpAppbox_amaAPIregion'], 'no' );
-	    	update_option( 'wpAppbox_autoLinks', $_POST['wpAppbox_autoLinks'] );
-	    	update_option( 'wpAppbox_anonymizeLinks', $_POST['wpAppbox_anonymizeLinks'] );
-	    	update_option( 'wpAppbox_disableDefer', $_POST['wpAppbox_disableDefer'] );
-	    	update_option( 'wpAppbox_disableCSS', $_POST['wpAppbox_disableCSS'] );
-	    	update_option( 'wpAppbox_disableFonts', $_POST['wpAppbox_disableFonts'] );
+	    	update_option( 'wpAppbox_autoLinks', ( isset( $_POST['wpAppbox_autoLinks'] ) ? true : false ), 'no' );
+	    	update_option( 'wpAppbox_anonymizeLinks', ( isset( $_POST['wpAppbox_anonymizeLinks'] ) ? true : false ), 'no' );
+	    	update_option( 'wpAppbox_disableDefer', ( isset( $_POST['wpAppbox_disableDefer'] ) ? true : false ), 'no' );
+	    	update_option( 'wpAppbox_disableCSS', ( isset( $_POST['wpAppbox_disableCSS'] ) ? true : false ), 'no' );
+	    	update_option( 'wpAppbox_disableFonts', ( isset( $_POST['wpAppbox_disableFonts'] ) ? true : false ), 'no' );
 	    	update_option( 'wpAppbox_curlTimeout', ( '' != intval( $_POST['wpAppbox_curlTimeout'] ) ? intval( $_POST['wpAppbox_curlTimeout'] ) : $wpAppbox_optionsDefault['curlTimeout'] ) );
-    		update_option( 'wpAppbox_eOnlyAuthors', $_POST['wpAppbox_eOnlyAuthors'] );
+    		update_option( 'wpAppbox_eOnlyAuthors', ( isset( $_POST['wpAppbox_eOnlyAuthors'] ) ? true : false ), 'no' );
     		update_option( 'wpAppbox_eOutput', $_POST['wpAppbox_eOutput'] );
-    		update_option( 'wpAppbox_eImageApple', $_POST['wpAppbox_eImageApple'] );
-	    	if ( ( $_POST['wpAppbox_sslAppleImages'] == true ) && ( $_POST['wpAppbox_sslAppleImagesVerify'] == true ) ) {
-	    		update_option( 'wpAppbox_sslAppleImages', $_POST['wpAppbox_sslAppleImages'] );
-	    	} else {
-	    		update_option( 'wpAppbox_sslAppleImages', false );
-	    	}
-	    	if ( ( $_POST['wpAppbox_cacheCronjob'] == true ) && ( $_POST['wpAppbox_cacheCronjobVerify'] == true ) ) {
-	    		update_option( 'wpAppbox_cacheCronjob', $_POST['wpAppbox_cacheCronjob'] );
-	    	} else {
-	    		update_option( 'wpAppbox_cacheCronjob', false );
-	    		update_option( 'wpAppbox_cacheMode', 'manually' );
-	    	}
+    		update_option( 'wpAppbox_forceSSL', ( isset ( $_POST['wpAppbox_forceSSL'] ) ? true : false ), 'no' );
+	    	if ( isset( $_POST['wpAppbox_cacheCronjob'] ) && isset( $_POST['wpAppbox_cacheCronjobVerify'] ) ):
+	    		update_option( 'wpAppbox_cacheCronjob', true, 'no' );
+	    	else:
+	    		update_option( 'wpAppbox_cacheCronjob', false, 'no' );
+	    		if ( 'cronjob' == get_option('wpAppbox_cacheMode') ) 
+	    			update_option( 'wpAppbox_cacheMode', 'manually', 'no' );
+	    	endif;
 	    	wpAppbox_setupCronCache();
 	   		break;
 	   	case 'buttons':
 	   		update_option( 'wpAppbox_defaultButton', intval( $_POST['wpAppbox_defaultButton'] ) );
-	   		foreach ( $wpAppbox_storeNames as $storeID => $storeName ) {
+	   		foreach ( $wpAppbox_storeNames as $storeID => $storeName ):
 			   	$key_buttonAppbox = "wpAppbox_buttonAppbox_$storeID";
-				update_option( $key_buttonAppbox, $_POST[$key_buttonAppbox] );
+				update_option( $key_buttonAppbox, ( isset( $_POST[$key_buttonAppbox] ) ? true : false ), 'no' );
 			   	$key_buttonWYSIWYG = "wpAppbox_buttonWYSIWYG_$storeID";
-				update_option( $key_buttonWYSIWYG, $_POST[$key_buttonWYSIWYG] );
+				update_option( $key_buttonWYSIWYG, ( isset( $_POST[$key_buttonWYSIWYG] ) ? true : false ), 'no' );
 			   	$key_buttonHTML = "wpAppbox_buttonHTML_$storeID";
-				update_option( $key_buttonHTML, $_POST[$key_buttonHTML] );
+				update_option( $key_buttonHTML, ( isset( $_POST[$key_buttonHTML] ) ? true : false ), 'no' );
 			   	$key_buttonHidden = "wpAppbox_buttonHidden_$storeID";
-				update_option( $key_buttonHidden, $_POST[$key_buttonHidden] );
-	   		}
+				update_option( $key_buttonHidden, ( isset( $_POST[$key_buttonHidden] ) ? true : false ), 'no' );
+	   		endforeach;
 	   		break;
 	   	case 'storeurls':
-	   		foreach ( $wpAppbox_storeNames as $storeID => $storeName ) {
+	   		foreach ( $wpAppbox_storeNames as $storeID => $storeName ):
 		   		$key_storeURL = "wpAppbox_storeURL_$storeID";
-		   		update_option( $key_storeURL, intval( $_POST[$key_storeURL] ) );
-		   		if ( '0' == $_POST[$key_storeURL] ) {
+		   		update_option( $key_storeURL, ( isset( $_POST[$key_storeURL] ) ? intval( $_POST[$key_storeURL] ) : '' ) );
+		   		if ( isset( $_POST[$key_storeURL] ) && '0' == $_POST[$key_storeURL] ):
 		   			$key_storeURL_URL = "wpAppbox_storeURL_URL_$storeID";
-		   			update_option( $key_storeURL_URL, trim( $_POST[$key_storeURL_URL] ) );
-		   		}
-	   		}
-	   		update_option( 'wpAppbox_iTunesGeo', $_POST['wpAppbox_iTunesGeo'], 'no' );
+		   			update_option( $key_storeURL_URL, ( isset( $_POST[$key_storeURL_URL] ) ? trim( $_POST[$key_storeURL_URL] ) : '' ), 'no' );
+		   		endif;
+	   		endforeach;
 	   		break;
 		case 'affiliate':
-			update_option( 'wpAppbox_userAffiliate', $_POST['wpAppbox_userAffiliate'], 'no' );
-			update_option( 'wpAppbox_affiliateApple', $_POST['wpAppbox_affiliateApple'], 'no' );
+			update_option( 'wpAppbox_userAffiliate', ( isset( $_POST['wpAppbox_userAffiliate'] ) ? true : false ), 'no' );
+			update_option( 'wpAppbox_affiliateApple', ( isset( $_POST['wpAppbox_affiliateApple'] ) ? true : false ), 'no' );
 			update_option( 'wpAppbox_affiliateAppleID', Trim( $_POST['wpAppbox_affiliateAppleID'] ), 'no' );
-			if ( '' == trim( $_POST['wpAppbox_affiliateAppleID'] ) ) update_option( 'wpAppbox_affiliateApple', false, 'no' );
-			update_option( 'wpAppbox_affiliateAmazon', $_POST['wpAppbox_affiliateAmazon'], 'no' );
+			if ( empty( $_POST['wpAppbox_affiliateAppleID'] ) ) update_option( 'wpAppbox_affiliateApple', false, 'no' );
+			update_option( 'wpAppbox_affiliateAmazon', ( isset( $_POST['wpAppbox_affiliateAmazon'] ) ? true : false ), 'no' );
 			update_option( 'wpAppbox_affiliateAmazonID', Trim( $_POST['wpAppbox_affiliateAmazonID'] ), 'no' );
-			if ( '' == trim( $_POST['wpAppbox_affiliateAmazonID'] ) ) update_option( 'wpAppbox_affiliateAmazon', false, 'no' );
-			update_option( 'wpAppbox_affiliateMicrosoft', $_POST['wpAppbox_affiliateMicrosoft'], 'no' );
+			if ( empty( $_POST['wpAppbox_affiliateAmazonID'] ) ) update_option( 'wpAppbox_affiliateAmazon', false, 'no' );
+			update_option( 'wpAppbox_affiliateMicrosoft', ( isset( $_POST['wpAppbox_affiliateMicrosoft'] ) ? true : false ), 'no' );
 			update_option( 'wpAppbox_affiliateMicrosoftProgram', $_POST['wpAppbox_affiliateMicrosoftProgram'], 'no' );
 			update_option( 'wpAppbox_affiliateMicrosoftID', Trim( $_POST['wpAppbox_affiliateMicrosoftID'], 'no' ) );
-			if ( '' == trim( $_POST['wpAppbox_affiliateMicrosoftID'] ) ) update_option( 'wpAppbox_affiliateMicrosoft', false, 'no' );
+			if ( empty( $_POST['wpAppbox_affiliateMicrosoftID'] ) ) update_option( 'wpAppbox_affiliateMicrosoft', false, 'no' );
 		break;
 	}
 	update_option( 'wpAppbox_pluginVersion', WPAPPBOX_PLUGIN_VERSION );

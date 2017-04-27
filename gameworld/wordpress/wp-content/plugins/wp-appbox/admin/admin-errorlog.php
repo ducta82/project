@@ -72,8 +72,8 @@ disableFonts => <?php echo( ( get_option('wpAppbox_disableFonts') ? 'true' : 'fa
 curlTimeout => <?php echo( get_option( 'wpAppbox_curlTimeout' ) ); ?> seconds&#013;
 eOnlyAuthors => <?php echo( ( get_option('wpAppbox_eOnlyAuthors') ? 'true' : 'false') ); ?>&#013;
 eOutput => <?php echo( ( get_option('wpAppbox_eOutput') ? 'true' : get_option('wpAppbox_eOutput') ) ); ?>&#013;
-eImageApple => <?php echo( ( get_option('wpAppbox_eImageApple') ? 'true' : 'false') ); ?>&#013;
-sslAppleImages => <?php echo( ( get_option('wpAppbox_sslAppleImages') ? 'true' : 'false') ); ?>&#013;
+is_ssl() => <?php echo( ( is_ssl() ? 'true' : 'false') ); ?>&#013;
+forceSSL => <?php echo( ( get_option('wpAppbox_forceSSL') ? 'true' : 'false') ); ?>&#013;
 
 ==============================================================
 

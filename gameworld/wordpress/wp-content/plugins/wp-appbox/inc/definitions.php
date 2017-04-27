@@ -11,14 +11,66 @@ global $wpdb;
 /**
 * Ein paar Definitionen #YOLO
 */
+define( 'WPAPPBOX_MIN_PHPVERSION', '5.4' );
 define( 'WPAPPBOX_PLUGIN_NAME', 'WP-Appbox' ); 
-define( 'WPAPPBOX_PLUGIN_VERSION', '4.0.1' );
+define( 'WPAPPBOX_PLUGIN_VERSION', '4.0.13' );
 define( 'WPAPPBOX_DB_VERSION', '1.0.3' );
 define( 'WPAPPBOX_PREFIX', 'wpAppbox_' );
 define( 'WPAPPBOX_AFFILIATE_APPLE', '11ltUj' );
 define( 'WPAPPBOX_AFFILIATE_AMAZON', 'wpappbox-21' );
 define( 'WPAPPBOX_AFFILIATE_MICROSOFT', '2795219' );
 define( 'WPAPPBOX_AFFILIATE_MICROSOFT_PROGRAM', '213688' );
+
+
+/**
+* Festlegen der Standard-Einstellungen
+*/
+global $wpAppbox_optionsDefault;
+$wpAppbox_optionsDefault = array(
+	'pluginVersion' => WPAPPBOX_PLUGIN_VERSION,
+	'defaultStyle' => intval( '1' ),
+	'colorfulIcons' => false,
+	'showRating' => intval( '1' ),
+	'downloadCaption' => __('Download', 'wp-appbox'),
+	'nofollow' => true,
+	'targetBlank' => true,
+	'cacheTime' => intval( '720' ),
+	'cacheMode' => 'all',
+	'cronIntervall' => intval( '30' ),
+	'cronCount' => intval( '5' ),
+	'blockMissing' => true,
+	'blockMissingTime' => intval( '60' ),
+	'cachePlugin' => false,
+	'imgCache' => false,
+	'imgCacheMode' => 'appicon',
+	'imgCacheDelay' => false,
+	'imgCacheDelayTime' => intval( '8' ),
+	'affiliateApple' => false,
+	'affiliateAppleID' => '',
+	'affiliateAmazon' => false,
+	'affiliateAmazonID' => '',
+	'affiliateMicrosoft' => false,
+	'affiliateMicrosoftID' => '',
+	'affiliateMicrosoftProgram' => '',
+	'userAffiliate' => false,
+	'defaultButton' => intval( '0' ),
+	'autoLinks' => false,
+	'utmSource' => false,
+	'anonymizeLinks' => false,
+	'disableDefer' => false,
+	'disableCSS' => false,
+	'disableFonts' => false,
+	'curlTimeout' => intval( '5' ),
+	'eOnlyAuthors' => false,
+	'eOutput' => false,
+	'forceSSL' => false,
+	'cacheCronjob' => false,
+);
+
+
+/**
+* Ein paar Standard-Einstellungen festlegen
+*/
 
 define( 'WPAPPBOX_CACHINGTIME', ( get_option('wpAppbox_cacheTime') != '' ? get_option('wpAppbox_cacheTime') : $wpAppbox_optionsDefault['cacheTime'] ) ); 
 define( 'WPAPPBOX_BLOCKMISSINGTIME', ( get_option('wpAppbox_blockMissingTime') != '' ? get_option('wpAppbox_blockMissingTime') : $wpAppbox_optionsDefault['blockMissingTime'] ) ); 
@@ -143,53 +195,6 @@ $wpAppbox_MicrosoftPrivateAffiliateProgramm = array(
 
 );
 ksort( $wpAppbox_MicrosoftPrivateAffiliateProgramm );
-
-
-/**
-* Festlegen der Standard-Einstellungen
-*/
-global $wpAppbox_optionsDefault;
-$wpAppbox_optionsDefault = array(
-	'pluginVersion' => WPAPPBOX_PLUGIN_VERSION,
-	'defaultStyle' => intval( '1' ),
-	'colorfulIcons' => false,
-	'showRating' => intval( '1' ),
-	'downloadCaption' => __('Download', 'wp-appbox'),
-	'nofollow' => true,
-	'targetBlank' => true,
-	'cacheTime' => intval( '720' ),
-	'cacheMode' => 'all',
-	'cronIntervall' => intval( '30' ),
-	'cronCount' => intval( '5' ),
-	'blockMissing' => true,
-	'blockMissingTime' => intval( '60' ),
-	'cachePlugin' => false,
-	'imgCache' => false,
-	'imgCacheMode' => 'appicon',
-	'imgCacheDelay' => false,
-	'imgCacheDelayTime' => intval( '8' ),
-	'affiliateApple' => false,
-	'affiliateAppleID' => '',
-	'affiliateAmazon' => false,
-	'affiliateAmazonID' => '',
-	'affiliateMicrosoft' => false,
-	'affiliateMicrosoftID' => '',
-	'affiliateMicrosoftProgram' => '',
-	'userAffiliate' => false,
-	'defaultButton' => intval( '0' ),
-	'iTunesGeo' => true,
-	'autoLinks' => false,
-	'anonymizeLinks' => false,
-	'disableDefer' => false,
-	'disableCSS' => false,
-	'disableFonts' => false,
-	'curlTimeout' => intval( '5' ),
-	'eOnlyAuthors' => false,
-	'eOutput' => false,
-	'eImageApple' => false,
-	'sslAppleImages' => false,
-	'cacheCronjob' => false,
-);
 
 
 ?>

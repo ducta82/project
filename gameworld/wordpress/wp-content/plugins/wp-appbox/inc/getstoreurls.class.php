@@ -4,23 +4,23 @@
 /* ID => Bezeichnung */
 $wpAppbox_storeURL_languages = array(
 	'0' => __('Use own URL', 'wp-appbox'),
-	'1' => __('Germany', 'wp-appbox'),
-	'2' => __('United States', 'wp-appbox'),
-	'3' => __('United Kingdom', 'wp-appbox'),
-	'4' => __('France', 'wp-appbox'),
-	'5' => __('Spain', 'wp-appbox'),
-	'6' => __('Russia', 'wp-appbox'),
-	'7' => __('Turkey', 'wp-appbox'),
-	'8' => __('Italy', 'wp-appbox'),
-	'9' => __('Austria', 'wp-appbox'),
-	'10' => __('Switzerland', 'wp-appbox'),
-	'11' => __('Japan', 'wp-appbox'),
-	'12' => __('Poland', 'wp-appbox')
+	'1' => array( 'code' => 'de-DE', 'name' =>__('Germany', 'wp-appbox') ),
+	'2' => array( 'code' => 'en-US', 'name' =>__('United States', 'wp-appbox') ),
+	'3' => array( 'code' => 'en-GB', 'name' =>__('United Kingdom', 'wp-appbox') ),
+	'4' => array( 'code' => 'fr-FR', 'name' =>__('France', 'wp-appbox') ),
+	'5' => array( 'code' => 'es-ES', 'name' =>__('Spain', 'wp-appbox') ),
+	'6' => array( 'code' => 'ru-RU', 'name' =>__('Russia', 'wp-appbox') ),
+	'7' => array( 'code' => 'tr-TR', 'name' =>__('Turkey', 'wp-appbox') ),
+	'8' => array( 'code' => 'it-IT', 'name' =>__('Italy', 'wp-appbox') ),
+	'9' => array( 'code' => 'de-AT', 'name' =>__('Austria', 'wp-appbox') ),
+	'10' => array( 'code' => 'de-CH', 'name' =>__('Switzerland', 'wp-appbox') ),
+	'11' => array( 'code' => 'ja', 'name' =>__('Japan', 'wp-appbox') ),
+	'12' => array( 'code' => 'pl-PL', 'name' =>__('Poland', 'wp-appbox') )
 );
 	
 	
 /* Stores ohne Möglichkeit des Sprachwechsels */
-$wpAppbox_storeURL_noLanguages = array( 'chromewebstore', 'steam', 'wordpress', 'goodoldgames', 'xda' );
+$wpAppbox_storeURL_noLanguages = array( 'steam', 'wordpress', 'goodoldgames', 'xda' );
 	
 	
 /* Regionen für die Amazon Product Advertising API */
@@ -65,7 +65,16 @@ $wpAppbox_storeURL = array(
 		'11' => 'https://itunes.apple.com/jp/app/id{APPID}'
 	),
 	'chromewebstore' => array(
-		'1' => 'https://chrome.google.com/webstore/detail/{APPID}?hl=de'
+		'1' => 'https://chrome.google.com/webstore/detail/{APPID}?hl=de',
+		'2' => 'https://chrome.google.com/webstore/detail/{APPID}?hl=en',
+		'3' => 'https://chrome.google.com/webstore/detail/{APPID}?hl=en',
+		'4' => 'https://chrome.google.com/webstore/detail/{APPID}?hl=fr',
+		'5' => 'https://chrome.google.com/webstore/detail/{APPID}?hl=es',
+		'6' => 'https://chrome.google.com/webstore/detail/{APPID}?hl=ru',
+		'7' => 'https://chrome.google.com/webstore/detail/{APPID}?hl=tr',
+		'8' => 'https://chrome.google.com/webstore/detail/{APPID}?hl=it',
+		'9' => 'https://chrome.google.com/webstore/detail/{APPID}?hl=au',
+		'10' => 'https://chrome.google.com/webstore/detail/{APPID}?hl=ch'
 	),
 	'firefoxaddon' => array(
 		'1' => 'https://addons.mozilla.org/de/firefox/addon/{APPID}/',

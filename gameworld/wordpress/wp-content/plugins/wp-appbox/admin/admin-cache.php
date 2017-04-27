@@ -111,7 +111,7 @@ function wpAppbox_checkIfCachePlugin() {
 		<td colspan="7">
 			<label for="wpAppbox_imgCache">
 				<input type="checkbox" name="wpAppbox_imgCache" id="wpAppbox_imgCache" value="1" <?php checked( get_option('wpAppbox_imgCache') ); ?>/>
-				<?php esc_html_e('Cache app images on your own server (needs more ressources when caching an app)', 'wp-appbox'); ?> 
+				<?php esc_html_e('Cache app images on your own server (needs more resources when caching an app)', 'wp-appbox'); ?> 
 			</label>
 		</td>
 	</tr>
@@ -149,56 +149,6 @@ function wpAppbox_checkIfCachePlugin() {
 </table>
 
 
-<script>
-
-	$j=jQuery.noConflict();
-	
-	$j("#wpAppbox_blockMissing").click(function () {
-		if ( $j(this).attr('checked') ) {
-			$j("label[for='wpAppbox_blockMissingTime']").show();
-		} else {
-			$j("label[for='wpAppbox_blockMissingTime']").hide();
-		}
-	} );
-	
-	$j("#wpAppbox_cacheMode").change(function () {
-		if ( this.value == 'cronjob' ) {
-			$j('.cronSettings').show();
-		} else {
-			$j('.cronSettings').hide();
-		}
-	} );
-	
-	<?php if ( get_option('wpAppbox_imgCache') ): ?>
-	$j("#wpAppbox_imgCache").change(function () {
-		var success = true;
-		if ( !$j(this).is(":checked") ) {
-			success = confirm( '<?php _e( 'Do you want to deactivate the image caching? All local images will be deleted.', 'wp-appbox' ); ?>' );
-		}
-		if (success == false) {
-			$j(this).prop( 'checked', !$j(this).prop('checked') );
-		}
-		if ( $j(this).attr('checked') ) {
-			$j('tr.imgCachingMode').show();
-			$j('tr.imgCachingDelay').show();
-		} else {
-			$j('tr.imgCachingMode').hide();
-			$j('tr.imgCachingDelay').hide();
-		}
-	});
-	<?php endif; ?>
-	
-	$j("#wpAppbox_imgCacheDelay").click(function () {
-		if ( $j(this).attr('checked') ) {
-			$j('.imgCacheDelayTime').show();
-			$j("label[for='wpAppbox_imgCacheDelayTime']").show();
-		} else {
-			$j('.imgCacheDelayTime').hide();
-			$j("label[for='wpAppbox_imgCacheDelayTime']").hide();
-		}
-	} );
-	
-</script>
 <script>
 
 	$j=jQuery.noConflict();

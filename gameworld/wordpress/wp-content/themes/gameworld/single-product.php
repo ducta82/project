@@ -33,11 +33,14 @@ get_header(); ?>
               <?php
                   while ( have_posts() ) : the_post();
                       $id = $post->ID;
-                      the_content();
-
+                      $cats = get_the_terms( $id, 'cat-product' );
+                      foreach ($cats as $cat) {
+                        $cat_ids[] .= $cat->term_id;
+                      }
+                    the_content();
                   endwhile; // End of the loop.
+                  wp_reset_query();
                 ?>
-                
               </div>
             </div>
             
@@ -45,284 +48,34 @@ get_header(); ?>
               <div class="sb-title">
                 <h4 class="content-title">Related Products</h4>
               </div>
-              <?php
-                  $args = array(
-                          'post__not_in' => array($post->ID),
-                          'posts_per_page'=>5,
-                          'post_type' => 'product'); 
-                  $my_query = new WP_Query($args);
-                  if( $my_query->have_posts() ) {
-                  while ($my_query->have_posts()) : $my_query->the_post();
-                    the_content();
-                  endwhile;
-                  }
-                  wp_reset_postdata();
-                  
-                ?>
               <div id="prod-related-wrapper">
                 <div id="prod-related" class="clearfix">
-                
-                  <div class="element not-animated" data-animate="bounceIn" data-delay="0">
-                    <form action="/cart/add" method="post" enctype="multipart/form-data">
-                      <ul class="row-container list-unstyled clearfix">
-                        <li class="row-left">
-                          <a href="./product.html" class="hoverBorder">
-                            <span class="hoverBorderWrapper">
-                              <img src="<?php echo get_template_directory_uri();?>/screen/demos/demo_152x216.png" class="image-fly img-responsive" alt="Cras in nunc non ipsum duo  cursus ultrices">
-                            </span>
-                            <div class="product-ajax-cart hidden-phone">
-                              <span class="overlay_mask"></span>
-                              <div data-href="./ajax/_product-qs.html" data-target="#quick-shop-modal" class="btn btn-3 quick_shop" data-toggle="modal">
-                                Quickshop
-                              </div>
-                            </div>
-                          </a>
-                        </li>
-                        <li class="row-right text-left parent-fly animMix">
-                          <div class="group_info">
-                            <a class="title-5" href="./product.html">Cras in nunc non ipsum duo cursus ultrices</a>
-                            <br>
-                            <a class="col-title" href="./collection.html">
-                              XBOX 360
-                            </a>
-                            <p class="hidden-list">
-                              Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius...
-                            </p>
-                            <div class="product-price">
-                              <span class="price">
-                                <span class="money">€59.00</span>
-                              </span>
-                            </div>
-                            <div class="hide clearfix">
-                              <select name="id">
-                                <option selected="selected" value="455695565">martial - €59.00</option>
-                                <option value="502624265">animation - €65.00</option>
-                              </select>
-                            </div>
-                            <input type="hidden" name="quantity" value="1">
-                            <button class="btn add-to-cart" data-parent=".parent-fly" type="button" name="add">Add to Cart</button>
-                          </div>
-                        </li>
-                      </ul>
-                    </form>
-                  </div>
-                  <div class="element not-animated" data-animate="bounceIn" data-delay="400">
-                    <form action="/cart/add" method="post" enctype="multipart/form-data">
-                      <ul class="row-container list-unstyled clearfix">
-                        <li class="row-left">
-                          <a href="./product.html" class="hoverBorder">
-                            <span class="hoverBorderWrapper">
-                              <img src="<?php echo get_template_directory_uri();?>/screen/demos/demo_152x216.png" class="image-fly img-responsive" alt="Curabitur sollicitudin">
-                            </span>
-                            <div class="product-ajax-cart hidden-phone">
-                              <span class="overlay_mask"></span>
-                              <div data-href="./ajax/_product-qs.html" data-target="#quick-shop-modal" class="btn btn-3 quick_shop" data-toggle="modal">
-                                Quickshop
-                              </div>
-                            </div>
-                          </a>
-                        </li>
-                        <li class="row-right text-left parent-fly animMix">
-                          <div class="group_info">
-                            <a class="title-5" href="./product.html">Curabitur sollicitudin</a>
-                            <br>
-                            <a class="col-title" href="./collection.html">
-                              XBOX 360
-                            </a>
-                            <p class="hidden-list">
-                              Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius...
-                            </p>
-                            <div class="product-price">
-                              <span class="price">
-                                <span class="money">€59.00</span>
-                              </span>
-                            </div>
-                            <div class="hide clearfix">
-                              <select name="id">
-                                <option selected="selected" value="455695597">animation - €59.00</option>
-                              </select>
-                            </div>
-                            <input type="hidden" name="quantity" value="1">
-                            <button class="btn add-to-cart" data-parent=".parent-fly" type="button" name="add">Add to Cart</button>
-                          </div>
-                        </li>
-                      </ul>
-                    </form>
-                  </div>
-                  <div class="element not-animated" data-animate="bounceIn" data-delay="600">
-                    <form action="/cart/add" method="post" enctype="multipart/form-data">
-                      <ul class="row-container list-unstyled clearfix">
-                        <li class="row-left">
-                          <a href="./product.html" class="hoverBorder">
-                            <span class="hoverBorderWrapper">
-                              <img src="<?php echo get_template_directory_uri();?>/screen/demos/demo_152x216.png" class="image-fly img-responsive" alt="Nam at lectus eget mi vista  hendrerit tincidunt">
-                            </span>
-                            <div class="product-ajax-cart hidden-phone">
-                              <span class="overlay_mask"></span>
-                              <div data-href="./ajax/_product-qs.html" data-target="#quick-shop-modal" class="btn btn-3 quick_shop" data-toggle="modal">
-                                Quickshop
-                              </div>
-                            </div>
-                          </a>
-                        </li>
-                        <li class="row-right text-left parent-fly animMix">
-                          <div class="group_info">
-                            <a class="title-5" href="./product.html">Nam at lectus eget mi vista hendrerit tincidunt</a>
-                            <br>
-                            <a class="col-title" href="./collection.html">
-                              XBOX 360
-                            </a>
-                            <p class="hidden-list">
-                              Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius...
-                            </p>
-                            <div class="product-price">
-                              <span class="price">
-                                <span class="money">€59.00</span>
-                              </span>
-                            </div>
-                            <div class="hide clearfix">
-                              <select name="id">
-                                <option selected="selected" value="455695573">action - €59.00</option>
-                              </select>
-                            </div>
-                            <input type="hidden" name="quantity" value="1">
-                            <button class="btn add-to-cart" data-parent=".parent-fly" type="button" name="add">Add to Cart</button>
-                          </div>
-                        </li>
-                      </ul>
-                    </form>
-                  </div>
-                  <div class="element not-animated" data-animate="bounceIn" data-delay="800">
-                    <form action="/cart/add" method="post" enctype="multipart/form-data">
-                      <ul class="row-container list-unstyled clearfix">
-                        <li class="row-left">
-                          <a href="./product.html" class="hoverBorder">
-                            <span class="hoverBorderWrapper">
-                              <img src="<?php echo get_template_directory_uri();?>/screen/demos/demo_152x216.png" class="image-fly img-responsive" alt="Pellentesque habitant morbi  tristique senectus">
-                            </span>
-                            <div class="product-ajax-cart hidden-phone">
-                              <span class="overlay_mask"></span>
-                              <div data-href="./ajax/_product-qs.html" data-target="#quick-shop-modal" class="btn btn-3 quick_shop" data-toggle="modal">
-                                Quickshop
-                              </div>
-                            </div>
-                          </a>
-                        </li>
-                        <li class="row-right text-left parent-fly animMix">
-                          <div class="group_info">
-                            <a class="title-5" href="./product.html">Pellentesque habitant morbi tristique senectus</a>
-                            <br>
-                            <a class="col-title" href="./collection.html">
-                              XBOX 360
-                            </a>
-                            <p class="hidden-list">
-                              Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius...
-                            </p>
-                            <div class="product-price">
-                              <span class="price">
-                                <span class="money">€59.00</span>
-                              </span>
-                            </div>
-                            <div class="hide clearfix">
-                              <select name="id">
-                                <option selected="selected" value="455695585">action - €59.00</option>
-                                <option value="502628309">horror - €65.00</option>
-                              </select>
-                            </div>
-                            <input type="hidden" name="quantity" value="1">
-                            <button class="btn add-to-cart" data-parent=".parent-fly" type="button" name="add">Add to Cart</button>
-                          </div>
-                        </li>
-                      </ul>
-                    </form>
-                  </div>
-                  <div class="element not-animated" data-animate="bounceIn" data-delay="1000">
-                    <form action="/cart/add" method="post" enctype="multipart/form-data">
-                      <ul class="row-container list-unstyled clearfix">
-                        <li class="row-left">
-                          <a href="./product.html" class="hoverBorder">
-                            <span class="hoverBorderWrapper">
-                              <img src="<?php echo get_template_directory_uri();?>/screen/demos/demo_152x216.png" class="image-fly img-responsive" alt="Suspendisse sed libero consequat">
-                            </span>
-                            <div class="product-ajax-cart hidden-phone">
-                              <span class="overlay_mask"></span>
-                              <div data-href="./ajax/_product-qs.html" data-target="#quick-shop-modal" class="btn btn-3 quick_shop" data-toggle="modal">
-                                Quickshop
-                              </div>
-                            </div>
-                          </a>
-                        </li>
-                        <li class="row-right text-left parent-fly animMix">
-                          <div class="group_info">
-                            <a class="title-5" href="./product.html">Suspendisse sed libero consequat</a>
-                            <br>
-                            <a class="col-title" href="/collection.html">
-                              XBOX 360
-                            </a>
-                            <p class="hidden-list">
-                              Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius...
-                            </p>
-                            <div class="product-price">
-                              <span class="price">
-                                <span class="money">€59.00</span>
-                              </span>
-                            </div>
-                            <div class="hide clearfix">
-                              <select name="id">
-                                <option selected="selected" value="455709309">animation - €59.00</option>
-                              </select>
-                            </div>
-                            <input type="hidden" name="quantity" value="1">
-                            <button class="btn add-to-cart" data-parent=".parent-fly" type="button" name="add">Add to Cart</button>
-                          </div>
-                        </li>
-                      </ul>
-                    </form>
-                  </div>
-                  <div class="element not-animated" data-animate="bounceIn" data-delay="1200">
-                    <form action="/cart/add" method="post" enctype="multipart/form-data">
-                      <ul class="row-container list-unstyled clearfix">
-                        <li class="row-left">
-                          <a href="./product.html" class="hoverBorder">
-                            <span class="hoverBorderWrapper">
-                              <img src="<?php echo get_template_directory_uri();?>/screen/demos/demo_152x216.png" class="image-fly img-responsive" alt="Suspendisse sed libero consequat">
-                            </span>
-                            <div class="product-ajax-cart hidden-phone">
-                              <span class="overlay_mask"></span>
-                              <div data-href="./ajax/_product-qs.html" data-target="#quick-shop-modal" class="btn btn-3 quick_shop" data-toggle="modal">
-                                Quickshop
-                              </div>
-                            </div>
-                          </a>
-                        </li>
-                        <li class="row-right text-left parent-fly animMix">
-                          <div class="group_info">
-                            <a class="title-5" href="./product.html">Suspendisse sed libero consequat</a>
-                            <br>
-                            <a class="col-title" href="./collection.html">
-                              XBOX 360
-                            </a>
-                            <p class="hidden-list">
-                              Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius...
-                            </p>
-                            <div class="product-price">
-                              <span class="price">
-                                <span class="money">€59.00</span>
-                              </span>
-                            </div>
-                            <div class="hide clearfix">
-                              <select name="id">
-                                <option selected="selected" value="455709193">martial - €59.00</option>
-                                <option value="502629429">action - €69.00</option>
-                              </select>
-                            </div>
-                            <input type="hidden" name="quantity" value="1">
-                            <button class="btn add-to-cart" data-parent=".parent-fly" type="button" name="add">Add to Cart</button>
-                          </div>
-                        </li>
-                      </ul>
-                    </form>
-                  </div>
+                <?php
+                    $args = array(
+                            'post__not_in' => array($id),
+                            'posts_per_page'=>-1,
+                            'post_type' => 'product',
+                            'orderby' => 'rand',
+                            'tax_query' => array(
+                                array(
+                                    'taxonomy' => 'cat-product',
+                                    'field'    => 'term_id',
+                                    'terms'    => $cat_ids,
+                                ),
+                            ),
+                            ); 
+                    $my_query = new WP_Query($args);
+                    global $is_related;
+                      $is_related = 0;
+                    if( $my_query->have_posts() ) {
+                    while ($my_query->have_posts()) : $my_query->the_post();
+                      $is_related = 10;
+                      get_template_part( 'template-parts/content', 'archiveproduct' );
+                    endwhile;
+                      $is_related = 0;
+                    }
+                    wp_reset_postdata();
+                  ?>
                 </div>
               </div>
             </section>

@@ -36,7 +36,7 @@ class wpAppbox_CreateOutput {
 	* Ersetzt HTTP und HTTPS durch // und wandelt Links für Apple und Amazon um
 	*
 	* @since   3.0.2
-	* @change  3.4.6
+	* @change  4.0.7
 	*
 	* @param   string  $theURL   App-Link
 	* @param   string  $storeID  ID des Stores (z.B. "googleplay")
@@ -44,28 +44,24 @@ class wpAppbox_CreateOutput {
 	*/
 	
 	function cleanURL( $theURL, $storeID ) {
-		if ( is_ssl() ) {
+		if ( is_ssl() || get_option( 'wpAppbox_forceSSL' ) ) {
 			$theURL = str_replace( 'http://', '//', $theURL );
 			$theURL = str_replace( 'https://', '//', $theURL );
-			if ( strpos( $theURL, '.mzstatic' ) || strpos( $theURL, 'apple.com' ) ) {
-				if ( get_option('wpAppbox_sslAppleImages') ) {
-					preg_match( '/\/\/([a-z]*)([0-9]+)(.mzstatic.com)(.*)/i', $theURL, $urlMatches );
-					/* [0] = URL; [1] = is/a/s; [2] = 1..2..3...; [3] = .mzstatic.com; [4] = /...; */
-					if ( 'is' == $urlMatches[1] ) {
-						/* Für is*.mzstatic.com/... */
-						$theURL = '//' . $urlMatches[1] . $urlMatches[2] . '-ssl' . $urlMatches[3] . $urlMatches[4];
-					} else {
-						/* Für s*|a*.mzstatic.com/... */
-						$theURL = '//s' . $urlMatches[2] . $urlMatches[3] . $urlMatches[4];
-					}
-				} else {
-					$theURL = 'http:' . $theURL;
-				}
-			} 
-			if ( strpos( $theURL, 'amazon.' ) ) {
+			if ( strpos( $theURL, '.mzstatic' ) || strpos( $theURL, 'apple.com' ) ):
+				preg_match( '/\/\/([a-z]*)([0-9]+)(.mzstatic.com)(.*)/i', $theURL, $urlMatches );
+				/* [0] = URL; [1] = is/a/s; [2] = 1..2..3...; [3] = .mzstatic.com; [4] = /...; */
+				if ( 'is' == $urlMatches[1] ):
+					/* Für is*.mzstatic.com/... */
+					$theURL = '//' . $urlMatches[1] . $urlMatches[2] . '-ssl' . $urlMatches[3] . $urlMatches[4];
+				else:
+					/* Für s*|a*.mzstatic.com/... */
+					$theURL = '//s' . $urlMatches[2] . $urlMatches[3] . $urlMatches[4];
+				endif;
+			endif;
+			if ( strpos( $theURL, 'amazon.' ) ):
 				$theURL = str_replace( 'ecx.images-amazon.com', 'images-na.ssl-images-amazon.com', $theURL );
 				$theURL = 'https:' . $theURL;
-			}
+			endif;
 		}
 		return( $theURL );
 	}
@@ -183,7 +179,7 @@ class wpAppbox_CreateOutput {
 	* Gibt den Link zum Store zurück (mit Affiliate)
 	*
 	* @since   2.0.0
-	* @change  3.4.0
+	* @change  4.0.10
 	*
 	* @param   string  $appLink  URL der App
 	* @param   string  $appID    ID der App
@@ -195,76 +191,71 @@ class wpAppbox_CreateOutput {
 		* Link-Umwandlung für iTunes-Affiliate
 		*/
 		$affiliateID = '';
-		if ( strpos( $appLink, 'apple.com' ) ) {
-			if ( get_option('wpAppbox_iTunesGeo') ) {
-				$appLink = str_replace( '//itunes.apple.com', '//geo.itunes.apple.com', $appLink );
-			}
-			if ( get_option('wpAppbox_userAffiliate') ) {
-				$authorID = get_the_author_meta('id');
-				if ( get_option('wpAppbox_user_'.$authorID.'_ownAffiliateApple') ) {
+		if ( strpos( $appLink, 'apple.com' ) ):
+			//if ( get_option('wpAppbox_iTunesGeo') )
+				//$appLink = str_replace( '//itunes.apple.com', '//geo.itunes.apple.com', $appLink );
+			if ( get_option('wpAppbox_userAffiliate') ):
+				$authorID = get_the_author_meta('ID');
+				if ( get_option('wpAppbox_user_'.$authorID.'_ownAffiliateApple') )
 					$affiliateID = Trim( get_option('wpAppbox_user_' . $authorID . '_affiliateApple') );
-				}
-			}
-			if ( '' == $affiliateID ) {
+			endif;
+			if ( '' == $affiliateID )
 				$affiliateID = get_option('wpAppbox_affiliateApple') ? get_option('wpAppbox_affiliateAppleID') : WPAPPBOX_AFFILIATE_APPLE;
-			}
-			if ( '' == $affiliateID ) {
+			if ( '' == $affiliateID )
 				$affiliateID = WPAPPBOX_AFFILIATE_APPLE;
-			}
-			if ( false !== strpos( $appLink, '?' ) ) {
+			if ( false !== strpos( $appLink, '?' ) ):
 				$appLink = $appLink . '&amp;at=' . $affiliateID;
-			} else {
+			else:
 				$appLink = $appLink . '?at=' . $affiliateID;
-			}
-		}
+			endif;
+		endif;
 		/**
 		* Link-Umwandlung für das Amazon PartnerNet
 		*/
-		if ( strpos( $appLink, 'amazon.' ) ) {
-			if ( get_option('wpAppbox_userAffiliate') ) {
-				$authorID = get_the_author_meta('id');
-				if ( get_option('wpAppbox_user_'.$authorID.'_ownAffiliateAmazon') ) {
+		if ( strpos( $appLink, 'amazon.' ) ):
+			if ( get_option('wpAppbox_userAffiliate') ):
+				$authorID = get_the_author_meta('ID');
+				if ( get_option('wpAppbox_user_'.$authorID.'_ownAffiliateAmazon') ):
 					$affiliateID = Trim( get_option('wpAppbox_user_' . $authorID . '_affiliateAmazon') );
-				}
-				if ( ( wpAppbox_checkAmazonAPI() ) && ( '' != $affiliateID ) ) {
+				endif;
+				if ( ( wpAppbox_checkAmazonAPI() ) && ( '' != $affiliateID ) ):
 					$appLink = str_replace( get_option( 'wpAppbox_affiliateAmazonID' ), $affiliateID, $appLink );
 					return( $appLink );
-				}
-			}
-			if ( '' == $affiliateID ) {
+				endif;
+			endif;
+			if ( '' == $affiliateID )
 				$affiliateID = get_option('wpAppbox_affiliateAmazon') ? get_option('wpAppbox_affiliateAmazonID') : WPAPPBOX_AFFILIATE_AMAZON;
-			}
-			if ( '' == $affiliateID ) {
+			if ( '' == $affiliateID )
 				$affiliateID = WPAPPBOX_AFFILIATE_AMAZON;
-			}
 			$appLink = $appLink .' ref=as_li_tf_tl?ie=UTF8&camp=1638&creative=6742&creativeASIN=' . $appID . '&linkCode=am2&tag=' . $affiliateID;
-		}
+		endif;
 		/**
 		* Link-Umwandlung für das Microsoft Private Affiliate Program
 		*/
-		if ( strpos( $appLink, 'microsoft.com' ) ) {
-			if ( get_option('wpAppbox_userAffiliate') ) {
-				$authorID = get_the_author_meta('id');
-				if ( get_option('wpAppbox_user_'.$authorID.'_ownAffiliateMicrosoft') ) {
+		if ( strpos( $appLink, 'microsoft.com' ) ):
+			if ( get_option('wpAppbox_userAffiliate') ):
+				$authorID = get_the_author_meta('ID');
+				if ( get_option('wpAppbox_user_'.$authorID.'_ownAffiliateMicrosoft') ):
 					$affiliateID = Trim( get_option('wpAppbox_user_' . $authorID . '_affiliateMicrosoft') );
 					$programID = Trim( get_option('wpAppbox_user_' . $authorID . '_affiliateMicrosoftProgram') );
-				}
-			}
-			if ( '' == $affiliateID ) {
+				endif;
+			endif;
+			if ( '' == $affiliateID ):
 				$affiliateID = get_option('wpAppbox_affiliateMicrosoft') ? get_option('wpAppbox_affiliateMicrosoftID') : WPAPPBOX_AFFILIATE_MICROSOFT;
 				$programID = get_option('wpAppbox_affiliateMicrosoft') ? get_option('wpAppbox_affiliateMicrosoftProgram') : WPAPPBOX_AFFILIATE_MICROSOFT_PROGRAM;
-			}
-			if ( ( '' == $affiliateID ) || ( '' == $programID ) ) {
+			endif;
+			if ( ( '' == $affiliateID ) || ( '' == $programID ) ):
 				$affiliateID = WPAPPBOX_AFFILIATE_MICROSOFT;
 				$programID = WPAPPBOX_AFFILIATE_MICROSOFT_PROGRAM;
-			}
-			if ( ( '' != $affiliateID ) && ( '' != $programID ) ) {
+			endif;
+			if ( ( '' != $affiliateID ) && ( '' != $programID ) )
 				$appLink = 'http://clkde.tradedoubler.com/click?p=' . $programID . '&a=' . $affiliateID . '&g=0&url=' . urlencode( $appLink );
-			}
-		}
-		if ( get_option('wpAppbox_anonymizeLinks') ) {
+		endif;
+		/**
+		* Links anonymisieren
+		*/
+		if ( get_option('wpAppbox_anonymizeLinks') ) 
 			$appLink = 'https://anon.to/?' . $appLink;
-		}
 		/**
 		* Ausgabe des App-Links
 		*/
@@ -276,50 +267,48 @@ class wpAppbox_CreateOutput {
 	* Gibt die Bewertung zurück
 	*
 	* @since   2.1.0
-	* @change  3.2.0
+	* @change  4.0.9
 	*
 	* @param   string  $appRating  Bewertung der App
 	* @return  string              HTML-Ausgabe der Bewertungssterne
 	*/
 	
 	function returnRating( $appRating ) {
-		if ( ( '1' == get_option('wpAppbox_showRating') ) || ( '2' == get_option('wpAppbox_showRating') ) ) {
-			if ( $appRating == '-1' ) return('');
-			$appRating = str_replace( ',', '.', $appRating );
-			$appRating = number_format( $appRating, 2 );
-			$appRating = round( $appRating, 1 );
-			if ( $appRating <= 0.3 ) {
-				$appRatingStars = '00';
-			} elseif ( $appRating >= 0.4 && $appRating <= 0.7 ) {
-				$appRatingStars = '05';
-			} elseif ( $appRating >= 0.8 && $appRating <= 1.3 ) {
-				$appRatingStars = '10';
-			} elseif ( $appRating >= 1.4 && $appRating <= 1.7 ) {
-				$appRatingStars = '15';
-			} elseif ( $appRating >= 1.8 && $appRating <= 2.3 ) {
-				$appRatingStars = '20';
-			} elseif ( $appRating >= 2.4 && $appRating <= 2.7 ) {
-				$appRatingStars = '25';
-			} elseif ( $appRating >= 2.8 && $appRating <= 3.3 ) {
-				$appRatingStars = '30';
-			} elseif ( $appRating >= 3.4 && $appRating <= 3.7 ) {
-				$appRatingStars = '35';
-			} elseif ( $appRating >= 3.8 && $appRating <= 4.3 ) {
-				$appRatingStars = '40';
-			} elseif ( $appRating >= 4.4 && $appRating <= 4.8 ) {
-				$appRatingStars = '45';
-			} elseif ( $appRating >= 4.9) {
-				$appRatingStars = '50';
-			} else {
-				return( '' );
-			}
-			if ( '1' == get_option('wpAppbox_showRating') ) {
-				$starsColor = 'stars-monochrome';
-			} else {
-				$starsColor = 'stars-colorful';
-			}
-			return( '<div title="' . $appRating . ' ' . __('of 5 stars', 'wp-appbox') . '" class="rating-stars ' . $starsColor . ' stars' . $appRatingStars . '"></div>' );
-		}
+		if ( '1' != get_option('wpAppbox_showRating') && '2' != get_option('wpAppbox_showRating') ) return( '' );
+		if ( $appRating == '-1' ) return( '' );
+		$appRating = str_replace( ',', '.', $appRating );
+		$appRating = number_format( $appRating, 2 );
+		$appRating = round( $appRating, 1 );
+		if ( $appRating <= 0.3 ):
+			$appRatingStars = '00';
+		elseif ( $appRating >= 0.4 && $appRating <= 0.7 ):
+			$appRatingStars = '05';
+		elseif ( $appRating >= 0.8 && $appRating <= 1.3 ):
+			$appRatingStars = '10';
+		elseif ( $appRating >= 1.4 && $appRating <= 1.7 ):
+			$appRatingStars = '15';
+		elseif ( $appRating >= 1.8 && $appRating <= 2.3 ):
+			$appRatingStars = '20';
+		elseif ( $appRating >= 2.4 && $appRating <= 2.7 ):
+			$appRatingStars = '25';
+		elseif ( $appRating >= 2.8 && $appRating <= 3.3 ):
+			$appRatingStars = '30';
+		elseif ( $appRating >= 3.4 && $appRating <= 3.7 ):
+			$appRatingStars = '35';
+		elseif ( $appRating >= 3.8 && $appRating <= 4.3 ):
+			$appRatingStars = '40';
+		elseif ( $appRating >= 4.4 && $appRating <= 4.8 ):
+			$appRatingStars = '45';
+		elseif ( $appRating >= 4.9):
+			$appRatingStars = '50';
+		else:
+			return( '' );
+		endif;
+		if ( '1' == get_option('wpAppbox_showRating') )
+			$starsColor = 'stars-monochrome';
+		else
+			$starsColor = 'stars-colorful';
+		return( '<div title="' . $appRating . ' ' . __('of 5 stars', 'wp-appbox') . '" class="rating-stars ' . $starsColor . ' stars' . $appRatingStars . '"></div>' );
 	}
 	
 	
@@ -327,7 +316,7 @@ class wpAppbox_CreateOutput {
 	* Gibt die Screenshots zurück
 	*
 	* @since   2.0.0
-	* @change  4.0.0
+	* @change  4.0.9
 	*
 	* @param   array   $appScreenshots     Array der Screenshots
 	* @param   string  $storeID            ID des Stores (z.B. "appstore")
@@ -337,14 +326,14 @@ class wpAppbox_CreateOutput {
 	*/
 	
 	function returnScreenshots( $appScreenshots, $storeID, $cacheID, $appType = '' ) {		
-		switch ( $storeID ) {
+		switch ( $storeID ):
 			case 'appstore':
 				$appScreenshots['iphone'][] = '';
 				$appScreenshots['ipad'][] = '';
 				$appScreenshots['watch'][] = '';
 				$appScreenshots['appletv'][] = '';
 				$appScreenshots[] = '';
-				switch ( $appType ) {
+				switch ( $appType ):
 				case 'iphone':
 					$appScreenshots = $appScreenshots['iphone'];
 					break;
@@ -360,12 +349,12 @@ class wpAppbox_CreateOutput {
 				default:
 					$appScreenshots = array_merge( $appScreenshots['iphone'], $appScreenshots['ipad'], $appScreenshots['watch'], $appScreenshots['appletv'] );
 					break;
-				}
+				endswitch;
 				break;
 			case 'windowsstore':
 				$appScreenshots['mobile'][] = '';
 				$appScreenshots['desktop'][] = '';
-				switch ( $appType ) {
+				switch ( $appType ):
 				case 'mobile':
 					$appScreenshots = $appScreenshots['mobile'];
 					break;
@@ -375,18 +364,18 @@ class wpAppbox_CreateOutput {
 				default:
 					$appScreenshots = array_merge( $appScreenshots['mobile'], $appScreenshots['desktop'] );
 					break;
-				}
+				endswitch;
 				break;
-		}
+		endswitch;
 		$outputScreenshots = '';
-		foreach ( $appScreenshots as $screenshotID => $screenshotURL ) {
-			if ( $screenshotURL != '' ) {
+		foreach ( $appScreenshots as $screenshotID => $screenshotURL ):
+			if ( $screenshotURL != '' ):
 				$imageCache = new wpAppbox_imageCache;
 				$screenshotURL = $imageCache->cacheImages( $screenshotURL, $cacheID, 'ss' );
 				$screenshotURL = $this->cleanURL( $screenshotURL, $storeID );
 				$outputScreenshots .= "<li><img src=\"$screenshotURL\" alt=\"" . esc_attr( '{TITLE_ATTR} ' . esc_attr__('Screenshot', 'wp-appbox') ) . "\" title=\"\" /></li>";
-			}
-		}
+			endif;
+		endforeach;
 		return( $outputScreenshots );
 	}
 	
@@ -441,7 +430,7 @@ class wpAppbox_CreateOutput {
 	* Ausgabe diverser Fehler (wird überarbeitet)
 	*
 	* @since   2.0.0
-	* @change  3.2.0
+	* @change  4.0.6
 	*
 	* @param   string  $error_type  Fehlertyp (nostore, noappid, notfound, fallback)
 	* @param   string  $storeID     ID des Stores (z.B. "playstore) [optional]
@@ -454,7 +443,7 @@ class wpAppbox_CreateOutput {
 			
 		$template = wpAppbox_loadTemplate( 'error' );
 		
-		switch ( $error_type ) {
+		switch ( $error_type ):
 			case 'nostore':
 				$errorMessage = esc_html__('The App Store is not recognized.', 'wp-appbox');
 				break;
@@ -467,36 +456,36 @@ class wpAppbox_CreateOutput {
 			default:
 				$errorMessage = esc_html__('An unknown error has occurred.', 'wp-appbox');
 				break;
-		}
+		endswitch;
 		
-		if ( 'notfound' == $error_type && ( get_option('wpAppbox_eOnlyAuthors') == false || wpAppbox_isUserAuthor() ) ) {
-			$cssClasses = 'wpappbox wpappbox-' . wpAppbox_GetAppInfoAPI::getCacheID( $storeID, $appID ) . ' ' . $storeID;
+		if ( 'notfound' == $error_type && ( get_option('wpAppbox_eOnlyAuthors') == false || wpAppbox_isUserAuthor() ) ):
+			$cssClasses = 'wpappbox wpappbox-' . (new wpAppbox_GetAppInfoAPI)->getCacheID( $storeID, $appID ) . ' ' . $storeID;
 			$template = str_replace( '{WPAPPBOXCSSCLASSES}', $cssClasses, $template );
 			$template = str_replace( '{WPAPPBOXVERSION}', WPAPPBOX_PLUGIN_VERSION, $template );
-			$template = str_replace( '{APPID}', $appData['app_id'], $template );
+			$template = str_replace( '{APPID}', $appID, $template );
 			$template = str_replace( '{ERRORMSG}', $errorMessage, $template );
 			$template = str_replace( '{ERRORMSG_ATTR}', esc_attr( $errorMessage ), $template );
-			$template = str_replace( '{ICON}', 'https://www.gravatar.com/avatar/' . md5( $appData['app_id'] ) . '?s=128&d=retro&r=G', $template );
+			$template = str_replace( '{ICON}', 'https://www.gravatar.com/avatar/' . md5( $appID ) . '?s=128&d=retro&r=G', $template );
 			$template = str_replace( '{ICON}', plugins_url( 'img/wpappbox-icon.png', dirname( __FILE__ ) ), $template );
-			$template = str_replace( '{APPLINK}', wpAppbox_GetAppInfoAPI::getStoreURL( $storeID, $appID ), $template );
+			$template = str_replace( '{APPLINK}', (new wpAppbox_GetAppInfoAPI)->getStoreURL( $storeID, $appID ), $template );
 			$template = str_replace( '{GOOGLESEARCH}', 'https://www.google.com/search?q=' . $appID . '+' . $storeID, $template );
-			if ( get_option('wpAppbox_nofollow') ) {
+			if ( get_option('wpAppbox_nofollow') ):
 				$template = str_replace( '<a ', '<a rel="nofollow" ', $template );
-			}
-			if ( get_option('wpAppbox_targetBlank') ) {
+			endif;
+			if ( get_option('wpAppbox_targetBlank') ):
 				$template = str_replace( '<a ', '<a target="_blank" ', $template ); 
-			}
-			$template = str_replace( '{RELOADLINK}', $this->returnReloadLink( wpAppbox_GetAppInfoAPI::getCacheID( $storeID, $appID ) ), $template );
-			if ( !is_feed() ) {
+			endif;
+			$template = str_replace( '{RELOADLINK}', $this->returnReloadLink( (new wpAppbox_GetAppInfoAPI)->getCacheID( $storeID, $appID ) ), $template );
+			if ( !is_feed() ):
 				$template = '<!-- WP-Appbox (Version: ' . WPAPPBOX_PLUGIN_VERSION . ' // Store: ' . $storeID . ' // ID: ' . $appID . ') -->' . $template . '<!-- /WP-Appbox -->';
-			}
+			endif;
 			return( $template );
-		} else {
-			if ( wpAppbox_isUserAuthor() ) {
+		else:
+			if ( wpAppbox_isUserAuthor() ):
 				$template = '<div class="wpappbox errormsg"><span>WP-Appbox:</span> ' . $errorMessage . ' :-(</div>';
 				return( $template );
-			}
-		}
+			endif;
+		endif;
 		
 	}
 	

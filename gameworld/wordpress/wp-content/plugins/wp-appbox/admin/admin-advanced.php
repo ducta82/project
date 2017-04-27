@@ -66,7 +66,7 @@
 		<td>	
 			<label for="wpAppbox_autoLinks">
 				<input type="checkbox" name="wpAppbox_autoLinks" id="wpAppbox_autoLinks" value="1" <?php checked( get_option('wpAppbox_autoLinks') ); ?>/>
-				<?php esc_html_e('Detect urls of apps in a separated line within the post.', 'wp-appbox'); ?> <?php esc_html_e('Very experimental, but it should work.', 'wp-appbox'); ?>
+				<?php esc_html_e('Detect urls of apps in a separated line within the post.', 'wp-appbox'); ?> <?php esc_html_e('Little bit experimental.', 'wp-appbox'); ?>
 			</label>
 		</td>
 	</tr>
@@ -162,15 +162,18 @@
 		</td>
 	</tr>
 	
+	<?php if ( !is_ssl() ): ?>
 	<tr valign="top">
-		<th scope="row"><label for="wpAppbox_eImageApple"><?php esc_html_e('Apple App Store Icons', 'wp-appbox'); ?>:</label></th>
+		<th scope="row"><label for="wpAppbox_forceSSL"><?php esc_html_e('Force SSL', 'wp-appbox'); ?>:</label></th>
 		<td>	
-			<label for="wpAppbox_eImageApple">
-				<input type="checkbox" name="wpAppbox_eImageApple" id="wpAppbox_eImageApple" value="1" <?php checked( get_option('wpAppbox_eImageApple') ); ?>/>
-				<?php esc_html_e('Compatibility mode for app icons from the (Mac) App Store.', 'wp-appbox'); ?>
+			<label for="wpAppbox_forceSSL">
+				<input type="checkbox" name="wpAppbox_forceSSL" id="wpAppbox_forceSSL" value="1" <?php checked( get_option('wpAppbox_forceSSL') ); ?>/>
+				<?php printf( wp_kses( __( 'Force SSL output (for some reasons <a href="%s">is_ssl()</a> is buggy)', 'wp-appbox' ), array(  'a' => array( 'href' => array() ) ) ), esc_url( 'https://codex.wordpress.org/Function_Reference/is_ssl' ) ); ?>
+				. <?php esc_html_e( 'Experimental for Apple, as some images may not exist on https server.', 'wp-appbox' ); ?>
 			</label>
 		</td>
 	</tr>
+	<?php endif; ?>
 	
 	<tr valign="top">
 		<th scope="row"><label for="wpAppbox_flushCache"><?php esc_html_e('Flush cache', 'wp-appbox'); ?>:</label></th>
@@ -191,24 +194,12 @@
 <table class="form-table">
 
 	<tr valign="top">
-		<th scope="row"><label for="wpAppbox_sslAppleImages"><?php esc_html_e('SSL for Apple App Store', 'wp-appbox'); ?>:</label></th>
-		<td>	
-			<label for="wpAppbox_sslAppleImages">
-				<input type="checkbox" name="wpAppbox_sslAppleImages" id="wpAppbox_sslAppleImages" value="1" <?php checked( get_option('wpAppbox_sslAppleImages') ); ?>/>
-				<input type="checkbox" name="wpAppbox_sslAppleImagesVerify" id="wpAppbox_sslAppleImagesVerify" value="1" <?php checked( get_option('wpAppbox_sslAppleImages') ); ?>/>
-				<?php esc_html_e('Use SSL urls for images from the Apple App Store. Highly experimental, some images may not exist on https server.', 'wp-appbox'); ?>
-			</label>
-		</td>
-	</tr>
-
-
-	<tr valign="top">
 		<th scope="row"><label for="wpAppbox_cacheCronjob"><?php esc_html_e('Cronjob for caching', 'wp-appbox'); ?>:</label></th>
 		<td>	
 			<label for="wpAppbox_cacheCronjob">
 				<input type="checkbox" name="wpAppbox_cacheCronjob" id="wpAppbox_cacheCronjob" value="1" <?php checked( get_option('wpAppbox_cacheCronjob') ); ?>/>
 				<input type="checkbox" name="wpAppbox_cacheCronjobVerify" id="wpAppbox_cacheCronjobVerify" value="1" <?php checked( get_option('wpAppbox_cacheCronjob') ); ?>/>
-				<?php printf( wp_kses( __( 'Show cronjob option to update apps in the cache, see more in <a href="%s">cache tab</a>. Warning: Needs much more ressources.', 'wp-appbox' ), array(  'a' => array( 'href' => array() ) ) ), esc_url( 'options-general.php?page=wp-appbox&tab=cache' ) ); ?>
+				<?php printf( wp_kses( __( 'Show cronjob option to update apps in the cache, see more in <a href="%s">cache tab</a>. Warning: Needs much more resources.', 'wp-appbox' ), array(  'a' => array( 'href' => array() ) ) ), esc_url( 'options-general.php?page=wp-appbox&tab=cache' ) ); ?>
 			</label>
 		</td>
 	</tr>

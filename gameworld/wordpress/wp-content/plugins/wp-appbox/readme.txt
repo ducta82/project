@@ -4,7 +4,7 @@ Donate link: https://www.paypal.me/marcelismus
 Tags: google play, google, android, apps, apple, app store, ios, windows, mobile, windows store, appbox, firefox, firefox marketplace, chrome, chrome web store, amazon, amazon apps, wordpress, opera, steam, phg, gog.com, good old games, xda labs
 Requires at least: 3.4
 Tested up to: 4.6
-Stable tag: 4.0.1
+Stable tag: 4.0.13
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0
 
@@ -55,7 +55,7 @@ Die Besonderheit gibt es im übrigen auch für den Windows Store: Auch hier lass
 * Komplett anpassbar via HTML und CSS
 
 = Systemanforderungen =
-* PHP ab 5.3
+* PHP ab 5.4
 * WordPress ab 3.4
 * Server mit laufendem cURL und mb_eregi
 * Ausgehende Anfragen müssen erlaubt sein
@@ -94,7 +94,7 @@ Das Logo der WP-Appbox stammt von [Till](https://twitter.com/craive "@craive on 
 12. WP-Appbox Einstellungen "Hilfe"
 
 = Requirements =
-* PHP ab 5.3
+* PHP ab 5.4
 * WordPress ab 3.4
 * Server mit aktiviertem allow_url_fopen, cURL (curl_init und curl_exec) und mb_eregi
 
@@ -110,7 +110,7 @@ Einfach in den Plugin-Ordner von WordPress extrahieren und aktivieren.
 == Frequently Asked Questions ==
   
 = Gibt es Vorraussetzungen für den Server? =
-  Ja: Der Server muss mindestens auf PHP 5.3 laufen und cURL, sowie mb_eregi unterstützen.
+  Ja: Der Server muss mindestens auf PHP 5.4 laufen und cURL, sowie mb_eregi unterstützen.
 
 = Kann man die Ausgabe anpassen? =
   Ja - sämtliche Ausgabeelemente können mittels HTML-Templates und CSS nach belieben angepasst werden.
@@ -130,9 +130,36 @@ Einfach in den Plugin-Ordner von WordPress extrahieren und aktivieren.
 
 == Changelog ==
 
+= 4.0.11 - 4.0.13 =
+* [mehr Infos zu v4.0.0 im Blog](https://tchgdns.de/wp-appbox-4-0-0/ "WP-Appbox 4.0.0")
+* Kleinere Fehler behoben
+
+= 4.0.10 =
+* Option für geo.itunes.com-URLs aufgrund zahlreicher Probleme entfernt
+
+= 4.0.9 =
+* Einige Store-Icons ausgetauscht
+* Fix für den Windows Store
+* Fix für den Appbox-Button im WYSIWYG-Editor
+* Kleine Fehler behoben
+
+= 4.0.8 =
+* Cache-Mode wird nicht mehr zurückgesetzt, wenn Cronjob deaktiviert
+* Fehlerausgabe ein wenig angepasst
+
+= 4.0.7 =
+* SSL-Ausgabe kann nun erzwungen werden
+* Verschiedene Bugfixes
+
+= 4.0.6 =
+* Linkfix für "Nicht gefunden"-Boxen
+* Update-Benachrichtigung wird nur einmal angezeigt
+
+= 4.0.2 - 4.0.5 =
+* Einige PHP Notices entfernt
+
 = 4.0.1 =
 * Fix beim User-Agent
-* [mehr Infos zu v4.0.0 im Blog](https://tchgdns.de/wp-appbox-4-0-0/ "WP-Appbox 4.0.0")
 
 = 4.0.0 =
 * [mehr Infos zu v4.0.0 im Blog](https://tchgdns.de/wp-appbox-4-0-0/ "WP-Appbox 4.0.0")
@@ -152,6 +179,7 @@ Einfach in den Plugin-Ordner von WordPress extrahieren und aktivieren.
 * Fix für die Bewertungen, zeigen nun auch halbe Sterne an
 * Rabattierte Apps aus dem Play Store zeigen nun den alten Preis an
 * Kleinerer Fix in der URL-Erkennung
+* Erfordert mindestens PHP 5.4
 
 = 3.4.9 + 3.4.10 =
 * Fix für den Windows Store

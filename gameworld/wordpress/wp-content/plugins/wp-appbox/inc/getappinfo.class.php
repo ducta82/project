@@ -58,7 +58,7 @@ class wpAppbox_GetAppInfoAPI {
 				break;
 		}
 		$cacheID = self::getCacheID( $storeID, $appID );
-		$transientName = 'wpAppbox_blockQuery' . $cacheID;
+		$transientName = 'wpAppbox_blockQuery_' . $cacheID;
 		
 		if ( '' != get_transient( $transientName ) && !wpAppbox_forceNewCache( $cacheID ) && !$isCron ) {
 			$blockedUntil = date_i18n( 'Y-m-d H:i:s', get_option( '_transient_timeout_' . $transientName ) );
@@ -72,7 +72,7 @@ class wpAppbox_GetAppInfoAPI {
 			/**
 			* Cache existiert nicht
 			*/
-			wpAppbox_errorOutput( 'function: wpAppbox_hasCachedData() ---> App (ID ' . $appID . ') has no chached data' );
+			wpAppbox_errorOutput( 'function: wpAppbox_hasCachedData() ---> App has no chached data' );
 			$appData = $this->$thegetfunction( $appID, $cacheID );
 			if ( $appData ) $appData = $this->cacheAppData( $appData );
 		} else { 
@@ -83,7 +83,7 @@ class wpAppbox_GetAppInfoAPI {
 				/**
 				* Cache-Daten sind abgelaufen und müssen u.U. erneuert werden
 				*/
-				wpAppbox_errorOutput( 'function: wpAppbox_hasCachedData() ---> App (ID ' . $appID . ') has cached data but they are expired' );
+				wpAppbox_errorOutput( 'function: wpAppbox_hasCachedData() ---> App has cached data but they are expired' );
 				$appData = $this->$thegetfunction( $appID, $cacheID );
 				if ( FALSE === $appData ) {
 					/**
@@ -102,7 +102,7 @@ class wpAppbox_GetAppInfoAPI {
 				* Cache-Daten sind nicht abgelaufen = aktuell
 				*/
 				$appData = true; // Einfach weil ja Daten vorhanden sind, Abfrage erfolgt später ;-)
-				wpAppbox_errorOutput( 'function: wpAppbox_hasCachedData() ---> App (ID ' . $appID . ') has valid cached data' );
+				wpAppbox_errorOutput( 'function: wpAppbox_hasCachedData() ---> App has valid cached data' );
 			}
 		}
 		/**
@@ -112,7 +112,7 @@ class wpAppbox_GetAppInfoAPI {
 		else if ( !$appData && get_option( 'wpAppbox_blockMissing' ) ) { // Keine App gefunden
 			set_transient( $transientName, $cacheID, WPAPPBOX_BLOCKMISSINGTIME * MINUTE_IN_SECONDS );
 			$blockedUntil = date_i18n( 'Y-m-d H:i:s', get_option( '_transient_timeout_' . $transientName ) );
-			wpAppbox_errorOutput( 'function: getTheAppData() ---> App (ID ' . $appID . ') not found. Queries will be blocked until ' . $blockedUntil . '.' );
+			wpAppbox_errorOutput( 'function: getTheAppData() ---> App not found. Queries will be blocked until ' . $blockedUntil . '.' );
 		}
 		return( false );
 	}
@@ -122,7 +122,7 @@ class wpAppbox_GetAppInfoAPI {
 	* Prüft ob die App-Daten bereits in der Cache-Tabelle liegen
 	*
 	* @since   2.0.0
-	* @change  4.0.0
+	* @change  4.0.12
 	*
 	* @param   string    $cacheID       	Cache-ID der App
 	* @return  array   	 $hasCachedData 	array('exists' => boolean, 'expired' => boolean)
@@ -157,7 +157,6 @@ class wpAppbox_GetAppInfoAPI {
 					break;
 				case 'cronjob': // Neue App-Daten nur via Cronjob abfragen
 					if ( defined( 'DOING_CRON' ) ) {
-						print_r( 'fool' );
 						$hasCachedData['expired'] = true;
 						return( $hasCachedData );
 					} else if ( !wpAppbox_forceNewCache( $cacheID ) ) {
@@ -217,7 +216,7 @@ class wpAppbox_GetAppInfoAPI {
 	* Speichert die App-Daten im Cache
 	*
 	* @since   2.0.0
-	* @change  4.0.0
+	* @change  4.0.9
 	*
 	* @param   array     $appData       Array der App-Daten
 	* @return  boolean   true/false     TRUE when cached
@@ -235,6 +234,29 @@ class wpAppbox_GetAppInfoAPI {
 			$appData['app_screenshots'] = serialize( $appData['app_screenshots'] );
 		else $appData['app_screenshots'] = '';
 		if ( '' != trim( $appData['app_title'] ) ) {
+			/**
+			* BEGIN App-Daten für die Datenbank kontrollieren und korrigieren
+			*/
+			$fixedAddon = '[*]';
+			if ( 255 < strlen( $appData['app_url'] ) ) 
+				$appData['app_url'] = substr( $appData['app_url'], 0, 255-3 ) . $fixedAddon;
+			if ( 350 < strlen( $appData['app_icon'] ) )
+				$appData['app_icon'] = substr( $appData['app_icon'], 0, 350-3 ) . $fixedAddon;
+			if ( 255 < strlen( $appData['app_title'] ) )
+				$appData['app_title'] = substr( $appData['app_title'], 0, 255-3 ) . $fixedAddon;
+			if ( 100 < strlen( $appData['app_author'] ) )
+				$appData['app_author'] = substr( $appData['app_author'], 0, 100-3 ) . $fixedAddon;
+			if ( 255 < strlen( $appData['app_author_url'] ) )
+				$appData['app_author_url'] = substr( $appData['app_author_url'], 0, 255-3 ) . $fixedAddon;
+			if ( 10 < strlen( $appData['app_price'] ) )
+				$appData['app_price'] = substr( $appData['app_price'], 0, 10-3 ) . $fixedAddon;
+			if ( 1 < strlen( $appData['app_has_iap'] ) )
+				$appData['app_has_iap'] = substr( $appData['app_has_iap'], 0, 1 );
+			if ( 3 < strlen( $appData['app_rating'] ) )
+				$appData['app_rating'] = substr( $appData['app_rating'], 0, 3 );
+			/**
+			* END App-Daten für die Datenbank kontrollieren und korrigieren
+			*/
 			$replaced = $wpdb->replace( wpAppbox_databaseName(), $appData );
 			if ( $wpdb->last_error ):
 				wpAppbox_errorOutput( 'function: wpAppbox_cacheAppData() ---> ' . $wpdb->last_error );
@@ -268,7 +290,7 @@ class wpAppbox_GetAppInfoAPI {
 	* Gibt die bereits gecachten App-Daten zurück
 	*
 	* @since   2.0.0
-	* @change  4.0.0
+	* @change  4.0.9
 	*
 	* @param   string  $cacheID         Cache-ID der App
 	* @return  array   $appData         Array der App-Daten
@@ -278,9 +300,8 @@ class wpAppbox_GetAppInfoAPI {
 	function returnCachedData( $cacheID ) {
 		global $wpdb;
 		$cachedApp = $wpdb->get_row( "SELECT * FROM " . wpAppbox_databaseName() . " WHERE id = '" . $cacheID . "' ");
-		if ( $wpdb->last_error ) {
+		if ( $wpdb->last_error )
 			wpAppbox_errorOutput( 'function: wpAppbox_returnCachedData() ---> ' . $wpdb->last_error );
-		}
 		if ( $cachedApp != null ) {
 			$appData = array();
 			$appData['id'] = $cachedApp->id;
@@ -378,7 +399,7 @@ class wpAppbox_GetAppInfoAPI {
 	* Gibt den Quellcode einer URL zurück
 	*
 	* @since   1.0.0
-	* @change  4.0.0
+	* @change  4.0.11
 	*
 	* @param   string  $appURL              URL der App
 	* @param   string  $javascript_loop     Wie viele JS-Loops [optional]
@@ -388,9 +409,8 @@ class wpAppbox_GetAppInfoAPI {
 	
 	function getContent( $appURL, $javascript_loop = 0, $timeout = 5 ) {
 		$appURL = urldecode( $appURL );
-		if ( '' != get_option('wpAppbox_curlTimeout') ) {
+		if ( '' != get_option('wpAppbox_curlTimeout') )
 			$timeout = get_option('wpAppbox_curlTimeout');
-		}
 		if ( defined( 'DOING_CRON' ) ) $timeout = 15; // Bei Cronjob längeren Timeout setzen
 		$appURL = str_replace( "&amp;", "&", trim( $appURL ) );
 		$cookie = tempnam( "/tmp", "CURLCOOKIE" );
@@ -404,41 +424,41 @@ class wpAppbox_GetAppInfoAPI {
 		curl_setopt( $ch, CURLOPT_AUTOREFERER, false );
 		curl_setopt( $ch, CURLOPT_SSL_VERIFYPEER, false ); 
 		curl_setopt( $ch, CURLOPT_FOLLOWLOCATION, true ); 
-		if ( ini_get('open_basedir') == '' && !ini_get('safe_mode') ) {
+		if ( ini_get('open_basedir') == '' && !ini_get('safe_mode') )
 			curl_setopt( $ch, CURLOPT_FOLLOWLOCATION, true );
-		}
 		curl_setopt( $ch, CURLOPT_CONNECTTIMEOUT, $timeout );
 		curl_setopt( $ch, CURLOPT_TIMEOUT, $timeout );
 		curl_setopt( $ch, CURLOPT_MAXREDIRS, 10 );
+		$i = 0;
 		while ( $i++ < 3 ):
 			$content = curl_exec( $ch );
 			$response = curl_getinfo( $ch );
-			if ( '0' == curl_errno( $ch ) ) break;
+			if ( '0' == curl_errno( $ch ) ) 
+				break;
 		endwhile;
 		curl_close( $ch );
 		unlink( $cookie );
 		if ( 403 == $response['http_code'] ):
 			ini_set( 'user_agent', 'Mozilla/4.0 (compatible; MSIE 6.0)' ); 
-			$content_fgc = file_get_contents( $appURL );
-			foreach ( $http_response_header as $response_code ) {
-				if ( strpos( $response_code, '200 OK' ) !== false ) {
+			$content_fgc = @file_get_contents( $appURL );
+			foreach ( $http_response_header as $response_code ):
+				if ( strpos( $response_code, '200 OK' ) !== false )
 					return( array( $content_fgc, array( 'http_code' => '200' ) ) );
-				}
-			}
+			endforeach;
 		endif;
 		if ( 301 == $response['http_code'] || 302 == $response['http_code'] ):
 			ini_set( "user_agent", "Mozilla/5.0 (Windows; U; Windows NT 5.1; rv:1.7.3) Gecko/20041001 Firefox/0.10.1" );
 			if ( $headers = get_headers( $response['url'] ) ) {
-				foreach ( $headers as $value ) {
-					if ( "location:" == substr( strtolower( $value ) , 0, 9 ) ) return( $this->getContent( trim( substr( $value, 9, strlen( $value ) ) ) ) );
-				}
+				foreach ( $headers as $value ):
+					if ( "location:" == substr( strtolower( $value ) , 0, 9 ) ) 
+						return( $this->getContent( trim( substr( $value, 9, strlen( $value ) ) ) ) );
+				endforeach;
 			}
 		endif;
-		if ( ( preg_match( "/>[[:space:]]+window\.location\.replace\('(.*)'\)/i", $content, $value ) || preg_match( "/>[[:space:]]+window\.location\=\"(.*)\"/i", $content, $value ) ) && $javascript_loop < 5 ):
+		if ( ( preg_match( "/>[[:space:]]+window\.location\.replace\('(.*)'\)/i", $content, $value ) || preg_match( "/>[[:space:]]+window\.location\=\"(.*)\"/i", $content, $value ) ) && $javascript_loop < 5 )
 			return( $this->getContent( $value[1], $javascript_loop+1 ) );
-		else:
+		else
 			return( array( $content, $response ) );
-		endif;
 	}
 	
 	
@@ -446,7 +466,7 @@ class wpAppbox_GetAppInfoAPI {
 	* Informationen aus dem Play Store auslesen
 	*
 	* @since   1.0.0
-	* @change  4.0.0
+	* @change  4.0.12
 	*
 	* @param   string  $appID    ID der App
 	* @param   string  $cacheID  Cache-ID der App
@@ -462,7 +482,7 @@ class wpAppbox_GetAppInfoAPI {
 		}
 		$pageURL = $this->getStoreURL( $storeID, $appID );
 		$thisContent = $this->getContent( $pageURL );
-		wpAppbox_errorOutput( $thisContent );
+		//wpAppbox_errorOutput( $thisContent );
 		$appData = array();
 		if ( isset( $thisContent[0] ) && '200' == $thisContent[1]['http_code'] ) {
 			wpAppbox_errorOutput( 'function: getGooglePlay() ---> Get app information' );
@@ -474,7 +494,7 @@ class wpAppbox_GetAppInfoAPI {
 			//App-Daten aus der HTML-Seite auslesen
 			$appURL = $pageURL;
 			$appIcon = pq( 'img.cover-image[itemprop="image"]' )->attr( 'src' );
-			$appIcon = str_replace( '=w300', '=w128', $appIcon );
+			$appIcon = preg_replace( '/(\/\/.*googleusercontent\.com\/.*)(\=w[0-9]{1,4}(?:-rw)?)/i', '$1=w128', $appIcon );
 			$appTitle = pq( 'div[itemprop="name"]>div' )->html();
 			if ( '' == trim( $appTitle ) ) {
 				$appTitle = pq( 'h1[itemprop="name"]>div' )->html();
@@ -498,7 +518,7 @@ class wpAppbox_GetAppInfoAPI {
 			$appScreenshots = array();
 			foreach ( pq( 'img[itemprop="screenshot"]' ) as $appShots ) {
 				$appScreenshot = pq( $appShots )->attr( 'src' );
-				if ( substr( $appScreenshot, -8, 8) == '=h310-rw' ) $appScreenshot = str_replace( '=h500', '', $appScreenshot );
+				$appScreenshot = preg_replace( '/(\/\/.*googleusercontent\.com\/.*)(\=h[0-9]{1,4}(?:-rw)?)/i', '$1=h310', $appScreenshot );
 				$appScreenshots[] = $appScreenshot;
 			}
 			$appDescription = pq( 'div[itemprop="description"]>div' )->html();
@@ -646,22 +666,26 @@ class wpAppbox_GetAppInfoAPI {
 		$amaParsed = json_decode( json_encode( $amaParsed ), true );
 		if ( 'MOBILE_APPLICATION' == $amaParsed['ItemAttributes']['ProductTypeName'] || 'SKILL_APPLICATION' == $amaParsed['ItemAttributes']['ProductTypeName'] ) {
 			$appTitle = $amaParsed['ItemAttributes']['Title'];
-			$appPrice = $amaParsed['ItemAttributes']['OfferSummary']['Amount'];
-			if ( '0' != $appPrice ) {
-				$appPrice = $amaParsed['ItemAttributes']['OfferSummary']['FormattedPrice'];
-			}
-			if ( strpos( $appPrice, 'EUR' ) !== false ) {
-				$appPrice = str_replace( 'EUR ', '', $appPrice ) . '€';
-			}
+			if ( isset( $amaParsed['ItemAttributes']['OfferSummary'] ) ):
+				$appPrice = $amaParsed['ItemAttributes']['OfferSummary']['Amount'];
+				if ( '0' != $appPrice ):
+					$appPrice = $amaParsed['ItemAttributes']['OfferSummary']['FormattedPrice'];
+				endif;
+				if ( strpos( $appPrice, 'EUR' ) !== false ):
+					$appPrice = str_replace( 'EUR ', '', $appPrice ) . '€';
+				endif;
+			else:
+				$appPrice = '0';
+			endif;
 			$appURL = $amaParsed['DetailPageURL'];
 			$appAuthor = $amaParsed['ItemAttributes']['Publisher'];
 			$appIcon = $amaParsed['MediumImage']['URL'];
-			foreach ( $amaParsed['ImageSets']['ImageSet'] as $screenshotSet ) {
-				if ( 'variant' == $screenshotSet['@attributes']['Category'] ) {
+			foreach ( $amaParsed['ImageSets']['ImageSet'] as $screenshotSet ):
+				if ( 'variant' == $screenshotSet['@attributes']['Category'] ):
 					$appScreenshot = $screenshotSet['LargeImage']['URL'];
 					if ( '' != Trim( $appScreenshot ) ) $appScreenshots[] = $appScreenshot;
-				}
-			}
+				endif;
+			endforeach;
 			if ( true == $amaParsed['CustomerReviews']['HasReviews'] ) {
 				$appRatingTemplate = $this->getContent( $amaParsed['CustomerReviews']['IFrameURL'] );
 				phpQuery::newDocumentHTML( $appRatingTemplate[0] );
@@ -688,7 +712,7 @@ class wpAppbox_GetAppInfoAPI {
 			$appData['app_icon'] = $appIcon;
 			$appData['app_title'] = trim( $appTitle );
 			$appData['app_author'] = trim( $appAuthor );
-			$appData['app_author_url'] = $appAuthorURL;
+			$appData['app_author_url'] = ( isset( $appAuthorURL ) ? $appAuthorURL : '' );
 			$appData['app_price'] = $appPrice;
 			$appData['app_rating'] = $appRating;
 			$appData['app_extend'] = $appExtend;
@@ -1016,7 +1040,7 @@ class wpAppbox_GetAppInfoAPI {
 			}
 			$appData['app_price'] = $appPrice;
 			$appData['app_has_iap'] = $appHasIAP;
-			if ( $appForWatch ) {
+			if ( isset( $appForWatch ) ) {
 				$appData['app_extend'] = array( 'watchapp' => true );
 			}
 			$appData['app_rating'] = $appRating;
@@ -1100,7 +1124,7 @@ class wpAppbox_GetAppInfoAPI {
 	* Informationen aus dem Windows Store auslesen
 	*
 	* @since   1.0.0
-	* @change  4.0.0
+	* @change  4.0.9
 	*
 	* @param   string  $appID    ID der App
 	* @param   string  $storeID  ID des Stores (wird fest vergeben)
@@ -1149,7 +1173,7 @@ class wpAppbox_GetAppInfoAPI {
 			if ( '' != $oldPrice ) {
 				$appExtend['oldPrice'] = $oldPrice;
 			}
-			$appAuthor = pq( 'div.context-product-placement-data>dl>dd:first' )->html();
+			$appAuthor = pq( 'dd.context-product-details>div:first' )->html();
 			$appIcon = pq( 'img.cli_image:first' )->attr( 'src' );
 			$appBackground = pq( 'img.cli_image:first' )->attr( 'style' );
 			$appBackground = preg_replace( "/.*background-color: (.*);[ ].*/i", "$1", $appBackground );
@@ -1555,7 +1579,7 @@ class wpAppbox_GetAppInfoAPI {
 			$appData['app_author'] = trim( $appAuthor );
 			$appData['app_author_url'] = $appAuthorURL;
 			$appData['app_price'] = $appPrice;
-			$appData['app_has_iap'] = $appHasIAP;
+			$appData['app_has_iap'] = ( ( isset( $appHasIAP ) && $appHasIAP ) ? true : false );
 			$appData['app_rating'] = $appRating;
 			$appData['store_name'] = 'XDA Labs';
 			$appData['store_name_css'] = $storeID;

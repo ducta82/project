@@ -1,4 +1,4 @@
-<?php if ( function_exists('curl_version') ) {
+<?php if ( function_exists('curl_version') ):
 	$ch = curl_init();
 	curl_setopt( $ch, CURLOPT_SSL_VERIFYPEER, false );
 	curl_setopt( $ch, CURLOPT_RETURNTRANSFER, true );
@@ -6,10 +6,11 @@
 	$result = curl_exec( $ch );
 	curl_close( $ch );
 	$json = json_decode( $result );
-	if ( '' != $json->countryName ) {
+	$countryName = '';
+	if ( '' != $json->countryName ):
 		$countryName = ' ' . sprintf( esc_html__( 'Your servers location is %1$s', 'wp-appbox' ), '<a href="https://api.ip2country.info/ip?' . $_SERVER['SERVER_ADDR'] . '" target="_blank">' . __( $json->countryName, 'wp-appbox' ) . '</a>.' );
-	}
-} ?>
+	endif;
+endif; ?>
 
 <div class="update-nag wpa-update-nag">
     <p><?php esc_html_e('Here you can change the query URL of the stores. Just copy the desired URL and set instead of the app ID wildcard {APPID}. If the URL is empty, the default URL (German) is used.', 'wp-appbox'); ?></p>
@@ -23,9 +24,9 @@
 			<th scope="row"><?php echo( $wpAppbox_storeNames[$storeID] ); ?>:</th>
 			<td>	
 				<?php 
-					if ( in_array( $storeID, $wpAppbox_storeURL_noLanguages ) ) { 
+					if ( in_array( $storeID, $wpAppbox_storeURL_noLanguages ) ):
 						echo( __('No language selection supported.', 'wp-appbox') . $countryName ); 
-					}  else { 
+					else:
 					?>
 					<?php 
 						if ( ('amazonapps' == $storeID) && ( wpAppbox_checkAmazonAPI() ) ) {
@@ -37,21 +38,13 @@
 						<option <?php selected( get_option( 'wpAppbox_storeURL_'.$storeID ), '0' ); ?> value="0" data="<?php echo( get_option( 'wpAppbox_storeURL_'.$storeID.'_URL' ) ); ?>"><?php echo( $wpAppbox_storeURL_languages[0] ); ?></option>
 						<?php 
 							asort( $wpAppbox_storeURL_languages );
-							foreach( $wpAppbox_storeURL_languages as $languageID => $languageName ) { ?>
-							<?php if( ( '0' != $languageID ) && ( '' != $wpAppbox_storeURL[$storeID][$languageID] ) ) { ?>
-								<option <?php selected( get_option( 'wpAppbox_storeURL_' . $storeID ), $languageID); ?> value="<?php echo( $languageID ); ?>" data="<?php echo( $wpAppbox_storeURL[$storeID][$languageID] ); ?>"><?php echo( $languageName ); ?></option>
+							foreach( $wpAppbox_storeURL_languages as $languageID => $languageNameCode ) { ?>
+							<?php if ( ( '0' != $languageID ) && isset( $wpAppbox_storeURL[$storeID][$languageID] ) && ( '' != $wpAppbox_storeURL[$storeID][$languageID] ) ) { ?>
+								<option <?php selected( get_option( 'wpAppbox_storeURL_' . $storeID ), $languageID); ?> value="<?php echo( $languageID ); ?>" data="<?php echo( $wpAppbox_storeURL[$storeID][$languageID] ); ?>"><?php echo( $languageNameCode['name'] ); ?></option>
 							<?php } ?>
 						<?php } ?>
 					</select>
 					<input <?php if( get_option( 'wpAppbox_storeURL_'.$storeID ) != 0) { echo 'disabled="disabled"'; } ?> type="text" value="<?php echo( get_option( 'wpAppbox_storeURL_'.$storeID ) == '0' ) ? get_option('wpAppbox_storeURL_URL_'.$storeID) : $wpAppbox_storeURL[$storeID][get_option( 'wpAppbox_storeURL_'.$storeID )]; ?>" name="wpAppbox_storeURL_URL_<?php echo( $storeID ); ?>" id="wpAppbox_storeURL_URL_<?php echo( $storeID ); ?>" style="width:500px;" />
-				<?php } ?>
-				<?php if ( 'appstore' == $storeID ) : ?>
-					<p>	
-						<label for="wpAppbox_iTunesGeo">
-							<input type="checkbox" name="wpAppbox_iTunesGeo" id="wpAppbox_iTunesGeo" value="1" <?php checked( get_option('wpAppbox_iTunesGeo') ); ?>/>
-							<?php esc_html_e('Convert App-Store-URLs to geo.itunes. This geo-prefix redirects the users to a app-site in their language.', 'wp-appbox'); ?>
-						</label>
-					</p>
 				<?php endif; ?>
 			</td>
 		</tr>

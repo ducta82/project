@@ -154,7 +154,7 @@ tinymce.create('tinymce.plugins.wpAppbox_StoreButtons', {
 		});
 		
 		ed.addButton('wpAppbox_FirefoxAddonButton', {
-			title : 'Firefox Erweiterungen Appbox',
+			title : 'Firefox Extensions Appbox',
 			onclick : function() {
 				ed.execCommand('mceInsertContent', false, wpAppbox_firefoxaddon_button());
 			},
@@ -210,7 +210,7 @@ tinymce.create('tinymce.plugins.wpAppbox_StoreButtons', {
 		});
 		
 		ed.addButton('wpAppbox_WordPressButton', {
-			title : 'Wordpress Plugin-Verzeichnis Appbox',
+			title : 'Wordpress Plugin Appbox',
 			onclick : function() {
 				ed.execCommand('mceInsertContent', false, wpAppbox_wordpress_button());
 			},
@@ -220,7 +220,7 @@ tinymce.create('tinymce.plugins.wpAppbox_StoreButtons', {
 		ed.addButton('wpAppbox_XDAButton', {
 			title : 'XDA Labs (Android) Appbox',
 			onclick : function() {
-				ed.execCommand('mceInsertContent', false, wpAppbox_wordpress_button());
+				ed.execCommand('mceInsertContent', false, wpAppbox_xda_button());
 			},
 			image: url + "/xda.btn.png"
 		});

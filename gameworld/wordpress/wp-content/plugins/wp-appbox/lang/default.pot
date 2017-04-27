@@ -2,7 +2,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: WP-Appbox\n"
-"POT-Creation-Date: 2017-04-13 11:58+0200\n"
+"POT-Creation-Date: 2017-04-18 01:17+0200\n"
 "PO-Revision-Date: 2015-04-20 18:35+0100\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -75,7 +75,7 @@ msgid "Detect urls of apps in a separated line within the post."
 msgstr ""
 
 #: admin/admin-advanced.php:69
-msgid "Very experimental, but it should work."
+msgid "Little bit experimental."
 msgstr ""
 
 #: admin/admin-advanced.php:75
@@ -162,59 +162,55 @@ msgid ""
 "administrators)"
 msgstr ""
 
-#: admin/admin-advanced.php:166
-msgid "Apple App Store Icons"
+#: admin/admin-advanced.php:167
+msgid "Force SSL"
 msgstr ""
 
-#: admin/admin-advanced.php:170
-msgid "Compatibility mode for app icons from the (Mac) App Store."
+#: admin/admin-advanced.php:171
+#, php-format
+msgid ""
+"Force SSL output (for some reasons <a href=\"%s\">is_ssl()</a> is buggy)"
 msgstr ""
 
-#: admin/admin-advanced.php:176
-msgid "Flush cache"
+#: admin/admin-advanced.php:172
+msgid "Experimental for Apple, as some images may not exist on https server."
 msgstr ""
 
 #: admin/admin-advanced.php:179
+msgid "Flush cache"
+msgstr ""
+
+#: admin/admin-advanced.php:182
 msgid ""
 "Are you sure that the cache should be cleared? All data must be reloaded "
 "from the server of the operator."
 msgstr ""
 
-#: admin/admin-advanced.php:179
+#: admin/admin-advanced.php:182
 msgid "Clear cache"
 msgstr ""
 
-#: admin/admin-advanced.php:180
+#: admin/admin-advanced.php:183
 msgid "Are you sure that all cached images should be deleted?"
 msgstr ""
 
-#: admin/admin-advanced.php:180
+#: admin/admin-advanced.php:183
 msgid "Clear image cache"
 msgstr ""
 
-#: admin/admin-advanced.php:189
+#: admin/admin-advanced.php:192
 msgid "Experimental settings"
 msgstr ""
 
-#: admin/admin-advanced.php:194
-msgid "SSL for Apple App Store"
-msgstr ""
-
-#: admin/admin-advanced.php:199
-msgid ""
-"Use SSL urls for images from the Apple App Store. Highly experimental, some "
-"images may not exist on https server."
-msgstr ""
-
-#: admin/admin-advanced.php:206
+#: admin/admin-advanced.php:197
 msgid "Cronjob for caching"
 msgstr ""
 
-#: admin/admin-advanced.php:211
+#: admin/admin-advanced.php:202
 #, php-format
 msgid ""
 "Show cronjob option to update apps in the cache, see more in <a href=\"%s"
-"\">cache tab</a>. Warning: Needs much more ressources."
+"\">cache tab</a>. Warning: Needs much more resources."
 msgstr ""
 
 #: admin/admin-affiliate.php:2
@@ -346,7 +342,7 @@ msgstr ""
 msgid "Hide button"
 msgstr ""
 
-#: admin/admin-cache-list.php:186 inc/createoutput.class.php:413
+#: admin/admin-cache-list.php:186 inc/createoutput.class.php:409
 msgid "Free"
 msgstr ""
 
@@ -564,7 +560,7 @@ msgstr ""
 
 #: admin/admin-cache.php:114
 msgid ""
-"Cache app images on your own server (needs more ressources when caching an "
+"Cache app images on your own server (needs more resources when caching an "
 "app)"
 msgstr ""
 
@@ -605,7 +601,7 @@ msgstr ""
 msgid "to prevent missing images in combination with a caching plugin"
 msgstr ""
 
-#: admin/admin-cache.php:176 admin/admin-cache.php:226
+#: admin/admin-cache.php:176
 msgid ""
 "Do you want to deactivate the image caching? All local images will be "
 "deleted."
@@ -665,7 +661,7 @@ msgid ""
 "the current price."
 msgstr ""
 
-#: admin/admin-info.php:40 admin/admin.php:72
+#: admin/admin-info.php:40 admin/admin.php:73
 msgid "app in cache"
 msgid_plural "apps in cache"
 msgstr[0] ""
@@ -778,30 +774,30 @@ msgstr ""
 msgid "Opens the links of apps in a new window (target=\"_blank\")"
 msgstr ""
 
-#: admin/admin-storeurls.php:10
+#: admin/admin-storeurls.php:11
 #, php-format
 msgid "Your servers location is %1$s"
 msgstr ""
 
-#: admin/admin-storeurls.php:15
+#: admin/admin-storeurls.php:16
 msgid ""
 "Here you can change the query URL of the stores. Just copy the desired URL "
 "and set instead of the app ID wildcard {APPID}. If the URL is empty, the "
 "default URL (German) is used."
 msgstr ""
 
-#: admin/admin-storeurls.php:27
+#: admin/admin-storeurls.php:28
 msgid "No language selection supported."
 msgstr ""
 
-#: admin/admin-storeurls.php:32
+#: admin/admin-storeurls.php:33
 #, php-format
 msgid ""
 "Official Amazon Product Advertising API is activated and valid. Please "
 "change your region %1$sin this tab%2$s."
 msgstr ""
 
-#: admin/admin-storeurls.php:52
+#: admin/admin-storeurls.php:53
 msgid ""
 "Convert App-Store-URLs to geo.itunes. This geo-prefix redirects the users to "
 "a app-site in their language."
@@ -811,110 +807,110 @@ msgstr ""
 msgid "settings"
 msgstr ""
 
-#: admin/admin.php:46
+#: admin/admin.php:47
 #, php-format
 msgid "WP-Appbox %1$s is here!"
 msgstr ""
 
-#: admin/admin.php:47
+#: admin/admin.php:48
 #, php-format
 msgid "<a href=\"%s\" target=\"_blank\">See here</a> what is new."
 msgstr ""
 
-#: admin/admin.php:48
+#: admin/admin.php:49
 #, php-format
 msgid ""
 "Did it help? If you like this plugin and find it useful, please <a href=\"%s"
 "\" target=\"_blank\">consider to rate</a> this plugin."
 msgstr ""
 
-#: admin/admin.php:95
+#: admin/admin.php:96
 msgid "Info"
 msgstr ""
 
-#: admin/admin.php:96
+#: admin/admin.php:97
 msgid "Output"
 msgstr ""
 
-#: admin/admin.php:97
+#: admin/admin.php:98
 msgid "Cache"
 msgstr ""
 
-#: admin/admin.php:98
+#: admin/admin.php:99
 msgid "Affiliate IDs"
 msgstr ""
 
-#: admin/admin.php:99
+#: admin/admin.php:100
 msgid "Editor-Buttons"
 msgstr ""
 
-#: admin/admin.php:100
+#: admin/admin.php:101
 msgid "Store-URLs"
 msgstr ""
 
-#: admin/admin.php:101
+#: admin/admin.php:102
 msgid "Advanced"
 msgstr ""
 
-#: admin/admin.php:102
+#: admin/admin.php:103
 msgid "Help"
 msgstr ""
 
-#: admin/admin.php:126
+#: admin/admin.php:127
 msgid "Apps"
 msgstr ""
 
-#: admin/admin.php:336
+#: admin/admin.php:333
 msgid "The cache was successfully cleared."
 msgstr ""
 
-#: admin/admin.php:337
+#: admin/admin.php:334
 msgid "The cache can not be emptied or there are no apps in the cache."
 msgstr ""
 
-#: admin/admin.php:341
+#: admin/admin.php:338
 msgid "The image cache was successfully cleared."
 msgstr ""
 
-#: admin/admin.php:342
+#: admin/admin.php:339
 msgid "The image cache can not be emptied."
 msgstr ""
 
-#: admin/admin.php:347
+#: admin/admin.php:344
 msgid "Image cache is not active"
 msgstr ""
 
-#: admin/admin.php:354
+#: admin/admin.php:351
 msgid ""
 "Your public key, secret key or affiliate ID seems not correct. Please check "
 "or retry (maybe its just a server error)."
 msgstr ""
 
-#: admin/admin.php:359 wp-appbox.php:929
+#: admin/admin.php:356 wp-appbox.php:936
 msgid "Follow me on Twitter"
 msgstr ""
 
-#: admin/admin.php:359
+#: admin/admin.php:356
 msgid "Visit the Plugin plage"
 msgstr ""
 
-#: admin/admin.php:359
+#: admin/admin.php:356
 msgid "Plugin at WordPress Directory"
 msgstr ""
 
-#: admin/admin.php:359
+#: admin/admin.php:356
 msgid "Changelog"
 msgstr ""
 
-#: admin/admin.php:362 wp-appbox.php:933
+#: admin/admin.php:359 wp-appbox.php:940
 msgid "PayPal-Donation"
 msgstr ""
 
-#: admin/admin.php:363
+#: admin/admin.php:360
 msgid "Amazon Wishlist"
 msgstr ""
 
-#: admin/admin.php:382
+#: admin/admin.php:379
 msgid "Save changes"
 msgstr ""
 
@@ -952,306 +948,306 @@ msgid ""
 "specified, the default ID is used."
 msgstr ""
 
-#: inc/createoutput.class.php:321
+#: inc/createoutput.class.php:317
 msgid "of 5 stars"
 msgstr ""
 
-#: inc/createoutput.class.php:387
+#: inc/createoutput.class.php:383
 msgid "Screenshot"
 msgstr ""
 
-#: inc/createoutput.class.php:435
+#: inc/createoutput.class.php:431
 msgid "Renew cached data of this app"
 msgstr ""
 
-#: inc/createoutput.class.php:459
+#: inc/createoutput.class.php:455
 msgid "The App Store is not recognized."
 msgstr ""
 
-#: inc/createoutput.class.php:462
+#: inc/createoutput.class.php:458
 msgid "The App ID is not recognized."
 msgstr ""
 
-#: inc/createoutput.class.php:465
+#: inc/createoutput.class.php:461
 msgid "The app was not found in the store."
 msgstr ""
 
-#: inc/createoutput.class.php:468
+#: inc/createoutput.class.php:464
 msgid "An unknown error has occurred."
 msgstr ""
 
-#: inc/definitions.php:38
+#: inc/definitions.php:34
+msgid "Download"
+msgstr ""
+
+#: inc/definitions.php:93
 msgid "Amazon Apps"
 msgstr ""
 
-#: inc/definitions.php:39
+#: inc/definitions.php:94
 msgid "(Mac) App Store"
 msgstr ""
 
-#: inc/definitions.php:40
+#: inc/definitions.php:95
 msgid "Chrome Web Store"
 msgstr ""
 
-#: inc/definitions.php:41
+#: inc/definitions.php:96
 msgid "Firefox Add-ons"
 msgstr ""
 
-#: inc/definitions.php:42
+#: inc/definitions.php:97
 msgid "Firefox Marketplace"
 msgstr ""
 
-#: inc/definitions.php:43
+#: inc/definitions.php:98
 msgid "GOG.com"
 msgstr ""
 
-#: inc/definitions.php:44
+#: inc/definitions.php:99
 msgid "Google Play Apps"
 msgstr ""
 
-#: inc/definitions.php:45
+#: inc/definitions.php:100
 msgid "Opera Add-ons"
 msgstr ""
 
-#: inc/definitions.php:46
+#: inc/definitions.php:101
 msgid "Steam"
 msgstr ""
 
-#: inc/definitions.php:47
+#: inc/definitions.php:102
 msgid "Windows Store"
 msgstr ""
 
-#: inc/definitions.php:48
+#: inc/definitions.php:103
 msgid "WordPress Plugins"
 msgstr ""
 
-#: inc/definitions.php:49
+#: inc/definitions.php:104
 msgid "XDA Labs"
 msgstr ""
 
-#: inc/definitions.php:91
+#: inc/definitions.php:146
 msgid "Argentina"
 msgstr ""
 
-#: inc/definitions.php:92
+#: inc/definitions.php:147
 msgid "Australia"
 msgstr ""
 
-#: inc/definitions.php:93 inc/getstoreurls.class.php:15
+#: inc/definitions.php:148 inc/getstoreurls.class.php:15
 msgid "Austria"
 msgstr ""
 
-#: inc/definitions.php:94
+#: inc/definitions.php:149
 msgid "Belgium"
 msgstr ""
 
-#: inc/definitions.php:95 inc/getstoreurls.class.php:28
+#: inc/definitions.php:150 inc/getstoreurls.class.php:28
 msgid "Brazil"
 msgstr ""
 
-#: inc/definitions.php:96 inc/getstoreurls.class.php:29
+#: inc/definitions.php:151 inc/getstoreurls.class.php:29
 msgid "Canada"
 msgstr ""
 
-#: inc/definitions.php:97
+#: inc/definitions.php:152
 msgid "Chile"
 msgstr ""
 
-#: inc/definitions.php:98 inc/getstoreurls.class.php:30
+#: inc/definitions.php:153 inc/getstoreurls.class.php:30
 msgid "China"
 msgstr ""
 
-#: inc/definitions.php:99
+#: inc/definitions.php:154
 msgid "Columbia"
 msgstr ""
 
-#: inc/definitions.php:100
+#: inc/definitions.php:155
 msgid "Costa Rica"
 msgstr ""
 
-#: inc/definitions.php:101
+#: inc/definitions.php:156
 msgid "Czech Republic"
 msgstr ""
 
-#: inc/definitions.php:102
+#: inc/definitions.php:157
 msgid "Denmark"
 msgstr ""
 
-#: inc/definitions.php:103
+#: inc/definitions.php:158
 msgid "Estonia"
 msgstr ""
 
-#: inc/definitions.php:104
+#: inc/definitions.php:159
 msgid "Finland"
 msgstr ""
 
-#: inc/definitions.php:105 inc/getstoreurls.class.php:10
+#: inc/definitions.php:160 inc/getstoreurls.class.php:10
 #: inc/getstoreurls.class.php:31
 msgid "France"
 msgstr ""
 
-#: inc/definitions.php:106 inc/getstoreurls.class.php:7
+#: inc/definitions.php:161 inc/getstoreurls.class.php:7
 #: inc/getstoreurls.class.php:32
 msgid "Germany"
 msgstr ""
 
-#: inc/definitions.php:107
+#: inc/definitions.php:162
 msgid "Greece"
 msgstr ""
 
-#: inc/definitions.php:108
+#: inc/definitions.php:163
 msgid "Honk Kong"
 msgstr ""
 
-#: inc/definitions.php:109
+#: inc/definitions.php:164
 msgid "Hungary"
 msgstr ""
 
-#: inc/definitions.php:110 inc/getstoreurls.class.php:33
+#: inc/definitions.php:165 inc/getstoreurls.class.php:33
 msgid "India"
 msgstr ""
 
-#: inc/definitions.php:111
+#: inc/definitions.php:166
 msgid "Indonesia"
 msgstr ""
 
-#: inc/definitions.php:112
+#: inc/definitions.php:167
 msgid "Ireland"
 msgstr ""
 
-#: inc/definitions.php:113
+#: inc/definitions.php:168
 msgid "Israel"
 msgstr ""
 
-#: inc/definitions.php:114 inc/getstoreurls.class.php:14
+#: inc/definitions.php:169 inc/getstoreurls.class.php:14
 #: inc/getstoreurls.class.php:34
 msgid "Italy"
 msgstr ""
 
-#: inc/definitions.php:115 inc/getstoreurls.class.php:17
+#: inc/definitions.php:170 inc/getstoreurls.class.php:17
 #: inc/getstoreurls.class.php:35
 msgid "Japan"
 msgstr ""
 
-#: inc/definitions.php:116
+#: inc/definitions.php:171
 msgid "Kuwait"
 msgstr ""
 
-#: inc/definitions.php:117
+#: inc/definitions.php:172
 msgid "Luxembourg"
 msgstr ""
 
-#: inc/definitions.php:118
+#: inc/definitions.php:173
 msgid "Malaysia"
 msgstr ""
 
-#: inc/definitions.php:119 inc/getstoreurls.class.php:36
+#: inc/definitions.php:174 inc/getstoreurls.class.php:36
 msgid "Mexico"
 msgstr ""
 
-#: inc/definitions.php:120
+#: inc/definitions.php:175
 msgid "Netherlands"
 msgstr ""
 
-#: inc/definitions.php:121
+#: inc/definitions.php:176
 msgid "New Zealand"
 msgstr ""
 
-#: inc/definitions.php:122
+#: inc/definitions.php:177
 msgid "Norway"
 msgstr ""
 
-#: inc/definitions.php:123
+#: inc/definitions.php:178
 msgid "Peru"
 msgstr ""
 
-#: inc/definitions.php:124
+#: inc/definitions.php:179
 msgid "Philippines"
 msgstr ""
 
-#: inc/definitions.php:125 inc/getstoreurls.class.php:18
+#: inc/definitions.php:180 inc/getstoreurls.class.php:18
 msgid "Poland"
 msgstr ""
 
-#: inc/definitions.php:126
+#: inc/definitions.php:181
 msgid "Portugal"
 msgstr ""
 
-#: inc/definitions.php:127
+#: inc/definitions.php:182
 msgid "Republic of Korea"
 msgstr ""
 
-#: inc/definitions.php:128 inc/getstoreurls.class.php:12
+#: inc/definitions.php:183 inc/getstoreurls.class.php:12
 msgid "Russia"
 msgstr ""
 
-#: inc/definitions.php:129
+#: inc/definitions.php:184
 msgid "Saudi Arabia"
 msgstr ""
 
-#: inc/definitions.php:130
+#: inc/definitions.php:185
 msgid "Singapore"
 msgstr ""
 
-#: inc/definitions.php:131
+#: inc/definitions.php:186
 msgid "Slovakia"
 msgstr ""
 
-#: inc/definitions.php:132 inc/getstoreurls.class.php:11
+#: inc/definitions.php:187 inc/getstoreurls.class.php:11
 #: inc/getstoreurls.class.php:37
 msgid "Spain"
 msgstr ""
 
-#: inc/definitions.php:133
+#: inc/definitions.php:188
 msgid "Sweden"
 msgstr ""
 
-#: inc/definitions.php:134 inc/getstoreurls.class.php:16
+#: inc/definitions.php:189 inc/getstoreurls.class.php:16
 msgid "Switzerland"
 msgstr ""
 
-#: inc/definitions.php:135
+#: inc/definitions.php:190
 msgid "Taiwan"
 msgstr ""
 
-#: inc/definitions.php:136
+#: inc/definitions.php:191
 msgid "Thailand"
 msgstr ""
 
-#: inc/definitions.php:137 inc/getstoreurls.class.php:13
+#: inc/definitions.php:192 inc/getstoreurls.class.php:13
 msgid "Turkey"
 msgstr ""
 
-#: inc/definitions.php:138
+#: inc/definitions.php:193
 msgid "South Africa"
 msgstr ""
 
-#: inc/definitions.php:139
+#: inc/definitions.php:194
 msgid "United Arab Emirates"
 msgstr ""
 
-#: inc/definitions.php:140 inc/getstoreurls.class.php:9
+#: inc/definitions.php:195 inc/getstoreurls.class.php:9
 #: inc/getstoreurls.class.php:38
 msgid "United Kingdom"
 msgstr ""
 
-#: inc/definitions.php:141 inc/getstoreurls.class.php:8
+#: inc/definitions.php:196 inc/getstoreurls.class.php:8
 #: inc/getstoreurls.class.php:39
 msgid "United States"
 msgstr ""
 
-#: inc/definitions.php:142
+#: inc/definitions.php:197
 msgid "Venezuela"
 msgstr ""
 
-#: inc/definitions.php:157
-msgid "Download"
-msgstr ""
-
-#: inc/getappinfo.class.php:1063
+#: inc/getappinfo.class.php:1068
 msgid "various"
 msgstr ""
 
-#: inc/getappinfo.class.php:1436
+#: inc/getappinfo.class.php:1441
 msgid "Unknown"
 msgstr ""
 
@@ -1304,39 +1300,39 @@ msgstr ""
 msgid "Every %1$s minutes"
 msgstr ""
 
-#: wp-appbox.php:903
+#: wp-appbox.php:910
 msgid "Settings"
 msgstr ""
 
-#: wp-appbox.php:930
+#: wp-appbox.php:937
 msgid "Plugin page"
 msgstr ""
 
-#: wp-appbox.php:931
+#: wp-appbox.php:938
 msgid "Rate the plugin"
 msgstr ""
 
-#: wp-appbox.php:932
+#: wp-appbox.php:939
 msgid "My Amazon Wishlist"
 msgstr ""
 
-#: wp-appbox.php:966
+#: wp-appbox.php:973
 msgid "To use this plugin requires at least PHP version 5.3 is required."
 msgstr ""
 
-#: wp-appbox.php:967
+#: wp-appbox.php:974
 msgid ""
 "\"cURL\" is disabled on this server, but is required. Please enable this "
 "feature (or contact your hoster)."
 msgstr ""
 
-#: wp-appbox.php:968
+#: wp-appbox.php:975
 msgid ""
 "\"curl_exec\" is disabled on this server, but is required. Please enable "
 "this feature (or contact your hoster)."
 msgstr ""
 
-#: wp-appbox.php:969
+#: wp-appbox.php:976
 msgid ""
 "\"json_decode\" is disabled on this server, but is required. Please enable "
 "this feature (or contact your hoster)."

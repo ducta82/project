@@ -35,7 +35,7 @@
 		});
 		
 		ed.addButton('wpAppbox_FirefoxAddonButton', {
-			title : 'Firefox Erweiterungen Appbox',
+			title : 'Firefox Extension Appbox',
 			onclick : function() {
 				ed.execCommand('mceInsertContent', false, wpAppbox_firefoxaddon_button());
 			},
@@ -91,7 +91,7 @@
 		});
 		
 		ed.addButton('wpAppbox_WordPressButton', {
-			title : 'Wordpress Plugin-Verzeichnis Appbox',
+			title : 'Wordpress Plugin Appbox',
 			onclick : function() {
 				ed.execCommand('mceInsertContent', false, wpAppbox_wordpress_button());
 			},
